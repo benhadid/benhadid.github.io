@@ -26,12 +26,12 @@ course_description: > # this means to ignore newlines until "course_semester:"
 
 course_semester: "Automne 2020"
 
-baseurl: "/ADO/2020/" # the subpath of your site, e.g. /blog/
+baseurl: "/l2ado" # the subpath of your site, e.g. /blog/
 url: "http://benhadid.github.io/" # the base hostname & protocol for your site
 
-schoolname: "Université d'Alger 1"
-schoolurl: "https://www.univ-alger.dz"
-twitter_username: username 
+#schoolname: "Université d'Alger 1"
+#schoolurl: "https://www.univ-alger.dz"
+#twitter_username: username 
 
 address: |
     02 rue Didouche Mourad 
