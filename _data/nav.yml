@@ -11,18 +11,18 @@ items:
   name: Cours
   icon_class: fas fa-book-reader
 
-- url: /labs/
-  name: Pratiques
-  icon_class: fas fa-laptop-code
-
 - url: /assignments/
-  name: Devoirs
+  name: T. Dirigés
   icon_class: fas fa-user-graduate
+
+- url: /labs/
+  name: T. Pratiques
+  icon_class: fas fa-laptop-code
 
 - url: /project/
   name: Projet
   icon_class: fas fa-user-graduate
 
 - url: /materials/
-  name: Support
+  name: Ressources
   icon_class: fas fa-book

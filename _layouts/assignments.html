@@ -10,12 +10,12 @@ layout: page
             <strong style="font-size:100%; font-family: 'Titillium Web', sans-serif; float:right">
 
                   {% if asg.pdf %}
-                  <a title="Télécharger l'énoncé du devoir (pdf)" href="{{ asg.pdf | prepend: site.baseurl }}"><i
+                  <a title="Télécharger l'énoncé (pdf)" href="{{ asg.pdf | prepend: site.baseurl }}"><i
                               class="fas fa-file-pdf"></i></a>
                   {% endif %}                              
 
                   {% if asg.attachment %}
-                  &nbsp; <a title="Télécharger le code de démarrage pour le devoir (zip)"
+                  &nbsp; <a title="Télécharger le code de démarrage (zip)"
                         href="{{ asg.attachment | prepend: site.baseurl }}"><i class="fas fa-file-archive"></i></a>
                   {% endif %}
 

@@ -1,7 +1,7 @@
 ---
 layout: default
-title: page.title
 ---
+
 <div class="post">
 
   <header class="post-header">
@@ -22,7 +22,7 @@ title: page.title
 
   <div>
     {% if page.due_event %}
-    <span style="font-weight: bold">Date prévue : 
+    <span style="font-weight: bold">Échéance : 
       <!-- {{ page.due_event.date | date: site.dateformat }} -->
 
       {% assign d = page.due_event.date | date : "%w" | minus: 0 %}
@@ -32,7 +32,6 @@ title: page.title
       {{ site.data.fr.months[m] }}
       {{ page.due_event.date | date: "%Y" }}
   
-
     </span>
     {% endif %}
 

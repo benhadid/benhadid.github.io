@@ -1,7 +1,15 @@
 ---
-layout: page
 title: Projet - Processeur MIPS
 permalink: /project/
+layout: project
+date: 2019-09-19T4:00:00+4:30
+#pdf: /static_files/assignments/devoir1.pdf
+#attachment: /static_files/assignments/asg.zip
+#solutions: /static_files/assignments/asg_solutions.pdf
+due_event: 
+    type: due
+    date: 2019-09-26T23:59:00+3:30
+    description: 'Projet à remettre'    
 ---
 
 # Objectifs

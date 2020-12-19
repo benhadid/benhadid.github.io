@@ -19,7 +19,7 @@ course_description: > # this means to ignore newlines until "course_semester:"
   stockées dans un ordinateur. Vous apprendrez à écrire des programmes dans un 
   Langage Assembleur (par exemple, multiplier deux nombres, inscrire un nombre en mémoire, etc). 
   Vous apprendrez à construire et à utiliser les blocs de base dans un processeur (unité arithmétique, 
-  banc de registres, unité de controle, etc). Vous utiliserez des outils de conception pour créer 
+  banc de registres, unité de contrôle, etc). Vous utiliserez des outils de conception pour créer 
   un processeur exécutant des programmes écrits en Assembleur. Enfin, vous analyserez les performances 
   des systèmes informatiques et examinerez les facteurs, tels que la localisation des données et 
   le parallélisme, qui affectent ces mesures.
