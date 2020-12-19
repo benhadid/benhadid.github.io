@@ -1,0 +1,83 @@
+# Site settings
+course_name: Architecture des ordinateurs
+course_description: > # this means to ignore newlines until "course_semester:"
+  Dans cet ère du numérique, notre dépendance des ordinateurs est en train de changer de façon 
+  considérable. Les smartphones alimentés par batterie qui tiennent dans nos mains communiquent 
+  avec des entrepôts de serveurs distants. Ces deux types d'ordinateurs sont basés sur les mêmes 
+  principes fondamentaux que les ordinateurs de bureau des années 90s. Cependant, les idées 
+  classiques de conception des ordinateurs ont atteint une impasse : la tendance d'hier qui dictait 
+  que « plus de transistors est égale à des processeurs plus rapides » a pris fin. Cette impasse a 
+  induit une refonte des stratégies de conception des ordinateurs, du matériel aux applications. 
+  <br><br>
+  Ce cours porte sur le fonctionnement des ordinateurs et sur la manière dont la 
+  conception du logiciel et du matériel affecte les performances. À l'issue de ce cours, 
+  vous saurez expliquer comment fonctionne un ordinateur de bas en haut : du transistor 
+  au portes logiques au Langage Assembleur (MIPS, x86, etc) au Langages évolués de 
+  programmation (C/C++, Java, Python, etc).
+  <br><br>
+  Dans ce cours, vous découvrirez comment les données sont représentées, traitées, et 
+  stockées dans un ordinateur. Vous apprendrez à écrire des programmes dans un 
+  Langage Assembleur (par exemple, multiplier deux nombres, inscrire un nombre en mémoire, etc). 
+  Vous apprendrez à construire et à utiliser les blocs de base dans un processeur (unité arithmétique, 
+  banc de registres, unité de controle, etc). Vous utiliserez des outils de conception pour créer 
+  un processeur exécutant des programmes écrits en Assembleur. Enfin, vous analyserez les performances 
+  des systèmes informatiques et examinerez les facteurs, tels que la localisation des données et 
+  le parallélisme, qui affectent ces mesures.
+
+course_semester: "Automne 2020"
+
+baseurl: "/ADO/2020/" # the subpath of your site, e.g. /blog/
+url: "http://benhadid.github.io/" # the base hostname & protocol for your site
+
+schoolname: "Université d'Alger 1"
+schoolurl: "https://www.univ-alger.dz"
+twitter_username: username 
+
+address: |
+    02 rue Didouche Mourad 
+    16000 Alger
+
+# Set your Google Analytics tracking ID (set up yours at http://www.google.com/analytics/)
+# google_analytics: UA-XXXXXXXX-X
+
+### Do not change the followings unless you know what you are doing ###
+
+# Build settings
+markdown: kramdown
+kramdown:
+   math_engine: mathjax
+   syntax_highlighter: rouge
+
+# Other options
+permalink: blog/:year/:month/:title
+excerpt_separator: "<!--more-->"
+
+include: ['_images', '_css']
+exclude: ['develop']
+
+dateformat: "%d/%m/%Y"
+
+future: true
+collections:
+    events:
+        output: true
+    lectures:
+        output: true
+    labs:
+        output: true
+    assignments:
+        output: true
+    announcements:
+        output: false
+
+defaults:
+  - scope:
+      path: ""
+      type: "assignments"
+    values:
+      layout: "assignment"
+  - scope:
+      path: ""
+      type: "labs"
+    values:
+      layout: "lab"
