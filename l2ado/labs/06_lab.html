@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title> Travaux Pratiques #6 - Exceptions et Interruptions dans MIPS - Architecture des ordinateurs / Automne 2020 </title>
+  <meta name="description" content="Objectifs  Comprendre la gestion des exceptions et interruptions dans MIPS  Apprendre à écrire des gestionnaires d’exception dans MIPS.Exercice 1Lancez l’exe...">
+  
+  <link rel="stylesheet" href="/l2ado/_css/main.css">
+  <link rel="canonical" href="http://benhadid.github.io//l2ado/labs/06_lab">
+  <link rel="alternate" type="application/rss+xml" title="Architecture des ordinateurs / Automne 2020 - " href="http://benhadid.github.io//l2ado/feed.xml" />
+<link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.2.4' type='text/css' media='all' />
+<link href='https://fonts.googleapis.com/css?family=Titillium+Web:600italic,600,400,400italic' rel='stylesheet' type='text/css'>
+
+
+
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+<!-- MathJax -->
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper" style="z-index: 100;">
+      <table><tr>
+          <td><img width="75" src="/l2ado/_images/logo.png" valign="middle"></td>
+          <td style="padding-left:10px;"><a class="schoolname" style="font-size: 15px;" class="site-title" href=""></a>
+          <br/>
+          <span style="margin-top: -2px;margin-bottom: -10px;" class="site-title"><a href="/l2ado/" title="Architecture des ordinateurs / Automne 2020 - "><b>Architecture des ordinateurs</a></b></span>
+          <br/>
+          <span class="coursesemeter" style="font-size: 12px;font-weight: bold;margin-top: 10px;display: block;">Automne 2020</span>
+          </td>
+        </tr></table>
+
+    <nav class="site-nav">
+
+      <a href="#" class="menu-icon menu.open">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>  
+
+    <div class="trigger"><h1>Main Navigation</h1>
+
+ <ul class="menu">
+    
+    <li>
+        <a class="page-link" href="/l2ado/">
+            <i class="fa fa-home fa-lg"></i> Accueil
+        </a>
+    </li>
+    
+    <li>
+        <a class="page-link" href="/l2ado/schedule/">
+            <i class="fas fa-calendar-alt"></i> Programme
+        </a>
+    </li>
+    
+    <li>
+        <a class="page-link" href="/l2ado/lectures/">
+            <i class="fas fa-book-reader"></i> Cours
+        </a>
+    </li>
+    
+    <li>
+        <a class="page-link" href="/l2ado/labs/">
+            <i class="fas fa-laptop-code"></i> Pratiques
+        </a>
+    </li>
+    
+    <li>
+        <a class="page-link" href="/l2ado/assignments/">
+            <i class="fas fa-user-graduate"></i> Devoirs
+        </a>
+    </li>
+    
+    <li>
+        <a class="page-link" href="/l2ado/project/">
+            <i class="fas fa-user-graduate"></i> Projet
+        </a>
+    </li>
+    
+    <li>
+        <a class="page-link" href="/l2ado/materials/">
+            <i class="fas fa-book"></i> Support
+        </a>
+    </li>
+    
+</ul>
+
+     </div>  
+    </nav>
+
+  </div>
+
+  <div class="header-texture" style="height:100%; z-index: 0; position: absolute; top:0; right: 0; left: 0; 
+  background-image: url('/l2ado/_images/pattern.png');" />
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Travaux Pratiques #6 - Exceptions et Interruptions dans MIPS</h1>
+    <p class="post-meta">Publié le Thursday 19/09/2019</p>
+  </header>
+
+  <div>
+    
+    <span style="font-weight: bold">Date prévue : 
+      <!-- 26/09/2019 -->
+
+      
+      Jeudi
+      26
+      
+      Septembre
+      2019
+  
+
+    </span>
+    
+
+    
+    <p style="font-weight: bold">Télécharger
+
+      
+
+      
+      [<a href="/l2ado/static_files/labs/lab_06.zip">démarrage</a>]
+      
+
+      
+
+    </p>
+    
+
+  </div>
+
+  <br />
+  <article class="post-content">
+    <h1 id="objectifs">Objectifs</h1>
+
+<ul>
+  <li>Comprendre la gestion des exceptions et interruptions dans MIPS</li>
+  <li>Apprendre à écrire des gestionnaires d’exception dans MIPS.</li>
+</ul>
+
+<h1 id="exercice-1">Exercice 1</h1>
+
+<p>Lancez l’exemple de code suivant dans MARS, puis répondez aux questions ci-dessous.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   .text
+   .globl main  
+main:
+  li $t0, 2147483647   #
+  li $t1, 5000
+  add $a0, $t0, $t1    #
+
+  li $v0, 10           # exit
+  syscall
+
+</code></pre></div></div>
+<ol>
+  <li>Quelle est la valeur (en hexadécimal) du registre <strong>status</strong> du coprocesseur 0 ?</li>
+  <li>Quelle est la valeur (en hexadécimal) du registre <strong>cause</strong> du coprocesseur 0 ?</li>
+  <li>Quel type d’exception s’est produite ?</li>
+  <li>A quelle adresse (en hexadécimal) s’est produite l’exception ?</li>
+</ol>
+
+<h1 id="exercice-2">Exercice 2</h1>
+
+<p>L’activation des interruptions sur un processeur MIPS se fait en deux étapes :</p>
+
+<ul>
+  <li>
+    <p><strong>Configurer le périphérique en question pour qu’il envoie des signaux d’interruption</strong>
+Cela requiert en général l’activation d’un bit de validation d’interruption dans un registre de contrôle dans le périphérique.</p>
+  </li>
+  <li>
+    <p><strong>Configurer le coprocesseur 0 pour accépter les signaux d’interruption</strong>
+Ceci est effectué en mettant à 1 le bit 0 du registre status ($12) pour activer les interruptions d’une manière globale, puis, en définissant des bits particuliers dans le registre status, on activera des interruptions spécifiques. En effet, les bits 8 à 15 du registre status permettent 8 niveaux d’interruption différents. Par exemple, les bits 3 et 4 du masque (11 et 12 du registre status) activent les interruptions clavier (keyboard) et affichage (display), respectivement.</p>
+  </li>
+</ul>
+
+<p>Si nous voulions activer <strong>toutes</strong> les interruptions dans le MIPS, complétez le masque de bits pour l’instruction <code class="language-plaintext highlighter-rouge">ori</code> :</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   mfc0    $s1, $12         # lire le contenu du registre status et l'affecter à $s1
+   ori     $s1, ________    # à compléter
+   mtc0    $s1, $12         # mise à jour du contenu du registre status à partir de $s1
+</code></pre></div></div>
+
+<p>Si nous voulions activer <strong>que</strong> les interruptions pour le clavier et l’affichage, complétez le masque de bits pour l’instruction <code class="language-plaintext highlighter-rouge">ori</code> :</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   mfc0    $s1, $12         # lire le contenu du registre status et l'affecter à $s1
+   ori     $s1, ________    # à compléter
+   mtc0    $s1, $12         # mise à jour du contenu du registre status à partir de $s1
+</code></pre></div></div>
+
+<h1 id="exercice-3">Exercice 3</h1>
+
+<p>Un gestionnaire d’exceptions doit signaler l’adresse de l’instruction qui a provoqué l’exception, le code d’exception, et doit reprendre (ou terminer) l’exécution du programme après avoir traité l’exception.</p>
+
+<p>Pour cet exercice, nous allons utiliser un gestionnaire d’exceptions personnalisé au lieu de celui qui est déjà intégré dans MARS. Pour installer notre gestionnaire d’exceptions, veuillez suivre les instructions suivantes :</p>
+
+<ol>
+  <li>
+    <p>Commencez par télécharger le fichier de démarrage (voir plus haut dans ce document) et décompressez son contenu dans le répertoire de votre choix. Le fichier obtenu, <code class="language-plaintext highlighter-rouge">exceptions_handler.s</code>, est gestionnaire d’exceptions MIPS personnalisé.</p>
+  </li>
+  <li>
+    <p>Dans MARS, accédez à “Settings” dans les menus déroulants.<br />
+<img src="/l2ado/static_files/images/mars_exception_handler.png" alt="Mars exception handler" /></p>
+  </li>
+  <li>Cochez la case “Initialize Program Counter to global ‘main’ if defined”</li>
+  <li>
+    <p>Refaite l’étape 2 et cliquez sur l’élément “Exception Handler”. Une nouvelle boîte de dialogue apparaîtra.
+<img src="/l2ado/static_files/images/mars_ehandler2.png" alt="Mars exception handler 2" /></p>
+  </li>
+  <li>
+    <p>Cochez la case “Include this exception handler file in all assemble operations”, puis entrez le chemin du fichier de gestionnaire d’exceptions que vous avez téléchargé. Choisissez OK pour terminer.</p>
+  </li>
+  <li>MARS est désormais configuré pour utiliser notre nouveau gestionnaire d’exceptions au lieu du gestionnaire intégré.</li>
+</ol>
+
+<p><strong>1/</strong> Dans l’éditeur de MARS, écrivez un programme complet pour tester des instructions qui provoquent : un débordement, des accès à des adresses de mémoire non valides, des instructions de déroutement (trap) et des instructions de breakpoint. Votre programme <strong>doit</strong> commencer par ce bout de code :</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>.globl
+main:
+</code></pre></div></div>
+
+<p><strong>2/</strong> Modifiez le gestionnaire d’exceptions pour afficher le <strong>vaddr</strong> non valide quand l’exception est provoquée par un chargement (load), un stockage (store) ou une lecture d’instruction (code d’exception 4 ou 5). Testez votre gestionnaire d’exceptions en écrivant des instructions de chargement et de stockage générant des adresses mémoire non valides.</p>
+
+<p><strong>3/</strong> A l’aide de la MMIO (E/S mappée en mémoire) et le polling, écrire une fonction <code class="language-plaintext highlighter-rouge">print_string</code> qui imprime une chaîne sur l’écran, sans utiliser aucun appel système (c.-à-s. sans <code class="language-plaintext highlighter-rouge">syscall</code>). L’adresse de la chaîne est passée dans le registre <code class="language-plaintext highlighter-rouge">$a0</code> et la chaîne doit être terminée par le caractère NUL (zéro). Testez cette fonction en l’appelant à partir de la fonction principale. Assurez-vous d’activer le Simulateur de clavier et d’affichage MMIO (Keyboard and Display MMIO Simulator).</p>
+
+<p><strong>4/</strong> A l’aide de la MMIO (E/S mappée en mémoire) et le polling, écrire un programme qui lit les caractères directement à partir du clavier. Pour montrer la lenteur du clavier, imprimer le caractère saisi et le nombre d’itérations après la sortie de la boucle wait_keyboard. Répéter l’exécution du programme jusqu’à ce que vous appuyiez sur le caractère de nouvelle ligne (touche return). Assurez-vous d’activer le Simulateur de clavier et d’affichage MMIO (Keyboard and Display MMIO Simulator) et d’exécuter le simulateur MARS à la vitesse maximale.</p>
+
+<p><strong>5/</strong> Si le bit d’activation d’interruption du clavier est activé, le clavier interrompra le processeur à chaque pression sur une touche. Ecrire un gestionnaire d’interruption simple qui renvoie le caractère saisi dans le registre <code class="language-plaintext highlighter-rouge">$v0</code>. Réécrire la fonction principale de la question n°4 en utilisant les interruptions du clavier.</p>
+
+<p><strong>6/</strong> A l’aide de la MMIO (E/S mappée en mémoire) et le polling, écrire une fonction <code class="language-plaintext highlighter-rouge">read_string</code> qui lit une chaîne de caractères directement à partir du clavier. La fonction récupère les caractères du clavier et les stocke dans un tableau pointé par le registre <code class="language-plaintext highlighter-rouge">$a0</code>. La fonction doit continuer jusqu’à ce que n-1 caractères soient lus ou que le caractère de nouvelle ligne soit enfoncé (touche return). Le paramètre n doit être passé dans le registre <code class="language-plaintext highlighter-rouge">$a1</code>. La fonction doit insérer un octet NUL à la fin de la chaîne et devrait renvoyer le nombre réel de caractères lus dans le registre <code class="language-plaintext highlighter-rouge">$v0</code>. Assurez-vous d’activer le Simulateur de clavier et d’affichage MMIO (Keyboard and Display MMIO Simulator). Ecrivez une fonction principale pour tester plusieurs fois <code class="language-plaintext highlighter-rouge">read_string</code> et pour afficher la chaîne de caractère après chaque appel.</p>
+
+  </article>
+
+</div>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <!--     <h2 class="footer-heading"></h2> -->
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+
+        <p class="text">
+          02 rue Didouche Mourad <br />
+16000 Alger<br />
+
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+
+
+          
+
+          
+
+          
+
+          
+
+          
+
+
+
+
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+  </body>
+
+</html>

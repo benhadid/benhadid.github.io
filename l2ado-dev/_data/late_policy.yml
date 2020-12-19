@@ -1,0 +1,3 @@
+policies:
+  - Les devoirs/projets notés seront acceptés sans pénalité en tout temps au plus tard à leur date d'échéance. 
+  - Les notes attribuées aux devoirs soumis après leur date d'échéance auront leur score réduit de "10 x (n-1)%", où n est le nombre de jours de retard (jours entre la date d'échéance et la date de soumission).

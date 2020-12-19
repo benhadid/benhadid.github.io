@@ -1,0 +1,137 @@
+---
+type: lab
+date: 2019-09-19T4:00:00+4:30
+title: 'Traveaux Pratiques #1 - Opérations binaires en langage C'
+#pdf: /static_files/labs/lab.pdf
+#attachment: /static_files/labs/lab.zip
+#solutions: /static_files/labs/lab_solutions.pdf
+due_event: 
+    type: due
+    date: 2019-09-26T23:59:00+3:30
+    description: 'Traveaux Pratiques #1 - à remettre'
+---
+
+# Objectifs
+  - Rappel sur les opérations binaires
+  - Connaître l'implémentation des opérations binaires en langage C
+  - Apprendre à manipuler les bits de donnée avec le langage C
+
+# Introduction
+
+  Les exercices ci-dessous supposent que avez déjà consulter le document [Opérations binaires en C]({{ site.baseurl }}/static_files/docs/bitwise_operations_in_c.html), veuillez vous en référer si nécessaire.
+    
+
+# Exercice 1 
+
+  Écrivez le corps de la fonction `get_3_leftmost_bits( uint32_t x)` qui renvoie les 3 bits de poids fort de l'entrée `x`.
+  Par exemple, si `x = 0b11011001...`, la fonction doit renvoyer un `uint8_t` contenant `0b00000110`.
+  Si `x = 0b01100001...`, la fonction devrait renvoyer un `uint8_t` contenant `0b00000011`.
+
+  ```C
+  #include <stdint.h>
+  uint8_t get_3_leftmost_bits(uint32_t x)
+  {
+    // à compléter
+  }
+  ```
+
+# Exercice 2 
+
+  Écrivez le corps de la fonction `get_4_rightmost_bits(uint32_t x)` qui renvoie les 4 bits de poids faible de l'entrée `x`.
+  Par exemple, si `x = 0b...11011001`, la fonction doit renvoyer un `uint8_t` contenant `0b00001001`.
+  Si `x = 0b...11011101`, la fonction devrait renvoyer un `uint8_t` contenant `0b00001101`.
+
+  ```C
+  #include <stdint.h>
+  uint8_t get_4_rightmost_bits(uint32_t x)
+  {
+    // à compléter
+  }
+  ```
+
+# Exercice 3 
+
+  Dans le langage C, vous pouvez créer un masque sous forme de valeurs binaires et l'utiliser avec les opérations `and` (`&`) et `or` (`|`). Par exemple:
+
+  ```C
+  uint8_t a=0b00000000;
+  uint8_t b=0b00001000;
+  uint8_t c=0b11111101;
+  uint8_t d=0b11011011;
+  // l'opération  ~( a ) renvoi 0b11111111
+  // l'opération (c & a) renvoi 0b00000000
+  // l'opération (c & b) renvoi 0b00001000
+  // l'opération (a | b) renvoi 0b00001000
+  // l'opération (d & c) renvoi 0b11011001  
+  ```
+
+  Écrivez le corps de la fonction `set_bit(uint64_t x, int pos, bool value)` qui renvoie la valeur modifié de l'entrée `x`, où le bit à la position `pos` est remplacé avec la valeur `value`.
+
+  Rappelez-vous que, dans le langage C (cela est défini dans `stdbool.h`), `true` correspond à l'entier `1` tandis que `false` correspond à l'entier `0`.
+
+  ```C
+  #include <stdint.h>
+  #include <stdbool.h>
+  /*
+   * @pre 0<= pos < 64
+   */
+  uint64_t set_bit(uint64_t x, int pos, bool value)
+  {
+    // à compléter
+  }
+  ```
+
+# Exercice 4 
+
+  Écrivez le corps de la fonction `cycle_bits(uint32_t x, uint8_t n)`, qui fait recycler tous les bits de `x` de `n` places à gauche, selon la formule `x[(i+n)%32] = x[i]`, où `x[i]` est le i-ième bit de `x`.
+
+  Voici un exemple avec des octets. Considérons l'octet `0b01101011`. Si `n` est réglé sur `1`, ​​alors `cycle_bits` devrait renvoyer `0b11010110`. Si `n` est réglé sur `4`, alors `cycle_bits` devrait retourner `0b10110110`.
+
+  ```C
+  #include <stdint.h>
+
+   uint32_t cycle_bits(uint32_t x, uint8_t n)
+   {
+    // à compléter
+   }
+  ```
+
+# Exercice 5
+
+  Écrivez le corps de la fonction `nbits(n)` qui compte le nombre de bits mis à 1 dans son paramètre `n`. 
+  
+
+  ```C
+   #include <stdint.h>
+
+   /*
+   Par exemple, pour les valeurs 4, 7 et 10 ci-dessous (en octet) on devrait obtenir les résultats suivants :
+     nbits(0b00000100); // devrait renvoyer 1;
+     nbits(0b00000111); // devrait renvoyer 3;
+     nbits(0b00001010); // devrait renvoyer 2;
+   */
+
+   uint8_t nbits(uint32_t n)
+   {
+    // à compléter
+   }
+  ```
+
+# Exercice 6
+
+  Écrivez le corps de la fonction `reset_highestorder_bit(x)`, qui régle sur `0` le bit le plus élevé défini sur `1` s'il existe. Toutefois, cette fonction ne devrait faire aucune modification si `x` ne possède aucun bit défini sur `0`.
+  Par exemple (pour les octets),
+
+  ```C
+  reset_highestorder_bit(0b000111010101010); // devrait retourner 0b000011010101010 et
+  reset_highestorder_bit(0b100111010101010); // devrait retourner 0b000111010101010
+  ```
+  *NOTE* : Pour écrire cette fonction, vous devez d’abord déterminer la position du bit de poids fort qui a la valeur 1, ​​puis redéfinir sa valeur.
+
+  ```C
+   #include <stdint.h>
+   uint32_t reset_highestorder_strong_bit(uint32_t x)
+   {
+    // à compléter
+   }
+  ```

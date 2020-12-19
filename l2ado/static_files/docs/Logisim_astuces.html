@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title> page.title - Architecture des ordinateurs / Automne 2020 </title>
+  <meta name="description" content="page.title - Architecture des ordinateurs / Automne 2020">
+  
+  <link rel="stylesheet" href="/l2ado/_css/main.css">
+  <link rel="canonical" href="http://benhadid.github.io//l2ado/static_files/docs/Logisim_astuces">
+  <link rel="alternate" type="application/rss+xml" title="Architecture des ordinateurs / Automne 2020 - " href="http://benhadid.github.io//l2ado/feed.xml" />
+<link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.2.4' type='text/css' media='all' />
+<link href='https://fonts.googleapis.com/css?family=Titillium+Web:600italic,600,400,400italic' rel='stylesheet' type='text/css'>
+
+
+
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+<!-- MathJax -->
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper" style="z-index: 100;">
+      <table><tr>
+          <td><img width="75" src="/l2ado/_images/logo.png" valign="middle"></td>
+          <td style="padding-left:10px;"><a class="schoolname" style="font-size: 15px;" class="site-title" href=""></a>
+          <br/>
+          <span style="margin-top: -2px;margin-bottom: -10px;" class="site-title"><a href="/l2ado/" title="Architecture des ordinateurs / Automne 2020 - "><b>Architecture des ordinateurs</a></b></span>
+          <br/>
+          <span class="coursesemeter" style="font-size: 12px;font-weight: bold;margin-top: 10px;display: block;">Automne 2020</span>
+          </td>
+        </tr></table>
+
+    <nav class="site-nav">
+
+      <a href="#" class="menu-icon menu.open">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>  
+
+    <div class="trigger"><h1>Main Navigation</h1>
+
+ <ul class="menu">
+    
+    <li>
+        <a class="page-link" href="/l2ado/">
+            <i class="fa fa-home fa-lg"></i> Accueil
+        </a>
+    </li>
+    
+    <li>
+        <a class="page-link" href="/l2ado/schedule/">
+            <i class="fas fa-calendar-alt"></i> Programme
+        </a>
+    </li>
+    
+    <li>
+        <a class="page-link" href="/l2ado/lectures/">
+            <i class="fas fa-book-reader"></i> Cours
+        </a>
+    </li>
+    
+    <li>
+        <a class="page-link" href="/l2ado/labs/">
+            <i class="fas fa-laptop-code"></i> Pratiques
+        </a>
+    </li>
+    
+    <li>
+        <a class="page-link" href="/l2ado/assignments/">
+            <i class="fas fa-user-graduate"></i> Devoirs
+        </a>
+    </li>
+    
+    <li>
+        <a class="page-link" href="/l2ado/project/">
+            <i class="fas fa-user-graduate"></i> Projet
+        </a>
+    </li>
+    
+    <li>
+        <a class="page-link" href="/l2ado/materials/">
+            <i class="fas fa-book"></i> Support
+        </a>
+    </li>
+    
+</ul>
+
+     </div>  
+    </nav>
+
+  </div>
+
+  <div class="header-texture" style="height:100%; z-index: 0; position: absolute; top:0; right: 0; left: 0; 
+  background-image: url('/l2ado/_images/pattern.png');" />
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <h1 id="astuces-dutilisation-dans-logisim">Astuces d’utilisation dans Logisim</h1>
+<hr />
+
+<h2 id="astuce-1--comment-connecter-un-séparateur-à-une-porte-logique">Astuce #1 : Comment connecter un séparateur à une porte logique</h2>
+
+<p>Pour connecter un séparateur à une porte logique, certaines personnes connectent les fils un à un comme illustré à l’image de gauche. Il est plus facile de <em>coller</em> la porte logique au séparateur puis déplacer la porte loin du séparateur pour construire les fils de connexion.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><img src="/l2ado/static_files/images/split_gate_bad.gif" alt="méthode naïve" class="center-image" height="70%" width="70%" /></th>
+      <th style="text-align: center"><img src="/l2ado/static_files/images/split_gate_good.gif" alt="méthode rapide" class="center-image" height="70%" width="70%" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">méthode naïve</td>
+      <td style="text-align: center">méthode rapide</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<p>Cette astuce est très utile lorsque vous avez beaucoup d’entrées à connecter (comme 32 entrées par exemple). Vous pouvez également utiliser cette technique pour connecter des séparateurs avec d’autres séparateurs.</p>
+
+<h2 id="astuce-2--inverser-une-entrée-dune-porte-logique">Astuce #2 : Inverser une entrée d’une porte logique</h2>
+
+<p>Au lieu d’ajouter une porte ‘not’, vous pouvez ajouter un petit cercle pour inverser une entrée. Cela rendra votre circuit plus propre.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><img src="/l2ado/static_files/images/and_not_b.gif.png" alt="NOT gate" class="center-image" height="70%" width="70%" /></th>
+      <th style="text-align: center"><img src="/l2ado/static_files/images/and_not_g.gif.png" alt="circle" class="center-image" height="70%" width="70%" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">insertion d’une porte ‘not’</td>
+      <td style="text-align: center">insersion d’un cercle</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<p>Pour ajouter un cercle, procédez comme suit :</p>
+
+<ol>
+  <li>
+    <p>Assurez-vous d’être en mode “Edit selection and add wires” (il suffit de cliquer sur la flèche noire en haut à gauche de la fenêtre).</p>
+  </li>
+  <li>
+    <p>Cliquez sur la porte logique à laquelle vous souhaitez ajouter le cercle.</p>
+  </li>
+  <li>
+    <p>Dans la section des propriétés de la porte (dans la section en bas à gauche de votre fenêtre), choisissez l’entrée à inverser.</p>
+  </li>
+</ol>
+
+<h2 id="astuce-3--changer-lapparence-dune-porte-logique">Astuce #3 : Changer l’apparence d’une porte logique</h2>
+
+<p>Vous pouvez modifier l’attribut d’orientation (Nord, Sud, Est ou Ouest) et le nombre d’entrées d’une porte logique. Cela permet de modifier l’apparence (et la fonctionnalité) de la porte. Vous pouvez également modifier l’attribut “Data Bits” pour indiquer le nombre de bits que chaque entrée aura (les exemples ci-dessous ont des entrées sur 1 bit).</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><img src="/l2ado/static_files/images/and_4_east.gif.png" alt="AND facing East" class="center-image" height="70%" width="70%" /></th>
+      <th style="text-align: center"><img src="/l2ado/static_files/images/or_10_south.gif.png" alt="OR facing South" class="center-image" height="70%" width="70%" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Porte ET à 4 entrées orientée vers l’est</td>
+      <td style="text-align: center">Porte OU à 10 entrées orientée face au sud</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<p>Pour modifier l’apparence d’une porte logique, procédez comme suit :</p>
+
+<ol>
+  <li>
+    <p>Assurez-vous d’être en mode “Edit selection and add wires” (il suffit de cliquer sur la flèche noire en haut à gauche de la fenêtre).</p>
+  </li>
+  <li>
+    <p>Cliquez sur la porte dont vous voulez changer l’apparence.</p>
+  </li>
+  <li>
+    <p>Dans la section des propriétés de la porte (dans la section en bas à gauche de votre fenêtre), éditez les paramètres “Facing” et “Appearance” à votre guise.</p>
+  </li>
+</ol>
+
+<h2 id="astuce-4--inverser-les-broches-du-séparateur">Astuce #4 : Inverser les broches du Séparateur</h2>
+
+<p>Parfois, il est préférable d’inverser les broches du séparateur pour avoir un circuit logique moins encombré. Cela est particulièrement utile quand vous avez un séparateur avec beaucoup de broches à inverser.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><img src="/l2ado/static_files/images/split_rev_order_bad.gif" alt="méthode naïve" class="center-image" height="70%" width="70%" /></th>
+      <th style="text-align: center"><img src="/l2ado/static_files/images/split_rev_order_good.gif" alt="méthode rapide" class="center-image" height="70%" width="70%" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">méthode naïve</td>
+      <td style="text-align: center">méthode rapide</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<p>Cliquez avec le bouton droit sur un séparateur et choisissez “distribute ascending/descending” pour modifier la distribution.</p>
+
+<h2 id="astuce-5--changer-lapparence-dun-séparateur">Astuce #5 : Changer l’apparence d’un séparateur</h2>
+
+<p>Apprenez à prononcer</p>
+
+<p>Vous pouvez modifier l’orientation du séparateur (directions Nord, Sud, Est ou Ouest) ainsi que son apparence (Left-Handed, Right-Handed, Centered ou Legacy).Essayez de jouer avec ces différents attributs pour identifier ceux qui conviennent le mieux à votre circuit.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center"><img src="/l2ado/static_files/images/split_south_right.gif.png" alt="Right-handed splitter" class="center-image" height="70%" width="70%" /></th>
+      <th style="text-align: center"><img src="/l2ado/static_files/images/split_center_east.gif.png" alt="Centered splitter" class="center-image" height="70%" width="70%" /></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">séparateur “Right-handed”<br />orienté vers le sud</td>
+      <td style="text-align: center">séparateur “Centered”<br />orienté vers l’est</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<p>Pour modifier l’apparence d’un séparateur, procédez comme suit :</p>
+
+<ol>
+  <li>
+    <p>Assurez-vous d’être en mode “Edit selection and add wires” (il suffit de cliquer sur la flèche noire en haut à gauche de la fenêtre).</p>
+  </li>
+  <li>
+    <p>Cliquez sur le séparateur dont vous souhaitez modifier l’apparence.</p>
+  </li>
+  <li>
+    <p>Dans la section des propriétés du séparateur (dans la section en bas à gauche de votre fenêtre), éditez les paramètres “Facing” et “Appearance” à votre guise.</p>
+  </li>
+</ol>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <!--     <h2 class="footer-heading"></h2> -->
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+
+        <p class="text">
+          02 rue Didouche Mourad <br />
+16000 Alger<br />
+
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+
+
+          
+
+          
+
+          
+
+          
+
+          
+
+
+
+
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+  </body>
+
+</html>

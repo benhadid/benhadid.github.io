@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title> Travaux Pratiques #9 - Chemin de données à cycle unique - Architecture des ordinateurs / Automne 2020 </title>
+  <meta name="description" content="# Objectifs- Apprendre le fonctionnement du décodeur d'instructions dans un processeur- Apprendre le fonctionnement des signaux de commande dans un processeu...">
+  
+  <link rel="stylesheet" href="/l2ado/_css/main.css">
+  <link rel="canonical" href="http://benhadid.github.io//l2ado/labs/10_lab.md">
+  <link rel="alternate" type="application/rss+xml" title="Architecture des ordinateurs / Automne 2020 - " href="http://benhadid.github.io//l2ado/feed.xml" />
+<link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.2.4' type='text/css' media='all' />
+<link href='https://fonts.googleapis.com/css?family=Titillium+Web:600italic,600,400,400italic' rel='stylesheet' type='text/css'>
+
+
+
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+<!-- MathJax -->
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper" style="z-index: 100;">
+      <table><tr>
+          <td><img width="75" src="/l2ado/_images/logo.png" valign="middle"></td>
+          <td style="padding-left:10px;"><a class="schoolname" style="font-size: 15px;" class="site-title" href=""></a>
+          <br/>
+          <span style="margin-top: -2px;margin-bottom: -10px;" class="site-title"><a href="/l2ado/" title="Architecture des ordinateurs / Automne 2020 - "><b>Architecture des ordinateurs</a></b></span>
+          <br/>
+          <span class="coursesemeter" style="font-size: 12px;font-weight: bold;margin-top: 10px;display: block;">Automne 2020</span>
+          </td>
+        </tr></table>
+
+    <nav class="site-nav">
+
+      <a href="#" class="menu-icon menu.open">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>  
+
+    <div class="trigger"><h1>Main Navigation</h1>
+
+ <ul class="menu">
+    
+    <li>
+        <a class="page-link" href="/l2ado/">
+            <i class="fa fa-home fa-lg"></i> Accueil
+        </a>
+    </li>
+    
+    <li>
+        <a class="page-link" href="/l2ado/schedule/">
+            <i class="fas fa-calendar-alt"></i> Programme
+        </a>
+    </li>
+    
+    <li>
+        <a class="page-link" href="/l2ado/lectures/">
+            <i class="fas fa-book-reader"></i> Cours
+        </a>
+    </li>
+    
+    <li>
+        <a class="page-link" href="/l2ado/labs/">
+            <i class="fas fa-laptop-code"></i> Pratiques
+        </a>
+    </li>
+    
+    <li>
+        <a class="page-link" href="/l2ado/assignments/">
+            <i class="fas fa-user-graduate"></i> Devoirs
+        </a>
+    </li>
+    
+    <li>
+        <a class="page-link" href="/l2ado/project/">
+            <i class="fas fa-user-graduate"></i> Projet
+        </a>
+    </li>
+    
+    <li>
+        <a class="page-link" href="/l2ado/materials/">
+            <i class="fas fa-book"></i> Support
+        </a>
+    </li>
+    
+</ul>
+
+     </div>  
+    </nav>
+
+  </div>
+
+  <div class="header-texture" style="height:100%; z-index: 0; position: absolute; top:0; right: 0; left: 0; 
+  background-image: url('/l2ado/_images/pattern.png');" />
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Travaux Pratiques #9 - Chemin de données à cycle unique</h1>
+    <p class="post-meta">Publié le Thursday 19/09/2019</p>
+  </header>
+
+  <div>
+    
+    <span style="font-weight: bold">Date prévue : 
+      <!-- 26/09/2019 -->
+
+      
+      Jeudi
+      26
+      
+      Septembre
+      2019
+  
+
+    </span>
+    
+
+    
+
+  </div>
+
+  <br />
+  <article class="post-content">
+    # Objectifs
+
+- Apprendre le fonctionnement du décodeur d'instructions dans un processeur
+- Apprendre le fonctionnement des signaux de commande dans un processeur
+- Apprendre à modéliser des circuits logiques avancés avec Logisim
+
+# Énoncé
+
+Cliquez [ici](./cpu_starter.zip) pour récupérer le fichier de démarrage pour ce TP, puis décompressez le dans le répertoire de votre choix. Voici la liste des fichiers que vous devez avoir :
+
+```shell
+cpu_starter
+  ├── alu.circ
+  ├── cpu.circ
+  ├── mem.circ
+  ├── regfile.circ
+  ├── run_harness.circ
+  ├── tests
+  │   ├── config.json
+  │   ├── logisim-evolution.jar
+  │   ├── roms
+  │   │   ├── assembler.py
+  │   │   ├── lui.hex
+  │   │   ├── lui.s
+  │   │   ├── mult.hex
+  │   │   ├── mult.s
+  │   │   ├── simple.hex
+  │   │   └── simple.s
+  │   ├── test_lui.circ
+  │   ├── test_lui.out
+  │   ├── test_mult.circ
+  │   ├── test_mult.out
+  │   ├── test.py
+  │   ├── test_simple.circ
+  │   └── test_simple.out
+  └── test.sh
+  ```
+
+<div class="bs-callout bs-callout-danger">
+  <b>REMARQUE</b> :
+  <br><br>
+  Dans ce TP, vous utiliserez <a href="/assets/bin/logisim-evolution.jar">Logisim</a> pour implémenter un processeur 16 bits à cycle unique. Pour réaliser cette tache, vous devez d'abord remplacer les fichiers socles <b>alu.circ</b> et <b>regfile.circ</b> fournis dans ce pack par vos fichiers correspondants produits lors de la réalisation des TPs &laquo; <a href="./lab_07.html">Unité Arithmétique et Logique</a> &raquo; et &laquo; <a href="./lab_08.html">Banc de registres</a> &raquo;.
+</div>
+
+
+Le kit de démarrage fournit un fichier **cpu.circ** (vide). Le circuit comporte une unité de mémoire entièrement fonctionnelle ainsi que des espaces réservés pour vos précédentes implémentations de &laquo; l'[Unité Arithmétique et Logique (UAL)](./07_lab.html) &raquo; et du &laquo; [Banc de registres](./08_lab.html) &raquo;.
+
+Dans ce TP, vous devez complétez le circuit **cpu.circ** pour construire le chemin de données pour ce processeur. Votre circuit fini doit implémenter l'**A**rchitecture du **J**eu d'**I**nstructions **R**éduit (AJIR) détaillée ci-dessous.
+
+### Formats d'instruction
+![Instruction formats](/assets/images/inst_format.png){:  height="40%" width="40%" }
+
+### Le jeu d'instructions
+
+<div class="col-md-12">
+<table class="table table-hover" >
+  <thead>
+  </thead>
+  <tbody>
+    <tr>
+      <th class="text-center" class="col-md-1" scope="col">Opcode/Func</th>
+      <th class="text-center" scope="col">Type</th>      
+      <th class="text-left" scope="col">Instruction</th>   
+      <th class="text-left" scope="col">Format</th>   
+      <th class="text-left" scope="col">Pseudo code</th>            
+    </tr>
+
+    <tr>
+      <th class="text-center">0x0</th>
+      <td class="text-center">R</td>
+      <td>Décalage Logique à Gauche</td>      
+      <td><font face="monospace">sll $rd, $rs, $rt</font></td>      
+      <td><font face="monospace">R[rd] = R[rs] << R[rt][4:0]</font></td>      
+    </tr>
+
+    <tr>
+      <th class="text-center">0x1</th>
+      <td class="text-center">R</td>
+      <td>Décalage Logique à Droite</td>      
+      <td><font face="monospace">srl $rd, $rs, $rt</font></td>      
+      <td><font face="monospace">R[rd] = R[rs] >>> R[rt][4:0]</font></td>      
+    </tr>
+
+    <tr>
+      <th class="text-center">0x2</th>
+      <td class="text-center">R</td>
+      <td>Addition signée</td>      
+      <td><font face="monospace">add $rd, $rs, $rt</font></td>      
+      <td><font face="monospace">R[rd] = R[rs] + R[rt]</font></td>      
+    </tr>
+
+    <tr>
+      <th class="text-center">0x3</th>
+      <td class="text-center">R</td>
+      <td>ET logique</td>      
+      <td><font face="monospace">and $rd, $rs, $rt</font></td>      
+      <td><font face="monospace">R[rd] = R[rs] & R[rt]</font></td>      
+    </tr>
+
+    <tr>
+      <th class="text-center">0x4</th>
+      <td class="text-center">R</td>
+      <td>OU logique</td>      
+      <td><font face="monospace">or $rd, $rs, $rt</font></td>      
+      <td><font face="monospace">R[rd] = R[rs] | R[rt]</font></td>      
+    </tr>
+
+    <tr>
+      <th class="text-center">0x5</th>
+      <td class="text-center">R</td>
+      <td>Addition non signée</td>      
+      <td><font face="monospace">addu $rd, $rs, $rt</font></td>      
+      <td><font face="monospace">R[rd] = R[rs] + R[rt]</font></td>      
+    </tr>
+
+    <tr>
+      <th class="text-center">0x6</th>
+      <td class="text-center">R</td>
+      <td>Set-less-than signé</td>      
+      <td><font face="monospace">slt $rd, $rs, $rt</font></td>      
+      <td><font face="monospace">R[rd] = ( R[rs] < R[rt] ) ? 1 : 0</font></td>      
+    </tr>
+
+    <tr>
+      <th class="text-center">0x7</th>
+      <td class="text-center">R</td>
+      <td>Multiplication non signée</td>      
+      <td><font face="monospace">mult $rs, $rt</font></td>      
+      <td><font face="monospace">HI = ( R[rs] * R[rt] )[31:16];<br>LO = ( R[rs] * R[rt] )[15:0];</font></td>      
+    </tr>
+
+    <tr>
+      <th class="text-center">0x1</th>
+      <td class="text-center">U</td>
+      <td>Load Upper Immediate</td>      
+      <td><font face="monospace">lui imm</font></td>      
+      <td><font face="monospace">LO = {imm, 0b000000} = imm << 6</font></td>      
+    </tr>
+
+    <tr>
+      <th class="text-center">0x2</th>
+      <td class="text-center">U</td>
+      <td>Jump / Jump-and-Link</td>      
+      <td><font face="monospace">j $rd, label</font></td>      
+      <td><font face="monospace">R[rd] = PC + 2;<br>PC = {PC[15:10], imm};</font></td>      
+    </tr>
+
+    <tr>
+      <th class="text-center">0x3</th>
+      <td class="text-center">I</td>
+      <td>Jump Register / <br>Jump-and-Link Register</td>      
+      <td><font face="monospace">jr $rd, $rs, imm</font></td>      
+      <td><font face="monospace">R[rd] = PC + 2;<br>PC = R[rs] + SignExt(imm);</font></td>      
+    </tr>
+
+    <tr>
+      <th class="text-center">0x4</th>
+      <td class="text-center">I</td>
+      <td>Branchement si égale</td>      
+      <td><font face="monospace">beq $rs, $rd, label</font></td>      
+      <td><font face="monospace">if ( R[rs] == R[rd] )<br>&nbsp;&nbsp;PC = PC + SignExt(imm);</font></td>      
+    </tr>
+
+    <tr>
+      <th class="text-center">0x5</th>
+      <td class="text-center">I</td>
+      <td>Branchement si différent</td>      
+      <td><font face="monospace">bne $rs, $rd, label</font></td>      
+      <td><font face="monospace">if ( R[rs] != R[rd] )<br>&nbsp;&nbsp;PC = PC + SignExt(imm);</font></td>      
+    </tr>
+
+    <tr>
+      <th class="text-center">0x6</th>
+      <td class="text-center">I</td>
+      <td>Addition signée d'immediat</td>      
+      <td><font face="monospace">addi $rd, $rs, imm</font></td>      
+      <td><font face="monospace">R[rd] = R[rs] + SignExt(imm);</font></td>      
+    </tr>
+
+    <tr>
+      <th class="text-center">0x7</th>
+      <td class="text-center">I</td>
+      <td>Addition non-signée d'immediat</td>      
+      <td><font face="monospace">addiu $rd, $rs, imm</font></td>      
+      <td><font face="monospace">R[rd] = R[rs] + SignExt(imm);</font></td>      
+    </tr>
+
+    <tr>
+      <th class="text-center">0x8</th>
+      <td class="text-center">I</td>
+      <td>Set-less-than c. immediat</td>      
+      <td><font face="monospace">slti $rd, $rs, imm</font></td>      
+      <td><font face="monospace">R[rd] = ( R[rs] < SignExt(imm) ) ? 1 : 0</font></td>      
+    </tr>
+
+    <tr>
+      <th class="text-center">0x9</th>
+      <td class="text-center">I</td>
+      <td>ET logique a. Immediat</td>      
+      <td><font face="monospace">andi $rd, $rs, imm</font></td>      
+      <td><font face="monospace">R[rd] = R[rs] & ZeroExt(imm)</font></td>            
+    </tr>
+
+    <tr>
+      <th class="text-center">0xA</th>
+      <td class="text-center">I</td>
+      <td>OU logique a. Immediat</td>      
+      <td><font face="monospace">ori $rd, $rs, imm</font></td>      
+      <td><font face="monospace">R[rd] = R[rs] | ZeroExt(imm)</font></td>            
+    </tr>
+
+    <tr>
+      <th class="text-center">0xB</th>
+      <td class="text-center">I</td>
+      <td>Lire un demi-mot</td>      
+      <td><font face="monospace">lh $rd, offset($rs)</font></td>      
+      <td><font face="monospace">addr = R[rs] + SignExt(offset);<br>R[rd] = Memory[addr];</font></td>            
+    </tr>
+
+    <tr>
+      <th class="text-center">0xC</th>
+      <td class="text-center">I</td>
+      <td>Sauvegarder un demi-mot</td>      
+      <td><font face="monospace">sh $rd, offset($rs)</font></td>      
+      <td><font face="monospace">addr = R[rs] + SignExt(offset);<br>Memory[addr] = R[rd];</font></td>            
+    </tr>
+
+    <tr>
+      <th class="text-center">0xD</th>
+      <td class="text-center">I</td>
+      <td>Move from HIgh</td>      
+      <td><font face="monospace">mfhi $rd</font></td>      
+      <td><font face="monospace">R[rd] = HI;</font></td>            
+    </tr>
+
+    <tr>
+      <th class="text-center">0xE</th>
+      <td class="text-center">I</td>
+      <td>Move from LOw</td>      
+      <td><font face="monospace">mflo $rd</font></td>      
+      <td><font face="monospace">R[rd] = LO;</font></td>            
+    </tr>
+
+  </tbody>
+</table>
+</div>
+
+## Signaux de Contrôle et de Commande
+
+Les signaux de contrôle et de commande jouent un rôle très important dans l'exécution des instructions dans un processeur. Les identifier correctement lors de la conception d'un processeur peut sembler intimidant. Pour commencer, jetez un coup d'oeil sur les slides du cours &laquo; [Chemin de données](https://1drv.ms/p/s!Agf0g-qZKM8_y3eWg8eUjCS5Mnql?e=OalxrN) &raquo;, puis parcourez le chemin de données pour les différents types d'instructions implémentées. Lorsque vous rencontrez un multiplexeur ou un autre composant, déduisez la valeur du sélecteur pour cette instruction.
+
+Votre tache dans ce TP est de réaliser quelque chose de similaire pour un processeur 16 bits avec le jeu d'instructions donné plus haut. Pour décoder les signaux de contrôle de notre processeur 16 bits, vous pouvez choisir entre deux approches :
+
+La première méthode est le contrôle par circuit câblé. C'est généralement l'approche préférée pour les architectures RISC telles que MIPS et RISC-V. Ici, on utilise les portes logiques &laquo;&nbsp;ET&nbsp;&raquo;, &laquo;&nbsp;OU&nbsp;&raquo; et &laquo;&nbsp;NON&nbsp;&raquo; avec les divers composants qui peuvent être construits à partir de ces portes  (comme les MUX et les DEMUX) pour implémenter des tables de vérité correspondant aux fonctions identifiées.
+
+L'autre façon de faire est d'utiliser une mémoire ROM (mémoire en lecture seule). Chaque instruction implémentée par un processeur est mappée à une adresse dans cette mémoire où se trouve le mot de commande et de contrôle pour cette instruction. Un décodeur d'adresse prend donc une instruction en entrée (c.-à-d. le opcode/func) et génère l'adresse du mot de contrôle pour cette instruction. Cette approche est courante dans les architectures CISC telles que les processeurs Intel x86-64 et offre une certaine flexibilité, car elle peut être reprogrammée en modifiant le contenu de la ROM.
+
+# Clarifications et différences notables par rapport à MIPS
+
+## les circuits **cpu.circ** et **run_harness.circ**
+
+Après avoir complété l'implémentation du processeur, le fichier socle **run_harness.circ** permet d'exécuter sur ce processeur un programme stocké dans la mémoire ROM fournie. Le processeur, implémenté dans **cpu.circ**, émettra l'adresse d'une instruction et acceptera l'instruction récupérée à cette adresse en tant qu'entrée. Inspectez les circuits **cpu.circ** et **run_harness.circ** pour voir exactement ce qui se passe.
+
+Cette ROM est initialement vide ! Veuillez consulter la rubrique &laquo; **Tester votre processeur** &raquo; plus bas dans ce document pour voir comment l'initialiser avec votre programme.
+
+Le processeur a deux entrées qui proviennent du fichier socle **run_harness.circ** :
+
+<div class="col-md-12">
+<table class="table table-hover" >
+  <thead>
+  </thead>
+  <tbody>
+    <tr>
+      <th class="text-left" class="col-md-2" scope="col">Nom</th>
+      <th class="text-center" class="col-md-2" scope="col">Largeur en bits</th>      
+      <th class="text-left" scope="col">Description</th>      
+    </tr>
+
+    <tr>
+      <th class="text-left">Instruction</th>
+      <td class="text-center">16</td>      
+      <td class="text-left">révèle l'instruction récupérée depuis l'adresse mémoire indiquée par FETCH_ADDRESS (voir ci-dessous).</td>      
+    </tr>
+
+    <tr>
+      <th class="text-left">CLOCK</th>
+      <td class="text-center">1</td>      
+      <td class="text-left">Entrée fournissant l'horloge. Comme déjà observé dans &laquo; <a href="./lab_08.html">TP - Banc de registres</a> &raquo;, ce signal peut être acheminé à d'autres sous-circuits ou directement raccordé aux entrées d’horloge des unités de mémoire dans Logisim, mais ne doit en aucune façon être raccordé à des portes logiques (c’est-à-dire, ne l’inversez pas, n'appliquez pas la porte "ET" dessus, etc.).</td>
+    </tr>    
+  </tbody>
+</table>
+</div>
+
+... et fournit six sorties pour **run_harness.circ** :
+
+<div class="col-md-12">
+<table class="table table-hover" >
+  <thead>
+  </thead>
+  <tbody>
+    <tr>
+      <th class="text-left" class="col-md-2" scope="col">Nom</th>
+      <th class="text-center" class="col-md-2" scope="col">Largeur en bits</th>      
+      <th class="text-left" scope="col">Description</th>      
+    </tr>
+
+    <tr>
+      <th class="text-left">$s0</th>
+      <td class="text-center">16</td>      
+      <td class="text-left">Renvoie la valeur contenue dans le registre $s0 (sortie utilisée pour le débogage et les tests)</td>      
+    </tr>
+
+    <tr>
+      <th class="text-left">$s1</th>
+      <td class="text-center">16</td>      
+      <td class="text-left">Renvoie la valeur contenue dans le registre $s1 (sortie utilisée pour le débogage et les tests)</td>      
+    </tr>
+
+    <tr>
+      <th class="text-left">$s2</th>
+      <td class="text-center">16</td>      
+      <td class="text-left">Renvoie la valeur contenue dans le registre $s2 (sortie utilisée pour le débogage et les tests)</td>      
+    </tr>
+
+    <tr>
+      <th class="text-left">$ra</th>
+      <td class="text-center">16</td>      
+      <td class="text-left">Renvoie la valeur contenue dans le registre $ra (sortie utilisée pour le débogage et les tests)</td>      
+    </tr>
+
+    <tr>
+      <th class="text-left">$sp</th>
+      <td class="text-center">16</td>      
+      <td class="text-left">Renvoie la valeur contenue dans le registre $sp (sortie utilisée pour le débogage et les tests)</td>      
+    </tr>
+
+    <tr>
+      <th class="text-left">Overflow</th>
+      <td class="text-center">1</td>      
+      <td class="text-left">Renvoie la valeur de sortie "Overflow" de l'UAL (sortie utilisée pour le débogage et les tests)</td>      
+    </tr>
+
+    <tr>
+      <th class="text-left">FETCH_ADDRESS</th>
+      <td class="text-center">16</td>      
+      <td class="text-left">Cette sortie est utilisée pour sélectionner depuis la mémoire ROM dans <b>run_harness.circ</b> l'instruction à présenter à l'entrée INSTRUCTION (voir ci-dessus) du processeur</td>      
+    </tr>  
+  </tbody>
+</table>
+</div>
+
+## L'unité de mémoire mem.circ
+
+Comme mentionné plus haut dans ce document, le circuit de l'unité mémoire **mem.circ** est déjà implémenté pour vous. Vous n'avez donc rien à y faire. Voici un résumé rapide de ses entrées et sorties :
+
+<div class="col-md-12">
+<table class="table table-hover" >
+  <thead>
+  </thead>
+  <tbody>
+    <tr>
+      <th class="text-left" class="col-md-2" scope="col">Nom</th>
+      <th class="text-center" class="col-md-2" scope="col">Entrée/Sortie</th>      
+      <th class="text-center" class="col-md-2" scope="col">Largeur en bits</th>      
+      <th class="text-left" scope="col">Description</th>      
+    </tr>
+
+    <tr>
+      <th class="text-left">Address</th>
+      <td class="text-center">Entrée</td>            
+      <td class="text-center">16</td>      
+      <td class="text-left">Adresse à lire/écrire en mémoire</td>      
+    </tr>
+
+    <tr>
+      <th class="text-left">WriteData</th>
+      <td class="text-center">Entrée</td>            
+      <td class="text-center">16</td>      
+      <td class="text-left">Valeur à écrire en mémoire.</td>      
+    </tr>
+
+    <tr>
+      <th class="text-left">MemRW</th>
+      <td class="text-center">Entrée</td>            
+      <td class="text-center">1</td>      
+      <td class="text-left">(=1) pour activer l'écriture en mémoire.</td>      
+    </tr>
+
+    <tr>
+      <th class="text-left">clk</th>
+      <td class="text-center">Entrée</td>            
+      <td class="text-center">1</td>      
+      <td class="text-left">Piloté par l'entrée d'horloge dans <b>cpu.circ</b>.</td>
+    </tr>    
+
+    <tr>
+      <th class="text-left">ReadData</th>
+      <td class="text-center">Sortie</td>            
+      <td class="text-center">16</td>      
+      <td class="text-left">Piloté par la donnée stockée à l'adresse spécifiée.</td>      
+    </tr>
+  </tbody>
+</table>
+</div>
+
+## Les instructions de saut
+
+Dans AJIR, il n'y a que deux instructions de saut : `jump` et `jump register`. Pour l'instruction `jump`, l'adresse de saut est calculée en prenant l'immédiat sur 10 bits (puisqu'il s'agit d'une instruction de type U) et en apposant les six bits les plus significatifs du registe **PC**. En d'autres termes, si nous considérons la virgule comme symbole de concaténation, L'adresse de saut `JumpAddr` est calculée en utilisant l'expression : `JumpAddr = {PC[15:10], immediate}`. Par exemple, si l'immédiat est égale à `0x1a6 = 0b0110100110` et si le contenu du registre **PC** est `0xabcc = 0b1010101111001100`, alors `JumpAddr = {101010, 0110100110} = 0b1010100110100110 = 0xa9a6`.
+
+Pour l'instruction `jump register`, l'immédiat est également utilisé pour calculer l’adresse de saut, mais il faut noter qu'il s'agit maintenant d'une instruction de type I (l'immédiat est sur six bits seulement). Spécifiquement, le registre **PC** contiendra la somme de l'immédiat et l'adresse spécifiée dans le registre **$rs**, ou `PC = JumpAddr = R [rs] + immédiat`. Si vous voulez effectuer un saut à l'adresse contenue dans **$rs**, comme pour l'instruction de saut dans MIPS, l'immédiat serait simplement égale à 0.
+
+Au lieu d'avoir des versions différentes d'instructions de *jump-and-link* comme dans MIPS, la liaison est effectuée ici en utilisant le registre spécifié dans **$rd** (dans MIPS, le registre de liaison est automatiquement le registre **$ra**). Autrement dit, si **$rd** indique par exemple le registre **$s0**, alors le contenu actuel du registre **PC** (avant le saut) est sauvegardé dans le registre **$s0** (si vous voulez avoir le même comportement que dans MIPS, vous pouvez toujours faire **$rs** := **$ra**). Cependant, notez que si **$rd** est le registre **$zero**, le **PC** actuel ne sera pas sauvegardé (et aucune liaison n’est faite) car le registre **$zero** ne peut pas être modifié.
+
+Par conséquent, pour exécuter une instruction similaire à `jalr $s0` dans MIPS, on pourra appeler `jr $s0, $ra` tel que `R[ra] = PC; PC = R[s0]`. Vous avez peut-être remarqué que le champ **$rd** pour les instructions de type U est sur deux bits seulement, cela signifie que pour le saut, notre registre de liaison **$rd** ne peut être que l'un des registres 0-3 (c.-à-d. **$0**, **$ra**, **$s0** ou **$s1**).
+
+## Load Upper Immediate
+
+Comme le champ immédiat pour les instructions de type I ne contient que 6 bits dans AJIR, nous ne pourrons pas charger un immédiat de 16 bits si l'instruction `lui` appartenait à cette classe d'instructions (comme dans MIPS). Par conséquent, l'instruction `lui` est ici une instruction de type U avec un immédiat sur 10 bits. Ici, l’immédiat sera chargé dans le registre spécial **$LO** (et l'instruction `mflo` peut ensuite être utilisé pour récupérer cette valeur à partir de ce registre). Par exemple, on pourra utiliser les instructions suivantes pour charger un immédiat de 16 bits dans le registre **$s0** :
+
+```asm
+ # charger l'immédiat 0xABCD = 0b1010101111001101  dans $s0
+ lui  0b1010101111
+ mflo $s0
+ ori  $s0, $s0, 0b001101
+```
+
+Pour l'instruction `lui`, le champ **$rd** n'est pas utilisé et peut avoir n'importe quelle valeur.
+
+## Multiplication
+
+Comme dans MIPS, l'instruction `mult` stockera les bits supérieurs du produit dans **$HI** et les bits inférieurs dans **$LO**. Spécifiquement, pour AJIR, les 16 bits supérieurs du produit seront stockés dans **$HI** et les 16 bits inférieurs seront dans **$LO**. les instructions `mfhi` et `mflo` peuvent ensuite être utilisés pour accéder aux valeurs de **$HI** et **$LO**, respectivement.
+
+# Tester votre processeur
+
+Des exemples de tests pour votre processeur sont inclus dans le fichier de démarrage **cpu_starter.zip** - il suffit d'exécuter le script `./test.sh` depuis une console pour vérifier votre implémentation (Veuillez noter que ce script ne fonctionne qu'avec Python 3).
+
+**Les tests fournis ne sont PAS exhaustifs et vous devez effectuer d'autres tests par vous-même.**
+
+Si votre circuit échoue à un test et que vous voulez savoir ce qui ne va pas, allez dans votre dossier de tests et ouvrez le fichier socle correspondant au test (ex: **test_lui.circ**). Faites un clic droit sur votre implémentation du processeur et choisissez "view main". Vous pouvez ensuite voir votre processeur avec les entrées fournies par le test. Assurez-vous que votre implémentation du décodeur se comporte comme prévu !
+
+Il n'est pas évident de fournir de petits tests unitaires ici comme dans la partie programmation C/MIPS de ce cours, car il s'agit ici d'implémenter le chemin de données complet d'un processeur. En tant que tel, la meilleure approche serait d'écrire de courts programmes AJIR pour exercer votre chemin de données de différentes manières. Pour vous aidez dans cette tache, nous avons inclus un assembleur rudimentaire pour AJIR dans le kit de démarrage. Ainsi, pour assembler un fichier AJIR, exécutez l'assembleur (nécessite l'installation de python 2.7 sur votre ordinateur personnel) et donnez en paramètre votre fichier source (par exemple `test.s`) comme suit :
+
+```bash
+nano test.s               # nano est un éditeur de texte (d'autres éditeurs de texte peuvent être utilisés)
+                          # pour créer votre fichier source tests.s (utilisez uniquement des instructions AJIR!)
+
+./assembler.py test.s     # Cette commande générera un fichier de code machine en sortie appelé test.hex
+./assembler.py test.s -v  # Comme ci-dessus, mais produira également des commentaires détaillés
+```
+
+Une fois le code machine généré, vous devez le charger dans l'unité de mémoire d'instructions dans **run_harness.circ** avant de commencer l'exécution. Pour cela, ouvrez **run_harness.circ** et localisez l'unité mémoire d'instructions `Instruction Memory`
+
+![right_click_rom.png](/assets/images/right_click_rom.png){: .center-l2ado-image height="70%" width="70%"}
+
+Cliquez sur le module de mémoire avec le bouton droit de la souris puis, depuis le menu déroulant sélectionnez "Load image..." pour charger le fichier généré précédemment par l'assembleur.
+
+![load_rom_image.png](/assets/images/load_rom_image.png){: .center-l2ado-image height="70%" width="70%"}
+
+Une fois le code machine chargé en mémoire, vous pouvez cocher l’horloge manuellement et regarder votre CPU exécuter votre programme ! Vous pouvez double-cliquer sur le CPU à l'aide de l'outil poke pour examiner le comportement de votre chemin de données sous l'entrée fournie.
+
+# Soumettre vos circuits
+
+Pour l'évaluation de ce TP, vous devez soumettre vos circuits dans un fichier **zippé** : les circuits **alu.circ** et **regfile.circ** produits lors de la réalisation des TPs &laquo;[Unité Arithmétique et Logique](./lab_07.html)&raquo; et &laquo;[Banc de registres](./lab_08.html)&raquo;, ainsi que votre implémentation du circuit du processeur **cpu.circ** et tout éventuel sous-circuit qu'il pourrait utilisé.
+
+```bash
+fichier.zip
+ ├── alu.circ
+ ├── regfile.circ
+ ├── cpu.circ
+ └── ...
+ ```
+
+Par exemple, pour compresser les fichiers **file1.circ** et **file2.circ** dans un fichier **fichier.zip**, ouvrez une console (Ctrl-Alt-T sous Ubuntu), puis allez dans le répertoire contenant les fichiers **file1.circ** et **file2.circ**. Tapez ensuite la commande :
+
+```bash
+zip fichier.zip  file1.circ file2.circ
+```
+
+Soumettez ensuite le fichier résultat **fichier.zip** à l'évaluateur automatique.
+
+
+<div class="bs-callout bs-callout-danger">
+  <h4>ATTENTION</h4>
+
+  <p>Vos fichiers <b>alu.circ</b>, <b>regfile.circ</b> doivent correspondre aux socles prévus dans <b>cpu.circ</b>. Cela signifie que vous devez veiller à ne pas réorganiser les entrées ou les sorties de ces circuits. Si vous avez besoin de plus d'espace, vous pouvez les déplacer en faisant attention à conserver leurs positionnements relatifs les uns par rapport aux autres.</p>
+
+  <p>Pour vérifier que vos modifications n’ont pas rompu les correspondances entrés/sorties entre ces circuits et le circuit du processeur, ouvrez simplement le fichier <b>cpu.circ</b> et assurez-vous qu’il n’y a pas d’erreurs (pas de fils rouges ou oranges) et que les circuits fonctionnent correctement.</p>
+
+  <p>L'évaluateur automatique utilise des fichiers similaires pour tester et évaluer votre implémentation. Vous devez donc vous basez sur les circuits fournis dans le kit de démarrage pour vous assurer que votre implémentation du processeur est correctement chargée dans <b>cpu.circ</b> et <b>run_harness.circ</b> avant de soumettre votre TP.</p>
+</div>
+
+<div class="bs-callout bs-callout-warning">
+  <h4>REMARQUE</h4>
+
+  <p>Vous vous demandez peut-être si l'évaluation de votre implémentation du processeur s'appuiera exclusivement sur votre version de l'UAL et du banc de registres conçus précédemment dans les TPs &laquo;« <a href="./lab_07.html">Unité Arithmétique et Logique</a> &raquo; et &laquo; <a href="./lab_08.html">Banc de registres</a> &raquo;.</p>
+
+  <p>Vous utiliserez votre propre implémentation de ces circuits lors de la construction de votre processeur; Cependant, nous allons tester votre processeur en utilisant à la fois votre version de ces composants, ainsi qu'une version développée par vos enseignants.</p>
+
+  <p>Vous obtiendrez une note maximale si votre processeur fonctionne correctement avec votre version de ces circuits. Si la version de vos enseignants fonctionne mieux, une pénalité de 50% sera appliquée puis le score maximal entre les deux tests vous sera attribué.</p>
+</div>
+
+  </article>
+
+</div>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <!--     <h2 class="footer-heading"></h2> -->
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+
+        <p class="text">
+          02 rue Didouche Mourad <br />
+16000 Alger<br />
+
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+
+
+          
+
+          
+
+          
+
+          
+
+          
+
+
+
+
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+  </body>
+
+</html>

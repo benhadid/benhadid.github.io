@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title> Travaux Pratiques #5 - Assembleur MIPS - Architecture des ordinateurs / Automne 2020 </title>
+  <meta name="description" content="Objectifs  Maîtrise des conventions d’appel de fonction dans MIPS  Apprendre à écrire des fonctions en Assembleur.Exercice 1Dans cet exercice, vous allez eff...">
+  
+  <link rel="stylesheet" href="/l2ado/_css/main.css">
+  <link rel="canonical" href="http://benhadid.github.io//l2ado/labs/05_lab">
+  <link rel="alternate" type="application/rss+xml" title="Architecture des ordinateurs / Automne 2020 - " href="http://benhadid.github.io//l2ado/feed.xml" />
+<link rel='stylesheet' id='open-sans-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.2.4' type='text/css' media='all' />
+<link href='https://fonts.googleapis.com/css?family=Titillium+Web:600italic,600,400,400italic' rel='stylesheet' type='text/css'>
+
+
+
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+<!-- MathJax -->
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper" style="z-index: 100;">
+      <table><tr>
+          <td><img width="75" src="/l2ado/_images/logo.png" valign="middle"></td>
+          <td style="padding-left:10px;"><a class="schoolname" style="font-size: 15px;" class="site-title" href=""></a>
+          <br/>
+          <span style="margin-top: -2px;margin-bottom: -10px;" class="site-title"><a href="/l2ado/" title="Architecture des ordinateurs / Automne 2020 - "><b>Architecture des ordinateurs</a></b></span>
+          <br/>
+          <span class="coursesemeter" style="font-size: 12px;font-weight: bold;margin-top: 10px;display: block;">Automne 2020</span>
+          </td>
+        </tr></table>
+
+    <nav class="site-nav">
+
+      <a href="#" class="menu-icon menu.open">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>  
+
+    <div class="trigger"><h1>Main Navigation</h1>
+
+ <ul class="menu">
+    
+    <li>
+        <a class="page-link" href="/l2ado/">
+            <i class="fa fa-home fa-lg"></i> Accueil
+        </a>
+    </li>
+    
+    <li>
+        <a class="page-link" href="/l2ado/schedule/">
+            <i class="fas fa-calendar-alt"></i> Programme
+        </a>
+    </li>
+    
+    <li>
+        <a class="page-link" href="/l2ado/lectures/">
+            <i class="fas fa-book-reader"></i> Cours
+        </a>
+    </li>
+    
+    <li>
+        <a class="page-link" href="/l2ado/labs/">
+            <i class="fas fa-laptop-code"></i> Pratiques
+        </a>
+    </li>
+    
+    <li>
+        <a class="page-link" href="/l2ado/assignments/">
+            <i class="fas fa-user-graduate"></i> Devoirs
+        </a>
+    </li>
+    
+    <li>
+        <a class="page-link" href="/l2ado/project/">
+            <i class="fas fa-user-graduate"></i> Projet
+        </a>
+    </li>
+    
+    <li>
+        <a class="page-link" href="/l2ado/materials/">
+            <i class="fas fa-book"></i> Support
+        </a>
+    </li>
+    
+</ul>
+
+     </div>  
+    </nav>
+
+  </div>
+
+  <div class="header-texture" style="height:100%; z-index: 0; position: absolute; top:0; right: 0; left: 0; 
+  background-image: url('/l2ado/_images/pattern.png');" />
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Travaux Pratiques #5 - Assembleur MIPS</h1>
+    <p class="post-meta">Publié le Thursday 19/09/2019</p>
+  </header>
+
+  <div>
+    
+    <span style="font-weight: bold">Date prévue : 
+      <!-- 26/09/2019 -->
+
+      
+      Jeudi
+      26
+      
+      Septembre
+      2019
+  
+
+    </span>
+    
+
+    
+    <p style="font-weight: bold">Télécharger
+
+      
+
+      
+      [<a href="/l2ado/static_files/labs/lab_05.zip">démarrage</a>]
+      
+
+      
+
+    </p>
+    
+
+  </div>
+
+  <br />
+  <article class="post-content">
+    <h1 id="objectifs">Objectifs</h1>
+
+<ul>
+  <li>Maîtrise des conventions d’appel de fonction dans MIPS</li>
+  <li>Apprendre à écrire des fonctions en Assembleur.</li>
+</ul>
+
+<h1 id="exercice-1">Exercice 1</h1>
+
+<p>Dans cet exercice, vous allez effectuer une implémentation de la fonction <code class="language-plaintext highlighter-rouge">map()</code> dans MIPS. Notre fonction sera simplifiée afin de modifier la liste sur place plutôt que de créer et de renvoyer une nouvelle liste avec les valeurs modifiées. Une implémentation en langage C de la liste serait comme suit :</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="n">node</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">value</span><span class="p">;</span>
+  <span class="k">struct</span> <span class="n">node</span> <span class="o">*</span><span class="n">next</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>La fonction <code class="language-plaintext highlighter-rouge">map()</code> prendra deux paramètres; le premier paramètre sera l’adresse du noeud principal d’une liste-chainée dont les valeurs sont des entiers de 32 bits. Le deuxième paramètre sera l’adresse d’une fonction qui prend un <code class="language-plaintext highlighter-rouge">int</code> en argument et renvoie un <code class="language-plaintext highlighter-rouge">int</code> en sortie. En fin, notre fonction <code class="language-plaintext highlighter-rouge">map()</code> parcourra de manière récursive la liste et appliquera la fonction donnée en paramètre à chaque valeur des nœuds de la liste. Une implémentation en C de notre fonction <code class="language-plaintext highlighter-rouge">map()</code> ressemblerait à quelque chose comme cela :</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">map</span> <span class="p">(</span><span class="k">struct</span> <span class="n">node</span> <span class="o">*</span><span class="n">head</span><span class="p">,</span> <span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">f</span><span class="p">)</span> <span class="p">(</span><span class="kt">int</span><span class="p">))</span>
+<span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">head</span><span class="o">==</span><span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span><span class="p">;</span> <span class="p">}</span>
+  <span class="n">head</span><span class="o">-&gt;</span><span class="n">value</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">head</span><span class="o">-&gt;</span><span class="n">value</span><span class="p">);</span>
+  <span class="n">map</span><span class="p">(</span><span class="n">head</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">,</span> <span class="n">f</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>La déclaration <code class="language-plaintext highlighter-rouge">int (*f)(int)</code> signifie simplement que <code class="language-plaintext highlighter-rouge">f</code> est un pointeur sur une fonction qui, en langage C, est utilisée exactement comme toute autre fonction (si vous êtes curieux, vous pouvez visiter ce <a href="https://www.geeksforgeeks.org/function-pointer-in-c/">lien</a> pour apprendre davantage sur leur utilisation).</p>
+
+<p>Pour votre implémentation en assembleur MIPS de la fonction <code class="language-plaintext highlighter-rouge">map()</code>, vous aurez besoin d’utiliser une instruction que vous pourriez ne pas avoir rencontrer avant : <code class="language-plaintext highlighter-rouge">jalr</code>. L’instruction <code class="language-plaintext highlighter-rouge">jalr</code> est à <code class="language-plaintext highlighter-rouge">jr</code> ce que <code class="language-plaintext highlighter-rouge">jal</code> est à <code class="language-plaintext highlighter-rouge">j</code>. Cette instruction permet de se brancher à l’adresse contenue dans le registre donné et stocker l’adresse de l’instruction suivante (c’est-à-dire PC+4) dans <code class="language-plaintext highlighter-rouge">$ra</code>. Donc, si nous ne voulions pas utiliser <code class="language-plaintext highlighter-rouge">jal</code>, on pourrait utiliser <code class="language-plaintext highlighter-rouge">jalr</code> pour appeler une fonction comme ceci :</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Nous aimerions appeler la fonction `garply`, sans utiliser l'instruction `jal`.
+la $t0, garply 	# donc nous utilisons l'instruction `la` pour charger l'adresse de `garply` dans un registre (ici $t0)
+jalr $t0       	# puis nous utilisons l'instruction `jalr` pour lier et brancher (comme `jr`).
+</code></pre></div></div>
+
+<p>Commencez par télécharger le fichier de démarrage (voir plus haut dans ce document) et décompressez son contenu dans le répertoire de votre choix. Il y a 12 emplacements dans le code <code class="language-plaintext highlighter-rouge">map.s</code> où il est indiqué <code class="language-plaintext highlighter-rouge">### YOUR CODE HERE ###</code>. Remplacez-les par des instructions qui fonctionnent comme indiqué dans les commentaires pour terminer l’implémentation de la fonction <code class="language-plaintext highlighter-rouge">map()</code>.</p>
+
+<p>Une fois le code complété, l’exécution du programme (dans Mars) devrait fournir un résultat similaire à celui-ci :</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Liste Avant: 9 8 7 6 5 4 3 2 1 0
+Liste Après: 81 64 49 36 25 16 9 4 1 0
+</code></pre></div></div>
+
+<h1 id="exercise-2">Exercise 2</h1>
+
+<p>Dans l’exercice précédent, vous avez complété une procédure MIPS qui appliquait une fonction à chaque noeud dans une liste chaînée. Dans cet exercice, vous allez travailler avec une version similaire (mais légèrement plus complexe).</p>
+
+<p>En effet, au lieu d’avoir une liste chaînée de « <code class="language-plaintext highlighter-rouge">int</code> », notre structure de données est une liste chaînée de tableaux de « <code class="language-plaintext highlighter-rouge">int</code> ». Pour rappel, lorsque nous traitons un tableau dynamique en C, nous devons stocker explicitement la taille du tableau.Voici, en langage C, à quoi ressemble la structure des données de notre liste chaînée :</p>
+
+<pre><code class="language-C">struct node {
+    int *arr;
+    int size;
+    struct node *next;
+};
+</code></pre>
+
+<p>Voici également ce que fait la nouvelle fonction <code class="language-plaintext highlighter-rouge">map</code> : dans chaque noeud de la liste chaînée, elle parcourt chaque élément du tableau dynamique et lui applique la fonction transmise. Le résultat de la fonction est stocké dans le tableau en écrasant l’ancienne valeur.</p>
+
+<pre><code class="language-C">void map(struct node *head, int (*f)(int)) {
+    if (!head) { return; }
+    for (int i = 0; i &lt; head-&gt;size; i++) {
+      head-&gt;arr[i] = f(head-&gt;arr[i]);
+    }
+    map(head-&gt;next, f);
+}
+</code></pre>
+
+<h2 id="tâches-à-effectuer">Tâches à effectuer</h2>
+
+<p>Trouvez et corrigez les erreurs dans <code class="language-plaintext highlighter-rouge">megalistmanips.s</code>. En ce sens, aidez-vous des lignes commentées dans le fichier source et <strong>assurez-vous que les instructions MIPS correspondent aux indications données dans les commentaires</strong>. Voici quelques indices :</p>
+
+<ul>
+  <li>Pourquoi avons-nous besoin de sauvegarder des informations dans la pile avant d’exécuter l’instruction <code class="language-plaintext highlighter-rouge">jal</code> ?</li>
+  <li>Quelle est la différence entre « <code class="language-plaintext highlighter-rouge">add $t0, $s0, $0</code> » et « <code class="language-plaintext highlighter-rouge">lw $t0, 0($s0)</code> » ?</li>
+  <li>Faites attention aux types des attributs dans la structure <code class="language-plaintext highlighter-rouge">struct node</code>.</li>
+</ul>
+
+<p>Pour référence, l’exécution du programme (dans Mars) devrait donner le résultat suivant :</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Lists before:
+5 2 7 8 1
+1 6 3 8 4
+5 2 7 4 3
+1 2 3 4 7
+5 6 7 8 9
+
+Lists after:
+30 6 56 72 2
+2 42 12 72 20
+30 6 56 20 12
+2 6 12 20 56
+30 42 56 72 90
+</code></pre></div></div>
+
+<h1 id="exercise-3">Exercise 3</h1>
+
+<p>Considérons une fonction discrète <code class="language-plaintext highlighter-rouge">f</code> définie sur les entiers de l’ensemble {-3, -2, -1, 0, 1, 2, 3}. Voici la définition de la fonction :</p>
+
+<p>f(-3) = 6
+  f(-2) = 61
+  f(-1) = 17
+  f(0) = -38
+  f(1) = 19
+  f(2) = 42
+  f(3) = 5</p>
+
+<p>Implémentez la version MIPS de la fonction discrète <code class="language-plaintext highlighter-rouge">f</code> dans <code class="language-plaintext highlighter-rouge">discrete_fn.s</code> <strong>SANS</strong> utiliser des instructions de branchement ou de saut !</p>
+
+<p>Indication : Comment lire un mot à partir d’une adresse mémoire ?</p>
+
+<h1 id="exercice-4">Exercice 4</h1>
+
+<p>La somme des carrés de <em>N</em> nombres entiers est décrit comme suit :</p>
+
+\[sum = \sum_{i=0}^{N-1} n_i^2\]
+
+<p>où \(n_0, n_1, ..., n_{N-1}\) sont des nombres entiers (de type <code class="language-plaintext highlighter-rouge">int</code>).</p>
+
+<p>Télécharger le fichier de démarrage (voir plus haut dans ce document) et décompressez son contenu dans le répertoire de votre choix. Implémentez ensuite dans le fichier <code class="language-plaintext highlighter-rouge">SumOfSquares.s</code> le corps de la fonction <code class="language-plaintext highlighter-rouge">SumOfSquares</code> en assembleur MIPS et qui retourne dans le registre <code class="language-plaintext highlighter-rouge">$v0</code> la somme des carrés des éléments d’un tableau de <strong>words</strong>. Le nombre des éléments du tableau est donné dans le registre <code class="language-plaintext highlighter-rouge">$a0</code>, et l’adresse de début du tableau est donnée dans le registre <code class="language-plaintext highlighter-rouge">$a1</code>.</p>
+
+<p><strong>INDICATION</strong> : Faites l’exercice n°1 du “<a href="/l2ado/labs/03_lab.html">TP Programmation « non structurée »</a>”, puis convertissez votre code C en assembleur MIPS à l’aide de la <a href="/l2ado/static_files/docs/iche_mips.pdf">fiche</a> de référence MIPS et du document <a href="/l2ado/static_files/docs/flow_control.pdf">contrôle de flux d’exécution dans MIPS</a>.</p>
+
+<h1 id="exercice-5">Exercice 5</h1>
+
+<p>Dans la bibliothèque standard du langage C, la fonction <code class="language-plaintext highlighter-rouge">strcmp</code> (cf. <code class="language-plaintext highlighter-rouge">man 3 strcmp</code>) compare, caractère par caractère, deux chaînes en mémoire pour établir quelle chaîne de caractère vient en premier dans l’ordre lexicographique standard, c.-à-d. en fonction des valeurs ASCII des caractères. Voici quelques exemples :</p>
+
+<ul>
+  <li>“a” &lt; “b”</li>
+  <li>“abc” &lt; “abcd”</li>
+  <li>“A” &lt; “a”</li>
+</ul>
+
+<p>Les chaînes de caractères à comparer sont représentées par des octets contigus en mémoire (chaque octet est un
+caractère ASCII) suivi du caractère NUL (0x00).</p>
+
+<p>Dans le fichier <code class="language-plaintext highlighter-rouge">StrCmp.s</code>, écrivez le corps de la fonction <code class="language-plaintext highlighter-rouge">StrCmp</code> en Assembleur MIPS.</p>
+
+<p>Cette fonction doit retourner dans le registre <code class="language-plaintext highlighter-rouge">$v0</code> le résultat de la comparaison de deux chaînes de caractères. Si la première chaîne de caractères est inférieure à la second, alors <code class="language-plaintext highlighter-rouge">$v0</code> sera négatif. Si les deux chaînes de caractères sont semblables alors <code class="language-plaintext highlighter-rouge">$v0</code> sera nul. Enfin, si la première chaîne de caractères est supérieure à la seconde alors <code class="language-plaintext highlighter-rouge">$v0</code> sera positif.</p>
+
+<p>L’adresse de la première (resp. deuxième) chaîne de caractères est donnée dans le registre <code class="language-plaintext highlighter-rouge">$a0</code> (resp. <code class="language-plaintext highlighter-rouge">$a1</code>).</p>
+
+<p><strong>INDICATION</strong> : Faites l’exercice n°2 du “<a href="/l2ado/static_files/labs/03_lab.html">TP Programmation « non structurée »</a>”, puis convertissez votre code C en assembleur MIPS à l’aide de la <a href="/l2ado/static_files/docs/fiche_mips.pdf">fiche</a> de référence MIPS et du document <a href="/l2ado/static_files/docs/flow_control.pdf">contrôle de flux d’exécution dans MIPS</a>.</p>
+
+<h2 id="exercice-6">Exercice 6</h2>
+
+<p>Dans le fichier <code class="language-plaintext highlighter-rouge">InRange.s</code>, écrivez en assembleur MIPS le corp de la fonction <code class="language-plaintext highlighter-rouge">in_range(min, max, value)</code> qui retourne 1 dans <code class="language-plaintext highlighter-rouge">$v0</code> si <code class="language-plaintext highlighter-rouge">min &lt;= value &lt;= max</code> et 0 sinon. Vous pouvez supposer que :</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">min</code> est donnée dans le registre <code class="language-plaintext highlighter-rouge">$a0</code></li>
+  <li><code class="language-plaintext highlighter-rouge">max</code> est donnée dans le registre <code class="language-plaintext highlighter-rouge">$a1</code></li>
+  <li><code class="language-plaintext highlighter-rouge">value</code> est donnée dans le registre <code class="language-plaintext highlighter-rouge">$a2</code></li>
+</ul>
+
+<h1 id="exercice-7">Exercice 7</h1>
+
+<p>Dans le fichier <code class="language-plaintext highlighter-rouge">Reverse.s</code>, écrivez en assembleur MIPS le corp de la fonction <code class="language-plaintext highlighter-rouge">reverse(int* array, int size)</code> qui inverse l’ordre des éléments du tableau <code class="language-plaintext highlighter-rouge">array</code>. Par exemple, si :</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">array</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">};</span>  
+</code></pre></div></div>
+<p>alors après application de la fonction <code class="language-plaintext highlighter-rouge">reverse</code> sur le tableau <code class="language-plaintext highlighter-rouge">array</code> le résultat devra être :</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">array</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">};</span>  
+</code></pre></div></div>
+
+<p>Pour notre fonction en assembleur MIPS, l’adresse du tableau <code class="language-plaintext highlighter-rouge">array</code> est donnée dans le registre <code class="language-plaintext highlighter-rouge">$a0</code> et le paramètre <code class="language-plaintext highlighter-rouge">size</code> est donné dans le registre <code class="language-plaintext highlighter-rouge">$a1</code>.</p>
+
+  </article>
+
+</div>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <!--     <h2 class="footer-heading"></h2> -->
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+
+        <p class="text">
+          02 rue Didouche Mourad <br />
+16000 Alger<br />
+
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+
+
+          
+
+          
+
+          
+
+          
+
+          
+
+
+
+
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+  </body>
+
+</html>
