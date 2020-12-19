@@ -1,13 +1,13 @@
 ---
 type: lab
 date: 2019-09-19T4:00:00+4:30
-title: 'Traveaux Pratiques #2 - Stockage et accès aux données en mémoire'
+title: 'Travaux Pratiques #2 - Stockage et accès aux données en mémoire'
 attachment: /static_files/labs/lab_02.zip
 #solutions: /static_files/labs/lab_solutions.pdf
 due_event: 
     type: due
     date: 2019-09-26T23:59:00+3:30
-    description: 'Traveaux Pratiques #2 - à remettre'
+    description: 'Travaux Pratiques #2 - à remettre'
 ---
 
 # Objectifs
