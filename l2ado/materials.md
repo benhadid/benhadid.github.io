@@ -4,7 +4,7 @@ title: Support de cours
 permalink: /materials/
 ---
 
-{% include image.html url="/_images/cover2.jpg" width=175 align="right" %}
+{% include image.html url="{{site.baseurl}}/_images/cover2.jpg" width=175 align="right" %}
 
 ## Book
 
