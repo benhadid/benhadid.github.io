@@ -6,7 +6,7 @@ date: 2019-09-19T4:00:00+4:30
 #pdf: /static_files/assignments/devoir1.pdf
 #attachment: /static_files/assignments/asg.zip
 #solutions: /static_files/assignments/asg_solutions.pdf
-due_event: 
+due_event:
     type: due
     date: 2019-09-26T23:59:00+3:30
     description: 'Projet à remettre'    
@@ -21,7 +21,7 @@ due_event:
 
 Pour ce mini-projet, vous utiliserez [Logisim](https://fr.wikipedia.org/wiki/Logisim) afin d'implémenter un version basique d'un processeur MIPS. Ce devoir est organisé en deux parties : A et B.
 
-Dans la partie A (tâches 1 à 3), vous allez construire une « Unité Arithmétique et Logique (UAL) » et un « Banc de Registres » pour un processeur MIPS basique, ainsi qu'une implémentation du chemin de données nécessaire à l'éxecution des instructions `addi`. Dans la partie B (tâches 4 et 5), vous ajouterez d’autres composants à votre processeur basique pour produire une version avancée qui exécutera des instructions MIPS réelles !
+Dans la partie A (tâches 1 à 3), vous allez construire une « Unité Arithmétique et Logique (UAL) » et un « Banc de Registres » pour un processeur MIPS basique, ainsi qu'une implémentation du chemin de données nécessaire à l’exécution des instructions `addi`. Dans la partie B (tâches 4 et 5), vous ajouterez d’autres composants à votre processeur basique pour produire une version avancée qui exécutera des instructions MIPS réelles !
 
 Commencez par télécharger le fichier de démarrage (voir plus haut dans ce document) et décompressez son contenu dans le répertoire de votre choix. Voici la liste des fichiers que vous devez avoir :
 
@@ -61,9 +61,9 @@ proj_starter
 
 ## Tâche 1 : Unité Arithmétique et logique (UAL)
 
-Votre première tâche est de créer une UAL qui prend en charge toutes les opérations requises par les instructions de notre ISA (décrite plus en détail dans la section suivante). 
+Votre première tâche est de créer une UAL qui prend en charge toutes les opérations requises par les instructions de notre ISA (décrite plus en détail dans la section suivante).
 
-le fichier sequelette fourni `alu.circ` montre que votre UAL doit avoir trois entrées :
+le fichier squelette fourni `alu.circ` montre que votre UAL doit avoir trois entrées :
 
 <table class="styled-table">
 <colgroup>
@@ -125,7 +125,7 @@ le fichier sequelette fourni `alu.circ` montre que votre UAL doit avoir trois en
 </tbody>
 </table>
 
-**REMARQUES** : Dans les slides du cours &laquo; [Architecture de Von Neumann](https://1drv.ms/p/s!Agf0g-qZKM8_yAyyv1se7-WxjsN2?e=GO7udR) &raquo;, et afin de construire une UAL de plusieurs bits (8 bits est donné comme exemple), il est indiqué de dupliquer votre circuit de 1 bit et faire les adaptations nécessaires pour obtenir une UAL de plusieurs bits. Bonne nouvelle ! vous n'avez pas à le faire dans ce TP, Logisim fait déjà cela pour vous ! Il suffit simplement de choisir la bonne largeur de bits pour les entrées/sorties de vos composants et c'est tout (voir la figure ci-dessous) !
+**REMARQUES** : Dans les slides du cours &laquo; [Architecture de Von Neumann](https://1drv.ms/p/s!Agf0g-qZKM8_yAyyv1se7-WxjsN2?e=GO7udR) &raquo;, et afin de construire une UAL de plusieurs bits (8 bits est donné comme exemple), il est indiqué de dupliquer votre circuit de 1 bit et faire les adaptations nécessaires pour obtenir une UAL de plusieurs bits. Bonne nouvelle ! vous n'avez pas à le faire dans ce projet, Logisim fait déjà cela pour vous ! Il suffit simplement de choisir la bonne largeur de bits pour les entrées/sorties de vos composants et c'est tout (voir la figure ci-dessous) !
 
  ![Largeur de bits]({{site.baseurl}}/static_files/images/data_width.png){: height="55%" width="55%" .wp-caption .aligncenter}
 
@@ -261,26 +261,26 @@ Enfin, voici ci-dessous la liste des opérations (et les valeurs **ALUSel** asso
 
   * Lors de l'implémentation de `mul` et `mulh`, veuillez noter que le bloc Logisim de multiplication possède une sortie « Carry Out » (le bloc additionneur possède également cette sortie, mais vous n'en aurez pas besoin).
 
-  * Les séparateurs et les extendeurs de bits vous seront très utiles lors de l'implémentation des opérations `sra` et `srl`.
+  * Les séparateurs et les extenseurs de bits vous seront très utiles lors de l'implémentation des opérations `sra` et `srl`.
 
   * Utilisez les tunnels ! Cela vous évitera de croiser des fils involontairement ce qui causera des erreurs inattendues.
 
   * Un multiplexeur (MUX) peut être utile pour décider quel résultat de quel composant vous voulez sortir. En d'autres termes, traiter les entrées dans tous les composants d'une manière simultanée, puis, en fonction de l'opération choisie, sélectionner la bonne sortie à transmettre.
 
-  
+
 <div class="bs-callout bs-callout-danger">
   <h4>ATTENTION</h4>
 
   <p>Vous pouvez apporter toutes les modifications souhaitées à <b>alu.circ</b>, mais les entrées et la sortie doivent obéir au comportement spécifié ci-dessus. De plus, votre fichier <b>alu.circ</b> doit correspondre au socle <b>alu_harness.circ</b> fourni. Cela signifie que vous devez veiller à <b>NE PAS</b> réorganiser les entrées ou la sortie du circuit. Si vous avez besoin de plus d'espace, utilisez des tunnels !</p>
 
-  <p>Si vous créez des sous-circuits supplémentaires, ils doivent également être dans <b>alu.circ</b> (c.-à-d. vous ne devez pas créer de nouveaux fichiers .circ).</p> 
+  <p>Si vous créez des sous-circuits supplémentaires, ils doivent également être dans <b>alu.circ</b> (c.-à-d. vous ne devez pas créer de nouveaux fichiers .circ).</p>
 
   <p>Pour vérifier que vos modifications n’ont pas rompu les correspondances entrés/sorties entre les deux circuits, ouvrez le fichier <b>alu_harness.circ</b> et assurez-vous qu’il n’y a pas d’erreurs de branchement.</p>
 </div>
 
 ### **Tester votre UAL**
 
-Un groupe de tests de cohérence UAL est fourni dans le répertoire `tests/part_a/alu`. L'exécution du testeur (voir ci-dessous) pour ce groupe exécutera les tests UAL et produira le résultat des tests dans le répertoire `tests/part_a/alu/student_output`. 
+Un groupe de tests de cohérence UAL est fourni dans le répertoire `tests/part_a/alu`. L'exécution du testeur (voir ci-dessous) pour ce groupe exécutera les tests UAL et produira le résultat des tests dans le répertoire `tests/part_a/alu/student_output`.
 
 ```bash
 $ python3 test_runner.py part_a alu
@@ -425,7 +425,7 @@ Un squelette du « Banc de Registres » à implémenter est fourni dans le fichi
 <tr>
 <td style="text-align:left" markdown="span">&emsp;**Write Data**</td>
 <td style="text-align:center" markdown="span">32</td>
-<td markdown="span">Contient les données à écrire dans le registre identifié par l'entrée **Write Register** au prochain front montant de l'horloge, en supposant que **RegWEn** est à 1</td> 
+<td markdown="span">Contient les données à écrire dans le registre identifié par l'entrée **Write Register** au prochain front montant de l'horloge, en supposant que **RegWEn** est à 1</td>
 </tr>
 </tbody>
 </table>
@@ -517,8 +517,8 @@ Les sorties de test en haut du fichier `regfile.circ` sont présentes à des fin
 
   * Utilisez le copier-coller à volonté ! Afin d'éviter un travail répétitif (et ennuyeux), commencez par créer un registre complètement fonctionnel et utiliser le ensuite comme modèle pour construire les autres.
 
-  * Il est recommandé de ne pas utiliser l'entrée « `enable` » sur vos MUX. En fait, vous pouvez même désactiver cette fonctionnalité depuis le panel Logisim. Il est également conseillé de mettre sur « `off` » la propriété "three-state?". 
-  
+  * Il est recommandé de ne pas utiliser l'entrée « `enable` » sur vos MUX. En fait, vous pouvez même désactiver cette fonctionnalité depuis le panel Logisim. Il est également conseillé de mettre sur « `off` » la propriété "three-state?".
+
   * Consultez l'étape 2 du TP [Travaux Pratiques #7 - Introduction à Logisim]({{site.baseurl}}/labs/07_lab.html) pour voir à quoi correspond chaque entrée/sortie d'un registre Logisim.
 
   * Comme pour la tâche de l'UAL, les multiplexeurs vous seront très utiles (les démultiplexeurs, également).
@@ -528,21 +528,21 @@ Les sorties de test en haut du fichier `regfile.circ` sont présentes à des fin
   * Pour rappel, les registres possèdent une entrée « `enable` » ainsi qu'une entrée d'horloge.
 
   * Quelle est la valeur du registre `$0` ?
-  
+
 
 <div class="bs-callout bs-callout-danger">
   <h4>ATTENTION</h4>
 
   <p>Vous pouvez apporter toutes les modifications souhaitées à <b>regfile.circ</b>, mais les entrées et la sortie doivent obéir au comportement spécifié ci-dessus. De plus, votre fichier <b>regfile.circ</b> doit correspondre au socle <b>regfile_harness.circ</b> fourni. Cela signifie que vous devez veiller à <b>NE PAS</b> réorganiser les entrées ou les sorties du circuit. Si vous avez besoin de plus d'espace, utilisez des tunnels !</p>
 
-  <p>Si vous créez des sous-circuits supplémentaires, ils doivent également être dans <b>regfile.circ</b> (c.-à-d. vous ne devez pas créer de nouveaux fichiers .circ).</p> 
+  <p>Si vous créez des sous-circuits supplémentaires, ils doivent également être dans <b>regfile.circ</b> (c.-à-d. vous ne devez pas créer de nouveaux fichiers .circ).</p>
 
   <p>Pour vérifier que vos modifications n’ont pas rompu les correspondances entrés/sorties entre les deux circuits, ouvrez le fichier <b>regfile_harness.circ</b> et assurez-vous qu’il n’y a pas d’erreurs de branchement.</p>
 </div>
 
 ### **Tester votre « Banc de Registres »**
 
-Un groupe de tests de cohérence du « Banc de Registres » est fourni dans le répertoire `tests/part_a/regfile`. L'exécution du testeur (voir ci-dessous) pour ce groupe exécutera également les tests UAL et produira le résultat des tests dans le répertoire `tests/part_a/regfile/student_output`. 
+Un groupe de tests de cohérence du « Banc de Registres » est fourni dans le répertoire `tests/part_a/regfile`. L'exécution du testeur (voir ci-dessous) pour ce groupe exécutera également les tests UAL et produira le résultat des tests dans le répertoire `tests/part_a/regfile/student_output`.
 
 ```bash
 $ python3 test_runner.py part_a regfile
@@ -556,7 +556,7 @@ Dans cette troisième et dernière tâche pour la partie A, vous allez implémen
 
 ### Info : Mémoire (circuit `mem.circ`)
 
-L'unité de mémoire (fournie dans `mem.circ`) est déjà entièrement implémentée pour vous ! Cependant, l'instruction addi n'utilise **PAS** l'unité de mémoire, vous pouvez donc ignorer ce module pour la partie A.
+L'unité de mémoire (fournie dans `mem.circ`) est déjà entièrement implémentée pour vous ! Cependant, l'instruction `addi` n'utilise **PAS** l'unité de mémoire, vous pouvez donc ignorer ce module pour la partie A.
 
 ### Info : Comparateur de Branchement (circuit `branch_comp.circ`)
 
@@ -613,13 +613,13 @@ Voici un résumé des entrées et sorties de l'unité :
 
 Le kit de démarrage fournit également un squelette pour votre processeur dans `cpu.circ`. Vous utiliserez vos propres implémentations de l'UAL et du « Banc de Registres » lorsque vous construirez votre chemin de données. Pour la partie A, votre processeur doit pouvoir exécuter l'instruction `addi` en utilisant un « pipeline » à deux étages, avec IF dans la première étape et ID, EX, MEM et WB dans la deuxième étape. Pour commencer, cependant, il est recommandé de construire un processeur sans « pipeline ». Une fois c'est fait, vous pouvez modifier votre processeur afin qu'il dispose d'un « pipeline » en deux étapes.
 
-Votre processeur est inséré dans le socle `test_harness.circ` qui contient l'unité de mémoire. Ce socle de processeur est inséré à son tour dans le socle de test `run.circ` qui fournit les instructions au processeur. 
+Votre processeur est inséré dans le socle `test_harness.circ` qui contient l'unité de mémoire. Ce socle de processeur est inséré à son tour dans le socle de test `run.circ` qui fournit les instructions au processeur.
 
 En sortie, votre processeur émettra l'adresse d'une instruction à récupérer depuis la mémoire. L'instruction sollicitée est transmise ensuite au processeur dans l'entrée appropriée.
 
-En sortie également, le processeur émettra l'adresse d'une donnée en mémoire et éventuellement un signal d'activation de l'écriture de données en mémoire. Pour la lecture, les données récupérées depuis l'adresse transmise seront communiquées au processeur dans l'entrée appropriée. 
+En sortie également, le processeur émettra l'adresse d'une donnée en mémoire et éventuellement un signal d'activation de l'écriture de données en mémoire. Pour la lecture, les données récupérées depuis l'adresse transmise seront communiquées au processeur dans l'entrée appropriée.
 
-Essentiellement, les socles `test_harness.circ` et `run.circ` simulent respectivement vos mémoires de données et d'instructions. Prenez le temps de vous familiariser avec leur fonctionnement pour vous faire une idée globale sur le simulateur. 
+Essentiellement, les socles `test_harness.circ` et `run.circ` simulent respectivement vos mémoires de données et d'instructions. Prenez le temps de vous familiariser avec leur fonctionnement pour vous faire une idée globale sur le simulateur.
 
 <div class="bs-callout bs-callout-danger">
   <h4>ATTENTION</h4>
@@ -760,7 +760,7 @@ Le processeur dispose de trois entrées qui proviennent du socle :
 L'unité de contrôle fournie dans le fichier `control_logic.circ` n'est pas implémentée. La conception de votre unité de contrôle sera probablement votre plus grand défi dans la partie B de ce devoir. Pour la partie A, comme `addi` est la seule instruction que vous implémenterez, vous pouvez mettre une constante pour chaque signal de contrôle. Toutefois, au fur et à mesure que vous avancez dans votre implémentation de `addi`, réfléchissez aux endroits où vous devrez effectuer des modifications/additions afin de prendre en charge d'autres instructions dans le futur.
 
 Pour éditer l'unité de contrôle, modifiez le fichier `control_logic.circ` et non le circuit virtuel `control_logic` inclus dans `cpu.circ`. Notez qu'à chaque modification du circuit `control_logic.circ`, vous devrez fermer et ouvrir `cpu.circ` pour appliquer les modifications dans votre CPU.
- 
+
 <div class="bs-callout bs-callout-danger">
   <h4>ATTENTION</h4>
 
@@ -770,7 +770,7 @@ Pour éditer l'unité de contrôle, modifiez le fichier `control_logic.circ` et 
 
 ### Guide : Processeur à cycle unique
 
-Il peut être intimidant de commencer à partir d'une ardoise vièrge quand on veut construire un processeur ! 
+Il peut être intimidant de commencer à partir d'une ardoise vierge quand on veut construire un processeur !
 
 Rappelons les cinq étapes d'exécution dans un processeur MIPS :
 
@@ -778,7 +778,7 @@ Rappelons les cinq étapes d'exécution dans un processeur MIPS :
   2. Décodage d'instruction (ID)
   3. Exécution de l'instruction (EX)
   4. Lecture/écriture depuis/vers la mémoire de données (MEM)
-  5. Écriture *éventuelle* dans le « Banc de Registres » (WB) 
+  5. Écriture *éventuelle* dans le « Banc de Registres » (WB)
 
 
 Ce guide vous aidera à implémenter chacune de ces étapes pour l'instruction `addi`. Chaque section ci-dessous contient des questions auxquelles vous devez réfléchir et des indications importantes. Il est nécessaire de lire et comprendre chaque question avant de passer à la suivante ! Vous pouvez même consulter les réponses en cliquant sur  &#9656;  si vous n'êtes pas capables de trouver les réponses vous-mêmes :(.
@@ -816,7 +816,7 @@ L'instruction que `run.circ` transmet à votre processeur doit être l'instructi
 
 <details close="">
 <summary markdown="span">
-4. Comment le registre `PC` change-t-il pour les programmes simples qui ne possèdent pas d'instructions de sauts ou de branchement ? 
+4. Comment le registre `PC` change-t-il pour les programmes simples qui ne possèdent pas d'instructions de sauts ou de branchement ?
 </summary>
 <p style="color: firebrick" markdown="span">
 Comme le registre `PC` contient l'adresse de l'instruction en cours d'exécution, il faut incrémenter ce registre de la taille d'une instruction pour passer à l'instruction suivante. Cela signifie que votre `PC` augmentera généralement de 4 (en supposant que l'instruction en cours n'est pas un saut ou un branchement).
@@ -828,13 +828,13 @@ Une implémentation simple du registre `PC` est fournie dans `cpu.circ`. Cette i
 Rappelons que nous allons éventuellement implémenter un processeur en pipeline à 2 étages, de sorte que l'étape IF est séparée des étapes restantes. Quel circuit sépare les différentes étapes d'un pipeline ? Plus précisément, quel circuit sépare IF de l'étage suivant ? Auriez-vous besoin d'ajouter quelque chose ici ?
 <br>
 
-#### **Étape 2 : Décodeur d'instruction**
+#### **Étape 2 : Décodeur d'instruction (ID)**
 
-Une fois l'étape « IF » implémentée, l'instruction à traiter proviendra à l'entrée `INSTRUCTION` du processeur. La seconde étape consiste donc à décomposer cette instruction selon les formats d'instruction MIPS vus en cours, et cela afin de déterminer quoi en faire dans les étapes ultérieures d'éxecution.
+Une fois l'étape « IF » implémentée, l'instruction à traiter proviendra à l'entrée `INSTRUCTION` du processeur. La seconde étape consiste donc à décomposer cette instruction selon les formats d'instruction MIPS vus en cours, et cela afin de déterminer quoi en faire dans les étapes ultérieures d’exécution.
 
 <details close="">
 <summary markdown="span">
-1. Quel type d'instruction est `addi` ? Quels sont les différents champs de bits associés à ce type d'instruction et de quels bits de l'instruction chaque champ est constitué ? 
+1. Quel type d'instruction est `addi` ? Quels sont les différents champs de bits associés à ce type d'instruction et de quels bits de l'instruction chaque champ est constitué ?
 </summary>
 <p style="color: firebrick" markdown="span">
 `addi` est une instruction de « **type I** ». Les champs de bits sont : - `opcode [31-26]` - `rs [25-21]` - `rt [20-16]` - `imm [15-0]`.</p>
@@ -842,7 +842,7 @@ Une fois l'étape « IF » implémentée, l'instruction à traiter proviendra à
 
 <details close="">
 <summary markdown="span">
-2. Dans Logisim, quel outil utiliseriez-vous pour séparer différents groupes de bits ? 
+2. Dans Logisim, quel outil utiliseriez-vous pour séparer différents groupes de bits ?
 </summary>
 <p style="color: firebrick" markdown="span">
 Le Séparateur de bits (Splitter) !
@@ -863,7 +863,7 @@ Le champ d'instruction `rs` doit être branché sur l'entrée « read register 1
 &emsp;&nbsp;5\. Implémentez l'étape de lecture à partir du « Banc de Registres ». N'oubliez pas d'intégrer votre « Banc de Registres »  développé dans la tâche n°2 de ce projet. N'oubliez pas de connecter l'horloge !
 <details close="">
 <summary markdown="span">
-6. En quoi le « Générateur d'Immédiat » (circuit `imm_gen.circ`) pourrait vous être utile ? 
+6. En quoi le « Générateur d'Immédiat » (circuit `imm_gen.circ`) pourrait vous être utile ?
 </summary>
 <p style="color: firebrick" markdown="span">
 Pour l'instruction `addi`, le « Générateur d'Immédiat » prend 16 bits de l'instruction en entrée et produit un immédiat signé de 32 bits. Vous devez implémenter cette logique dans le sous-circuit du générateur d'immédiat !
@@ -871,13 +871,13 @@ Pour l'instruction `addi`, le « Générateur d'Immédiat » prend 16 bits de l'
 </details>
 <br>
 
-#### **Étape 3 : Exécution de l'instruction**
+#### **Étape 3 : Exécution de l'instruction (EX)**
 
 L'étape d'exécution est l'endroit où le calcul de la plupart des instructions est effectué. C'est également ici que l'idée d'utiliser un module de contrôle sera introduite.
 
 <details close="">
 <summary markdown="span">
-1. Pour l'instruction `addi`, que serait les données en entrée de votre UAL ? 
+1. Pour l'instruction `addi`, que serait les données en entrée de votre UAL ?
 </summary>
 <p style="color: firebrick" markdown="span">
 Read Data 1 (rs1) du « Banc de Registres » et la constante produite par le « Générateur d'Immédiat ».
@@ -886,7 +886,7 @@ Read Data 1 (rs1) du « Banc de Registres » et la constante produite par le « 
 
 <details close="">
 <summary markdown="span">
-2. A quoi sert `ALUSel` dans l'UAL ? 
+2. A quoi sert `ALUSel` dans l'UAL ?
 </summary>
 <p style="color: firebrick" markdown="span">
 Il détermine quelle opération l'UAL doit effectuer.
@@ -909,7 +909,7 @@ Lors de l'implémentation de plus d'instructions, l'entrée `ALUSel` de l'UAL po
 
 L'étape **MEM** est l'endroit où la mémoire de données peut être modifiée à l'aide des instructions de stockage de données et lue à l'aide des instructions de lecture de données. Comme l'instruction `addi` n'utilise pas la mémoire de données, nous pouvons ignorer cette partie du circuit pour l'instant et continuer avec l'étape suivante d'exécution.
 
-#### **Étape 5 : Écriture *éventuelle* dans le « Banc de Registres » (WB)** 
+#### **Étape 5 : Écriture *éventuelle* dans le « Banc de Registres » (WB)**
 
 L'étape d'écriture (WriteBack) est l'endroit où les résultats d'une opération doivent être sauvegardés dans un registre.
 
@@ -923,7 +923,7 @@ OUI ! l'instruction `addi` prend la sortie d'un calcul d'addition dans l'UAL et 
 </details>
 
 &emsp;&nbsp;2\. Nous avons vu dans le cours que l'étape WB permet d'écrire dans le « Banc de Registres » la sortie de l'UAL ou de la mémoire de données (MEM). Créons donc la phase d'écriture dans cette perspective même si nous nous intéressons seulement à l'instruction `addi` pour l'instant. Comme seule une donnée à la fois peut être écrite dans le « Banc de Registres » dans l'architecture MIPS, nous devons utiliser un MUX pour choisir laquelle des sorties de l'UAL ou de MEM (`READ_DATA`) à transmettre. Plus tard, lorsque vous implémenterez d'autres instructions dans la partie B du projet, vous devrez revoir l'implémentation de ce multiplexeur pour gérer plus de cas.
- 
+
 <details close="">
 <summary markdown="span">
 3. Que devons-nous utiliser comme entrée de sélection du MUX ? De quoi dépend l'entrée ?
@@ -947,7 +947,7 @@ La sortie du MUX véhicule les données que vous souhaitez écrire dans le « Ba
 Si vous avez effectué toutes les étapes correctement, vous devriez avoir un processeur à cycle unique qui fonctionne pour les instructions `addi`. Exécutez `python3 test_runner.py part_a addi_single` depuis le terminal et voyez si votre implémentation fonctionne correctement !
 
 
-### Guide : Parallélisation (pipelining) de votre processeur 
+### Guide : Parallélisation (pipelining) de votre processeur
 
 Il est maintenant temps de transformer votre processeur à cycle unique en une version « pipeline » ! Pour ce projet, vous allez implémenter un pipeline en 2 étages, qui est encore conceptuellement similaire au pipeline en 5 étages couvert en classe. Les deux étages que vous mettrez en oeuvre sont les suivantes :
 
@@ -973,7 +973,7 @@ Après avoir << pipeliné >> votre processeur, vous devriez être en mesure de r
 
 ## Comprendre les tests effectués
 
-Chaque test des tests cpu inclus dans le code de démarrage est une copie du fichier `run.circ` et contient des instructions préalablement chargées dans sa mémoire d'instructions (`Instruction Memory`). Lorsque vous lancez logisim-evolution à partir de la ligne de commande, votre circuit est automatiquement mis en marche. L'éxécution est cadencée par l'horloge, le `PC` de votre processeur est mis à jour, l'instruction récupérée est traitée, et les valeurs de chacune des sorties du circuit de test sont imprimées sur le terminal.
+Chaque test des tests cpu inclus dans le code de démarrage est une copie du fichier `run.circ` et contient des instructions préalablement chargées dans sa mémoire d'instructions (`Instruction Memory`). Lorsque vous lancez logisim-evolution à partir de la ligne de commande, votre circuit est automatiquement mis en marche. L’exécution est cadencée par l'horloge, le `PC` de votre processeur est mis à jour, l'instruction récupérée est traitée, et les valeurs de chacune des sorties du circuit de test sont imprimées sur le terminal.
 
 Prenons l'exemple du test `cpu-addi-pipelined.circ` fourni pour le processeur en pipeline. le circuit contient trois instructions `addi` (`addi $t0, $0, 5`, `addi $t1, $t0, 7` et `addi $s0, $t0, 9`). Ouvrez `tests/part_a/addi_pipelined/ cpu-addi-pipelined.circ` dans Logisim Evolution et examinez de plus près les différentes parties du circuit de test. En haut, vous verrez l’endroit où le socle testeur `test_harness` est connecté aux sorties de débogage. Initialement, ces sorties sont toutes des UUUUU, mais cela ne devrait pas être le cas une fois votre circuit `cpu.circ` est implémenté.
 
@@ -987,7 +987,7 @@ Sous le socle test_harness, vous verrez la mémoire d'instructions contenant le 
 
 <details close="">
 <summary markdown="span">
-Pourquoi les deux bits LSB de l'adresse `fetch_addr` sont ignorés ? 
+Pourquoi les deux bits LSB de l'adresse `fetch_addr` sont ignorés ?
 </summary>
 <p style="color: firebrick" markdown="span">
 Dans MIPS, les instructions sont récupérées mot-par-mot depuis la mémoire d'instructions. Donc, on a besoin de convertir `fetch_addr` qui est une adresse d'octets, en une adresse de mots en supprimant les deux bits les plus bas (On y reviendra dans le cours sur les caches).
@@ -995,9 +995,9 @@ Dans MIPS, les instructions sont récupérées mot-par-mot depuis la mémoire d'
 </details>
 
 <br>
-Ainsi, quand le circuit de test est mis en marche, chaque tick de l'horloge pilote l'exécution du socle `test_harness` et  incrémente le compteur appelé `Time_Step` (ce compteur se trouve à droite de la mémoire d'instructions, faites un zoom-out dans Logisim s'il n'est pas visible sur votre écran). 
+Ainsi, quand le circuit de test est mis en marche, chaque tick de l'horloge pilote l'exécution du socle `test_harness` et  incrémente le compteur appelé `Time_Step` (ce compteur se trouve à droite de la mémoire d'instructions, faites un zoom-out dans Logisim s'il n'est pas visible sur votre écran).
 
-A chaque tick de l'horloge, la ligne de commande Logisim Evolution imprimera les valeurs de chacune de vos sorties de débogage vers le terminal. L'horloge continuera à tourner jusqu'à ce que `Time_Step` soit égal à la constante d'arrêt pour ce circuit de test (pour ce fichier de test en particulier, la constante d'arrêt est 5). 
+A chaque tick de l'horloge, la ligne de commande Logisim Evolution imprimera les valeurs de chacune de vos sorties de débogage vers le terminal. L'horloge continuera à tourner jusqu'à ce que `Time_Step` soit égal à la constante d'arrêt pour ce circuit de test (pour ce fichier de test en particulier, la constante d'arrêt est 5).
 
 Enfin, nous comparons la sortie de votre circuit au résultat attendu; si la sortie de votre circuit est différente, vous échouerez au test.
 
@@ -1025,11 +1025,11 @@ $ cd tests/part_a/addi_pipelined
 $ python3 binary_to_hex_cpu.py reference_output/CPU-addi-pipelined-ref.out
 ```
 
-## Soumettre la partie A du devoir 
+## Soumettre la partie A du devoir
 
 Assurez-vous à nouveau que vous n'avez pas déplacé/modifié vos ports d'entrée/sortie et que vos circuits s'insèrent sans problème dans les socles de test fournis.
 
-Pour l'évaluation de cette partie du projet, vous devez soumettre un fichier **zippé** contenant tous les circuits que vous devez implémenter. C.-à-d. les circuits **alu.circ**, **regfile.circ**, **imm_gen.circ**, **control_logic.circ** et **cpu.circ**. 
+Pour l'évaluation de cette partie du projet, vous devez soumettre un fichier **zippé** contenant tous les circuits que vous devez implémenter. C.-à-d. les circuits **alu.circ**, **regfile.circ**, **imm_gen.circ**, **control_logic.circ** et **cpu.circ**.
 
 ```bash
 votre_fichier.zip
@@ -1041,13 +1041,15 @@ votre_fichier.zip
  ```
 
 Par exemple, pour mettre les fichiers **file1.circ** et **file2.circ** dans un fichier zip nommé  **votre_fichier.zip** :
-  1. Ouvrez une console (Ctrl-Alt-T sous Ubuntu), puis allez dans le répertoire contenant les fichiers **file1.circ** et **file2.circ**. 
+  1. Ouvrez une console (Ctrl-Alt-T sous Ubuntu), puis allez dans le répertoire contenant les fichiers **file1.circ** et **file2.circ**.
   2. Tapez la commande :
      ```bash
      zip votre_fichier.zip  file1.circ file2.circ
      ```
 
 Soumettez ensuite le fichier résultat **votre_fichier.zip** à l'évaluateur automatique. Cette partie du projet utilisera les mêmes fichiers de test déjà fournis dans le kit de démarrage pour l'évaluation de votre travail. Il n'y a pas de test caché !
+
+---
 
 # Partie B : Version avancée
 
@@ -1060,7 +1062,7 @@ Dans la tâche n°3, vous avez implémenté un processeur basique en pipeline à
 Votre implémentation du CPU sera évaluée uniquement sur les instructions énumérées ci-dessous. Votre processeur doit prendre en charge ces instructions, mais n'hésitez pas à implémenter des instructions supplémentaires si cela vous tente ! Assurez-vous, cependant, qu'aucune de vos instructions additionnelles n'affecte le fonctionnement des instructions spécifiées ici. L'implémentation d'instructions supplémentaires n'affectera pas votre score pour ce projet.
 
 
-<table class="styled-table"> 
+<table class="styled-table">
 <colgroup>
 <col width="15%" />
 <col width="30%" />
@@ -1288,7 +1290,7 @@ Votre implémentation du CPU sera évaluée uniquement sur les instructions énu
 <td style="text-align:center" markdown="span">I</td>
 <td style="text-align:left" markdown="span">&emsp;0x6</td>
 </tr>
-     
+
 <tr>
 <td style="text-align:left" markdown="span">**bgtz** rs, imm</td>
 <td style="text-align:left" markdown="span">Branchement si supérieur à 0</td>
@@ -1357,11 +1359,11 @@ Votre implémentation du CPU sera évaluée uniquement sur les instructions énu
 </table>
 
 
-**Remarques** : 
- 
- 1. La notation imm<sub>±</sub> dans le tableau ci-dessus signifie << Application d'une éxtension de signe à l'immédiat imm >>. La même remarque s'applique à Mem(...)<sub>±</sub>. Dans ce cas l'extension de signe est appliquée à l'octet/demi-mot récupéré depuis la mémoire.
- 2. La notation imm<sub>0</sub> signifie << Application d'une éxtension par des zéros à l'immédiat imm >>.
- 
+**Remarques** :
+
+ 1. La notation imm<sub>±</sub> dans le tableau ci-dessus signifie << Application d'une extension de signe à l'immédiat imm >>. La même remarque s'applique à Mem(...)<sub>±</sub>. Dans ce cas l'extension de signe est appliquée à l'octet/demi-mot récupéré depuis la mémoire.
+ 2. La notation imm<sub>0</sub> signifie << Application d'une extension par des zéros à l'immédiat imm >>.
+
 ### Info : Mémoire RAM (circuit `mem.circ`)
 
 L'unité de mémoire (fournie dans `mem.circ`) est déjà entièrement implémentée pour vous et raccordée aux sorties de votre processeur dans `test_harness.circ` ! C.-à-d. Il n'est pas nécessaire d'ajouter l'unité mémoire (`mem.circ`) à nouveau à votre implémentation. Au fait, cela entraînera un échec des scripts d'auto évaluation ce qui ne sera pas bon pour votre score :(.
@@ -1537,7 +1539,7 @@ Encore une fois, voici un résumé des entrées et sorties de l'unité :
 
 Afin d'exécuter correctement chaque instruction MIPS, les signaux de contrôle jouent un rôle très important dans un processeur (et ce projet!). Le squelette fourni dans le fichier `control_logic.circ` est basé sur l'unité de contrôle vue en cour pour un processeur MIPS.
 
-Veuillez jetez un oeil sur les présentations Powerpoint du cours pour commencer. Essayez de parcourir le chemin de données avec différents types d'instructions; lorsque vous rencontrez un MUX ou un autre composant, déterminez la valeur du sélecteur ou d'activation dont vous aurez besoin pour cette instruction.
+Veuillez jetez un œil sur les présentations Powerpoint du cours pour commencer. Essayez de parcourir le chemin de données avec différents types d'instructions; lorsque vous rencontrez un MUX ou un autre composant, déterminez la valeur du sélecteur ou d'activation dont vous aurez besoin pour cette instruction.
 
 Vous pouvez, si vous le désirez, ajouter plus d'entrées ou de sorties au circuit de démarrage existant en fonction de votre implémentation du circuit de contrôle. Vous pouvez également choisir de n'utiliser qu'un sous ensemble des ports fournis. Cela dit, veuillez ne modifier ni supprimer aucun des ports existants au cours de ce processus.
 
@@ -1549,7 +1551,7 @@ Pour éditer l'unité de contrôle, modifiez le fichier `control_logic.circ` et 
 
 ### Info: Processeur (circuit `cpu.circ`)
 
-Le circuit dans `cpu.circ` implémente le chemin de données principal et connecte tous les sous-circuits ensemble (UAL, Comparateur de Branchement, unité de contrôle, Générateur d'Immédiat, mémoire RAM et Banc de Registres). 
+Le circuit dans `cpu.circ` implémente le chemin de données principal et connecte tous les sous-circuits ensemble (UAL, Comparateur de Branchement, unité de contrôle, Générateur d'Immédiat, mémoire RAM et Banc de Registres).
 
 Dans la partie A, vous avez implémenté un simple pipeline en deux étages dans votre CPU. Vous devez réaliser que les << aléas de données >> ne posent PAS de problème pour cette conception, car tous les accès à toutes les sources de données se produisent dans une seule étape du pipeline (le deuxième étage).
 
@@ -1570,18 +1572,18 @@ Un groupe de tests de cohérence est fourni pour votre processeur dans `tests/pa
 $ python3 test_runner.py part_b pipelined
 ```
 
-Vous pouvez consulter les fichiers `.s` (MIPS) et `.hex` (code machine) utilisés pour les tests dans `tests/part_b/pipelined/inputs`. 
+Vous pouvez consulter les fichiers `.s` (MIPS) et `.hex` (code machine) utilisés pour les tests dans `tests/part_b/pipelined/inputs`.
 
 Vous pouvez également utiliser le script Python `binary_to_hex_cpu.py`, comme dans la tache n°3 ce projet, afin visualiser et mieux interpréter vos résultats.
 
 
-## Soumettre la partie B du devoir 
+## Soumettre la partie B du devoir
 
 Si vous avez terminé la tâche 4, vous avez terminé la partie B du projet. Félicitations pour votre nouveau processeur !
 
 Assurez-vous à nouveau que vous n'avez pas déplacé/modifié vos ports d'entrée/sortie et que vos circuits s'insèrent sans problème dans les socles de test fournis.
 
-Pour soumettre votre travail, créez un fichier **zippé** contenant tous les circuits que vous deviez implémenter dans les deux parties de ce projets. C.-à-d. les circuits **alu.circ**, **regfile.circ**, **branch_comp.circ**, **imm_gen.circ**, **control_logic.circ** et **cpu.circ**. 
+Pour soumettre votre travail, créez un fichier **zippé** contenant tous les circuits que vous deviez implémenter dans les deux parties de ce projets. C.-à-d. les circuits **alu.circ**, **regfile.circ**, **branch_comp.circ**, **imm_gen.circ**, **control_logic.circ** et **cpu.circ**.
 
 ```bash
 votre_fichier.zip
@@ -1594,10 +1596,10 @@ votre_fichier.zip
  ```
 
 Par exemple, pour mettre les fichiers **file1.circ** et **file2.circ** dans un fichier zip nommé  **votre_fichier.zip** :
-  1. Ouvrez une console (Ctrl-Alt-T sous Ubuntu), puis allez dans le répertoire contenant les fichiers **file1.circ** et **file2.circ**. 
+  1. Ouvrez une console (Ctrl-Alt-T sous Ubuntu), puis allez dans le répertoire contenant les fichiers **file1.circ** et **file2.circ**.
   2. Tapez la commande :
      ```bash
      zip votre_fichier.zip  file1.circ file2.circ
      ```
 
-Soumettez ensuite le fichier résultat **votre_fichier.zip** à l'évaluateur automatique. Cette partie du projet utilisera les mêmes fichiers de test déjà fournis dans le kit de démarrage pour l'évaluation de votre travail ainsi que d'autres tests cachés. 
+Soumettez ensuite le fichier résultat **votre_fichier.zip** à l'évaluateur automatique. Cette partie du projet utilisera les mêmes fichiers de test déjà fournis dans le kit de démarrage pour l'évaluation de votre travail ainsi que d'autres tests cachés.
