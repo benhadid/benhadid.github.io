@@ -1,7 +1,7 @@
 ---
 type: assignment
 date: 2019-09-19T4:00:00+4:30
-title: 'Travaux Dirigés #1 - Introduction à MIPS'
+title: 'Travaux Dirigés #3 - Introduction à MIPS'
 pdf: /static_files/assignments/td_3.pdf
 #attachment: /static_files/assignments/asg.zip
 solutions: /static_files/assignments/td_3-sol.pdf
