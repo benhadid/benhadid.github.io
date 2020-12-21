@@ -17,7 +17,14 @@ layout: default
             <div class="col col-4">Ressources</div>
         </li>
         
-        {% assign all_assignment_dues = site.assignments | map: "due_event" %}        
+        {% if project %}
+        - project
+        {% else %}
+        - nono
+
+        {%endif%}
+
+        {% assign all_assignment_dues = site.labs | map: "due_event" %}     
         {% assign all_events = site.events | concat: site.lectures %}
         {% assign all_events =  all_events | concat: site.labs %}
         {% assign all_events =  all_events | concat: site.assignments %}

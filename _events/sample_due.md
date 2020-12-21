@@ -1,6 +1,8 @@
 ---
 type: due
-date: 2019-12-28T23:59:59+3:30
-description: 'Custom Due/Deadline'
+date: 2019-09-26T23:59:00+3:30
+description: 'Projet à remettre'    
 hide_from_announcements: true
 ---
+
+
