@@ -1,7 +1,7 @@
 ---
 type: assignment
 date: 2019-09-19T4:00:00+4:30
-title: 'Travaux Dirigés #2 - des bases en C'
+title: 'Travaux Dirigés #2 - Des bases en C'
 pdf: /static_files/assignments/td_2.pdf
 #attachment: /static_files/assignments/asg.zip
 solutions: /static_files/assignments/td_2-sol.pdf
