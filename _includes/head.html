@@ -17,7 +17,7 @@
 
   <title>{% if page.title %} {{ page.title }} - {{ site.course_name }} / {{ site.course_semester }} {% else %}{{ site.course_name }} / {{ site.course_semester }} - {{ site.schoolname }}{% endif %}</title>
   <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ page.title }} - {{ site.course_name }} / {{ site.course_semester }}{% endif %}">
-  
+
   <link rel="stylesheet" href="{{ "/_css/main.css" | prepend: site.baseurl }}">
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
   <link rel="alternate" type="application/rss+xml" title="{{ site.course_name }} / {{ site.course_semester }} - {{ site.schoolname }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
@@ -33,4 +33,5 @@
 <script type="text/javascript" async
   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
+<meta name="msvalidate.01" content="7585E85421863F11F654701921771A4A" />
 </head>
