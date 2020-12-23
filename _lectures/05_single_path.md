@@ -3,7 +3,7 @@ type: lecture
 date: 2019-10-15T8:00:00+4:30
 title: Chemin de données
 tldr: "Implémentation d'un processeur MIPS à cycle unique"
-thumbnail: /static_files/presentations/lec.jpg
+thumbnail: /static_files/presentations/lec_05.jpg
 links: 
     - url: /static_files/presentations/05-Data Path.pptx
       name: slides

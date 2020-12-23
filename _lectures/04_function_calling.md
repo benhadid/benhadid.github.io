@@ -3,12 +3,12 @@ type: lecture
 date: 2019-10-08T8:00:00+4:30
 title: Appels de fonctions et Exceptions dans MIPS
 tldr: "Appels de fonctions et gestion des éxceptions/interruptions dans MIPS"
-thumbnail: /static_files/presentations/lec_041.jpg
+thumbnail: /static_files/presentations/lec_04.jpg
 links: 
     - url: /static_files/presentations/04-Appels_de_fonctions_et_exceptions.pptx
       name: slides
     - url: https://1drv.ms/p/s!Agf0g-qZKM8_y3FUF2JoNKhvF5dz?e=GeSO2y
-      name: visulaliser
+      name: visualiser
 ---
 **Lectures suggérées :**   
 - [Mécanismes]({{ site.baseurl }}/static_files/docs/Mecanismes_d_exceptions_dans_MIPS.pdf) d'exceptions dans MIPS
