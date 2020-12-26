@@ -1,7 +1,7 @@
 ---
 type: assignment
 date: 2019-09-19T4:00:00+4:30
-title: 'Travaux Dirigés #6 - Processeur MIPS en Pipeline et Aléas d'Exécution'
+title: "Travaux Dirigés #6 - Processeur MIPS en Pipeline et Aléas d'Exécution"
 pdf: /static_files/assignments/td_6.pdf
 #attachment: /static_files/assignments/asg.zip
 solutions: /static_files/assignments/td_6-sol.pdf
