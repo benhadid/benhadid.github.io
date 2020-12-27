@@ -3,10 +3,6 @@ layout: default
 title: page.title
 ---
 
-<!-- Latest compiled and minified CSS -->
-<!--<link rel="stylesheet" href="/static/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
--->
-
 # Opérations bit-à-bit en langage C
 
 ## Introduction
@@ -32,7 +28,7 @@ D'autre part, sur certaines machines ou systèmes d'exploitation, un `int` pourr
     - `uint8_t` (entier non signé sur 8 bits)
     - `uint16_t` (entier non signé sur 16 bits)
 
-Ces types sont définis dans l'entête [*stdint.h*](/assets/docs/man_stdint_h.html)
+Ces types sont définis dans l'entête **stdint.h** 
 et garantissent que les variables déclarées ainsi aient le nombre de bits souhaité.
 
 ## Opérateurs bit-à-bit
@@ -52,32 +48,29 @@ Les « opérateurs bits » en langage C permettent de modifier et de tester un o
 
 L'opérateur unaire NOT inverse l'état d'un bit selon le tableau suivant :
 
-<div class="col-md-4">
-<table class="table table-hover" >
-  <thead>
-    <tr>
-      <th class="text-center" scope="col">A</th>
-      <th class="text-center" scope="col">NOT A</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td class="text-center">0</td>
-      <th class="text-center" scope="row">1</th>      
-    </tr>
-    <tr>
-    <td class="text-center">1</td>
-    <th class="text-center" scope="row">0</th>      
-    </tr>
-  </tbody>
+
+<table class="styled-table">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align:center">A</th>
+<th style="text-align:center">NOT A</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center" markdown="span">0</td>
+<td style="text-align:center" markdown="span">**1**</td>
+</tr>
+<tr>
+<td style="text-align:center" markdown="span">1</td>
+<td style="text-align:center" markdown="span">**0**</td>
+</tr>
+</tbody>
 </table>
-</div>
-
-
-|A|NOT A|
-|:-:|:-:|
-|0|**1**|
-|1|**0**|
 
 En langage C, le caractère tilda **`~`** est utilisé pour représenter l’opérateur NOT. Il agit sur chaque bit de la valeur. Exemple :
 
@@ -89,41 +82,48 @@ En langage C, le caractère tilda **`~`** est utilisé pour représenter l’op�
 
 ### L'opérateur "&" (ET)
 
-L'opérateur binaire AND combine l'état de 2 bits selon le tableau suivant :
+L'opérateur binaire ET combine l'état de 2 bits selon le tableau suivant :
 
-<div class="col-md-3">
-<table class="table table-hover" >
-  <thead>
-    <tr>
-      <th class="text-center" scope="col">A</th>
-      <th class="text-center" scope="col">B</th>      
-      <th class="text-center" scope="col">A AND B</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td class="text-center">0</td>
-      <td class="text-center">0</td>
-      <th class="text-center" scope="row">0</th>            
-    </tr>
-    <tr>
-    <td class="text-center">0</td>
-    <td class="text-center">1</td>
-    <th class="text-center" scope="row">0</th>      
-    </tr>
-    <tr>
-    <td class="text-center">1</td>
-    <td class="text-center">0</td>
-    <th class="text-center" scope="row">0</th>      
-    </tr>
-    <tr>
-    <td class="text-center">1</td>
-    <td class="text-center">1</td>
-    <th class="text-center" scope="row">1</th>      
-    </tr>  
-  </tbody>
+
+<table class="styled-table">
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align:center">A</th>
+<th style="text-align:center">B</th>
+<th style="text-align:center">A ET B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center" markdown="span">0</td>
+<td style="text-align:center" markdown="span">0</td>
+<td style="text-align:center" markdown="span">**0**</td>
+</tr>
+
+<tr>
+<td style="text-align:center" markdown="span">0</td>
+<td style="text-align:center" markdown="span">1</td>
+<td style="text-align:center" markdown="span">**0**</td>
+</tr>
+
+<tr>
+<td style="text-align:center" markdown="span">1</td>
+<td style="text-align:center" markdown="span">0</td>
+<td style="text-align:center" markdown="span">**0**</td>
+</tr>
+
+<tr>
+<td style="text-align:center" markdown="span">1</td>
+<td style="text-align:center" markdown="span">1</td>
+<td style="text-align:center" markdown="span">**1**</td>
+</tr>
+</tbody>
 </table>
-</div>
 
 En langage C, le symbole **`&`** représente cet opérateur et agit sur *chaque* bit de ces opérandes :
 
@@ -136,41 +136,48 @@ En langage C, le symbole **`&`** représente cet opérateur et agit sur *chaque*
 
 ### L'opérateur "|" (OU)
 
-L'opérateur binaire OR combine l'état de 2 bits selon le tableau suivant :
+L'opérateur binaire OU combine l'état de 2 bits selon le tableau suivant :
 
-<div class="col-md-3">
-<table class="table table-hover" >
-  <thead>
-    <tr>
-      <th class="text-center" scope="col">A</th>
-      <th class="text-center" scope="col">B</th>      
-      <th class="text-center" scope="col">A OR B</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td class="text-center">0</td>
-      <td class="text-center">0</td>
-      <th class="text-center" scope="row">0</th>            
-    </tr>
-    <tr>
-    <td class="text-center">0</td>
-    <td class="text-center">1</td>
-    <th class="text-center" scope="row">1</th>      
-    </tr>
-    <tr>
-    <td class="text-center">1</td>
-    <td class="text-center">0</td>
-    <th class="text-center" scope="row">1</th>      
-    </tr>
-    <tr>
-    <td class="text-center">1</td>
-    <td class="text-center">1</td>
-    <th class="text-center" scope="row">1</th>      
-    </tr>  
-  </tbody>
+<table class="styled-table">
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align:center">A</th>
+<th style="text-align:center">B</th>
+<th style="text-align:center">A OU B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center" markdown="span">0</td>
+<td style="text-align:center" markdown="span">0</td>
+<td style="text-align:center" markdown="span">**0**</td>
+</tr>
+
+<tr>
+<td style="text-align:center" markdown="span">0</td>
+<td style="text-align:center" markdown="span">1</td>
+<td style="text-align:center" markdown="span">**1**</td>
+</tr>
+
+<tr>
+<td style="text-align:center" markdown="span">1</td>
+<td style="text-align:center" markdown="span">0</td>
+<td style="text-align:center" markdown="span">**1**</td>
+</tr>
+
+<tr>
+<td style="text-align:center" markdown="span">1</td>
+<td style="text-align:center" markdown="span">1</td>
+<td style="text-align:center" markdown="span">**1**</td>
+</tr>
+</tbody>
 </table>
-</div>
+
 
 Le symbole **`|`** représente l'opérateur 'OR' en langage C. Il agit sur *chaque* bit de ces opérandes :
 
@@ -183,41 +190,47 @@ Le symbole **`|`** représente l'opérateur 'OR' en langage C. Il agit sur *chaq
 
 ### L'opérateur "^" (OU exclusif)
 
-L'opérateur binaire XOR combine l'état de 2 bits selon le tableau suivant :
+L'opérateur binaire OU exclusif (XOR) combine l'état de 2 bits selon le tableau suivant :
 
-<div class="col-md-3">
-<table class="table table-hover" >
-  <thead>
-    <tr>
-      <th class="text-center" scope="col">A</th>
-      <th class="text-center" scope="col">B</th>      
-      <th class="text-center" scope="col">A XOR B</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td class="text-center">0</td>
-      <td class="text-center">0</td>
-      <th class="text-center" scope="row">0</th>            
-    </tr>
-    <tr>
-    <td class="text-center">0</td>
-    <td class="text-center">1</td>
-    <th class="text-center" scope="row">1</th>      
-    </tr>
-    <tr>
-    <td class="text-center">1</td>
-    <td class="text-center">0</td>
-    <th class="text-center" scope="row">1</th>      
-    </tr>
-    <tr>
-    <td class="text-center">1</td>
-    <td class="text-center">1</td>
-    <th class="text-center" scope="row">0</th>      
-    </tr>  
-  </tbody>
+<table class="styled-table">
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align:center">A</th>
+<th style="text-align:center">B</th>
+<th style="text-align:center">A XOR B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center" markdown="span">0</td>
+<td style="text-align:center" markdown="span">0</td>
+<td style="text-align:center" markdown="span">**0**</td>
+</tr>
+
+<tr>
+<td style="text-align:center" markdown="span">0</td>
+<td style="text-align:center" markdown="span">1</td>
+<td style="text-align:center" markdown="span">**1**</td>
+</tr>
+
+<tr>
+<td style="text-align:center" markdown="span">1</td>
+<td style="text-align:center" markdown="span">0</td>
+<td style="text-align:center" markdown="span">**1**</td>
+</tr>
+
+<tr>
+<td style="text-align:center" markdown="span">1</td>
+<td style="text-align:center" markdown="span">1</td>
+<td style="text-align:center" markdown="span">**0**</td>
+</tr>
+</tbody>
 </table>
-</div>
 
 Le caractère **`^`** représente l'opérateur 'XOR' en langage C. Il agit sur *chaque* bit de ces opérandes :
 
@@ -310,7 +323,7 @@ Pour construire le masque, il suffit d'utiliser la constante `1` que l'on décal
 
 ### Tester l'état d'un bit dans une valeur
 
-Le principe est d'évaluer le résultat avec l'opérateur AND entre la valeur à tester d'une part et un masque qui contient des 0 sauf pour le bit à tester qui est mis à 1. Ainsi, le résultat contiendra des 0 pour les bits 0 du masque et l’état du bit évalué pour le bit actif (bit à 1) du masque. De ce fait, si le résultat final est 0, le bit testé est donc égale à 0, sinon le bit testé est égale à 1.
+Le principe est d'évaluer le résultat avec l'opérateur ET entre la valeur à tester d'une part et un masque qui contient des 0 sauf pour le bit à tester qui est mis à 1. Ainsi, le résultat contiendra des 0 pour les bits 0 du masque et l’état du bit évalué pour le bit actif (bit à 1) du masque. De ce fait, si le résultat final est 0, le bit testé est donc égale à 0, sinon le bit testé est égale à 1.
 
 ```c
 /* tester l'état du bit 2 de a : */

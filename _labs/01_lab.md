@@ -11,9 +11,13 @@ due_event:
 ---
 
 # Objectifs
+
   - L'étudiant sera initié aux commandes de base du shell UN\*X.
-  - L'étudiant sera initié à l'outil **gdb** pour acquérir une expérience pratique dans le débogage de programmes C.
+
+  - L'étudiant sera initié à l'outil GDB pour acquérir une expérience pratique dans le débogage de programmes C.
+ 
   - L'étudiant sera capable de compiler et d'exécuter un programme C sur les ordinateurs des laboratoires MI.
+
 
 # Installation et configuration
 
@@ -56,11 +60,15 @@ $ echo -e "Hello\nworld"
 
 Lors de la saisie de commandes ou de chemins de fichiers :
 
- - la touche `<tab>` complétera automatiquement le terme actuel
- - les touches `<flèche haut>` et `<flèche bas>` vous permettront de réutiliser les commandes que vous avez tapées précédemment sans les saisir à nouveau.
- - la combinaison `<ctrl> + a` déplacera le curseur au début de la ligne courante (utile pour corriger les erreurs) 
- - la combinaison `<ctrl> + e` déplacera le curseur à la fin de la ligne courante (également utile pour corriger les erreurs)
- - la combinaison `<ctrl> + r` vous permettra d'effectuer une recherche dans la commande récemment utilisée
+ - La touche `<tab>` complétera automatiquement le terme actuel.
+
+ - Les touches `<flèche haut>` et `<flèche bas>` vous permettront de réutiliser les commandes que vous avez tapées précédemment sans les saisir à nouveau.
+
+ - La combinaison `<ctrl> + a` déplacera le curseur au début de la ligne courante (utile pour corriger les erreurs).
+
+ - La combinaison `<ctrl> + e` déplacera le curseur à la fin de la ligne courante (également utile pour corriger les erreurs)
+
+ - La combinaison `<ctrl> + r` vous permettra d'effectuer une recherche dans la commande récemment utilisée.
  
 ## Manipulation de fichiers 
 
@@ -119,7 +127,7 @@ $ man -k mot_clé_spécifique | less
 
 Cette commande recherchera dans les pages de manuel toutes les commandes avec le mot-clé `mot_clé_spécifique`.
 
-## Vim - Des bases
+## Vim - les bases
 
 Vim est un éditeur de texte inclus dans de nombreuses distributions UN\*X.
 
@@ -182,7 +190,9 @@ L'instruction ci-dessus permet de lancer le programme `cgdb` sur le fichier exé
 Parcourez le programme `hello` en procédant comme suit :
 
   1. définissez un point d'arrêt sur la fonction `main`
+
   2. utilisez la commande `run` de `gdb`
+ 
   3. utilisez la commande exécution pas-à-pas de `gdb`
 
 Tapez help depuis `gdb` pour connaître les commandes permettant d'effectuer ces opérations ou utilisez le [document de référence GDB]({{site.baseurl}}/static_files/docs/gdb5-refcard.pdf).
@@ -200,13 +210,21 @@ Dans `cgdb`, vous pouvez appuyer sur la touche d'échappement pour aller à la f
 Connaître les réponses aux questions ci-dessous vous sera très utile pour le reste de ce TP et pour votre carrière en informatique en général :
 
   1. Lorsque vous êtes dans une session `cgdb` / `gdb`, comment **définissez-vous les arguments** qui seront transmis au programme lors de son exécution ?
+
   2. Comment faire pour créer un << point d'arrêt >> dans un programme ?
+
   3. Comment exécuter **la ligne suivante de code C** après s'être arrêté à un << point d'arrêt >> ?
+
   4. Si la ligne de code suivante est un appel de fonction alors vous exécuterez la fonction complète en un seul coup si vous utilisez votre réponse à la question n° 3 (Sinon, envisagez une commande différente pour la question n° 3 !). Comment indiquer à GDB que vous **voulez déboguer le code à l'intérieur de la fonction** (c'est-à-dire entrer dans la fonction) ? (Si vous avez changé votre réponse à la question n° 3 alors la réponse précédente est probablement applicable ici.)
+
   5. Comment **continuer l'exécution du programme après sa suspension** à un << point d'arrêt >> ?
+
   6. Comment **imprimer la valeur d'une variable** (ou même une expression comme 1 + 2) dans `gdb` ?
+
   7. Comment configurer `gdb` pour qu'il **affiche la valeur d'une variable après chaque pas d'exécution** ?
+
   8. Comment afficher **une liste de toutes les variables et leurs valeurs** dans la fonction en cours d'exécution ?
+
   9. Comment **quitter** gdb ?
 
 # Exercise 3 : (Valgrind)
@@ -220,8 +238,11 @@ Rappelons que, contrairement à d'autres langages de programmation, le C s'atten
 Dans cet exercice, nous allons démontrer deux exemples d'utilisation de Valgrind et expliquer comment ils peuvent être utile.
 
 À l'aide du compilateur `gcc`, construisez deux exécutables : 
+
  - `segfault_ex` à partir de `segfault_ex.c`, et 
+
  - `no_segfault_ex` à partir de `no_segfault_ex.c`. 
+
 Utilisez le drapeau `-o` pour les noms d'exécutable ! Ensuite, essayez d'exécuter les programmes compilés... qu'observez-vous ?
 
 Commençons par `segfault_ex`. Vous devriez avoir observé une erreur de segmentation (*anglais*: segmentation fault), qui se produit lorsque un programme se bloque après avoir tenté d'accéder à de la mémoire qui ne lui est pas disponible (nous en parlerons plus tard dans le cours). Le code source `segfault_ex.c` est assez simple, vous devriez pouvoir << comprendre >> facilement ce qui cause l'erreur de segmentation. Ne modifiez pas le fichier, il n'est pas nécessaire de corriger l'erreur ici. 
@@ -243,7 +264,11 @@ Malheureusement, vous verrez ici que Valgrind semble ne pas être en mesure de v
 ## Tâches à réaliser :
 
 Après avoir parcouru cet exercice, vous devriez être en mesure de comprendre et de répondre à ce qui suit :
+ 
   - Pourquoi Valgrind est un outil important et très utile ?
+
   - Comment exécuter un programme dans Valgrind ?
+
   - Comment interpréter les messages d'erreur ? 
+
   - Pourquoi des variables non initialisées pourraient causer des « heisenbugs » ?

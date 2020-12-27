@@ -37,7 +37,7 @@ Commencez par télécharger le fichier de démarrage (voir plus haut dans ce doc
 Le paramètre `count` est le nombre des éléments du tableau, et `tab` est un pointeur sur un tableau de type `int`.
 
 **Contraintes à respecter :**
-- *mot-clés interdits* : for, while, do, switch, else
+  - *mot-clés interdits* : `for`, `while`, `do`, `switch`, `else`
 
 ```c
 unsigned int SumOfSquares(int size, const int *tab)
@@ -66,7 +66,7 @@ de la deuxième chaîne est dans `s2`. Si la première chaîne est supérieure �
 Si la deuxième chaîne est plus grande, renvoyez un nombre négatif. Si les chaînes sont égales, renvoyez 0.
 
 **Contraintes à respecter :**
-   - *mot-clés interdits* : for, while, do, switch, else
+  - *mot-clés interdits* : `for`, `while`, `do`, `switch`, `else`
 
 ```c
 int StrCmp(const char *s1, const char *s2)
@@ -87,7 +87,7 @@ Dans le fichier `Calculatrice.c`, écrivez le corp de la fonction `calculatrice(
 si `op` est différent des quatre opérations indiquées ci-dessus alors la fonction doit retourné la valeur `NAN` (cf. `man 3 NAN`).
 
 **Contraintes à respecter :**
-   - *mot-clés interdits* : for, while, do, switch, else
+  - *mot-clés interdits* : `for`, `while`, `do`, `switch`, `else`
 
 ```c
 float calculatrice(float num1, float num2, char op)

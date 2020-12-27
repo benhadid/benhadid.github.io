@@ -11,7 +11,7 @@ La programmation non structurée est historiquement le paradigme de programmatio
 
 Un programme écrit de façon non structurée utilise des instructions de saut (c’est-à-dire l’instruction goto) vers des étiquettes ou vers des adresses d’instructions. Les lignes de ce programme sont généralement numérotées ou peuvent avoir des étiquettes : cela permet au flux d'exécution de sauter (i.e. brancher) à n'importe quelle ligne du programme. Ceci est en contraste avec la programmation structurée qui utilise des constructions de bloc de sélection (if/then/else) et de répétition (while et for).
 
-Il existe des langages de programmation de haut et de bas niveau qui utilisent une programmation non structurée. Parmi les langages communément classés comme non-structurés on peut citer le JOSS, le FOCAL, le TELCOMP, **les langages assembleurs**, les fichiers de commande MS-DOS, ainsi que les premières versions du Fortran, du BASIC, du COBOL et de MUMPS.
+Il existe des langages de programmation de haut et de bas niveau qui utilisent une programmation non structurée. Parmi les langages communément classés comme non-structurés on peut citer le JOSS, le FOCAL, le TELCOMP, les langages assembleurs, les fichiers de commande MS-DOS, ainsi que les premières versions du Fortran, du BASIC, du COBOL et de MUMPS.
 
 Bien que cela vous ait été caché, vous avez déjà fait de la programmation structurée en algorithmique ! En effet, une instruction `if` réalise un saut sans que vous vous en apercevez. Par exemple, examinons le code C suivant :
 
@@ -154,10 +154,14 @@ Ici, deux instructions goto sont introduites : le premier goto (i.e. `goto ESLE`
 </table>
 </div>
 
-Une approche naïve pour convertir un bloc de switch/case en un programme non structuré serait de réécrire le bloc de code en une suite de `if/then/else` et prosséder par la suite à la conversion de ces blocs comme décrit plus haut dans ce document. Une autre approche, plus efficace, utiliserait les étapes suivantes :
+Une approche naïve pour convertir un bloc de `switch/case` en un programme non structuré serait de réécrire le bloc de code en une suite de `if/then/else` et procéder par la suite à la conversion de ces blocs comme décrit plus haut dans ce document. Une autre approche, plus efficace, utiliserait les étapes suivantes :
+
 1. Convertir chaque `case i` en une étiquette unique (ex: `case 5` deviendra `ESAC5`).
+
 2. Créer un tableau avant l'instruction `switch` pour contenir toutes les valeurs des étiquettes correspondant aux instructions de case/default dans le bloc du switch (i.e. les étiquettes ESAC0, ESAC1 ...).
+
 3. Créer une étiquette à la fin du bloc du switch et convertir chaque instruction de `break` du switch en une instruction de `goto` vers cette nouvelle étiquette pour sauter à la fin du bloc (i.e. l'instruction `goto KAERB` dans le code en dessus).
+
 4. Enfin, en fonction de la valeur de l'expression du switch, nous récupérerons l'adresse de l'étiquette à partir du tableau et effectuons le saut adéquat à l'aide d'une instruction `goto`.  
 
 REMARQUE : le schéma décrit ci-dessus suppose l'utilisation du compilateur GCC qui offre une fonctionnalité appelée "[labels as values](http://gcc.gnu.org/onlinedocs/gcc/Labels-as-Values.html)" (i.e. étiquettes en tant que valeurs) - D'autres compilateurs C pourraient utilisés d'autres méthodes pour la conversion.

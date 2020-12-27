@@ -11,7 +11,9 @@ due_event:
 ---
 
 # Objectifs
+
   - Apprendre à effectuer des manipulations de bits spécifiques grâce à des compositions d'opérations sur les bits.
+
   - Apprendre à identifier les problèmes potentiels en relation avec la gestion dynamique de la mémoire.
 
 # Exercice 1
@@ -40,7 +42,8 @@ Consultez le << Makefile >> inclus dans ce TP et essayez de répondre aux questi
 
 # Exercice 2
 
-Commencez d'abord par télécharger le fichier de démarrage (voir plus haut dans ce document) et décompressez son contenu dans le répertoire de votre choix. Implémentez ensuite dans le fichier `bit_ops.c` les fonctions de manipulation de bits` get_bit()`, `set_bit()` et` flip_bit()` (illustrées ci-dessous). Vous pouvez utiliser **UNIQUEMENT** des opérations de manipulation de bits comme le **et** (`&`), le **ou** (`|`), le **xor** (`^`), le **not** (`~`), le **décalage à gauche** (`<<`) et le **décalage à droite** (`>>`). Vous ne pouvez pas utiliser de boucles `for` / `while` / `do` ou les instructions de condition `if / else` et `switch / case`. Vous ne pouvez pas non plus utiliser les opérations arithmétiques ( modulo (%), division, soustraction, addition ou multiplication ) pour cet exercice.
+Commencez d'abord par télécharger le fichier de démarrage (voir plus haut dans ce document) et décompressez son contenu dans le répertoire de votre choix. Implémentez ensuite dans le fichier `bit_ops.c` les fonctions de manipulation de bits` get_bit()`, `set_bit()` et` flip_bit()` (illustrées ci-dessous). Vous pouvez utiliser **UNIQUEMENT** des [opérations de manipulation de bits]({{site.baseurl}}/static_files/docs/bitwise_operations_in_c.html) comme le **ET** (`&`), le **OU** (`|`), le **XOR** (`^`), le **NOT** (`~`), le **décalage à gauche** (`<<`) et le **décalage à droite** (`>>`). Vous ne pouvez pas utiliser de boucles `for` / `while` / `do` ou les instructions de condition `if / else` et `switch / case`. Vous ne pouvez pas non plus utiliser les opérations arithmétiques ( modulo (%), division, soustraction, addition ou multiplication ) pour cet exercice.
+
 
 ``` C
 // Retourne le n-ième bit de x.
@@ -72,14 +75,20 @@ Cela affichera sur votre écran le résultat de quelques tests limités.
 
 Dans cet exercice, vous implémenterez une fonction `lfsr_calculate()` pour calculer la prochaine itération d'un registre à décalage à rétroaction linéaire [LFSR](https://fr.wikipedia.org/wiki/Registre_%C3%A0_d%C3%A9calage_%C3%A0_r%C3%A9troaction_lin%C3%A9aire). Les applications qui utilisent les LFSR sont: la télévision numérique, les téléphones portables CDMA, Ethernet, USB 3.0 et bien plus encore ! Dans `lfsr.c`, implémentez la fonction `lfsr_calculate()` pour qu'elle réalise l'opération illustrée ci-dessous :
 
-![LFSR]({{site.baseurl}}/static_files/images/lfsr.gif){: .center-image height="50%" width="50%"}
+![LFSR]({{site.baseurl}}/static_files/images/lfsr.gif){: height="50%" width="50%" .aligncenter}
+
 
 ## Explications :
   - Si vous vous demandez, cette fonction sert à générer des nombres pseudo-aléatoires. 
+
   - A chaque appel à `lfsr_calculate()`, vous déplacerez le contenu du registre d'un bit vers la droite.
+
   - Ce décalage n'est ni un décalage logique ni un décalage arithmétique. Sur le côté gauche, vous injecterez un bit qui est égal au OU exclusif (XOR) des bits originaires des positions 0, 2, 3 et 5.
+
   - Le symbole rouge illustrant un signe `plus dans un cercle` représente un `OU exclusif`, qui prend deux entrées `{a , b}` et produit `a ^ b`.
+
   - Si vous avez implémenté correctement `lfsr_calculate()`, la fonction devrait afficher tous les 65535 entiers positifs sur 16 bits avant de revenir au nombre initial de départ.
+
   - Notez que le bit le plus à gauche est le MSB  (bit de poids fort) et le bit le plus à droite est le LSB (bit de poids faible).
 
 ## Tâches à réaliser : 
