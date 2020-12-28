@@ -313,7 +313,7 @@ article ul {
 }
 
 article ul > li:before {
-  content: "–"; /* en dash */
+  content: "▸"; /* en dash */
   position: absolute;
   margin-left: -1.1em; 
 }

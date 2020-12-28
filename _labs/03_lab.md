@@ -49,7 +49,7 @@ unsigned int SumOfSquares(int size, const int *tab)
 # Exercice 2
 
 Dans la bibliothèque standard du langage C, la fonction `strcmp` (cf. `man 3 strcmp`) compare, caractère par caractère,
-deux chaînes en mémoire pour établir quelle chaine de caractère vient en premier dans l'ordre
+deux chaînes en mémoire pour établir quelle chaîne de caractère vient en premier dans l'ordre
 lexicographique standard, c.-à-d. en fonction des valeurs ASCII des caractères. Voici quelques exemples :
 
   - "a" < "b"
@@ -59,7 +59,7 @@ lexicographique standard, c.-à-d. en fonction des valeurs ASCII des caractères
 Les chaînes de caractères à comparer sont représentées par des octets contigus en mémoire (chaque octet est un
 caractère ASCII) suivi du caractère NUL (0x00).
 
-Ecrivez dans le fichier `StrCmp.c` le corp de la fonction `StrCmp(const char *s1, const char *s2)` qui compare deux chaines de caractères. 
+Écrivez dans le fichier `StrCmp.c` le corp de la fonction `StrCmp(const char *s1, const char *s2)` qui compare deux chaînes de caractères. 
 Les arguments `s1` et `s2` de la fonction `StrCmp` sont les adresses des deux chaînes à comparer. L'adresse de
 mémoire du caractère de début de la première chaîne est dans `s1`, et l'adresse de mémoire du caractère de début
 de la deuxième chaîne est dans `s2`. Si la première chaîne est supérieure à la seconde, renvoyez un nombre positif.

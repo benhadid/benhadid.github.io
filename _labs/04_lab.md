@@ -2,7 +2,7 @@
 type: lab
 date: 2019-09-19T4:00:00+4:30
 title: 'Travaux Pratiques #4 - Introduction à MARS'
-attachment: /static_files/labs/lab_04.zip
+attachment: /static_files/labs/Fibonacci.asm
 #solutions: /static_files/labs/lab_solutions.pdf
 due_event: 
     type: due
@@ -12,102 +12,199 @@ due_event:
 
 # Objectifs
 
-  - Get familiar with the MARS simulator. 
-  - Learn how to assemble, run, and debug a MIPS program.
+  - Se familiariser avec le simulateur MARS. 
+  - Apprendre à assembler, exécuter et déboguer un programme MIPS.
 
 
-# Le Simulateur MARS 
+# Le simulateur MARS 
 
 MARS, the Mips Assembly and Runtime Simulator, will assemble and simulate the execution of MIPS assembly language programs. It can be used either from a command line or through its integrated development environment (IDE). MARS is written in Java and requires at least Release 1.5 of the J2SE Java Runtime Environment (JRE) to work. It is distributed as an executable JAR file. The MARS home page is http://www.cs.missouristate.edu/MARS/.
 
-There are two main windows in MARS, as shown in Figure 1.1. 
- - The Edit window: used to create and modify a MIPS program 
- - The Execute window: used to run and debug a MIPS program 
+MARS (**Mi**ps **A**ssembly and **R**untime **S**imulator), assemble et simule l'exécution de programmes en langage assembleur MIPS. Il peut être utilisé à partir de la ligne de commande ou via son environnement de développement intégré (IDE). MARS est écrit en Java et nécessite au moins la version 1.5 de J2SE Java Runtime Environment (JRE) pour fonctionner. Il est distribué sous forme de fichier JAR exécutable depuis cette [page d'accueil](http://www.cs.missouristate.edu/MARS/). 
 
-To switch between the Edit and the Execute windows, use the tabs at the top. 
+MARS est déjà installé sur les machines du laboratoire et dans la VM fournie. Pour lancer Mars dans la VM ou depuis une machine du laboratoire, entrez la commande suivante dans un terminal
 
-The Execute window contains three main panes: 
-
- 1. Text Segment: shows the machine code and related addresses. 
- 2. Data Segment: shows memory locations that hold variables in the data segment. 
- 3. Labels: shows addresses of labelled items, i.e. variables and jump endpoints. 
-
-There are two tabbed message areas at the bottom of Figure 1.1: 
- 1. The Mars Messages tab: Used for messages such as assembly or runtime errors and informational messages. You can click on assembly error messages to select the corresponding line of code in the editor. 
- 2. The Run I/O tab: Used at runtime for displaying console output and entering console input as program execution progresses. 
-
-Figure 1.2 shows the MARS Execute window’s panes, and emphasizes the following features : 
-  1. The Execute window’s tab. 
-  2. Assembly code displayed with addresses and machine code. 
-  3. Values stored in the data segment. These are directly editable. 
-  4. Controls for navigating the data memory area. Allows switching to view the stack segment. 
-  5. Switching between decimal and hexadecimal addresses and values in memory and registers. 
-  6. Labels and their corresponding memory addresses. 
-  7. Values stored in registers. These are directly editable. 
-  8. Checkboxes used to setup breakpoints for each MIPS instruction. Useful in debugging. 
-  9. Execution speed selection. Useful in debugging. 
-
-At all times, the MIPS register window appears on the right-hand side of the screen, even when you are editing and not running a program. While writing a program, this serves as a useful reference for register names and their use. Move the mouse over the register name to see the tool tips. 
-
-There are three register tabs: 
- - The Register File: integer registers $0 through $31, HI, LO, and the Program Counter PC. 
- - Coprocessor 0: exceptions, interrupts, and status codes. 
- - Coprocessor 1: floating point registers. 
-
-# Assemble, Run, and Debug a MIPS Program 
-
-To  assemble the file currently in the Edit tab, select Assemble from the Run menu, or use the Assemble toolbar icon. 
-
-If there are syntax errors in the program, they will appear in the Mars Messages tab at the bottom of the MARS screen. Each error message contains the line and column where the error occurred. 
-
-Once a MIPS program assembles successfully, the registers are initialized, and the Text Segment and the Data Segment are filled, as shown in Figure 1.3.
-
-
-After running the Assemble command, you can now execute the program. The Run menu and the toolbar contain the following execution options :
-
-
-
-You can set a breakpoint at any instruction by checking the checkbox in front of the instruction in the text segment pane. 
-
-During execution, the instruction being executed is highlighted in yellow, and the register that was last modified is highlighted in green. Also, the variable that was last updated in the data segment is highlighted  in  blue.  It’s  usually  only possible to see the highlighting when you are stepping or running at less than full speed.
-
-For more details about the MARS simulator, refer to the MARS documentation at the following link: http://courses.missouristate.edu/KenVollmar/MARS
-
-
-# In-Lab Tasks 
-
-1. Test a simple MIPS program. Consider the following program shown below :
-
-```mips
+```bash
+$ mars
 ```
 
-a) Type the program shown in the Figure above. 
-b) Find out how to show and hide line numbers. 
-c) Assemble and run the program. 
-d) What output does the program produce? and where does it appear? 
+Il y a deux fenêtres principales dans MARS (voir figure ci-dessous)
 
-2. Explore the MARS simulator: 
-a)   Download and assemble the Fibonacci.asm program from the MARS website. 
-b)   Identify the locations and values of the initialized data. 
-c)   Toggle the display format between decimal and hexadecimal. 
-d)   Run the program at a speed of 3 instructions per second or less. 
-e)   Single-step through the program and watch how register and memory values change. 
-f)   Observe the output of the program in the Run I/O display window. 
-g)   Set  a  breakpoint  at  the  first  instruction  that  prints  results. What is the address of this instruction? 
-h)   Run the program at full speed and watch how it stops at the breakpoint. 
-i)   Change the line:
+ - La fenêtre d'édition **Edit** : utilisée pour créer et modifier un programme MIPS
+ - La fenêtre d'exécution **Execute** : utilisée pour exécuter et déboguer un programme MIPS
 
-space: .asciiz " "    # space to insert between numbers 
+ ![MARS]({{site.baseurl}}/static_files/images/mars.png){: height="100%" width="100%" .aligncenter}
 
-to: 
+Pour basculer entre les fenêtres **Edit** et **Execute**, utilisez les onglets en haut.
 
-space: .asciiz "\n"   # space to insert between numbers
+Il y a deux zones de message à onglets au bas de la figure ci-dessus:
 
-Run the program again. What do you notice? 
+ 1. The Mars Messages tab : Used for messages such as assembly or runtime errors and informational messages. You can click on assembly error messages to select the corresponding line of code in the editor. 
+
+ 1. L'onglet << Mars Messages >> : utilisé pour afficher des messages tels que les erreurs d'assemblage ou d'exécution et les messages d'information. Vous pouvez cliquer sur les messages d'erreur d'assemblage pour sélectionner la ligne de code correspondante dans l'éditeur.
+
+ 2. L'onglet << Run I/O >> : Utilisé au moment de l'exécution pour afficher la sortie du programme sur la console et saisir éventuellement des entrées pour celui-ci.
+
+La fenêtre **Execute** contient trois volets principaux :
+
+ 1. **Text Segment** : affiche le code machine et les adresses associées. 
+
+ 2. **Data Segment** : affiche les emplacements de mémoire qui contiennent des variables dans le segment de données. 
+ 
+ 3. **Labels** : affiche les adresses des éléments étiquetés comme les variables et les points de saut. Si l'anglet n'est pas visible sur votre simulateur, vous pouvez l'activer à partir du menu << Settings \| Show Labels Window (symbol table) >>
+
+La figure ci-dessous montre les volets de la fenêtre **Execute** et souligne les fonctionnalités suivantes :
+
+  1. L'onglet de la fenêtre **Execute**. 
+
+  2. Code assembleur affiché avec adresses et code machine associés. 
+ 
+  3. Valeurs stockées dans le segment de données. Vous pouvez les modifier directement dans cette zone. 
+ 
+  4. Commandes de navigation dans la zone de segment de données. Permet aussi de basculer pour afficher le segment de pile. 
+ 
+  5. Basculer entre l'affichage décimal et hexadécimal des adresses et les valeurs dans la mémoire et dans les registres.
+ 
+  6. Les étiquettes et leurs adresses mémoire correspondantes.
+ 
+  7. Valeurs stockées dans les registres. Vous pouvez modifier directement ces valeurs dans cette zone.
+ 
+  8. Cases à cocher utilisées pour configurer les << points d'arrêt >> pour chaque instruction MIPS. Utile pour le débogage.  
+ 
+  9. Sélection de la vitesse d'exécution. Utile pour le débogage.
+
+ ![MARS]({{site.baseurl}}/static_files/images/mars_execute_annotated.png){: height="100%" width="100%" .aligncenter}
+
+À tout moment, la fenêtre de registre MIPS apparaît sur le côté droit de l'écran, même lorsque vous êtes en mode édition et n'exécutez pas de programme. Cela sert de référence utile pour les noms de registre et leur utilisation. Déplacez la souris sur le nom du registre pour voir les info-bulles.
+
+Il existe trois onglets de registres :
+
+ - **Registers** : Les registres entiers $0 à $31, HI, LO, et le PC. 
+ - **Coproc 0** : registres pour les codes d'excéptions, d'interruptions, et de status. 
+ - **Coproc 1** : registres pour le calcul en virgule flottante. 
+
+# Assembler, Exécuter, et Déboguer un programme MIPS
+
+Pour assembler le code actuellement dans l'onglet **Edit**, sélectionnez << Assemble >> dans le menu << Run >> ou utilisez l'icône ![MARS]({{site.baseurl}}/static_files/images/mars_assemble_icon.png) de la barre d'outils.
+
+S'il y'a des erreurs de syntaxe dans le programme, elles apparaîtront dans l'onglet << Mars Messages >> en bas de la fenêtre MARS. Chaque message d'erreur contient la ligne et la colonne où l'erreur s'est produite.
+
+Si le programme MIPS s'assemble avec succès, les registres sont initialisés et les segment de texte et de données sont remplis, comme illustré à la figure ci-dessous.
+
+ ![MARS]({{site.baseurl}}/static_files/images/mars_execute.png){: height="100%" width="100%" .aligncenter}
+
+
+Après avoir exécuté la commande << Assemble >>, vous pouvez maintenant exécuter le programme. Le menu << Run >> et la barre d'outils contiennent les options d'exécution suivantes :
+
+
+
+<table class="styled-table">
+<colgroup>
+<col width="13%" />
+<col width="10%" />
+<col width="77%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align:center">Menu</th>
+<th style="text-align:center">Icône</th>
+<th style="text-align:center" >Action</th>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+<td style="text-align:left" markdown="span">Run \| Assemble</td>
+<td style="text-align:center" markdown="span">![MARS]({{site.baseurl}}/static_files/images/mars_assemble_icon.png)</td>
+<td markdown="span">Assemble le programme</td>
+</tr>
+
+<tr>
+<td style="text-align:left" markdown="span">Run \| Go</td>
+<td style="text-align:center" markdown="span">![GO]({{site.baseurl}}/static_files/images/mars_execute_go.png)</td>
+<td markdown="span">Exécute le programme jusqu'à la fin ou jusqu'au prochain << point d'arrêt >></td>
+</tr>
+
+<tr>
+<td style="text-align:left" markdown="span">Run \| Reset</td>
+<td style="text-align:center" markdown="span">![RESET]({{site.baseurl}}/static_files/images/mars_execute_reset.png)</td>
+<td markdown="span">Réinitialise le programme et le simulateur aux valeurs initiales. Permet de redémarrer l'exécution du programme.</td>
+</tr>
+
+<tr>
+<td style="text-align:left" markdown="span">Run \| Step</td>
+<td style="text-align:center" markdown="span">![STEP]({{site.baseurl}}/static_files/images/mars_execute_step.png)</td>
+<td markdown="span">Exécution pas-à-pas : Exécute une instruction à la fois. Permet de déboguer le programme en inspectant les registres et la mémoire après avoir exécuté chaque instruction.</td>
+</tr>
+
+<tr>
+<td style="text-align:left" markdown="span">Run \| BackStep</td>
+<td style="text-align:center" markdown="span">![BACKSTEP]({{site.baseurl}}/static_files/images/mars_execute_backstep.png)</td>
+<td markdown="span">Un pas en arrière : Annule l'exécution de la dernière instruction.</td>
+</tr>
+
+<tr>
+<td style="text-align:center" colspan=2 markdown="span">![SPEED]({{site.baseurl}}/static_files/images/mars_execute_speed.png)</td>
+<td markdown="span">Ce curseur permet d'exécuter le programme à pleine vitesse ou de le ralentir pour qu'on puisse voir l'évolution de l'exécution.</td>
+</tr>
+</tbody>
+</table>
+ 
+
+Pendant l'exécution du programme, l'instruction en cours est surlignée en jaune et le registre qui a été modifié en dernier est surligné en vert. De plus, la variable qui vient d'être mise à jour dans le segment de données est surlignée en bleu. Ces effets de couleurs ne sont perceptibles que si vous exécutez le programme en mode << pas-à-pas >> ou à une vitesse assez réduite.
+
+Pour plus de détails sur le simulateur MARS, reportez-vous à la [documentation MARS](http://courses.missouristate.edu/KenVollmar/MARS).
+
+# Tâches à réaliser 
+
+
+1. Tester un programme MIPS simple. Considérez le programme suivant illustré ci-dessous :
+
+   1. Tapez dans MARS le programme illustré dans la figure ci-dessus.  
+
+   2. Découvrez comment afficher et masquer les numéros de ligne. 
+
+   3. Assemblez et exécutez le programme. 
+
+   4. Quelle est la sortie du programme ? et où apparaît-elle ? 
+
+  ![MARS]({{site.baseurl}}/static_files/images/mars_hello.png){: height="93%" width="93%" .wp-caption .aligncenter}
+
+{:start="2"}
+2. Explorer le simulateur MARS : 
+
+   1. Téléchargez et assemblez dans MARS le fichier de démarrage au début de ce document (ou depuis le [site de MARS](http://courses.missouristate.edu/KenVollmar/MARS)). 
+
+   2. Identifiez les emplacements et les valeurs des données initialisées. 
+
+   3. Basculer le format d'affichage entre décimal et hexadécimal. 
+
+   4. Exécutez le programme à une vitesse de 3 instructions par seconde ou moins. 
+
+   5. Exécutez le programme pas-à-pas et remarquez comment les valeurs dans les registres et dans la mémoire changent. 
+
+   6. Observez la sortie du programme dans la fenêtre d'affichage << Run I/O >>. 
+
+   7. Définissez un << point d'arrêt >> à la première instruction qui affiche les résultats. Quelle est l'adresse de cette instruction ?
+
+   8. Exécutez le programme à vitesse normale et remarquez comment il s'arrête au << point d'arrêt >>.
+
+   9. Changez la ligne :
+         ```mips
+         space: .asciiz " "    # space to insert between numbers 
+         ```
+         à cette ligne
+
+         ```mips
+         space: .asciiz "\n"   # space to insert between numbers
+         ```
+         
+         Exécutez le programme encore une fois. Que remarquez-vous ? 
 
 
 
 
+<!--
 
 La somme des carrés de *N* nombres entiers est décrit comme suit :
 
@@ -165,3 +262,5 @@ alors après application de la fonction `reverse` sur le tableau `array` le rés
 ```
 
 Pour notre fonction en assembleur MIPS, l'adresse du tableau `array` est donnée dans le registre `$a0` et le paramètre `size` est donné dans le registre `$a1`.
+
+-->
