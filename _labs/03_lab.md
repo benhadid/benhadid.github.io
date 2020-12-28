@@ -42,7 +42,7 @@ Le paramètre `count` est le nombre des éléments du tableau, et `tab` est un p
 ```c
 unsigned int SumOfSquares(int size, const int *tab)
 {
-  // à compléter
+  /* VOTRE SOLUTION ICI */
 }
 ```
 
@@ -71,7 +71,7 @@ Si la deuxième chaîne est plus grande, renvoyez un nombre négatif. Si les cha
 ```c
 int StrCmp(const char *s1, const char *s2)
 {
-  // à compléter
+  /* VOTRE SOLUTION ICI */
 }
 ```
 
@@ -92,6 +92,6 @@ si `op` est différent des quatre opérations indiquées ci-dessus alors la fonc
 ```c
 float calculatrice(float num1, float num2, char op)
 {
-  // à compléter
+  /* VOTRE SOLUTION ICI */
 }
 ```
