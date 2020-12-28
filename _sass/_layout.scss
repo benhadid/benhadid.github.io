@@ -313,15 +313,45 @@ article ul {
 }
 
 article ul > li:before {
-  content: "▸"; /* en dash */
+  content: "–"; /* en dash */
   position: absolute;
-  margin-left: -1.1em; 
+  margin-left: -1.1em;   
 }
 
 article ul#archive > li:before {
   list-style-type: none;
   content: none;
 }
+
+
+/*
+article ol {
+    list-style-type: none;
+    counter-reset: article_list;
+}
+
+article ol > li {
+    counter-increment: article_list;
+}
+
+article ol > li:before {
+    content: counter(article_list)". ";
+    
+    position: absolute;
+    margin-left: -1.1em; 
+    font-weight: bold;
+}
+
+article ol ol > li:before {
+    content: counter(article_list, lower-alpha)") ";
+    
+    position: absolute;
+    margin-left: -1.1em; 
+    font-weight: bold;
+}
+*/
+  
+
 
 
 /* ul#archive li span {

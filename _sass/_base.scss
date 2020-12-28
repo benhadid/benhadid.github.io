@@ -114,7 +114,7 @@ ol li::marker{
 }
 
 ol ol li::marker{
-    content: "("counter(list-item, lower-roman)")";
+    content: counter(list-item, lower-roman)")";
     font-weight: normal;
 }
 

@@ -13,6 +13,7 @@ due_event:
 # Objectifs
 
   - Se familiariser avec le simulateur MARS. 
+
   - Apprendre à assembler, exécuter et déboguer un programme MIPS.
 
 
@@ -28,30 +29,29 @@ MARS est déjà installé sur les machines du laboratoire et dans la VM fournie.
 $ mars
 ```
 
-Il y a deux fenêtres principales dans MARS (voir figure ci-dessous)
+Il y a deux fenêtres principales dans MARS (voir figure ci-dessous) :
 
  - La fenêtre d'édition **Edit** : utilisée pour créer et modifier un programme MIPS
+
  - La fenêtre d'exécution **Execute** : utilisée pour exécuter et déboguer un programme MIPS
+
+Pour basculer entre ces fenêtres, cliquez sur les onglets en haut.
 
  ![MARS]({{site.baseurl}}/static_files/images/mars.png){: height="100%" width="100%" .aligncenter}
 
-Pour basculer entre les fenêtres **Edit** et **Execute**, utilisez les onglets en haut.
+Il y a deux zones de message à onglets au bas de la figure ci-dessus :
 
-Il y a deux zones de message à onglets au bas de la figure ci-dessus:
+ - L'onglet << **Mars Messages** >> : utilisé pour afficher des messages tels que les erreurs d'assemblage ou d'exécution et les messages d'information. Vous pouvez cliquer sur les messages d'erreur d'assemblage pour sélectionner la ligne de code correspondante dans l'éditeur.
 
- 1. The Mars Messages tab : Used for messages such as assembly or runtime errors and informational messages. You can click on assembly error messages to select the corresponding line of code in the editor. 
-
- 1. L'onglet << Mars Messages >> : utilisé pour afficher des messages tels que les erreurs d'assemblage ou d'exécution et les messages d'information. Vous pouvez cliquer sur les messages d'erreur d'assemblage pour sélectionner la ligne de code correspondante dans l'éditeur.
-
- 2. L'onglet << Run I/O >> : Utilisé au moment de l'exécution pour afficher la sortie du programme sur la console et saisir éventuellement des entrées pour celui-ci.
+ - L'onglet << **Run I/O** >> : Utilisé au moment de l'exécution pour afficher la sortie du programme sur la console et saisir éventuellement des entrées pour celui-ci.
 
 La fenêtre **Execute** contient trois volets principaux :
 
- 1. **Text Segment** : affiche le code machine et les adresses associées. 
+ - **Text Segment** : affiche le code machine et les adresses associées. 
 
- 2. **Data Segment** : affiche les emplacements de mémoire qui contiennent des variables dans le segment de données. 
+ - **Data Segment** : affiche les emplacements de mémoire qui contiennent des variables dans le segment de données. 
  
- 3. **Labels** : affiche les adresses des éléments étiquetés comme les variables et les points de saut. Si l'anglet n'est pas visible sur votre simulateur, vous pouvez l'activer à partir du menu << Settings \| Show Labels Window (symbol table) >>
+ - **Labels** : affiche les adresses des éléments étiquetés comme les variables et les points de saut. Si l'anglet n'est pas visible sur votre simulateur, vous pouvez l'activer à partir du menu << **Settings \| Show Labels Window (symbol table)** >>
 
 La figure ci-dessous montre les volets de la fenêtre **Execute** et souligne les fonctionnalités suivantes :
 
@@ -80,7 +80,9 @@ La figure ci-dessous montre les volets de la fenêtre **Execute** et souligne le
 Il existe trois onglets de registres :
 
  - **Registers** : Les registres entiers $0 à $31, HI, LO, et le PC. 
+
  - **Coproc 0** : registres pour les codes d'excéptions, d'interruptions, et de status. 
+
  - **Coproc 1** : registres pour le calcul en virgule flottante. 
 
 # Assembler, Exécuter, et Déboguer un programme MIPS
@@ -93,10 +95,7 @@ Si le programme MIPS s'assemble avec succès, les registres sont initialisés et
 
  ![MARS]({{site.baseurl}}/static_files/images/mars_execute.png){: height="100%" width="100%" .aligncenter}
 
-
 Après avoir exécuté la commande << Assemble >>, vous pouvez maintenant exécuter le programme. Le menu << Run >> et la barre d'outils contiennent les options d'exécution suivantes :
-
-
 
 <table class="styled-table">
 <colgroup>
@@ -150,13 +149,11 @@ Après avoir exécuté la commande << Assemble >>, vous pouvez maintenant exécu
 </tbody>
 </table>
  
-
 Pendant l'exécution du programme, l'instruction en cours est surlignée en jaune et le registre qui a été modifié en dernier est surligné en vert. De plus, la variable qui vient d'être mise à jour dans le segment de données est surlignée en bleu. Ces effets de couleurs ne sont perceptibles que si vous exécutez le programme en mode << pas-à-pas >> ou à une vitesse assez réduite.
 
 Pour plus de détails sur le simulateur MARS, reportez-vous à la [documentation MARS](http://courses.missouristate.edu/KenVollmar/MARS).
 
 # Tâches à réaliser 
-
 
 1. Tester un programme MIPS simple. Considérez le programme suivant illustré ci-dessous :
 
@@ -168,7 +165,7 @@ Pour plus de détails sur le simulateur MARS, reportez-vous à la [documentation
 
    4. Quelle est la sortie du programme ? et où apparaît-elle ? 
 
-  ![MARS]({{site.baseurl}}/static_files/images/mars_hello.png){: height="93%" width="93%" .wp-caption .aligncenter}
+![MARS]({{site.baseurl}}/static_files/images/mars_hello.png){: height="93%" width="93%" .wp-caption .aligncenter}
 
 {:start="2"}
 2. Explorer le simulateur MARS : 
