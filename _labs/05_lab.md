@@ -13,12 +13,13 @@ due_event:
 # Objectifs
 
  - Maîtrise des conventions d'appel de fonction dans MIPS
+
  - Apprendre à écrire des fonctions en Assembleur.
 
 
 # Exercice 1
 
-Dans cet exercice, vous allez effectuer une implémentation de la fonction `map()` dans MIPS. Notre fonction sera simplifiée afin de modifier la liste sur place plutôt que de créer et de renvoyer une nouvelle liste avec les valeurs modifiées. Une implémentation en langage C de la liste serait comme suit :
+Télécharger le fichier de démarrage et décompressez son contenu dans le répertoire de votre choix. Dans cet exercice, vous allez compléter l'implémentation de la fonction `map()` dans `mips.s`. Notre fonction sera simplifiée afin de modifier la liste sur place plutôt que de créer et de renvoyer une nouvelle liste avec les valeurs modifiées. Une implémentation de la liste en langage C serait comme suit :
 
 ```c
 struct node {
@@ -27,7 +28,7 @@ struct node {
 };
 ```
 
-La fonction `map()` prendra deux paramètres; le premier paramètre sera l'adresse du noeud principal d'une liste-chainée dont les valeurs sont des entiers de 32 bits. Le deuxième paramètre sera l'adresse d'une fonction qui prend un `int` en argument et renvoie un `int` en sortie. En fin, notre fonction `map()` parcourra de manière récursive la liste et appliquera la fonction donnée en paramètre à chaque valeur des nœuds de la liste. Une implémentation en C de notre fonction `map()` ressemblerait à quelque chose comme cela :
+La fonction `map()` prend deux paramètres; le premier est le pointeur de tête d'une liste-chaînée d'entiers (*i.e.* l'adresse du premier nœud dans la liste). Le deuxième paramètre est un pointeur de fonction qui prend un `int` en argument et renvoie un `int` en sortie. La fonction `map()` parcourt de manière récursive la liste et applique la fonction donnée en paramètre à chaque champ `value` des nœuds de la liste. Une implémentation en C de la fonction `map()` serait comme ceci :
 
 ```c
 void map (struct node *head, int (*f) (int))
@@ -38,19 +39,19 @@ void map (struct node *head, int (*f) (int))
 }
 ```
 
-La déclaration `int (*f)(int)` signifie simplement que `f` est un pointeur sur une fonction qui, en langage C, est utilisée exactement comme toute autre fonction (si vous êtes curieux, vous pouvez visiter ce [lien](https://www.geeksforgeeks.org/function-pointer-in-c/) pour apprendre davantage sur leur utilisation). 
+La déclaration `int (*f)(int)` signifie simplement que `f` est un pointeur sur une fonction qui, en langage C, est utilisée exactement comme toute autre fonction (si vous êtes curieux, voir ce [lien](https://www.geeksforgeeks.org/function-pointer-in-c/) pour apprendre davantage sur leur utilisation). 
 
-Pour votre implémentation en assembleur MIPS de la fonction `map()`, vous aurez besoin d'utiliser une instruction que vous pourriez ne pas avoir rencontrer avant : `jalr`. L'instruction `jalr` est à `jr` ce que `jal` est à `j`. Cette instruction permet de se brancher à l'adresse contenue dans le registre donné et stocker l'adresse de l'instruction suivante (c'est-à-dire PC+4) dans `$ra`. Donc, si nous ne voulions pas utiliser `jal`, on pourrait utiliser `jalr` pour appeler une fonction comme ceci :
+Pour votre implémentation en assembleur MIPS de la fonction `map()`, vous aurez besoin d'utiliser une instruction que vous pourriez ne pas avoir rencontrer avant : `jalr`. L'instruction `jalr` est à `jr` ce que `jal` est à `j`. Cette instruction permet de se brancher à l'adresse contenue dans le registre donné et stocker l'adresse de l'instruction suivante (c.-à-d. PC + 4) dans `$ra`. Par exemple, si nous ne voulions pas utiliser l'instruction `jal`, on pourrait utiliser `jalr` pour appeler une fonction comme ceci :
 
-```
+```mips
 # Nous aimerions appeler la fonction `garply`, sans utiliser l'instruction `jal`.
-la $t0, garply 	# donc nous utilisons l'instruction `la` pour charger l'adresse de `garply` dans un registre (ici $t0)
-jalr $t0       	# puis nous utilisons l'instruction `jalr` pour lier et brancher (comme `jr`).
+la $t0, garply 	# donc, nous utilisons l'instruction `la` pour charger l'adresse de `garply` dans un registre (ici $t0)
+jalr $t0       	# puis, nous utilisons l'instruction `jalr` pour lier et brancher (comme `jr`).
 ```
 
-Commencez par télécharger le fichier de démarrage (voir plus haut dans ce document) et décompressez son contenu dans le répertoire de votre choix. Il y a 12 emplacements dans le code `map.s` où il est indiqué `### YOUR CODE HERE ###`. Remplacez-les par des instructions qui fonctionnent comme indiqué dans les commentaires pour terminer l'implémentation de la fonction `map()`.
+Commencez par télécharger le fichier de démarrage (voir plus haut dans ce document) et décompressez son contenu dans le répertoire de votre choix. Il y a 12 emplacements dans le code `map.s` où il est indiqué `### VOTRE CODE ICI ###`. Remplacez-les par les instructions indiquées dans les commentaires pour terminer l'implémentation de la fonction `map()`.
 
-Une fois le code complété, l’exécution du programme (dans Mars) devrait fournir un résultat similaire à celui-ci :
+Une fois le code complété, l’exécution du programme (dans MARS) devrait donner un résultat similaire à celui-ci :
 
 ```
 Liste Avant: 9 8 7 6 5 4 3 2 1 0
@@ -59,9 +60,9 @@ Liste Après: 81 64 49 36 25 16 9 4 1 0
 
 # Exercise 2
 
-Dans l'exercice précédent, vous avez complété une procédure MIPS qui appliquait une fonction à chaque noeud dans une liste chaînée. Dans cet exercice, vous allez travailler avec une version similaire (mais légèrement plus complexe). 
+Dans l'exercice précédent, vous avez complété une procédure MIPS qui appliquait une fonction à chaque nœud dans une liste chaînée. Dans cet exercice, vous allez travailler avec une version similaire (mais légèrement plus complexe). 
 
-En effet, au lieu d'avoir une liste chaînée de « `int` », notre structure de données est une liste chaînée de tableaux de « `int` ». Pour rappel, lorsque nous traitons un tableau dynamique en C, nous devons stocker explicitement la taille du tableau.Voici, en langage C, à quoi ressemble la structure des données de notre liste chaînée :
+En effet, au lieu d'avoir une liste chaînée de « `int` », notre structure de données est une liste chaînée de tableaux de « `int` ». Rappelons lorsque nous traitons un tableau dynamique en C, nous devons stocker explicitement la taille du tableau. Voici, en langage C, à quoi ressemble la structure des données de notre liste chaînée :
 
 ```C
 struct node {
@@ -71,7 +72,7 @@ struct node {
 };
 ```
 
-Voici également ce que fait la nouvelle fonction `map` : dans chaque noeud de la liste chaînée, elle parcourt chaque élément du tableau dynamique et lui applique la fonction transmise. Le résultat de la fonction est stocké dans le tableau en écrasant l'ancienne valeur.
+Voici également ce que fait la nouvelle fonction `map` : dans chaque nœud de la liste chaînée, elle parcourt chaque élément du tableau dynamique et lui applique la fonction transmise. Le résultat de la fonction est stocké dans le tableau en écrasant l'ancienne valeur.
 
 ```C
 void map(struct node *head, int (*f)(int)) {
@@ -91,17 +92,17 @@ Trouvez et corrigez les erreurs dans `megalistmanips.s`. En ce sens, aidez-vous 
   * Quelle est la différence entre « `add $t0, $s0, $0` » et « `lw $t0, 0($s0)` » ?
   * Faites attention aux types des attributs dans la structure `struct node`.
    
-Pour référence, l'exécution du programme (dans Mars) devrait donner le résultat suivant :
+Pour référence, l'exécution du programme (dans MARS) devrait donner le résultat suivant :
 
 ```shell
-Lists before:
+Listes avant:
 5 2 7 8 1
 1 6 3 8 4
 5 2 7 4 3
 1 2 3 4 7
 5 6 7 8 9
 
-Lists after:
+Listes après:
 30 6 56 72 2
 2 42 12 72 20
 30 6 56 20 12
@@ -136,18 +137,18 @@ $$sum = \sum_{i=0}^{N-1} n_i^2$$
 où $$n_0, n_1, ..., n_{N-1}$$ sont des nombres entiers (de type ``int``).
 {% endraw %}
 
-Télécharger le fichier de démarrage (voir plus haut dans ce document) et décompressez son contenu dans le répertoire de votre choix. Implémentez ensuite dans le fichier `SumOfSquares.s` le corps de la fonction `SumOfSquares` en assembleur MIPS et qui retourne dans le registre `$v0` la somme des carrés des éléments d'un tableau de **words**. Le nombre des éléments du tableau est donné dans le registre `$a0`, et l'adresse de début du tableau est donnée dans le registre `$a1`.
+Implémentez dans le fichier `SumOfSquares.s` le corps de la fonction `SumOfSquares` en assembleur MIPS et qui retourne dans le registre `$v0` la somme des carrés des éléments d'un tableau de **words**. Le nombre des éléments du tableau est donné dans le registre `$a0`, et l'adresse de début du tableau est donnée dans le registre `$a1`.
 
-**INDICATION** : Faites l'exercice n°1 du "[TP Programmation « non structurée »]({{site.baseurl}}/labs/03_lab.html)", puis convertissez votre code C en assembleur MIPS à l'aide de la [fiche]({{site.baseurl}}/static_files/docs/iche_mips.pdf) de référence MIPS et du document [contrôle de flux d'exécution dans MIPS]({{site.baseurl}}/static_files/docs/flow_control.pdf).
+**INDICATION** : Faites l'exercice n°1 du "[TP Programmation << non structurée >>]({{site.baseurl}}/labs/03_lab.html)", puis convertissez votre code C en assembleur MIPS à l'aide de la [fiche]({{site.baseurl}}/static_files/docs/iche_mips.pdf) de référence MIPS et du document [contrôle de flux d'exécution dans MIPS]({{site.baseurl}}/static_files/docs/flow_control.pdf).
 
 
 # Exercice 5
 
 Dans la bibliothèque standard du langage C, la fonction `strcmp` (cf. `man 3 strcmp`) compare, caractère par caractère, deux chaînes en mémoire pour établir quelle chaîne de caractère vient en premier dans l'ordre lexicographique standard, c.-à-d. en fonction des valeurs ASCII des caractères. Voici quelques exemples :
 
-  - "a" < "b"
-  - "abc" < "abcd"
-  - "A" < "a"
+  - "a" \< "b"
+  - "abc" \< "abcd"
+  - "A" \< "a"
 
 Les chaînes de caractères à comparer sont représentées par des octets contigus en mémoire (chaque octet est un
 caractère ASCII) suivi du caractère NUL (0x00).
@@ -158,7 +159,7 @@ Cette fonction doit retourner dans le registre `$v0` le résultat de la comparai
 
 L'adresse de la première (resp. deuxième) chaîne de caractères est donnée dans le registre `$a0` (resp. `$a1`).  
 
-**INDICATION** : Faites l'exercice n°2 du "[TP Programmation « non structurée »]({{site.baseurl}}/static_files/labs/03_lab.html)", puis convertissez votre code C en assembleur MIPS à l'aide de la [fiche]({{site.baseurl}}/static_files/docs/fiche_mips.pdf) de référence MIPS et du document [contrôle de flux d'exécution dans MIPS]({{site.baseurl}}/static_files/docs/flow_control.pdf).
+**INDICATION** : Faites l'exercice n°2 du "[TP Programmation << non structurée >>]({{site.baseurl}}/static_files/labs/03_lab.html)", puis convertissez votre code C en assembleur MIPS à l'aide de la [fiche]({{site.baseurl}}/static_files/docs/fiche_mips.pdf) de référence MIPS et du document [contrôle de flux d'exécution dans MIPS]({{site.baseurl}}/static_files/docs/flow_control.pdf).
 
 
 ## Exercice 6

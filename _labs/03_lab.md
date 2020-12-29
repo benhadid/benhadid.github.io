@@ -1,7 +1,7 @@
 ---
 type: lab
 date: 2019-09-19T4:00:00+4:30
-title: 'Travaux Pratiques #3 - Programmation « non structurée »'
+title: 'Travaux Pratiques #3 - Programmation &laquo; non structurée &raquo;'
 attachment: /static_files/labs/lab_03.zip
 #solutions: /static_files/labs/lab_solutions.pdf
 due_event: 
@@ -13,7 +13,8 @@ due_event:
 # Objectifs
 
   - Rappel sur les structures de contrôle dans le langage C
-  - Connaître la programmation « [non structurée](http://pise.info/algo/complements.htm) »
+
+  - Connaître la programmation << [non structurée](http://pise.info/algo/complements.htm) >>
 
 # Introduction
 
@@ -52,9 +53,9 @@ Dans la bibliothèque standard du langage C, la fonction `strcmp` (cf. `man 3 st
 deux chaînes en mémoire pour établir quelle chaîne de caractère vient en premier dans l'ordre
 lexicographique standard, c.-à-d. en fonction des valeurs ASCII des caractères. Voici quelques exemples :
 
-  - "a" < "b"
-  - "abc" < "abcd"
-  - "A" < "a"
+  - "a" \< "b"
+  - "abc" \< "abcd"
+  - "A" \< "a"
 
 Les chaînes de caractères à comparer sont représentées par des octets contigus en mémoire (chaque octet est un
 caractère ASCII) suivi du caractère NUL (0x00).

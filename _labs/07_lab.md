@@ -2,7 +2,7 @@
 type: lab
 date: 2019-09-19T4:00:00+4:30
 title: 'Travaux Pratiques #7 - Introduction à Logisim'
-#attachment: /static_files/labs/lab_07.zip
+attachment: /static_files/labs/lab_07.zip
 #solutions: /static_files/labs/lab_solutions.pdf
 due_event: 
     type: due
@@ -11,7 +11,9 @@ due_event:
 ---
 
 # Objectifs  
+
   - Apprendre à concevoir et déboguer des circuits logiques simples dans Logisim
+
   - Acquérir une expérience dans la conception et le débogage de circuits combinatoire dans Logisim  
 
 # Initiation à Logisim
@@ -31,46 +33,44 @@ Commençons par créer un circuit très simple pour connecter des portes logique
 
 
   1. ![AND Gate]({{site.baseurl}}/static_files/images/and.gif) Commencez par cliquer sur le bouton "AND gate" (panneau à gauche - rubriques "Gates"). Vous remarquerez qu'une ombre d'une porte ET suivra les déplacements de votre curseur. Cliquez une fois dans la fenêtre schématique principale pour placer une porte ET.
-  2. ![Input Pin]({{site.baseurl}}/static_files/images/input.gif) Cliquez sur le bouton "Pin" (rubrique "Wiring"). Maintenant, placez deux broches d’entrée  à gauche de votre porte ET.
-  3. ![Input Pin]({{site.baseurl}}/static_files/images/input.gif) Cliquez sur le bouton "Pin". Placez ensuite une broche de sortie à droite de votre porte ET. Dans le panneau "Selection: Pin", changer la valeur de Output? à "Yes" et le paramètre Facing à "West".  Votre schéma devrait ressembler à ceci :
+  
+  2. ![Input Pin]({{site.baseurl}}/static_files/images/input.gif) Cliquez sur le bouton "**Pin**" (rubrique "**Wiring**"). Maintenant, placez deux broches d’entrée  à gauche de votre porte ET.
+  
+  3. ![Input Pin]({{site.baseurl}}/static_files/images/input.gif) Cliquez sur le bouton "**Pin**". Placez ensuite une broche de sortie à droite de votre porte ET. Dans le panneau "Selection: Pin", changer la valeur de Output? à "Yes" et le paramètre Facing à "West".  Votre schéma devrait ressembler à ceci :
+     ![2 Inputs AND Gate]({{site.baseurl}}/static_files/images/and_2_1.gif){: .wp-caption .aligncenter }
+  
+  4. ![Selection Tool]({{site.baseurl}}/static_files/images/selection.gif) Cliquez sur le bouton "**Select tool**". Cliquez et faites glisser pour connecter les broches d'entrée sur le côté gauche de la porte ET. Cela prendra plusieurs étapes, car vous ne pouvez tracer que des fils verticaux et horizontaux. Dessinez simplement un fil horizontalement, relâchez le bouton de la souris, puis cliquez et faites glisser vers le bas en partant de la fin du fil pour continuer verticalement. Vous pouvez attacher le fil à n'importe quelle broche de la porte ET du côté gauche. Répétez la même procédure pour connecter la sortie (côté droit) de la porte ET. Après avoir effectué ces étapes, votre schéma devrait ressembler à ceci:
+     ![2 Inputs AND Gate]({{site.baseurl}}/static_files/images/connected_and_2_1.gif){: .wp-caption .aligncenter }     
+  Vous pouvez également modifier le nombre d'entrées de la "porte ET" en cliquant dessus à l'aide de l'outil "**Select tool**" et en modifiant les propriétés "Number of Inputs" dans le panneau inférieur gauche de la fenêtre. Cela peut également être fait avant de déposer le composant.
 
-   ![2 Inputs AND Gate]({{site.baseurl}}/static_files/images/and_2_1.gif){: .wp-caption .aligncenter }
-
-  4. ![Selection Tool]({{site.baseurl}}/static_files/images/selection.gif) Cliquez sur le bouton "Select tool". Cliquez et faites glisser pour connecter les broches d'entrée sur le côté gauche de la porte ET. Cela prendra plusieurs étapes, car vous ne pouvez tracer que des fils verticaux et horizontaux. Dessinez simplement un fil horizontalement, relâchez le bouton de la souris, puis cliquez et faites glisser vers le bas en partant de la fin du fil pour continuer verticalement. Vous pouvez attacher le fil à n'importe quelle broche de la porte ET du côté gauche. Répétez la même procédure pour connecter la sortie (côté droit) de la porte ET. Après avoir effectué ces étapes, votre schéma devrait ressembler à ceci:
-
-   ![2 Inputs AND Gate]({{site.baseurl}}/static_files/images/connected_and_2_1.gif){: .wp-caption .aligncenter }
-
-   Vous pouvez également modifier le nombre d'entrées de la "porte ET" en cliquant dessus à l'aide de l'outil "Select tool" et en modifiant les propriétés "Number of Inputs" dans le panneau inférieur gauche de la fenêtre. Cela peut également être fait avant de déposer le composant.
-
-  5. ![Poke Tool]({{site.baseurl}}/static_files/images/poke.gif) Enfin, cliquez sur l'outil "Poke" et essayez de cliquer sur les broches d'entrée de votre schéma. Observez ce qui se passe. Est-ce que cela correspond à ce que vous pensez qu'une porte ET devrait faire ?
+  5. ![Poke Tool]({{site.baseurl}}/static_files/images/poke.gif) Enfin, cliquez sur l'outil "**Poke**" et essayez de cliquer sur les broches d'entrée de votre schéma. Observez ce qui se passe. Est-ce que cela correspond à ce que vous pensez qu'une porte ET devrait faire ?
 
 ## Étape 1 : Les sous-circuits
 
-Tout comme les programmes évolués peuvent contenir des fonctions auxiliaires, un schéma peut contenir des sous-circuits. Dans cette partie, nous allons créer plusieurs sous-circuits pour démontrer leur utilisation.
+Tout comme les programmes écris dans un langage évolué peuvent contenir des fonctions auxiliaires, un schéma de circuit peut contenir des sous-circuits. Dans cette partie, nous allons créer plusieurs sous-circuits pour démontrer leur utilisation.
 
 **REMARQUE IMPORTANTE :** La documentation de Logisim stipule que vous ne pouvez pas nommer un sous-circuit après un mot-clé (par exemple, "NAND"). Les noms de circuits doivent également commencer par "A-Za-z".
 
-  1. Créez un nouveau schéma (File->New) pour votre travail.
+  1. Ouvrir le schéma de l'exercice 1 (**File->Open->ex1.circ**).
 
-  2. Créez un nouveau sous-circuit (Project->Add circuit). Vous serez invité à donner un nom au sous-circuit; Appelez-le NAND_ (notez le trait de soulignement à la fin, vous ne pouvez pas l'appeler NAND).
+  2. Ouvrir le sous-circuit vide appelé NAND1 en double cliquant sur le nom `NAND1` dans le volet de composants (Design) à gauche. 
 
-  3. Dans la nouvelle fenêtre schématique que vous voyez, créez un circuit NAND simple avec deux broches d'entrée sur le côté gauche et une broche de sortie sur le côté droit. Faites-le sans utiliser la porte NAND ce trouvant dans le dossier Gates (utilisez uniquement les portes AND, OR et NOT). Vous pouvez modifier les étiquettes des entrées et des sorties en sélectionnant l'entrée / la sortie à l'aide de l'outil de sélection (Select tool) et en modifiant la propriété "Label" dans le panneau inférieur gauche de la fenêtre.
+  3. Dans la nouvelle fenêtre schématique que vous voyez, créez un circuit NAND simple avec deux broches d'entrée sur le côté gauche et une broche de sortie sur le côté droit. Faites-le sans utiliser la porte NAND qui se trouve dans le dossier Gates (c.-à-d. utilisez uniquement les portes AND, OR et NOT). Vous pouvez modifier les étiquettes des entrées et des sorties en sélectionnant l'entrée / la sortie à l'aide de l'outil de sélection (**Select tool**) et en modifiant la propriété "Label" dans le panneau inférieur gauche de la fenêtre.
 
-  4. Revenez à votre schéma "principal" en double-cliquant sur "main" dans le sélecteur de circuit à gauche de l'écran. Votre schéma original (vierge) sera maintenant affiché, mais votre circuit NAND a été enregistré.
+  4. Répétez les étapes 2 et 3 pour créer plusieurs sous-circuits supplémentaires: NOR, XOR, MUX 2-to-1  et MUX 4-to-1. N'utilisez pas de portes intégrées autres que AND, OR et NOT. Cependant, une fois que vous avez construit un sous-circuit, vous pouvez l'utiliser pour en créer d'autres (cliquez sur le sous-circuit créé dans le volet des composants puis cliquez à nouveau sur la fenêtre de conception de circuit pour l'insérer comme composant).
+  
+**Remarques** : 
+  - Veuillez ne pas changer les noms des sous-circuits ou en créer de nouveaux; insérez vos solutions dans les circuits respectivement nommé ou bien l'auto-évaluateur ne fonctionnera pas correctement ( ça ne sera pas bon pour votre score :( ) !
 
-  5. Maintenant, cliquez une fois sur le mot "NAND_" dans la liste. Cela indiquera à Logisim que vous souhaitez ajouter votre circuit "NAND_" dans votre circuit "main".
+  - Pour le MUX 4-to-1, `Sel0` et `Sel1` correspondent respectivement aux 0<sup>ème</sup> et 1<sup>er<sup> bits du sélecteur 2-bits.
 
-  6. Essayez de placer votre circuit NAND dans le schéma "main". Si vous l'avez fait correctement, vous devriez voir une porte avec 2 broches d'entrée à gauche et une broche de sortie à droite. Essayez de raccorder des broches d’entrée et des broches de sortie à ces broches et vérifiez si cela fonctionne comme prévu.
-
-  7. Répétez ces étapes pour créer plusieurs sous-circuits supplémentaires: NOR, XOR, 2 à 1 MUX et 4 à 1 MUX. N'utilisez pas de portes intégrées autres que AND, OR et NOT. Cependant, une fois que vous avez construit un sous-circuit, vous pouvez l'utiliser pour en créer d'autres.
-
-*INDICATION :* Vous pouvez envisager d'utiliser certains de vos sous-circuits personnalisés lors de la conception d'autres circuits.
+  - Réutilisez vos sous-circuits personnalisés lors de la conception d'autres circuits.
 
 ## Étape 2 : État de stockage
 
-Implémentons à présent un circuit qui incrémente une valeur à l'infini. La différence entre ce circuit et les circuits que vous avez déjà construits est que vous avez besoin de certains registres. Ce qui suit va vous montrer comment ajouter des registres à votre circuit.
+Implémentons à présent un circuit qui incrémente une valeur en continu. La différence entre ce circuit et les circuits que vous avez construits jusqu'à présent est l'**écriture** de cette valeur dans l'**état** d'un **registre**. Ce qui suit va vous montrer comment ajouter des registres à votre circuit.
 
-  1. Créez un nouveau sous-circuit (Project-> Add circuit...). Nommez ce nouveau sous-circuit, AddMachine.
+  1. Ouvrez le schéma de l'exercice 2 (Fichier-> Ouvrir-> ex2.circ) et accédez au sous-circuit AddMachine (vide).
 
   2. La bibliothèque "Arithmetic" contient des éléments qui effectueront des opérations mathématiques de base :
     ![Logisim Arithmetic]({{site.baseurl}}/static_files/images/logisim_arithmetic.gif){: .aligncenter  }
@@ -82,36 +82,23 @@ Implémentons à présent un circuit qui incrémente une valeur à l'infini. La 
 
   5. Connectez une horloge à votre registre. Vous pouvez trouver l'élément du circuit d'horloge dans le dossier "Wiring" du navigateur de circuits.
 
-  6. Connectez la sortie de l'additionneur à l'entrée du registre et la sortie du registre à l'entrée de l'additionneur. Il est possible que vous obtenez l'erreur "Largeurs incompatibles" lorsque vous connectez les composants. Cela signifie que le câble que vous tracez essaie de connecter deux broches avec des largeurs de bit différentes. Si vous cliquez sur l'additionneur avec l'outil "Sélection", vous remarquerez qu'il existe une propriété "Data Bits" dans le champ inférieur gauche de la fenêtre. Cette valeur détermine le nombre de bits de chaque entrée et sortie de l'additionneur. Modifiez ce champ si nécessaire pour faire disparaitre  l'erreur.
+  6. Connectez la sortie de l'additionneur à l'entrée du registre et la sortie du registre à l'entrée de l'additionneur. Il est possible que vous obtenez l'erreur "Largeurs incompatibles" lorsque vous connectez les composants. Cela signifie que le câble que vous tracez essaie de connecter deux broches avec des largeurs de bit différentes. Si vous cliquez sur l'additionneur avec l'outil "Sélection", vous remarquerez qu'il existe une propriété "Data Bits" dans le champ inférieur gauche de la fenêtre. Cette valeur détermine le nombre de bits de chaque entrée et sortie de l'additionneur. Modifiez ce champ si nécessaire pour faire disparaître  l'erreur.
 
-  7. branchez une constante "1" définit sur 8 bits à la seconde entrée de l'additionneur. Vous pouvez trouver l'élément de circuit "constant" dans la bibliothèque "Wiring".
+  7. Branchez une constante "1" définit sur 8 bits à la seconde entrée de l'additionneur. Vous pouvez trouver l'élément de circuit "Constant" dans la bibliothèque "Wiring".
 
-  8. Ajoutez deux broches de sortie à votre circuit afin de pouvoir surveiller ce qui sort de l'additionneur et du registre. Assurez-vous que la sortie est sur 8 bits. Ainsi, à la fin, votre circuit devrait ressembler à ceci :
-   ![Add Machine]({{site.baseurl}}/static_files/images/AddMachine.png){: .wp-caption .aligncenter }
+  8. Ajoutez deux broches de sortie à votre circuit afin de pouvoir surveiller ce qui sort de l'additionneur et du registre. La sortie de l'additionneur doit être connectée à ADD_OUT et la sortie du registre à REG_OUT. Au final, votre circuit devrait ressembler à ceci :
+     ![Add Machine]({{site.baseurl}}/static_files/images/AddMachine.png){: .wp-caption .aligncenter }
 
-Voyons maintenant si vous avez construit votre circuit correctement.
+  9. Lancez maintenant l'exécution de votre circuit depuis le menu **Simulate->Ticks Enabled** (ou la combinaison clavier **Control + K**). Votre circuit devrait maintenant afficher un compteur en binaire.
 
-1. Retournez dans le sous-circuit "principal" en double-cliquant sur "main" dans le navigateur de circuit.
+  10. Si vous souhaitez exécuter votre circuit plus rapidement, vous pouvez modifier la fréquence des ticks dans **Simulate->Tick Frequency**.
 
-2. Cliquez un seul clic sur votre circuit "AddMachine" pour le sélectionner.
-
-3. Remplacez la propriété "Facing" par une autre valeur. N'importe quel circuit possedant la propriété "Facing" peut être orienté pour accueillir les fils comme vous en avez besoin. Ce sera certainement utile lorsque vous réalisez vos prochains travaux.
-
-4. Placez votre sous-circuit AddMachine dans "main".
-
-5. Sélectionnez le sous-circuit AddMachine que vous venez de placer dans main.
-
-6. Connectez les broches de sortie au sous-circuit AddMachine. Les broches de sortie sont ordonnées de haut en bas, de gauche à droite. Ainsi, si vous suivez le schéma ci-dessus, la broche supérieure à droite affiche la valeur de l'additionneur et la broche inférieure la sortie du registre.
-
-7. Faites un clic droit sur votre sous-circuit AddMachine et sélectionnez "View AddMachine". C'est la SEULE méthode pour conserver l'état (c'est-à-dire conserver les valeurs du registre à sa valeur actuelle). Si vous double-cliquez sur le circuit vous allez éditer le circuit au lieu de simplement vérifier l'état du circuit.
-
-8. Initialisez la valeur du registre à 1. Vous pouvez le faire en cliquant sur la valeur du registre avec l’outil poke, puis tapez la valeur hexadécimale dedans.
-
-9. Pour revenir au circuit principal en conservant l'état, allez à Simulate-> Go Out To State -> main. Vous pouvez également maintenir la touche contrôle enfoncée (commande sous MacOS) et appuyer sur la flèche vers le haut.
-
-10. Maintenant, commencez à exécuter votre circuit en allant dans Simulate-> Ticks Enabled (ou contrôle + K). Votre circuit devrait maintenant afficher un compteur sous forme binaire.
-
-11. Si vous souhaitez exécuter votre circuit plus rapidement, vous pouvez modifier la fréquence des ticks dans Simulate-> Tick Frequency.
+<div class="bs-callout bs-callout-danger">
+<h4>ATTENTION</h4>
+<p>
+Ne déplacez / modifiez <b>PAS</b> les broches d'entrée et de sortie dans le fichier fourni <b>ex2.circ</b>. Cela brisera la connexion avec le socle de test. Si votre circuit ne passe pas les tests et que vous pensez qu'il est correct, assurez-vous que votre circuit s'insère corrèctement dans le socle de test dans <b>testing/circ_files/ex2_test.circ</b>.
+</p>
+</div>
 
 
 ## Étape 3 : Fonctionnalités avancées
@@ -180,29 +167,32 @@ Un additionneur est un [circuit logique](https://fr.wikipedia.org/wiki/Circuit_l
 
 Un additionneur [complet](https://fr.wikipedia.org/wiki/Additionneur) à un bit ajoute trois nombres à un bit, souvent écrits sous les noms `A`, `B` et `Cin`; `A` et `B` sont les opérandes, et `Cin` est un la retenue (résultat éventuel d'un ajout antérieur). L'additionneur complet est généralement composé d'une cascade d'additionneurs, qui ajoutent des nombres binaires de 8, 16, 32, etc.
 
-Dans la notation ci-dessous, A[4] indique que l'entrée est nommée " A " et possède 4 bits de large. L'entrée ne doit pas être nommée " A[4] " dans Logisim.
+Dans la notation ci-dessous, A[4] indique que l'entrée est nommée " **A** " et possède 4 bits de large. L'entrée ne doit pas être nommée " **A[4]** " dans Logisim.
 
-
-<div class="col-md-6">
-<table class="table table-hover" >
-  <thead>
-  </thead>
-  <tbody>
-    <tr>
-      <td class="text-left">Add4 :</td>
-      <th class="text-left" scope="row">S = A + B + Cin; Cout = retenue</th>      
-    </tr>
-    <tr>
-    <td class="text-left">Opérandes :</td>
-    <th class="text-left" scope="row">A[4], B[4], Cin</th>      
-    </tr>
-    <tr>
-    <td class="text-left">Résultat :</td>
-    <th class="text-left" scope="row">S[4], Cout</th>      
-    </tr>    
-  </tbody>
+<table class="styled-table">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<thead>
+</thead>
+<tbody>
+<tr>
+<th markdown="span">Add4 :</th>
+<td markdown="span">**S = A + B + Cin**; **Cout = retenue**</td>
+</tr>
+<tr>
+<th markdown="span">Opérandes :</th>
+<td markdown="span">**A[4], B[4], Cin**</td>
+</tr>
+<tr>
+<th markdown="span">Résultat :</th>
+<td markdown="span">**S[4], Cout**</td>
+</tr>
+</tbody>
 </table>
-</div>
+
+
 
 La sortie `S` est calculée en ajoutant `A` , `B` et `Cin`. `A` , `B` et `S` sont des nombres complément à deux. Si un débordement se produit, la sortie `Cout` doit être activée. Dans ce cas, la sortie `S` correspond à la valeur calculée quand toutes les erreurs de débordement sont ignorées.
 
@@ -213,86 +203,91 @@ La sortie `S` est calculée en ajoutant `A` , `B` et `Cin`. `A` , `B` et `S` son
 
 Une table de vérité montre comment la sortie d'un circuit logique répond à diverses combinaisons d'entrées. Par exemple, si toutes les entrées d'un additionneur complet sont des «0», les sorties seront également «0». Remplissez la table de vérité ci-dessous.
 
-<div class="col-md-6">
-<table class="table table-hover" >
-  <thead>
-    <tr>
-      <th class="text-center" scope="col">A</th>
-      <th class="text-center" scope="col">B</th>
-      <th class="text-center" scope="col">Cin</th>
-      <th class="text-center" scope="col">Cout</th>
-      <th class="text-center" scope="col">S</th>      
-    </tr>
-  </thead>
+<table class="styled-table">
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align:center">A</th>
+<th style="text-align:center">B</th>
+<th style="text-align:center">Cin</th>
+<th style="text-align:center">Cout</th>
+<th style="text-align:center">S</th>
+</tr>
+</thead>
+<tbody>
 
-  <tbody>
-    <tr>
-      <td class="text-center" scope="row">0</td>
-      <td class="text-center" scope="row">0</td>
-      <td class="text-center" scope="row">0</td>
-      <th class="text-center" scope="row">0</th>      
-      <th class="text-center" scope="row">0</th>      
-    </tr>
+<tr>
+<td style="text-align:center" markdown="span">0</td>
+<td style="text-align:center" markdown="span">0</td>
+<td style="text-align:center" markdown="span">0</td>
+<td style="text-align:center" markdown="span">**0**</td>
+<td style="text-align:center" markdown="span">**0**</td>
+</tr>
 
-    <tr>
-      <td class="text-center" scope="row">0</td>
-      <td class="text-center" scope="row">0</td>
-      <td class="text-center" scope="row">1</td>
-      <td class="text-center" scope="row"></td>
-      <td class="text-center" scope="row"></td>
-    </tr>
+<tr>
+<td style="text-align:center" markdown="span">0</td>
+<td style="text-align:center" markdown="span">0</td>
+<td style="text-align:center" markdown="span">1</td>
+<td style="text-align:center" markdown="span"></td>
+<td style="text-align:center" markdown="span"></td>
+</tr>
 
-    <tr>
-      <td class="text-center" scope="row">0</td>
-      <td class="text-center" scope="row">1</td>
-      <td class="text-center" scope="row">0</td>
-      <td class="text-center" scope="row"></td>
-      <td class="text-center" scope="row"></td>
-    </tr>
+<tr>
+<td style="text-align:center" markdown="span">0</td>
+<td style="text-align:center" markdown="span">1</td>
+<td style="text-align:center" markdown="span">0</td>
+<td style="text-align:center" markdown="span"></td>
+<td style="text-align:center" markdown="span"></td>
+</tr>
 
-    <tr>
-      <td class="text-center" scope="row">0</td>
-      <td class="text-center" scope="row">1</td>
-      <td class="text-center" scope="row">1</td>
-      <td class="text-center" scope="row"></td>
-      <td class="text-center" scope="row"></td>
-    </tr>
+<tr>
+<td style="text-align:center" markdown="span">0</td>
+<td style="text-align:center" markdown="span">1</td>
+<td style="text-align:center" markdown="span">1</td>
+<td style="text-align:center" markdown="span"></td>
+<td style="text-align:center" markdown="span"></td>
+</tr>
 
-    <tr>
-      <td class="text-center" scope="row">1</td>
-      <td class="text-center" scope="row">0</td>
-      <td class="text-center" scope="row">0</td>
-      <td class="text-center" scope="row"></td>
-      <td class="text-center" scope="row"></td>
-    </tr>
+<tr>
+<td style="text-align:center" markdown="span">1</td>
+<td style="text-align:center" markdown="span">0</td>
+<td style="text-align:center" markdown="span">0</td>
+<td style="text-align:center" markdown="span"></td>
+<td style="text-align:center" markdown="span"></td>
+</tr>
 
-    <tr>
-      <td class="text-center" scope="row">1</td>
-      <td class="text-center" scope="row">0</td>
-      <td class="text-center" scope="row">1</td>
-      <td class="text-center" scope="row"></td>
-      <td class="text-center" scope="row"></td>
-    </tr>
+<tr>
+<td style="text-align:center" markdown="span">1</td>
+<td style="text-align:center" markdown="span">0</td>
+<td style="text-align:center" markdown="span">1</td>
+<td style="text-align:center" markdown="span"></td>
+<td style="text-align:center" markdown="span"></td>
+</tr>
 
-    <tr>
-      <td class="text-center" scope="row">1</td>
-      <td class="text-center" scope="row">1</td>
-      <td class="text-center" scope="row">0</td>
-      <td class="text-center" scope="row"></td>
-      <td class="text-center" scope="row"></td>
-    </tr>
+<tr>
+<td style="text-align:center" markdown="span">1</td>
+<td style="text-align:center" markdown="span">1</td>
+<td style="text-align:center" markdown="span">0</td>
+<td style="text-align:center" markdown="span"></td>
+<td style="text-align:center" markdown="span"></td>
+</tr>
 
-    <tr>
-      <td class="text-center" scope="row">1</td>
-      <td class="text-center" scope="row">1</td>
-      <td class="text-center" scope="row">1</td>
-      <td class="text-center" scope="row"></td>
-      <td class="text-center" scope="row"></td>
-    </tr>
+<tr>
+<td style="text-align:center" markdown="span">1</td>
+<td style="text-align:center" markdown="span">1</td>
+<td style="text-align:center" markdown="span">1</td>
+<td style="text-align:center" markdown="span"></td>
+<td style="text-align:center" markdown="span"></td>
+</tr>
 
-  </tbody>
+</tbody>
 </table>
-</div>
 
 ### **Implémentation de l'additionneur 1-bit**
 
@@ -323,30 +318,30 @@ Construire l'additionneur 4-bits dans Logisim en réutilisant l'additionneur 1-b
 
 ## Étape 5 : Rotation à droite 
 
-Avec des séparateurs et des multiplexeurs, vous allez implémenter un bloc logique combinatoire non trivial : `rotr`, qui signifie « Rotate Right ». L'idée est que `rotr A, B` « fera pivoter » les bits de l'entrée `A` vers la droite de `B` bits. Ainsi, si `A` était `0b1011010101110011` et `B` était `0b0101` (5 en décimal), la sortie du bloc `rotr` serait `0b1001110110101011`. Notez que les 5 bits les plus à droite ont été extraits de l'extrémité droite de la valeur et de nouveau injectés sur l'extrémité gauche. En langage [RTL](https://fr.wikipedia.org/wiki/Register_Transfer_Language), l'opération ressemble à ceci `R = A >> B | A << (16 - B)`.
+Avec des séparateurs et des multiplexeurs, vous allez implémenter un bloc logique combinatoire non trivial : `rotr`, qui signifie << Rotate Right >>. L'idée est que `rotr A, B` << fera pivoter >> les bits de l'entrée `A` vers la droite `B` bits fois. Ainsi, si `A` est `0b1011010101110011` et `B` est `0b0101` (5 en décimal), la sortie du bloc `rotr` sera `0b1001110110101011`. Notez que les 5 bits les plus à droite ont été extraits de l'extrémité droite de la valeur de `A` et injectés de nouveau à son extrémité gauche. En langage [RTL](https://fr.wikipedia.org/wiki/Register_Transfer_Language), l'opération ressemble à ceci `R = A >> B | A << (16 - B)`.
 
-  1. Téléchargez le fichier de démarrage (voir plus haut dans ce document) et décompressez son contenu dans le répertoire de votre choix. 
-  2. Implémentez dans `ex5.circ` un sous circuit nommé `rotr` avec les entrées suivantes :
-    - `A` (16-bit), l'entrée 16 bits à faire pivoter
-    - `B` (4-bit), la quantité de rotation (pourquoi 4 bits ?)
+À l'aide de Logisim, implémentez dans `ex3.circ` le sous circuit nommé `rotr` ayant les entrées suivantes :
+  - `A` (16-bit), la donnée sur 16 bits à faire pivoter
+  - `B` (4-bit), la quantité de rotation (pourquoi 4 bits ?)
+
+La sortie du circuit doit être la valeur de l'entrée `A` pivotée à droite de `B` positions. Vous n'êtes **PAS** autorisé à utiliser les composants de décalages Logisim dans votre solution. Toutefois, tout autre composant combinatoire (MUX, constantes, portes logiques, additionneurs, etc.) est autorisé. Votre solution ne doit **PAS** également utiliser d’horloge ou des éléments cadencés, comme les registres.
+
+**Indication 1** : Avant de commencer, vous devez réfléchir très attentivement à la façon dont vous pourriez décomposer ce problème. Pensez à utiliser des sous-circuits (squelettes déjà fournis) ! Si vous ne le faites pas, attendez-vous à le regretter.
+
+**Indication 2** : La représentation RTL de `rotr` donnée ci-dessus ne signifie pas forcement que c'est la meilleure façon d'implémenter la solution au problème. Pensez aux bits de l'entrée `B` et réfléchissez à la manière d'utiliser efficacement les séparateurs (*i.e.* splitters) ! Pouvez-vous faire quelque chose avec la forme binaire de `B` ? Pour rappel, un `1` peut représenter un signal `ON` et un `0` représentera dans ce cas un signal `OFF`. Disons que nous voulons effectuer une rotation 9 fois. 9 est **1001** en binaire, ou `1 * 8 + 0 * 4 + 0 * 2 + 1 * 1`. Pouvez-vous utiliser cela pour créer un circuit propre ? Utiliser les emplacements de sous-circuits `rot*` fournis dans `ex3.circ` !
 
 <div class="bs-callout bs-callout-danger">
   <h4>ATTENTION</h4>
 
-  <p>Votre fichier <b>ex5.circ</b> doit correspondre au socle <b>ex5_test.circ</b> fourni. Cela signifie que vous devez veiller à <b>ne pas réorganiser les entrées ou les sorties</b>. Si vous avez besoin de plus d'espace, utilisez des tunnels !</p>
+  <p>Votre fichier <b>ex3.circ</b> doit correspondre au socle <b>ex3_test.circ</b> fourni. Cela signifie que vous devez veiller à <b>ne pas réorganiser les entrées ou les sorties</b>. Si vous avez besoin de plus d'espace, utilisez des tunnels !</p>
 
-  <p>Pour vérifier que vos modifications n’ont pas rompu les correspondances entrés/sorties entre les deux circuits, ouvrez le fichier <b>ex5_test.circ</b> et assurez-vous qu’il n’y a pas d’erreurs de branchement.</p>
+  <p>Pour vérifier que vos modifications n’ont pas rompu les correspondances entrés / sorties entre les deux circuits, ouvrez le fichier <b>ex3_test.circ</b> et assurez-vous qu’il n’y a pas d’erreurs de branchement.</p>
 </div>
 
-La sortie du circuit doit être la valeur de l'entrée `A` pivotée à droite de `B` positions. Vous n'êtes **PAS** autorisé à utiliser les composants de décalages Logisim dans votre solution, toutefois, tout autre composant combinatoire (MUX, constantes, portes logiques, additionneurs, etc.) est autorisé. Votre solution ne doit **PAS** également utiliser d’horloge ou des éléments cadencés, comme des registres.
 
-**Indication 1** : Avant de commencer, vous devez réfléchir très attentivement à la façon dont vous pourriez décomposer ce problème. Pensez à utiliser des sous-circuits ! Si vous ne le faites pas, attendez-vous à le regretter.
+## Tester vos circuits
 
-**Indication 2** : La représentation RTL de `rotr` donnée ci-dessus ne signifie pas forcement que c'est la meilleure façon d'implémenter la solution au problème. Pensez aux bits de l'entrée `B` et réfléchissez à la manière d'utiliser efficacement les séparateurs ! Pouvez-vous faire quelque chose avec la forme binaire de `B` ? Pour rappel, un `1` peut représenter un signal `ON` et un `0` représentera dans ce cas un signal `OFF`. Disons que nous voulons effectuer une rotation 9 fois. 9 est 1001 en binaire, ou `1 * 8 + 0 * 4 + 0 * 2 + 1 * 1`. Pouvez-vous utiliser cela pour créer un circuit propre ? Utiliser les sous-circuits `rot*` fournis dans `ex5.circ` !
-
-### **Tester votre circuit**
-
-Pour tester votre implémentation du circuit `rotr`, lancez le script suivant (depuis le répertoire contenant les fichiers  de démarrage ) :
+Pour tester vos implémentations des circuits de ce TP, lancez le script suivant (depuis le répertoire contenant les fichiers  de démarrage) :
 
 ```bash
 ./test.sh
@@ -358,4 +353,4 @@ Si vous obtenez le message d'erreur "Permission denied", exécutez l'instruction
 chmod +x test.sh
 ```
 
-Puis relancez à nouveau le script de test. Ce script copie votre circuit `ex5.circ` dans le répértoire de test, exécute le circuit testeur `ex5_test.circ` avec différentes entrées et comparera les sorties de votre circuit aux résultats attendus. Par conséquent, veuillez ne rien modifier dans le dossier `test`. Vous êtes encouragé, par contre, à consulter le contenu de ce répértoire pour avoir une idée sur les éléments utilisés pour tester automatiquement votre circuit. Cela vous sera très utile pour votre mini-project !
+Puis relancez à nouveau le script de test. Ce script copie vos circuits `ex?.circ` dans le répértoire de test, exécute les circuits testeur `ex?_test.circ` avec différentes entrées et comparera les sorties de vos circuits aux résultats attendus. Par conséquent, veuillez ne rien modifier dans le dossier `test`. Vous êtes encouragé, par contre, à consulter le contenu de ce répértoire pour avoir une idée sur les éléments utilisés pour tester automatiquement votre circuit. Cela vous sera très utile pour votre mini-project !
