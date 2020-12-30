@@ -7,7 +7,7 @@ attachment: /static_files/labs/lab_07.zip
 due_event: 
     type: due
     date: 2019-09-26T23:59:00+3:30
-    description: 'Travaux Pratiques #6 - à remettre'
+    description: 'Travaux Pratiques #7 - à remettre'
 ---
 
 # Objectifs  
