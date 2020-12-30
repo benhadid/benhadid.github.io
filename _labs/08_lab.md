@@ -19,7 +19,7 @@ due_event:
   - Être en mesure d'optimiser le code pour produire de bons taux de succès de cache.
 
 
-# Outils de visualisation de Cache dans MARS
+# Outils de &laquo; Visualisation de Cache &raquo; dans MARS
 
 Cet exercice utilise des outils de visualisation de cache dans MARS afin de vous familiariser avec le comportement du cache et la terminologie des mesures de performance. Ce n'est pas un exercice réel, mais plutôt une explication sur la façon d'utiliser MARS comme outil de visualisation du cache !
 
@@ -162,7 +162,7 @@ Notez que la commande de compilation dans le Makefile utilise l'indicateur '-O3'
 3. Comment la façon dont nous parcourons les matrices affecte-t-elle les performances ?
 
 
-# Exercice 3: Transposition de matrice par blocs
+# Exercice 3: (Transposition de matrice par bloc)
  
 ## Transposition matricielle
 
@@ -208,9 +208,9 @@ Enfin, comme la largeur de la matrice `n` n'est pas nécessairement un multiple 
 
 ![CutBlocTransposition]({{site.baseurl}}/static_files/images/size_mismatch_matrix_transpose.png){: .aligncenter width="60%" height="60%"}     
 
-Une fois votre implémentation achevée, l'étape suivante est d'effectuer l'analyse des performances du code.
+Une fois que votre implémentation fonctionne corrèctement, l'étape suivante est d'effectuer une analyse des performances du code.
 
-## Partie 1 : (Modifier les dimensions des matrices)
+## Modifier les dimensions des matrices
 
 Exécutez votre code plusieurs fois avec une valeur de `blocksize` fixée à 20 et les valeurs 100, 1000, 2000, 5000 et 10000 pour `n`. 
 
@@ -218,7 +218,7 @@ Exécutez votre code plusieurs fois avec une valeur de `blocksize` fixée à 20 
 
 - Pourquoi la version en << cache-blocking >> nécessite-t-elle que la matrice ait une certaine taille avant de surpasser les performances de la version 'naïve' ?
 
-## Partie 2 : (Modifier la taille de bloc)
+## Modifier la taille de bloc
 
 Fixez `n` à 10000 et exécutez votre code avec une taille de bloc `blocksize` égale à 50, 100, 500, 1000, 5000.
 
