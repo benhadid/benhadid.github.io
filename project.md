@@ -15,15 +15,16 @@ due_event:
 # Objectifs
 
 - Apprendre le fonctionnement de l'unité arithmétique et logique dans un processeur
+
 - Apprendre à modéliser des circuits logiques avancés avec Logisim
 
 # Énoncé
 
 Pour ce mini-projet, vous utiliserez [Logisim](https://fr.wikipedia.org/wiki/Logisim) afin d'implémenter un version basique d'un processeur MIPS. Ce devoir est organisé en deux parties : A et B.
 
-Dans la partie A (tâches 1 à 3), vous allez construire une « Unité Arithmétique et Logique (UAL) » et un « Banc de Registres » pour un processeur MIPS basique, ainsi qu'une implémentation du chemin de données nécessaire à l’exécution des instructions `addi`. Dans la partie B (tâches 4 et 5), vous ajouterez d’autres composants à votre processeur basique pour produire une version avancée qui exécutera des instructions MIPS réelles !
+Dans la partie A (tâches 1 à 3), vous allez construire une « Unité Arithmétique et Logique (UAL) » et un « Banc de Registres » pour un processeur MIPS basique, ainsi qu'une implémentation du chemin de données nécessaire à l’exécution des instructions `addi`. Dans la partie B (tâches 4), vous ajouterez d’autres composants à votre processeur basique pour produire une version avancée qui exécutera des instructions MIPS réelles !
 
-Commencez par télécharger le fichier de démarrage (voir plus haut dans ce document) et décompressez son contenu dans le répertoire de votre choix. Voici la liste des fichiers que vous devez avoir :
+Commencez par télécharger le fichier de démarrage et décompressez son contenu dans le répertoire de votre choix. Voici la liste des fichiers que vous devez avoir :
 
 ```shell
 proj_starter
@@ -125,7 +126,7 @@ le fichier squelette fourni `alu.circ` montre que votre UAL doit avoir trois ent
 </tbody>
 </table>
 
-**REMARQUES** : Dans les slides du cours &laquo; [Architecture de Von Neumann](https://1drv.ms/p/s!Agf0g-qZKM8_yAyyv1se7-WxjsN2?e=GO7udR) &raquo;, et afin de construire une UAL de plusieurs bits (8 bits est donné comme exemple), il est indiqué de dupliquer votre circuit de 1 bit et faire les adaptations nécessaires pour obtenir une UAL de plusieurs bits. Bonne nouvelle ! vous n'avez pas à le faire dans ce projet, Logisim fait déjà cela pour vous ! Il suffit simplement de choisir la bonne largeur de bits pour les entrées/sorties de vos composants et c'est tout (voir la figure ci-dessous) !
+**REMARQUES** : Dans les slides du cours &laquo; [Architecture de Von Neumann](https://1drv.ms/p/s!Agf0g-qZKM8_yAyyv1se7-WxjsN2?e=GO7udR) &raquo;, et afin de construire une UAL de plusieurs bits (8 bits est donné comme exemple), il est indiqué de dupliquer votre circuit de 1 bit et faire les adaptations nécessaires pour obtenir une UAL de plusieurs bits. Bonne nouvelle ! vous n'avez pas à le faire dans ce projet, Logisim fait déjà cela pour vous ! Il suffit simplement de choisir la bonne largeur de bits pour les entrées / sorties de vos composants et c'est tout (voir la figure ci-dessous) !
 
  ![Largeur de bits]({{site.baseurl}}/static_files/images/data_width.png){: height="55%" width="55%" .wp-caption .aligncenter}
 
@@ -240,9 +241,9 @@ Enfin, voici ci-dessous la liste des opérations (et les valeurs **ALUSel** asso
 
 <tr>
 <td style="text-align:center" markdown="span">13</td>
-<td style="text-align:left" markdown="span">&emsp;&emsp;bsel</td>
-<td markdown="span">&emsp;`Result = B`</td>
-<td markdown="span"></td>
+<td style="text-align:left" markdown="span">&emsp;&emsp;&mdash;</td>
+<td markdown="span">&emsp;&emsp;&emsp;&emsp;&mdash;</td>
+<td markdown="span">Non utilisé</td>
 </tr>
 
 <tr>
@@ -259,13 +260,13 @@ Enfin, voici ci-dessous la liste des opérations (et les valeurs **ALUSel** asso
 
   * L'opération `add` est déjà implémentée pour vous; n'hésitez pas à utiliser une structure similaire pour réaliser les autres composants.    
 
-  * Lors de l'implémentation de `mul` et `mulh`, veuillez noter que le bloc Logisim de multiplication possède une sortie « Carry Out » (le bloc additionneur possède également cette sortie, mais vous n'en aurez pas besoin).
+  * Lors de l'implémentation de `mul` et `mulh`, veuillez noter que le bloc Logisim de multiplication possède une sortie « Carry Out » qui pourrait vous être utile (le bloc additionneur possède également cette sortie, mais vous n'en aurez pas besoin pour ce composant).
 
   * Les séparateurs et les extenseurs de bits vous seront très utiles lors de l'implémentation des opérations `sra` et `srl`.
 
   * Utilisez les tunnels ! Cela vous évitera de croiser des fils involontairement ce qui causera des erreurs inattendues.
 
-  * Un multiplexeur (MUX) peut être utile pour décider quel résultat de quel composant vous voulez sortir. En d'autres termes, traiter les entrées dans tous les composants d'une manière simultanée, puis, en fonction de l'opération choisie, sélectionner la bonne sortie à transmettre.
+  * Un multiplexeur (MUX) peut être utile pour décider quelle sortie de quel composant vous voulez transmettre. En d'autres termes, traiter les entrées dans tous les composants d'une manière simultanée, puis, en fonction de l'opération choisie, sélectionner la bonne sortie à transmettre.
 
 
 <div class="bs-callout bs-callout-danger">
@@ -275,12 +276,12 @@ Enfin, voici ci-dessous la liste des opérations (et les valeurs **ALUSel** asso
 
   <p>Si vous créez des sous-circuits supplémentaires, ils doivent également être dans <b>alu.circ</b> (c.-à-d. vous ne devez pas créer de nouveaux fichiers .circ).</p>
 
-  <p>Pour vérifier que vos modifications n’ont pas rompu les correspondances entrés/sorties entre les deux circuits, ouvrez le fichier <b>alu_harness.circ</b> et assurez-vous qu’il n’y a pas d’erreurs de branchement.</p>
+  <p>Pour vérifier que vos modifications n’ont pas rompu les correspondances entrés / sorties entre les deux circuits, ouvrez le fichier <b>alu_harness.circ</b> et assurez-vous qu’il n’y a pas d’erreurs de branchement.</p>
 </div>
 
 ### **Tester votre UAL**
 
-Un groupe de tests de cohérence UAL est fourni dans le répertoire `tests/part_a/alu`. L'exécution du testeur (voir ci-dessous) pour ce groupe exécutera les tests UAL et produira le résultat des tests dans le répertoire `tests/part_a/alu/student_output`.
+Un groupe de tests de cohérence UAL est fourni dans le répertoire `tests/part_a/alu`. L'exécution du script fourni `test_runner.py` (voir ci-dessous) exécutera les tests UAL et produira les résultats dans le répertoire `tests/part_a/alu/student_output`.
 
 ```bash
 $ python3 test_runner.py part_a alu

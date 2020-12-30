@@ -111,7 +111,7 @@ Voici quelques questions auxquelles vous devriez pouvoir répondre et qui vous a
 
 3. Qu'arrive-t-il à notre taux de succès si le nombre de répétitions `repcount` passe à l'infini (c.-à-d. notre boucle devient infini) ? Pourquoi ?
 
-Vous auriez dû remarquer que le taux de succès était assez élevé pour le scénario 2, et votre réponse à la question précédente devrait vous donner une bonne compréhension de pourquoi. Si vous ne savez pas pourquoi, considérez la taille du tableau et comparez-la à la taille du cache. Maintenant, considérez ce qui suit :
+Vous auriez dû remarquer que le taux de succès était assez élevé pour le scénario 2, et votre réponse à la question précédente devrait vous aider à comprendre pourquoi est-ce le cas. Si vous ne savez pas pourquoi, considérez la taille du tableau et comparez-la à la taille du cache. Maintenant, considérez ce qui suit :
 
 Supposons que nous ayons un programme qui itère `repcount` fois sur un très grand tableau (c.-à-d. bien plus grand que la taille du cache). Pendant chaque itération, nous mappons une fonction différente aux éléments de notre tableau (par exemple, si `repcount = 1024`, nous mappons 1024 fonctions différentes sur chacun des éléments du tableau). Pour référence, dans le scénario 2, nous n'avions qu'une fonction d'incrémentation et une itération.
 
@@ -168,15 +168,15 @@ Notez que la commande de compilation dans le Makefile utilise l'indicateur '-O3'
 
 Nous souhaitons permuter les lignes et les colonnes d'une matrice (voir figure ci-dessous). Cette opération est appelée *transposition de matrice* et une implémentation efficace peut être très utile, particulièrement quand on effectue des opérations assez compliquées en algèbre linéaire. La transposée de la matrice A est souvent désignée par A<sup>*T*</sup>.
 
-![Transposition]({{site.baseurl}}/static_files/images/matrix_transpose.png){: .aligncenter width="60%" height="60%" }     
+![Transposition]({{site.baseurl}}/static_files/images/matrix_transpose.png){: .aligncenter width="50%" height="50%" }     
 
-## Le cache-blocking
+## Le &laquo; cache-blocking &raquo;
 
 Dans l'exercice précédent sur les multiplications de matrices, nous parcourons (avec des pas différents) toutes les valeurs des matrices A et B pour calculer une valeur de la matrice C. Ainsi, nous accédons constamment à de nouvelles valeurs de la mémoire et obtenons très peu de localité temporelle et / ou spatiale des accès mémoire ! 
 
 Nous pouvons améliorer la quantité de réutilisation des données dans les caches en implémentant une technique appelée << cache-blocking >>. Plus formellement, Le << cache-blocking >> est une technique qui consiste à ré-écrire une opération sur les tableaux de sorte à forcer la réutilisation des données présentes dans le cache. Elle doit donc prendre en compte la taille du cache comme argument. Dans le cas de la transposition matricielle, on envisage d'effectuer la transposition un bloc à la fois.
 
-![BlocTransposition]({{site.baseurl}}/static_files/images/block_matrix_transpose.png){: .aligncenter width="60%" height="60%"}     
+![BlocTransposition]({{site.baseurl}}/static_files/images/block_matrix_transpose.png){: .aligncenter width="50%" height="50%"}     
 
 Dans l'image ci-dessus, nous transposons chaque sous-matrice $$A_{ij}$$ de la matrice $$A$$ dans son **emplacement final** dans la matrice de sortie, une sous-matrice à la fois. Nous pouvons vérifier que la transposition de chaque sous-matrice individuelle est équivalent à la transposition de la matrice entière.
 
@@ -204,11 +204,11 @@ Au lieu de mettre à jour `x` uniquement lorsque `y` ait parcouru tous les indic
 
 **Indication :** Une solution simple nécessite quatre boucles `for`.
 
-Enfin, comme la largeur de la matrice `n` n'est pas nécessairement un multiple de la taille de bloc `blocksize`, la colonne / ligne finale de blocs sera un peu coupée (voir les blocs $$A_{3\_}$$ et $$A_{\_3}$$ dans la figure ci-dessous). Pour résoudre ce problème, vous pouvez faire l'exercice en supposant au début que `n` est un multiple de `blocksize`, puis ajouter une condition quelque part dans le code pour ne rien faire lorsque vos index dépassent les limites de la matrice.
+Enfin, comme la largeur de la matrice `n` n'est pas nécessairement un multiple de la taille de bloc `blocksize`, la colonne et ligne finales de blocs seront tronquées (voir les blocs $$A_{3\_}$$ et $$A_{\_3}$$ dans la figure ci-dessous). Pour gérer cette situation, vous pouvez faire l'exercice en supposant au début que `n` est un multiple de `blocksize`, puis ajouter une condition quelque part dans le code pour ne rien faire lorsque vos index dépassent les limites de la matrice.
 
-![CutBlocTransposition]({{site.baseurl}}/static_files/images/size_mismatch_matrix_transpose.png){: .aligncenter width="60%" height="60%"}     
+![CutBlocTransposition]({{site.baseurl}}/static_files/images/size_mismatch_matrix_transpose.png){: .aligncenter width="50%" height="50%"}     
 
-Une fois que votre implémentation fonctionne corrèctement, l'étape suivante est d'effectuer une analyse des performances du code.
+Une fois que votre implémentation fonctionne corrèctement, l'étape suivante est d'effectuer une analyse des performances du programme.
 
 ## Modifier les dimensions des matrices
 
@@ -225,7 +225,7 @@ Fixez `n` à 10000 et exécutez votre code avec une taille de bloc `blocksize` �
 - Comment les performances changent-elles lorsque la taille du bloc augmente ? Pourquoi ?
 
 
-**Note finale :** Dans les deux derniers exercices, les paramètres de cache de notre machine nous sont inconnus. Nous nous sommes simplement assurés que notre code présente un degré plus élevé de localité, et cela <!--, comme par magie,--> a amélioré considérablement les performances ! Cela indique que les caches, quels que soient leurs caractéristiques spécifiques, fonctionneront toujours mieux sur du code qui présente un haut degré de localité.
+**Note finale :** Dans les deux derniers exercices, les paramètres de cache de notre machine nous sont inconnus. Nous nous sommes simplement assurés que notre code expose un degré plus élevé de localité, et cela <!--, comme par magie,--> a amélioré considérablement les performances ! Cela indique que les caches, quels que soient leurs caractéristiques spécifiques, fonctionneront toujours mieux sur du code qui présente un bon niveau de localité (spatiale et/ou temporelle).
 
 
 <!--
