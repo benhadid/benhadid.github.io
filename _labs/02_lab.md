@@ -48,15 +48,15 @@ Commencez d'abord par télécharger le fichier de démarrage (voir plus haut dan
 ``` C
 // Retourne le n-ième bit de x.
 // Vous pouvez considérer que 0 <= n <= 31
-unsigned get_bit(unsigned x, unsigned n);
+bool get_bit(uint32_t x, uint8_t n);
 
 // Fixe le n-ième bit de la valeur de x à v.
 // Vous pouvez considérer que 0 <= n <= 31, et v est soit 0 ou 1
-void set_bit(unsigned *x, unsigned n, unsigned v);
+void set_bit(uint32_t *x, uint8_t n, bool v);
 
 // Inverse le n-ième bit de la valeur de x.
 // Vous pouvez considérer que 0 <= n <= 31
-void flip_bit(unsigned *x, unsigned n);
+void flip_bit(uint32_t *x, uint8_t n);
 
 ```
 
