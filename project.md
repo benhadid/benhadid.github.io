@@ -782,7 +782,7 @@ Rappelons les cinq étapes d'exécution dans un processeur MIPS :
   5. Écriture *éventuelle* dans le « Banc de Registres » (WB)
 
 
-Ce guide vous aidera à implémenter chacune de ces étapes pour l'instruction `addi`. Chaque section ci-dessous contient des questions auxquelles vous devez réfléchir et des indications importantes. Il est nécessaire de lire et comprendre chaque question avant de passer à la suivante ! Vous pouvez même consulter les réponses en cliquant sur  &#9656;  si vous n'êtes pas capables de trouver les réponses vous-mêmes :(.
+Ce guide vous aidera à implémenter chacune de ces étapes pour l'instruction `addi`. Chaque section ci-dessous contient des questions auxquelles vous devez réfléchir et des indications importantes. Il est nécessaire de lire et comprendre chaque question avant de passer à la suivante ! Vous pouvez même consulter les réponses en cliquant sur  &#9656; si vous n'êtes pas capables de trouver les réponses vous-mêmes :(.
 
 #### **Étape 1 : Récupération d'instruction (IF)**
 

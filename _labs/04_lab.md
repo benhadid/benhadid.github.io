@@ -4,7 +4,7 @@ date: 2019-09-19T4:00:00+4:30
 title: 'Travaux Pratiques #4 - Introduction à MARS'
 attachment: /static_files/labs/Fibonacci.asm
 #solutions: /static_files/labs/lab_solutions.pdf
-due_event: 
+due_event:
     type: due
     date: 2019-09-26T23:59:00+3:30
     description: 'Travaux Pratiques #4 - à remettre'
@@ -12,18 +12,16 @@ due_event:
 
 # Objectifs
 
-  - Se familiariser avec le simulateur MARS. 
+  - Se familiariser avec le simulateur MARS.
 
   - Apprendre à assembler, exécuter et déboguer un programme MIPS.
 
 
-# Le simulateur MARS 
+# Le simulateur MARS
 
-MARS, the Mips Assembly and Runtime Simulator, will assemble and simulate the execution of MIPS assembly language programs. It can be used either from a command line or through its integrated development environment (IDE). MARS is written in Java and requires at least Release 1.5 of the J2SE Java Runtime Environment (JRE) to work. It is distributed as an executable JAR file. The MARS home page is http://www.cs.missouristate.edu/MARS/.
+MARS (**Mi**ps **A**ssembly and **R**untime **S**imulator), assemble et simule l'exécution de programmes en langage assembleur MIPS. Il peut être utilisé à partir de la ligne de commande ou via son environnement de développement intégré (IDE). MARS est écrit en Java et nécessite au moins la version 1.5 de J2SE Java Runtime Environment (JRE) pour fonctionner. Il est distribué sous forme de fichier JAR exécutable depuis cette [page d'accueil](http://www.cs.missouristate.edu/MARS/).
 
-MARS (**Mi**ps **A**ssembly and **R**untime **S**imulator), assemble et simule l'exécution de programmes en langage assembleur MIPS. Il peut être utilisé à partir de la ligne de commande ou via son environnement de développement intégré (IDE). MARS est écrit en Java et nécessite au moins la version 1.5 de J2SE Java Runtime Environment (JRE) pour fonctionner. Il est distribué sous forme de fichier JAR exécutable depuis cette [page d'accueil](http://www.cs.missouristate.edu/MARS/). 
-
-MARS est déjà installé sur les machines du laboratoire et dans la VM fournie. Pour lancer Mars dans la VM ou depuis une machine du laboratoire, entrez la commande suivante dans un terminal
+MARS est déjà installé sur les machines du laboratoire et dans la VM [fournie]({{site.baseurl}}/materials). Pour lancer Mars dans la VM ou depuis une machine du laboratoire, entrez la commande suivante dans un terminal
 
 ```bash
 $ mars
@@ -47,30 +45,30 @@ Il y a deux zones de message à onglets au bas de la figure ci-dessus :
 
 La fenêtre **Execute** contient trois volets principaux :
 
- - **Text Segment** : affiche le code machine et les adresses associées. 
+ - **Text Segment** : affiche le code machine et les adresses associées.
 
- - **Data Segment** : affiche les emplacements de mémoire qui contiennent des variables dans le segment de données. 
- 
+ - **Data Segment** : affiche les emplacements de mémoire qui contiennent des variables dans le segment de données.
+
  - **Labels** : affiche les adresses des éléments étiquetés comme les variables et les points de saut. Si l'anglet n'est pas visible sur votre simulateur, vous pouvez l'activer à partir du menu << **Settings \| Show Labels Window (symbol table)** >>
 
 La figure ci-dessous montre les volets de la fenêtre **Execute** et souligne les fonctionnalités suivantes :
 
-  1. L'onglet de la fenêtre **Execute**. 
+  1. L'onglet de la fenêtre **Execute**.
 
-  2. Code assembleur affiché avec adresses et code machine associés. 
- 
-  3. Valeurs stockées dans le segment de données. Vous pouvez les modifier directement dans cette zone. 
- 
-  4. Commandes de navigation dans la zone de segment de données. Permet aussi de basculer pour afficher le segment de pile. 
- 
+  2. Code assembleur affiché avec adresses et code machine associés.
+
+  3. Valeurs stockées dans le segment de données. Vous pouvez les modifier directement dans cette zone.
+
+  4. Commandes de navigation dans la zone de segment de données. Permet aussi de basculer pour afficher le segment de pile.
+
   5. Basculer entre l'affichage décimal et hexadécimal des adresses et les valeurs dans la mémoire et dans les registres.
- 
+
   6. Les étiquettes et leurs adresses mémoire correspondantes.
- 
+
   7. Valeurs stockées dans les registres. Vous pouvez modifier directement ces valeurs dans cette zone.
- 
+
   8. Cases à cocher utilisées pour configurer les << points d'arrêt >> pour chaque instruction MIPS. Utile pour le débogage.  
- 
+
   9. Sélection de la vitesse d'exécution. Utile pour le débogage.
 
  ![MARS]({{site.baseurl}}/static_files/images/mars_execute_annotated.png){: height="100%" width="100%" .aligncenter}
@@ -79,11 +77,11 @@ La figure ci-dessous montre les volets de la fenêtre **Execute** et souligne le
 
 Il existe trois onglets de registres :
 
- - **Registers** : Les registres entiers $0 à $31, HI, LO, et le PC. 
+ - **Registers** : Les registres entiers $0 à $31, HI, LO, et le PC.
 
- - **Coproc 0** : registres pour les codes d'excéptions, d'interruptions, et de status. 
+ - **Coproc 0** : registres pour les codes d'excéptions, d'interruptions, et de status.
 
- - **Coproc 1** : registres pour le calcul en virgule flottante. 
+ - **Coproc 1** : registres pour le calcul en virgule flottante.
 
 # Assembler, Exécuter, et Déboguer un programme MIPS
 
@@ -148,39 +146,39 @@ Après avoir exécuté la commande << Assemble >>, vous pouvez maintenant exécu
 </tr>
 </tbody>
 </table>
- 
+
 Pendant l'exécution du programme, l'instruction en cours est surlignée en jaune et le registre qui a été modifié en dernier est surligné en vert. De plus, la variable qui vient d'être mise à jour dans le segment de données est surlignée en bleu. Ces effets de couleurs ne sont perceptibles que si vous exécutez le programme en mode << pas-à-pas >> ou à une vitesse assez réduite.
 
 Pour plus de détails sur le simulateur MARS, reportez-vous à la [documentation MARS](http://courses.missouristate.edu/KenVollmar/MARS).
 
-# Tâches à réaliser 
+# Tâches à réaliser
 
 1. Tester un programme MIPS simple. Considérez le programme suivant illustré ci-dessous :
 
    1. Tapez dans MARS le programme illustré dans la figure ci-dessus.  
 
-   2. Découvrez comment afficher et masquer les numéros de ligne. 
+   2. Découvrez comment afficher et masquer les numéros de ligne.
 
-   3. Assemblez et exécutez le programme. 
+   3. Assemblez et exécutez le programme.
 
-   4. Quelle est la sortie du programme ? et où apparaît-elle ? 
+   4. Quelle est la sortie du programme ? et où apparaît-elle ?
 
 ![MARS]({{site.baseurl}}/static_files/images/mars_hello.png){: height="93%" width="93%" .wp-caption .aligncenter}
 
 {:start="2"}
-2. Explorer le simulateur MARS : 
+2. Explorer le simulateur MARS :
 
-   1. Téléchargez et assemblez dans MARS le fichier de démarrage au début de ce document (ou depuis le [site de MARS](http://courses.missouristate.edu/KenVollmar/MARS)). 
+   1. Téléchargez et assemblez dans MARS le fichier de démarrage au début de ce document (ou depuis le [site de MARS](http://courses.missouristate.edu/KenVollmar/MARS)).
 
-   2. Identifiez les emplacements et les valeurs des données initialisées. 
+   2. Identifiez les emplacements et les valeurs des données initialisées.
 
-   3. Basculer le format d'affichage entre décimal et hexadécimal. 
+   3. Basculer le format d'affichage entre décimal et hexadécimal.
 
-   4. Exécutez le programme à une vitesse de 3 instructions par seconde ou moins. 
+   4. Exécutez le programme à une vitesse de 3 instructions par seconde ou moins.
 
-   5. Exécutez le programme pas-à-pas et remarquez comment les valeurs dans les registres et dans la mémoire changent. 
+   5. Exécutez le programme pas-à-pas et remarquez comment les valeurs dans les registres et dans la mémoire changent.
 
-   6. Observez la sortie du programme dans la fenêtre d'affichage << Run I/O >>. 
+   6. Observez la sortie du programme dans la fenêtre d'affichage << Run I/O >>.
 
    7. Définissez un << point d'arrêt >> à la première instruction qui affiche les résultats. Quelle est l'adresse de cette instruction ?
 
@@ -188,15 +186,15 @@ Pour plus de détails sur le simulateur MARS, reportez-vous à la [documentation
 
    9. Changez la ligne :
          ```mips
-         space: .asciiz " "    # space to insert between numbers 
+         space: .asciiz " "    # space to insert between numbers
          ```
          à cette ligne
 
          ```mips
          space: .asciiz "\n"   # space to insert between numbers
          ```
-         
-         Exécutez le programme encore une fois. Que remarquez-vous ? 
+
+         Exécutez le programme encore une fois. Que remarquez-vous ?
 
 
 
@@ -227,7 +225,7 @@ Dans la bibliothèque standard du langage C, la fonction `strcmp` (cf. `man 3 st
 Les chaînes de caractères à comparer sont représentées par des octets contigus en mémoire (chaque octet est un
 caractère ASCII) suivi du caractère NUL (0x00).
 
-Dans le fichier `StrCmp.s`, écrivez le corps de la fonction `StrCmp` en Assembleur MIPS. 
+Dans le fichier `StrCmp.s`, écrivez le corps de la fonction `StrCmp` en Assembleur MIPS.
 
 Cette fonction doit retourner dans le registre `$v0` le résultat de la comparaison de deux chaînes de caractères. Si la première chaîne de caractères est inférieure à la second, alors `$v0` sera négatif. Si les deux chaînes de caractères sont semblables alors `$v0` sera nul. Enfin, si la première chaîne de caractères est supérieure à la seconde alors `$v0` sera positif.
 

@@ -4,7 +4,7 @@ date: 2019-09-19T4:00:00+4:30
 title: 'Travaux Pratiques #5 - Assembleur MIPS'
 attachment: /static_files/labs/lab_05.zip
 #solutions: /static_files/labs/lab_solutions.pdf
-due_event: 
+due_event:
     type: due
     date: 2019-09-26T23:59:00+3:30
     description: 'Travaux Pratiques #5 - à remettre'
@@ -14,7 +14,7 @@ due_event:
 
  - Maîtrise des conventions d'appel de fonction dans MIPS
 
- - Apprendre à écrire des fonctions en Assembleur.
+ - Apprendre à écrire des fonctions en langage assembleur.
 
 
 # Exercice 1
@@ -39,7 +39,7 @@ void map (struct node *head, int (*f) (int))
 }
 ```
 
-La déclaration `int (*f)(int)` signifie simplement que `f` est un pointeur sur une fonction qui, en langage C, est utilisée exactement comme toute autre fonction (si vous êtes curieux, voir ce [lien](https://www.geeksforgeeks.org/function-pointer-in-c/) pour apprendre davantage sur leur utilisation). 
+La déclaration `int (*f)(int)` signifie simplement que `f` est un pointeur sur une fonction qui, en langage C, est utilisée exactement comme toute autre fonction (si vous êtes curieux, voir ce [lien](https://www.geeksforgeeks.org/function-pointer-in-c/) pour apprendre davantage sur leur utilisation).
 
 Pour votre implémentation en assembleur MIPS de la fonction `map()`, vous aurez besoin d'utiliser une instruction que vous pourriez ne pas avoir rencontrer avant : `jalr`. L'instruction `jalr` est à `jr` ce que `jal` est à `j`. Cette instruction permet de se brancher à l'adresse contenue dans le registre donné et stocker l'adresse de l'instruction suivante (c.-à-d. PC + 4) dans `$ra`. Par exemple, si nous ne voulions pas utiliser l'instruction `jal`, on pourrait utiliser `jalr` pour appeler une fonction comme ceci :
 
@@ -60,7 +60,7 @@ Liste Après: 81 64 49 36 25 16 9 4 1 0
 
 # Exercise 2
 
-Dans l'exercice précédent, vous avez complété une procédure MIPS qui appliquait une fonction à chaque nœud dans une liste chaînée. Dans cet exercice, vous allez travailler avec une version similaire (mais légèrement plus complexe). 
+Dans l'exercice précédent, vous avez complété une procédure MIPS qui appliquait une fonction à chaque nœud dans une liste chaînée. Dans cet exercice, vous allez travailler avec une version similaire (mais légèrement plus complexe).
 
 En effet, au lieu d'avoir une liste chaînée de « `int` », notre structure de données est une liste chaînée de tableaux de « `int` ». Rappelons lorsque nous traitons un tableau dynamique en C, nous devons stocker explicitement la taille du tableau. Voici, en langage C, à quoi ressemble la structure des données de notre liste chaînée :
 
@@ -84,14 +84,14 @@ void map(struct node *head, int (*f)(int)) {
 }
 ```
 
-## Tâches à effectuer 
+## Tâches à effectuer
 
 Trouvez et corrigez les erreurs dans `megalistmanips.s`. En ce sens, aidez-vous des lignes commentées dans le fichier source et **assurez-vous que les instructions MIPS correspondent aux indications données dans les commentaires**. Voici quelques indices :
 
   * Pourquoi avons-nous besoin de sauvegarder des informations dans la pile avant d'exécuter l'instruction `jal` ?
   * Quelle est la différence entre « `add $t0, $s0, $0` » et « `lw $t0, 0($s0)` » ?
   * Faites attention aux types des attributs dans la structure `struct node`.
-   
+
 Pour référence, l'exécution du programme (dans MARS) devrait donner le résultat suivant :
 
 ```shell
@@ -110,7 +110,7 @@ Listes après:
 30 42 56 72 90
 ```
 
-# Exercise 3 
+# Exercise 3
 
 Considérons une fonction discrète `f` définie sur les entiers de l'ensemble {-3, -2, -1, 0, 1, 2, 3}. Voici la définition de la fonction :
 
@@ -153,7 +153,7 @@ Dans la bibliothèque standard du langage C, la fonction `strcmp` (cf. `man 3 st
 Les chaînes de caractères à comparer sont représentées par des octets contigus en mémoire (chaque octet est un
 caractère ASCII) suivi du caractère NUL (0x00).
 
-Dans le fichier `StrCmp.s`, écrivez le corps de la fonction `StrCmp` en Assembleur MIPS. 
+Dans le fichier `StrCmp.s`, écrivez le corps de la fonction `StrCmp` en Assembleur MIPS.
 
 Cette fonction doit retourner dans le registre `$v0` le résultat de la comparaison de deux chaînes de caractères. Si la première chaîne de caractères est inférieure à la second, alors `$v0` sera négatif. Si les deux chaînes de caractères sont semblables alors `$v0` sera nul. Enfin, si la première chaîne de caractères est supérieure à la seconde alors `$v0` sera positif.
 
