@@ -149,6 +149,18 @@ Après avoir exécuté la commande << Assemble >>, vous pouvez maintenant exécu
 
 Pendant l'exécution du programme, l'instruction en cours est surlignée en jaune et le registre qui a été modifié en dernier est surligné en vert. De plus, la variable qui vient d'être mise à jour dans le segment de données est surlignée en bleu. Ces effets de couleurs ne sont perceptibles que si vous exécutez le programme en mode << pas-à-pas >> ou à une vitesse assez réduite.
 
+## Assembler plusieurs fichiers d'un même projet dans MARS
+
+Parfois, il est possible que nous ayons à assembler plusieurs fichiers en même temps pour un projet. Par exemple, implémenter une fonction spécifique dans un fichier et utiliser un autre fichier << test >> fourni pour s'assurer que notre fonction est implémentée correctement.
+
+Le simulateur MARS permet d'assembler et de lier plusieurs fichiers dans un seul programme. Suivez les étapes ci-dessous pour activer cette fonctionnalité, si besoin.
+
+    1. Placez les fichiers du projet dans un même répertoire
+    2. Depuis le menu de MARS, activez l'option **Settings->Assemble all files in directory**
+    3. De plus, pour que l'exécution commence toujours à partir de votre fonction 'main', activer l'option **Settings->Initialize program counter to global 'main'**
+    4. Assemblez le fichier principal du projet (i.e. le fichier contenant votre fonction 'main') et MARS se chargera d'assembler et lier les appels vers les autres fichiers.
+    5. Happy MIPSing !
+
 Pour plus de détails sur le simulateur MARS, reportez-vous à la [documentation MARS](http://courses.missouristate.edu/KenVollmar/MARS).
 
 # Tâches à réaliser
