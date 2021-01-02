@@ -16,7 +16,6 @@ due_event:
 
  - Apprendre à écrire des fonctions en langage assembleur.
 
-
 # Exercice 1
 
 Télécharger le fichier de démarrage et décompressez son contenu dans le répertoire de votre choix. Dans cet exercice, vous allez compléter l'implémentation de la fonction `map()` dans `mips.s`. Cette fonction modifie les élément de la liste chaînée communiquée en paramètre. Les modifications se font sur place au lieu de créer et renvoyer une nouvelle liste avec les valeurs modifiées. Une implémentation de la liste en langage C serait comme suit :
@@ -86,7 +85,7 @@ void map(struct node *head, int (*f)(int)) {
 
 ## Tâches à effectuer
 
-Trouvez et corrigez les erreurs dans `megalistmanips.s`. En ce sens, aidez-vous des lignes commentées dans le fichier source et **assurez-vous que les instructions MIPS correspondent aux indications données dans les commentaires**. Voici quelques indices :
+Trouvez et corrigez les erreurs dans `megalistmanips.s`. En ce sens, aidez-vous des lignes commentées dans le fichier source et **assurez-vous que les instructions MIPS correspondent aux indications données dans les commentaires**. Voici quelques indications :
 
   * Pourquoi avons-nous besoin de sauvegarder des informations dans la pile avant d'exécuter l'instruction `jal` ?
   * Quelle est la différence entre « `add $t0, $s0, $0` » et « `lw $t0, 0($s0)` » ?
@@ -115,17 +114,18 @@ Listes après:
 
 Considérons une fonction discrète `f` définie sur les entiers de l'ensemble {-3, -2, -1, 0, 1, 2, 3}. Voici la définition de la fonction :
 
-  f(-3) = 6
-  f(-2) = 61
-  f(-1) = 17
-  f(0) = -38
-  f(1) = 19
-  f(2) = 42
-  f(3) = 5
+   f(-3) = 6
+   f(-2) = 61
+   f(-1) = 17
+   f(0) = -38
+   f(1) = 19
+   f(2) = 42
+   f(3) = 5
 
 Implémentez la version MIPS de la fonction discrète `f` dans `discrete_fn.s` **SANS** utiliser des instructions de branchement ou de saut !
 
 Indication : Comment lire un mot à partir d'une adresse mémoire ?
+
 
 # Exercice 4
 
