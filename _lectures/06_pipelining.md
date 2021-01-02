@@ -3,7 +3,7 @@ type: lecture
 date: 2019-10-15T8:00:00+4:30
 title: Pipelining
 tldr: "Implémentation d'un processeur MIPS parallèle"
-thumbnail: /static_files/presentations/lec.jpg
+thumbnail: /static_files/presentations/lec_06.jpg
 links:
     - url: /static_files/presentations/06-Pipelining.pptx
       name: slides

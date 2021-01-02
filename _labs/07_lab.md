@@ -179,20 +179,18 @@ Dans la notation ci-dessous, A[4] indique que l'entrée est nommée " **A** " et
 <tbody>
 <tr>
 <th markdown="span">Add4 :</th>
-<td markdown="span">**S = A + B + Cin**; **Cout = retenue**</td>
+<td markdown="span">S = A + B + Cin; Cout = retenue</td>
 </tr>
 <tr>
 <th markdown="span">Opérandes :</th>
-<td markdown="span">**A[4], B[4], Cin**</td>
+<td markdown="span">A[4], B[4], Cin</td>
 </tr>
 <tr>
 <th markdown="span">Résultat :</th>
-<td markdown="span">**S[4], Cout**</td>
+<td markdown="span">S[4], Cout</td>
 </tr>
 </tbody>
 </table>
-
-
 
 La sortie `S` est calculée en ajoutant `A` , `B` et `Cin`. `A` , `B` et `S` sont des nombres complément à deux. Si un débordement se produit, la sortie `Cout` doit être activée. Dans ce cas, la sortie `S` correspond à la valeur calculée quand toutes les erreurs de débordement sont ignorées.
 

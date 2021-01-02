@@ -3,7 +3,7 @@ type: lecture
 date: 2019-10-15T8:00:00+4:30
 title: Aléas du « Pipelining »
 tldr:  Aléas d'exécutions dus au « Pipelining »
-thumbnail: /static_files/presentations/lec.jpg
+thumbnail: /static_files/presentations/lec_07.jpg
 links:
     - url: /static_files/presentations/07-Pipelining-Aleas.pptx
       name: slides
