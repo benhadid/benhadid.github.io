@@ -155,11 +155,11 @@ Parfois, il est possible que nous ayons à assembler plusieurs fichiers en même
 
 Le simulateur MARS permet d'assembler et de lier plusieurs fichiers dans un seul programme. Suivez les étapes ci-dessous pour activer cette fonctionnalité, si besoin.
 
-    1. Placez les fichiers du projet dans un même répertoire
-    2. Depuis le menu de MARS, activez l'option **Settings->Assemble all files in directory**
-    3. De plus, pour que l'exécution commence toujours à partir de votre fonction 'main', activer l'option **Settings->Initialize program counter to global 'main'**
-    4. Assemblez le fichier principal du projet (i.e. le fichier contenant votre fonction 'main') et MARS se chargera d'assembler et lier les appels vers les autres fichiers.
-    5. Happy MIPSing !
+  1. Placez les fichiers du projet dans un même répertoire
+  2. Depuis le menu de MARS, activez l'option **Settings->Assemble all files in directory**
+  3. De plus, pour que l'exécution commence toujours à partir de votre fonction 'main', activer l'option **Settings->Initialize program counter to global 'main'**
+  4. Assemblez le fichier principal du projet (i.e. le fichier contenant votre fonction 'main'); MARS se chargera d'assembler et lier les appels vers les autres fichiers.
+  5. Happy MIPSing !
 
 Pour plus de détails sur le simulateur MARS, reportez-vous à la [documentation MARS](http://courses.missouristate.edu/KenVollmar/MARS).
 
