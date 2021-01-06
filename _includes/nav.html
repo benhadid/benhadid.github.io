@@ -1,9 +1,16 @@
 <ul class="menu">
     {% for item in site.data.nav.items %}
     <li>
-        <a class="page-link" href="{{ item.url | prepend: site.baseurl }}">
-            <i class="{{ item.icon_class }}"></i> {{ item.name }}
-        </a>
+
+      {% assign itemurl = item.url %}
+      {% unless itemurl contains '://' %}
+          {% assign itemurl = itemurl | prepend: site.baseurl %}
+      {%endunless%}
+
+      <a class="page-link" href="{{ itemurl }}">
+        <i class="{{ item.icon_class }}"></i> {{ item.name }}
+      </a>
+
     </li>
     {% endfor %}
 </ul>

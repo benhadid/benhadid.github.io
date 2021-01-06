@@ -4,7 +4,7 @@ date: 2019-09-19T4:00:00+4:30
 title: 'Travaux Pratiques #8 - Mémoire Cache'
 attachment: /static_files/labs/lab_08.zip
 #solutions: /static_files/labs/lab_solutions.pdf
-due_event: 
+due_event:
     type: due
     date: 2019-09-26T23:59:00+3:30
     description: 'Travaux Pratiques #8 - à remettre'
@@ -13,7 +13,7 @@ due_event:
 # Objectifs  
 
   - Découvrir comment les schémas d'accès à la mémoire déterminent les taux de succès de cache.
-  
+
   - Déterminer quels schémas d'accès à la mémoire produisent de BONS taux de succès.
 
   - Être en mesure d'optimiser le code pour produire de bons taux de succès de cache.
@@ -28,32 +28,32 @@ Commencez par télécharger le fichier de démarrage et décompressez son conten
   -	La partie la plus importante à comprendre dans le programme est la section intitulée "PSEUDOCODE" en haut du fichier.  Fondamentalement, nous allons simplement remettre à zéro certains éléments d'un tableau (option 0) ou les incrémenterez (option 1).
 
   - **Quels** éléments sont accédés dans le tableau est déterminé par le pas `step size` ($a1). Et le nombre de fois que nous faisons cela est contrôlé par le paramètre `repcount` ($a2). **Ces deux paramètres affecteront directement les taux de succès et d'échec dans le cache**. L'option ($a3) changera également certaines choses, tout comme les paramètres propres du cache.
- 
+
 Pour chacun des scénarios de l'exercice 1 ci-dessous, vous répéterez les étapes suivantes :
 
   1.	Définir dans `caches.s` les paramètres de programme appropriés comme indiqué au début de chaque scénario (en modifiant les valeurs immédiates des instructions `li` signalés dans la fonction `main`)
-  
-  2.	Exécuter << **Tools->Data Cache Simulator** >>.
-  
+
+  2.	Exécuter << **Tools|Data Cache Simulator** >>.
+
   3.	Définir les paramètres de cache appropriés comme indiqué au début de chaque scénario.
-  
+
   4.	Activer le journal d'exécution (Runtime Log), puis cliquez sur "Connect to MIPS".
-  
-  5.	Exécuter << **Tools->Memory Reference Visualizer** >> et cliquez sur "Connect to MIPS".
-  
+
+  5.	Exécuter << **Tools|Memory Reference Visualization** >> et cliquez sur "Connect to MIPS".
+
   6.	Au fur et à mesure que vous avancez dans le code dans MARS, tout accès au segment de données de la mémoire (chargement ou sauvegarde) sera visualisé (les accès à la mémoire d'instructions ne sont pas affichées).
 
-Le << Data Cache Simulator >> affichera l'état de votre cache de données et le << Memory Reference Visualization >> montrera quelles parties de la mémoire sont accédées et combien de fois. Rappelons que ces outils fonctionnent indépendamment de votre code, donc si vous effectuez un << reset >> sur le code `cache.s` (ou autre), vous devez également réinitialiser le contenu du cache et de la mémoire !
+Le << **Data Cache Simulator** >> affichera l'état de votre cache de données et le << **Memory Reference Visualization** >> montrera quelles parties de la mémoire sont accédées et combien de fois. Rappelons que ces outils fonctionnent indépendamment de votre code, donc si vous effectuez un << reset >> sur le code `cache.s` (ou autre), vous devez également réinitialiser le contenu du cache et de la mémoire !
 
 **REMARQUE** : Si vous exécutez le code en un coup (au lieu d'une exécution pas-à-pas), vous obtiendrez l'état final du cache et le taux de succès. Afin de mieux voir quels << pas / itérations >> affectent les taux de succès et d'échec dans le programme, insérez un << point d'arrêt >> dans la **boucle** `wordLoop` juste avant ou après chaque accès à la mémoire.
 
 # Exercice 1 : (Quelques scénarios d'accès à la mémoire)
 
-## Tâches à réaliser : 
+## Tâches à réaliser :
 
 Simulez les scénarios suivants et notez les taux finaux de succès de cache avec le programme `cache.s`. Essayez de déduire quel sera le taux de succès AVANT d'exécuter le code. Après avoir exécuté chaque simulation, assurez-vous de comprendre LE POURQUOI des résultats obtenus (cela pourrait finir comme une question dans l'examen)!
 
-Voici quelques questions auxquelles vous devriez pouvoir répondre et qui vous aideront à mieux comprendre les problèmes posés dans les scénarios ci-dessous : 
+Voici quelques questions auxquelles vous devriez pouvoir répondre et qui vous aideront à mieux comprendre les problèmes posés dans les scénarios ci-dessous :
 
  -	Quelle est la taille du bloc mémoire / ligne de cache ?
  -	Combien d'accès consécutifs (en tenant compte de la taille du pas) accèdent au même bloc ?
@@ -63,18 +63,18 @@ Voici quelques questions auxquelles vous devriez pouvoir répondre et qui vous a
  -	À quel endroit du cache un bloc particulier en mémoire sera mappé ?
  -	Pour décider si un accès spécifique au cache est un échec ou un succès : a-t-on déjà accédé à cette donnée ? Si tel est le cas, est-elle toujours dans le cache ou non ?
 
-### Scénario 1 
+### Scénario 1
 
-**Paramètres du cache :** (à définir dans la fenêtre << Cache Visualization >>)
+**Paramètres du cache :** (à définir dans la fenêtre << **Data Cache Simulator >>)
 
- - **Placement Policy (type du cache):** Direct Mapping  (cache direct). 
+ - **Placement Policy (type du cache):** Direct Mapping  (cache direct).
  - **Block Replacement Policy (politique de remplacement de bloc):** LRU.
  - **Set size (nombre de blocs par ligne de cache) :** 1. (MARS ne vous autorisera pas à changer cette valeur. Pourquoi?)
  - **Number of blocks (nombre de blocs dans le cache):** 4.
  - **Cache block size (taille du bloc de cache):** 2 (en mots).
 
-**Paramètres du programme :** (à définir en initialisant les registres $a? dans `cache.s`)
- 
+**Paramètres du programme :** (à définir en initialisant les registres **$a?** dans `cache.s`)
+
  - **Array Size (taille du tableau) :** 128 (octets).
  - **Step Size (pas) :** 8.
  - **repcount (nombre de répétitions) :** 4.
@@ -82,24 +82,24 @@ Voici quelques questions auxquelles vous devriez pouvoir répondre et qui vous a
 
 **Indication :** : S'il vous est difficile de visualiser ce qui est mis dans le cache à chaque accès mémoire en examinant simplement le code, essayez avec du papier et un crayon ! Notez ce que serait la décomposition (Tag / Index / Offset) des adresses 32 bits et déterminez quelles adresses mémoire mappent vers quelle lignes dans le cache avec les bits d'Index.
 
-1. Quelle combinaison de paramètres produit le taux de succès que vous observez ? (Indice : votre réponse doit être de la forme : << Parce que [paramètre A] en octets est exactement égal à [paramètre B] en octets.>>). **Remarque :** N'oubliez pas que la << taille du cache >> est un paramètre valide que vous définissez implicitement en choisissant la << taille du bloc >> et le << nombre de lignes >>.
+1. Quelle combinaison de paramètres produit le taux de succès que vous observez ? (Indice : votre réponse doit être de la forme : << Parce que [paramètre A] en octets est exactement égal à [paramètre B] en octets.>>). **Remarque :** Rappelons que la taille du cache est définit implicitement par la << taille du bloc >> et le << nombre de blocs >> dans le cache.
 
 2. Quel est le taux de succès du cache si nous augmentons arbitrairement le paramètre `repcount` ? Pourquoi ?
 
 3. Comment pourrions-nous modifier un paramètre dans le programme pour augmenter notre taux de succès ? (Indice: votre réponse doit être de la forme: "Remplacez \[paramètre\] par \[valeur\]"). **Remarque :** Il n'est pas important si nous accédons aux mêmes éléments du tableau. Donnez simplement une modification des paramètres du programme qui augmenterait le taux de succès. Assurez-vous, cependant, que la valeur proposée soit valide.
 
-### Scénario 2 
+### Scénario 2
 
 **Paramètres du cache :**
 
- - **Placement Policy (type du cache):** N-way Set Associative (cache N-associatif). 
+ - **Placement Policy (type du cache):** N-way Set Associative (cache N-associatif).
  - **Block Replacement Policy (politique de remplacement de bloc):** LRU.
- - **Set size (nombre de blocs par ligne de cache) :** 4. 
+ - **Set size (nombre de blocs par ligne de cache) :** 4.
  - **Number of blocks (nombre de blocs dans le cache):** 16.
  - **Cache block size (taille du bloc de cache):** 4 (en mots)
 
 **Paramètres du programme :**
- 
+
  - **Array Size (taille du tableau) :** 256 (octets)
  - **Step Size (pas) :** 2
  - **repcount (nombre de répétitions) :** 1
@@ -116,12 +116,12 @@ Vous auriez dû remarquer que le taux de succès était assez élevé pour le sc
 Supposons que nous ayons un programme qui itère `repcount` fois sur un très grand tableau (c.-à-d. bien plus grand que la taille du cache). Pendant chaque itération, nous mappons une fonction différente aux éléments de notre tableau (par exemple, si `repcount = 1024`, nous mappons 1024 fonctions différentes sur chacun des éléments du tableau). Pour référence, dans le scénario 2, nous n'avions qu'une fonction d'incrémentation et une itération.
 
 {:start="4"}
-4. En tenant compte de la déscription ci-dessus, comment pouvons-nous restructurer les accès au tableau `array` pour atteindre un taux de succès comme celui obtenu avant (en supposons que chaque élément du tableau est modifié indépendamment des autres, c.-à-d. qu'il n'est pas important si la répétition k est appliquée à l'élément `arr[i+1]` avant qu'elle ne soit appliquée à l'élément `arr[i]`, etc.) ? 
+4. En tenant compte de la déscription ci-dessus, comment pouvons-nous restructurer les accès au tableau `array` pour atteindre un taux de succès comme celui obtenu avant (en supposons que chaque élément du tableau est modifié indépendamment des autres, c.-à-d. qu'il n'est pas important si la répétition k est appliquée à l'élément `arr[i+1]` avant qu'elle ne soit appliquée à l'élément `arr[i]`, etc.) ?
 
-**Indication :** Il ne serait pas judicieux de parcourir la totalité du tableau à chaque répétition car il est beaucoup plus volumineux que votre cache. Cela réduirait la quantité de localité temporelle exposée par votre programme et de ce fait impacterait négativement le taux de succès du cache. 
+**Indication :** Il ne serait pas judicieux de parcourir la totalité du tableau à chaque répétition car il est beaucoup plus volumineux que votre cache. Cela réduirait la quantité de localité temporelle exposée par votre programme et de ce fait impacterait négativement le taux de succès du cache.
 
 L'idée est d'exposer plus de localité afin que nos caches puissent profiter de notre comportement prévisible. Donc, nous devrions essayer d'accéder à \_\_\_\_\_\_\_\_ du tableau à la fois et appliquer toutes les \_\_\_\_\_\_\_\_ à ces \_\_\_\_\_\_\_\_ avant de continuer avec un nouveau \_\_\_\_\_\_\_\_. Cela nous permettra de garder \_\_\_\_\_\_\_\_ du tableau bien au chaud dans le cache pendant toute la procédure et ne pas avoir à faire le tour plus tard ! (Les 1<sup>er</sup>, 3<sup>ème</sup> et 5<sup>ème</sup> espaces doivent être identiques. Ce n'est pas un terme de vocabulaire spécifique que vous devriez utiliser pour les remplir. C'est plutôt une idée que vous devriez avoir).
- 
+
 # Exercice 2 : (Ordre des boucles et multiplication matricielle)
 
 Pour rappel, les matrices sont des structures de données à deux dimensions dans lesquelles chaque élément de données est accessible via deux indices. Pour multiplier deux matrices, nous pouvons simplement utiliser trois boucles imbriquées. Par exemple, en supposant des matrices A, B et C de dimensions n-par-n et stockées dans des tableaux de colonnes à une dimension :
@@ -147,7 +147,7 @@ Ouvrez le fichier en langage C `matrixMultiply.c` dans l'éditeur de votre choix
 
 **Tâche :** Déduisez les pas utilisés dans chaque ensemble de boucles imbriquées des cinq autres implémentations.
 
-Compilez et exécutez le fichier `matrixMultiply.c` avec la commande suivante, puis répondez aux questions ci-dessous. 
+Compilez et exécutez le fichier `matrixMultiply.c` avec la commande suivante, puis répondez aux questions ci-dessous.
 
 ```bash
 $ make ex2
@@ -163,7 +163,7 @@ Notez que la commande de compilation dans le Makefile utilise l'indicateur '-O3'
 
 
 # Exercice 3: (Transposition de matrice par bloc)
- 
+
 ## Transposition matricielle
 
 Nous souhaitons permuter les lignes et les colonnes d'une matrice (voir figure ci-dessous). Cette opération est appelée *transposition de matrice* et une implémentation efficace peut être très utile, particulièrement quand on effectue des opérations assez compliquées en algèbre linéaire. La transposée de la matrice A est souvent désignée par A<sup>*T*</sup>.
@@ -172,7 +172,7 @@ Nous souhaitons permuter les lignes et les colonnes d'une matrice (voir figure c
 
 ## Le &laquo; cache-blocking &raquo;
 
-Dans l'exercice précédent sur les multiplications de matrices, nous parcourons (avec des pas différents) toutes les valeurs des matrices A et B pour calculer une valeur de la matrice C. Ainsi, nous accédons constamment à de nouvelles valeurs de la mémoire et obtenons très peu de localité temporelle et / ou spatiale des accès mémoire ! 
+Dans l'exercice précédent sur les multiplications de matrices, nous parcourons (avec des pas différents) toutes les valeurs des matrices A et B pour calculer une valeur de la matrice C. Ainsi, nous accédons constamment à de nouvelles valeurs de la mémoire et obtenons très peu de localité temporelle et / ou spatiale des accès mémoire !
 
 Nous pouvons améliorer la quantité de réutilisation des données dans les caches en implémentant une technique appelée << cache-blocking >>. Plus formellement, Le << cache-blocking >> est une technique qui consiste à ré-écrire une opération sur les tableaux de sorte à forcer la réutilisation des données présentes dans le cache. Elle doit donc prendre en compte la taille du cache comme argument. Dans le cas de la transposition matricielle, on envisage d'effectuer la transposition un bloc à la fois.
 
@@ -190,7 +190,7 @@ $ make ex3
 $ ./transpose n blocksize
 ```
 
-où `n` est la largeur de la matrice et `blocksize` est la taille du bloc. Par exemple, `n` = 10000 et `blocksize` = 33. 
+où `n` est la largeur de la matrice et `blocksize` est la taille du bloc. Par exemple, `n` = 10000 et `blocksize` = 33.
 
 Si votre implémentation de `transpose_blocking()` est correcte, la méthode de découpage en blocs devrait montrer une amélioration substantielle des performances par rapport à la version 'naïve'.
 
@@ -212,9 +212,9 @@ Une fois que votre implémentation fonctionne corrèctement, l'étape suivante e
 
 ## Modifier les dimensions des matrices
 
-Exécutez votre code plusieurs fois avec une valeur de `blocksize` fixée à 20 et les valeurs 100, 1000, 2000, 5000 et 10000 pour `n`. 
+Exécutez votre code plusieurs fois avec une valeur de `blocksize` fixée à 20 et les valeurs 100, 1000, 2000, 5000 et 10000 pour `n`.
 
-- À quel moment la version de transposition par << cache-blocking >> devient plus rapide que la version 'naïve' ? 
+- À quel moment la version de transposition par << cache-blocking >> devient plus rapide que la version 'naïve' ?
 
 - Pourquoi la version en << cache-blocking >> nécessite-t-elle que la matrice ait une certaine taille avant de surpasser les performances de la version 'naïve' ?
 

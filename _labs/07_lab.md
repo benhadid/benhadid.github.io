@@ -4,7 +4,7 @@ date: 2019-09-19T4:00:00+4:30
 title: 'Travaux Pratiques #7 - Introduction à Logisim'
 attachment: /static_files/labs/lab_07.zip
 #solutions: /static_files/labs/lab_solutions.pdf
-due_event: 
+due_event:
     type: due
     date: 2019-09-26T23:59:00+3:30
     description: 'Travaux Pratiques #7 - à remettre'
@@ -33,12 +33,12 @@ Commençons par créer un circuit très simple pour connecter des portes logique
 
 
   1. ![AND Gate]({{site.baseurl}}/static_files/images/and.gif) Commencez par cliquer sur le bouton "AND gate" (panneau à gauche - rubriques "Gates"). Vous remarquerez qu'une ombre d'une porte ET suivra les déplacements de votre curseur. Cliquez une fois dans la fenêtre schématique principale pour placer une porte ET.
-  
+
   2. ![Input Pin]({{site.baseurl}}/static_files/images/input.gif) Cliquez sur le bouton "**Pin**" (rubrique "**Wiring**"). Maintenant, placez deux broches d’entrée  à gauche de votre porte ET.
-  
+
   3. ![Input Pin]({{site.baseurl}}/static_files/images/input.gif) Cliquez sur le bouton "**Pin**". Placez ensuite une broche de sortie à droite de votre porte ET. Dans le panneau "Selection: Pin", changer la valeur de Output? à "Yes" et le paramètre Facing à "West".  Votre schéma devrait ressembler à ceci :
      ![2 Inputs AND Gate]({{site.baseurl}}/static_files/images/and_2_1.gif){: .wp-caption .aligncenter }
-  
+
   4. ![Selection Tool]({{site.baseurl}}/static_files/images/selection.gif) Cliquez sur le bouton "**Select tool**". Cliquez et faites glisser pour connecter les broches d'entrée sur le côté gauche de la porte ET. Cela prendra plusieurs étapes, car vous ne pouvez tracer que des fils verticaux et horizontaux. Dessinez simplement un fil horizontalement, relâchez le bouton de la souris, puis cliquez et faites glisser vers le bas en partant de la fin du fil pour continuer verticalement. Vous pouvez attacher le fil à n'importe quelle broche de la porte ET du côté gauche. Répétez la même procédure pour connecter la sortie (côté droit) de la porte ET. Après avoir effectué ces étapes, votre schéma devrait ressembler à ceci:
      ![2 Inputs AND Gate]({{site.baseurl}}/static_files/images/connected_and_2_1.gif){: .wp-caption .aligncenter }     
   Vous pouvez également modifier le nombre d'entrées de la "porte ET" en cliquant dessus à l'aide de l'outil "**Select tool**" et en modifiant les propriétés "Number of Inputs" dans le panneau inférieur gauche de la fenêtre. Cela peut également être fait avant de déposer le composant.
@@ -51,20 +51,18 @@ Tout comme les programmes écris dans un langage évolué peuvent contenir des f
 
 **REMARQUE IMPORTANTE :** La documentation de Logisim stipule que vous ne pouvez pas nommer un sous-circuit après un mot-clé (par exemple, "NAND"). Les noms de circuits doivent également commencer par "A-Za-z".
 
-  1. Ouvrir le schéma de l'exercice 1 (**File->Open->ex1.circ**).
+  1. Ouvrez le schéma de l'exercice 1 (**File | Open -> ex1.circ**). La fenêtre du sous-circuit NAND1 est automatiquement sélectionnée pour vous par Logisim.
 
-  2. Ouvrir le sous-circuit vide appelé NAND1 en double cliquant sur le nom `NAND1` dans le volet de composants (Design) à gauche. 
+  2. Dans cette fenêtre, créez un circuit NAND simple avec deux broches d'entrée sur le côté gauche et une broche de sortie sur le côté droit. Faites-le sans utiliser la porte NAND qui se trouve dans le dossier Gates (c.-à-d. utilisez uniquement les portes AND, OR et NOT). Vous pouvez modifier les étiquettes des entrées et des sorties en sélectionnant l'entrée / la sortie à l'aide de l'outil de sélection (**Select tool**) et en modifiant la propriété "Label" dans le panneau inférieur gauche de la fenêtre.
 
-  3. Dans la nouvelle fenêtre schématique que vous voyez, créez un circuit NAND simple avec deux broches d'entrée sur le côté gauche et une broche de sortie sur le côté droit. Faites-le sans utiliser la porte NAND qui se trouve dans le dossier Gates (c.-à-d. utilisez uniquement les portes AND, OR et NOT). Vous pouvez modifier les étiquettes des entrées et des sorties en sélectionnant l'entrée / la sortie à l'aide de l'outil de sélection (**Select tool**) et en modifiant la propriété "Label" dans le panneau inférieur gauche de la fenêtre.
+  3. Pour créer d'autres sous-circuits supplémentaires : NOR, XOR, MUX 2-to-1 et MUX 4-to-1 ; double-cliquez sur le nom du circuit dans le volet "Design" à gauche et répétez les instructions données dans l'étape 2 pour chaque sous-circuit. N'utilisez pas de portes intégrées autres que AND, OR et NOT. Cependant, une fois que vous avez construit un sous-circuit, vous pouvez l'utiliser pour en créer d'autres (cliquez sur le sous-circuit créé dans le volet des composants puis cliquez à nouveau sur la fenêtre de conception de circuit pour l'insérer comme composant).
 
-  4. Répétez les étapes 2 et 3 pour créer plusieurs sous-circuits supplémentaires: NOR, XOR, MUX 2-to-1  et MUX 4-to-1. N'utilisez pas de portes intégrées autres que AND, OR et NOT. Cependant, une fois que vous avez construit un sous-circuit, vous pouvez l'utiliser pour en créer d'autres (cliquez sur le sous-circuit créé dans le volet des composants puis cliquez à nouveau sur la fenêtre de conception de circuit pour l'insérer comme composant).
-  
-**Remarques** : 
+**Remarques** :
   - Veuillez ne pas changer les noms des sous-circuits ou en créer de nouveaux; insérez vos solutions dans les circuits respectivement nommé ou bien l'auto-évaluateur ne fonctionnera pas correctement ( ça ne sera pas bon pour votre score :( ) !
 
-  - Pour le MUX 4-to-1, `Sel0` et `Sel1` correspondent respectivement aux 0<sup>ème</sup> et 1<sup>er<sup> bits du sélecteur 2-bits.
+  - Pour le MUX 4-to-1, `Sel0` et `Sel1` correspondent respectivement aux 0<sup>ème</sup> et 1<sup>er</sup> bits du sélecteur 2-bits.
 
-  - Réutilisez vos sous-circuits personnalisés lors de la conception d'autres circuits.
+  - Essayez de Réutiliser vos sous-circuits personnalisés lors de la conception d'autres circuits.
 
 ## Étape 2 : État de stockage
 
@@ -314,7 +312,7 @@ Construire l'additionneur 4-bits dans Logisim en réutilisant l'additionneur 1-b
  - Utilisez des *tunnels*
  - Utilisez des sondes (probes) pour le débogage de votre circuit. Vous pouvez connecter des sondes aux bus d'entrée / sortie et définir l'affichage des valeurs en décimal pour une vérification rapide. Veuillez vous référer à la [page d'aide](http://www.cburch.com/logisim/docs/2.6.0/en/libs/base/probe.html) pour plus d'informations.
 
-## Étape 5 : Rotation à droite 
+## Étape 5 : Rotation à droite
 
 Avec des séparateurs et des multiplexeurs, vous allez implémenter un bloc logique combinatoire non trivial : `rotr`, qui signifie << Rotate Right >>. L'idée est que `rotr A, B` << fera pivoter >> les bits de l'entrée `A` vers la droite `B` bits fois. Ainsi, si `A` est `0b1011010101110011` et `B` est `0b0101` (5 en décimal), la sortie du bloc `rotr` sera `0b1001110110101011`. Notez que les 5 bits les plus à droite ont été extraits de l'extrémité droite de la valeur de `A` et injectés de nouveau à son extrémité gauche. En langage [RTL](https://fr.wikipedia.org/wiki/Register_Transfer_Language), l'opération ressemble à ceci `R = A >> B | A << (16 - B)`.
 

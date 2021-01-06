@@ -23,6 +23,10 @@ items:
   name: Projet
   icon_class: fas fa-user-graduate
 
+- url: https://piazza.com/univ-alger.dz/winter2021/l2ado/home # https://piazza.com/class/kizstkcn3ve5zo?cid=3#
+  name: Piazza
+  icon_class: fas fa-external-link-alt
+
 - url: /materials/
   name: Ressources
   icon_class: fas fa-book
