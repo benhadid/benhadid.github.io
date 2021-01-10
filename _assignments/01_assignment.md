@@ -1,6 +1,6 @@
 ---
 type: assignment
-date: 2019-09-19T4:00:00+4:30
+date: 2021-01-16T09:00:00+1:00
 title: 'Travaux Dirigés #1 - Représentation des Données'
 pdf: /static_files/assignments/td_1.pdf
 #attachment: /static_files/assignments/asg.zip

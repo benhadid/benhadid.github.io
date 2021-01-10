@@ -1,6 +1,6 @@
 ---
 type: lab
-date: 2019-09-19T4:00:00+4:30
+date: 2021-01-23T10:00:00+1:00
 title: 'Travaux Pratiques #2 - Manipulations des données'
 attachment: /static_files/labs/lab_02.zip
 #solutions: /static_files/labs/lab_solutions.pdf

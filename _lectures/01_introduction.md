@@ -1,6 +1,6 @@
 ---
 type: lecture
-date: 2019-09-19T8:00:00+4:30
+date: 2021-01-14T11:30:00+1:00
 title: Historique et Evolution
 tldr: "Histoire des ordinateurs et représentation de l’information"
 thumbnail: /static_files/presentations/lec_01.jpg

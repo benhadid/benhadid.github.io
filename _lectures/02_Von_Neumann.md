@@ -1,6 +1,6 @@
 ---
 type: lecture
-date: 2019-09-26T8:00:00+4:30
+date: 2021-01-21T11:30:00+1:00
 title: Architecture de Von Neumann
 tldr: "Le modèle de base de l'ordinateur proposé par John von Neumann"
 thumbnail: /static_files/presentations/lec_02.jpg

@@ -1,4 +1,4 @@
-<div class="col col-1" data-label="Event">Cours</div>
+<div class="col col-1" style="color: #664700 ;font-weight: bold;" data-label="Event">Cours</div>
 <div class="col col-1-2" data-label="Date">
     <!--
     {{ include.event.date | date: site.dateformat }}
@@ -10,9 +10,9 @@
     {{ include.event.date | date: "%Y" }}
     <br class="date-spliter"/>
     {% assign d = include.event.date | date : "%w" | minus: 0 %}
-    {{ site.data.fr.days[d] }}    
+    {{ site.data.fr.days[d] }}
 </div>
-<div class="col col-2" data-label="Description">
+<div class="col col-2" style="font-weight: bold" data-label="Description">
     {{ include.event.title }}
     <div class="schedule-lecture-links">
     {% include lecture_links.html lecture=include.event %}

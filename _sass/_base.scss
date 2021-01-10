@@ -98,8 +98,8 @@ li {
 
     >ul,
     >ol {
-        margin-bottom: 0;        
-    }    
+        margin-bottom: 0;
+    }
 }
 
 
@@ -110,7 +110,7 @@ ol li{
 
 ol li::marker{
     content: counter(list-item)".";
-    font-weight: bold;    
+    font-weight: bold;
 }
 
 ol ol li::marker{
@@ -309,6 +309,10 @@ a.tosu {
         border-bottom: none;
     }
 
+    .table-row-lecture {
+      background-color: #fff0cc;
+    }
+
     .table-row-assignment {
         background-color: #d9edf7;
     }
@@ -464,7 +468,7 @@ a.tosu {
     background-position: center;
     background-size: contain;
 }
-  
+
   /* Set the image to fill its parent and make transparent */
 .center-cropped img {
     min-height: 100%;
@@ -478,16 +482,16 @@ a.tosu {
 }
 
 .lecture-container {
-  
+
     display: flex;
     width: 100%;
     padding-top: 10px;
     padding-bottom: 10px;
-    
+
     .thumbnail {
       width: 120px;
     }
-    
+
     .content {
       flex: 1;
     }
@@ -495,18 +499,18 @@ a.tosu {
 
 .previous-offerings{
     list-style-type: none;
-    
+
 
     li {
         display: inline-block;
-        margin-right: 10px; 
+        margin-right: 10px;
     }
 
     li::before {
         content: "● ";
         color:black;
         padding-right: 5px;
-    } 
+    }
 }
 
 .lecture-links {

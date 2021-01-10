@@ -1,188 +1,103 @@
 ---
 type: lab
-date: 2019-09-19T4:00:00+4:30
-title: 'Travaux Pratiques #5 - Assembleur MIPS'
-attachment: /static_files/labs/lab_05.zip
+date: 2021-02-13T10:00:00+1:00
+title: 'Travaux Pratiques #5 - Exceptions et Interruptions dans MIPS'
+attachment: /static_files/labs/exceptions_handler.s
 #solutions: /static_files/labs/lab_solutions.pdf
 due_event:
     type: due
     date: 2019-09-26T23:59:00+3:30
-    description: 'Travaux Pratiques #5 - à remettre'
+    description: 'Travaux Pratiques #6 - à remettre'
 ---
 
 # Objectifs
 
- - Maîtrise des conventions d'appel de fonction dans MIPS
+- Comprendre la gestion des exceptions et interruptions dans MIPS
 
- - Apprendre à écrire des fonctions en langage assembleur.
+- Apprendre à écrire des gestionnaires d'exception dans MIPS.
 
 # Exercice 1
 
-Télécharger le fichier de démarrage et décompressez son contenu dans le répertoire de votre choix. Dans cet exercice, vous allez compléter l'implémentation de la fonction `map()` dans `mips.s`. Cette fonction modifie les élément de la liste chaînée communiquée en paramètre. Les modifications se font sur place au lieu de créer et renvoyer une nouvelle liste avec les valeurs modifiées. Une implémentation de la liste en langage C serait comme suit :
-
-```c
-struct node {
-  int value;
-  struct node *next;
-};
-```
-
-La fonction `map()` prend deux paramètres; un pointeur sur le premier nœud d'une liste-chaînée d'entiers (*i.e.* l'adresse du premier nœud dans la liste); et un pointeur de fonction qui prend un `int` en argument et renvoie un `int` en sortie. La fonction `map()` parcourt de manière récursive la liste et applique la fonction donnée en paramètre à chaque champ `value` des nœuds de la liste. Une implémentation en C de la fonction `map()` serait comme ceci :
-
-```c
-void map (struct node *head, int (*f) (int))
-{
-  if(head==NULL) { return; }
-  head->value = f(head->value);
-  map(head->next, f);
-}
-```
-
-La déclaration `int (*f)(int)` signifie simplement que `f` est un pointeur sur une fonction qui, en langage C, est utilisée exactement comme toute autre fonction (si vous êtes curieux, consultez ce [lien](https://www.geeksforgeeks.org/function-pointer-in-c/) pour apprendre davantage sur leur utilisation).
-
-Pour votre implémentation en assembleur MIPS de la fonction `map()`, vous aurez besoin d'utiliser une instruction que vous pourriez ne pas avoir rencontrer avant : `jalr`. L'instruction `jalr` est à `jr` ce que `jal` est à `j`. Cette instruction permet de se brancher à l'adresse contenue dans le registre donné et stocker l'adresse de l'instruction suivante (c.-à-d. PC + 4) dans `$ra`. Par exemple, si nous ne voulions pas utiliser l'instruction `jal`, on pourrait utiliser `jalr` pour appeler une fonction comme ceci :
-
-```mips
-# Nous aimerions appeler la fonction `garply`, sans utiliser l'instruction `jal`.
-la $t0, garply 	# donc, nous utilisons l'instruction `la` pour charger l'adresse de `garply` dans un registre (ici $t0)
-jalr $t0       	# puis, nous utilisons l'instruction `jalr` pour lier et brancher (comme `jr`).
-```
-
-Commencez par télécharger le fichier de démarrage (voir plus haut dans ce document) et décompressez son contenu dans le répertoire de votre choix. Il y a 12 emplacements dans le code `map.s` où il est indiqué `### VOTRE CODE ICI ###`. Remplacez-les par les instructions indiquées dans les commentaires pour terminer l'implémentation de la fonction `map()`.
-
-Une fois le code complété, l’exécution du programme (dans MARS) devrait donner un résultat similaire à celui-ci :
+Lancez l'exemple de code suivant dans MARS, puis répondez aux questions ci-dessous.
 
 ```
-Liste Avant: 9 8 7 6 5 4 3 2 1 0
-Liste Après: 81 64 49 36 25 16 9 4 1 0
+   .text
+   .globl main  
+main:
+  li $t0, 2147483647   #
+  li $t1, 5000
+  add $a0, $t0, $t1    #
+
+  li $v0, 10           # exit
+  syscall
+
 ```
+  1. Quelle est la valeur (en hexadécimal) du registre **status** du coprocesseur 0 ?
 
-# Exercise 2
+  2. Quelle est la valeur (en hexadécimal) du registre **cause** du coprocesseur 0 ?
 
-Dans l'exercice précédent, vous avez complété une procédure MIPS qui appliquait une fonction à chaque nœud dans une liste chaînée. Ici, vous travaillerez avec une version similaire (mais légèrement plus complexe).
+  3. Quel type d'exception s'est produite ?
 
-En effet, au lieu d'avoir une liste chaînée de « `int` », notre structure de données est une liste chaînée de tableaux de « `int` ». Pour rappel, lorsque nous traitons un tableau dynamique en C, nous devons stocker explicitement sa taille dans une variable. Voici, en langage C, à quoi ressemble la structure de notre liste chaînée :
+  4. A quelle adresse (en hexadécimal) s'est produite l'exception ?
 
-```C
-struct node {
-    int* arr;
-    int size;
-    struct node* next;
-};
-```
+# Exercice 2
 
-Voici également ce que fait la nouvelle fonction `map` : dans chaque nœud de la liste chaînée, elle parcourt chaque élément du tableau dynamique et lui applique une fonction donnée. Le résultat de la fonction est stocké dans le tableau en écrasant l'ancienne valeur.
+L'activation des interruptions sur un processeur MIPS se fait en deux étapes :
 
-```C
-void map(struct node *head, int (*f)(int)) {
-    if (!head) { return; }
-    for (int i = 0; i < head->size; i++) {
-      head->arr[i] = f(head->arr[i]);
-    }
-    map(head->next, f);
-}
-```
+   - **Configurer le périphérique en question pour qu'il envoie des signaux d'interruption**
+     Cela requiert en général l'activation d'un bit de validation d'interruption dans un registre de contrôle dans le périphérique.
 
-## Tâches à effectuer
+   - **Configurer le coprocesseur 0 pour accépter les signaux d'interruption**
+     Ceci est effectué en mettant à 1 le bit 0 du registre status ($12) pour activer les interruptions d'une manière globale, puis, en définissant des bits particuliers dans le registre status, on activera des interruptions spécifiques. En effet, les bits 8 à 15 du registre status permettent 8 niveaux d'interruption différents. Par exemple, les bits 3 et 4 du masque (11 et 12 du registre status) activent les interruptions clavier (keyboard) et affichage (display), respectivement.
 
-Trouvez et corrigez les erreurs dans `megalistmanips.s`. En ce sens, aidez-vous des lignes commentées dans le fichier source et **assurez-vous que les instructions MIPS correspondent aux indications données dans les commentaires**. Voici quelques indications :
+Si nous voulions activer **toutes** les interruptions dans le MIPS, complétez le masque de bits pour l'instruction `ori` :
 
-  * Pourquoi avons-nous besoin de sauvegarder des informations dans la pile avant d'exécuter l'instruction `jal` ?
-  * Quelle est la différence entre « `add $t0, $s0, $0` » et « `lw $t0, 0($s0)` » ?
-  * Faites attention aux types des attributs dans la structure `struct node`.
+   ```
+   mfc0    $s1, $12         # lire le contenu du registre status et l'affecter à $s1
+   ori     $s1, _________   # à compléter
+   mtc0    $s1, $12         # mise à jour du contenu du registre status à partir de $s1
+   ```
 
+Si nous voulions activer **que** les interruptions pour le clavier et l'affichage, complétez le masque de bits pour l'instruction `ori` :
 
-Pour référence, l'exécution du programme (dans MARS) devrait donner le résultat suivant :
+   ```
+   mfc0    $s1, $12         # lire le contenu du registre status et l'affecter à $s1
+   ori     $s1, _________   # à compléter
+   mtc0    $s1, $12         # mise à jour du contenu du registre status à partir de $s1
+   ```
 
-```shell
-Listes avant:
-5 2 7 8 1
-1 6 3 8 4
-5 2 7 4 3
-1 2 3 4 7
-5 6 7 8 9
+# Exercice 3
 
-Listes après:
-30 6 56 72 2
-2 42 12 72 20
-30 6 56 20 12
-2 6 12 20 56
-30 42 56 72 90
-```
+Un gestionnaire d'exceptions doit signaler l'adresse de l'instruction qui a provoqué l'exception, le code d'exception, et doit reprendre (ou terminer) l’exécution du programme après avoir traité l'exception.
 
-# Exercise 3
+0. Pour cet exercice, nous allons utiliser un gestionnaire d'exceptions personnalisé au lieu de celui qui est déjà intégré dans MARS. Pour installer notre gestionnaire d'exceptions, veuillez suivre les instructions suivantes :
 
-Considérons une fonction discrète `f` définie sur les entiers de l'ensemble {-3, -2, -1, 0, 1, 2, 3}. Voici la définition de la fonction :
+   1. Commencez par télécharger le fichier de démarrage (voir plus haut dans ce document). Le fichier obtenu (`exceptions_handler.s`) est gestionnaire d'exceptions MIPS personnalisé.
 
-   f(-3) = 6
-   f(-2) = 61
-   f(-1) = 17
-   f(0) = -38
-   f(1) = 19
-   f(2) = 42
-   f(3) = 5
+   2. Dans MARS, accédez à "**Settings**" dans les menus déroulants.  
+      ![Mars exception handler]({{site.baseurl}}/static_files/images/mars_exception_handler.png)
 
-Implémentez la version MIPS de la fonction discrète `f` dans `discrete_fn.s` **SANS** utiliser des instructions de branchement ou de saut !
+   3. Cochez la case "Initialize Program Counter to global 'main' if defined"
 
-Indication : Comment lire un mot à partir d'une adresse mémoire ?
+   4. Refaite l'étape **(ii)** et cliquez sur l'élément "**Exception Handler**". Une nouvelle boîte de dialogue apparaîtra.
+      ![Mars exception handler 2]({{site.baseurl}}/static_files/images/mars_ehandler2.png)
 
+   5. Cochez la case "**Include this exception handler file in all assemble operations**", puis entrez le chemin du fichier de gestionnaire d'exceptions que vous avez téléchargé. Choisissez OK pour terminer.
 
-# Exercice 4
+   6. MARS est désormais configuré pour utiliser notre nouveau gestionnaire d'exceptions au lieu du gestionnaire intégré.
 
-Dans le fichier `reverse.s`, écrivez en assembleur MIPS le corp de la fonction `reverse(int* array, int size)` qui inverse l'ordre des éléments du tableau `array`. Par exemple, si :
+1. Dans l'éditeur de MARS, écrivez un programme complet pour tester des instructions qui provoquent : un débordement, des accès à des adresses de mémoire non valides, des instructions de déroutement (trap) et des instructions de breakpoint. Votre programme **doit** commencer par ce bout de code :
 
-```c
-  array[6] = {1, 2, 3, 4, 5, 6};  
-```
-alors après application de la fonction `reverse` sur le tableau `array` le résultat devra être :
+   ```mips
+   .globl
+   main:
+   ```
+2. Modifiez le gestionnaire d'exceptions pour afficher le **vaddr** non valide quand l’exception est provoquée par un chargement (load), un stockage (store) ou une lecture d'instruction (code d'exception 4 ou 5). Testez votre gestionnaire d'exceptions en écrivant des instructions de chargement et de stockage générant des adresses mémoire non valides.
 
-```c
-  array[6] = {6, 5, 4, 3, 2, 1};  
-```
+3. A l’aide de la MMIO (E/S mappée en mémoire) et le polling, écrire une fonction `print_string` qui imprime une chaîne sur l'écran, sans utiliser aucun appel système (c.-à-s. sans `syscall`). L'adresse de la chaîne est passée dans le registre `$a0` et la chaîne doit être terminée par le caractère NUL (zéro). Testez cette fonction en l'appelant à partir de la fonction principale. Assurez-vous d'activer le Simulateur de clavier et d'affichage MMIO (Keyboard and Display MMIO Simulator).
 
-Pour notre fonction en assembleur MIPS, l'adresse du tableau `array` est donnée dans le registre `$a0` et le paramètre `size` est donné dans le registre `$a1`.
+4. A l’aide de la MMIO (E/S mappée en mémoire) et le polling, écrire un programme qui lit les caractères directement à partir du clavier. Pour montrer la lenteur du clavier, imprimer le caractère saisi et le nombre d’itérations après la sortie de la boucle wait_keyboard. Répéter l'exécution du programme jusqu'à ce que vous appuyiez sur le caractère de nouvelle ligne (touche return). Assurez-vous d'activer le Simulateur de clavier et d'affichage MMIO (Keyboard and Display MMIO Simulator) et d’exécuter le simulateur MARS à la vitesse maximale.
 
-<!--
-# Exercice 5
+5. Si le bit d'activation d'interruption du clavier est activé, le clavier interrompra le processeur à chaque pression sur une touche. Écrire un gestionnaire d'interruption simple qui renvoie le caractère saisi dans le registre `$v0`. Réécrire la fonction principale de la question n°4 en utilisant les interruptions du clavier.
 
-La somme des carrés de *N* nombres entiers est décrit comme suit :
-
-{% raw %}
-$$sum = \sum_{i=0}^{N-1} n_i^2$$
-
-où $$n_0, n_1, ..., n_{N-1}$$ sont des nombres entiers (de type ``int``).
-{% endraw %}
-
-Implémentez dans le fichier `SumOfSquares.s` le corps de la fonction `SumOfSquares` en assembleur MIPS et qui retourne dans le registre `$v0` la somme des carrés des éléments d'un tableau de **words**. Le nombre des éléments du tableau est donné dans le registre `$a0`, et l'adresse de début du tableau est donnée dans le registre `$a1`.
-
-**INDICATION** : Faites l'exercice n°1 du "[TP Programmation << non structurée >>]({{site.baseurl}}/labs/03_lab.html)", puis convertissez votre code C en assembleur MIPS à l'aide de la [fiche]({{site.baseurl}}/static_files/docs/iche_mips.pdf) de référence MIPS et du document [contrôle de flux d'exécution dans MIPS]({{site.baseurl}}/static_files/docs/flow_control.pdf).
-
-
-# Exercice 6
-
-Dans la bibliothèque standard du langage C, la fonction `strcmp` (cf. `man 3 strcmp`) compare, caractère par caractère, deux chaînes en mémoire pour établir quelle chaîne de caractère vient en premier dans l'ordre lexicographique standard, c.-à-d. en fonction des valeurs ASCII des caractères. Voici quelques exemples :
-
-  - "a" \< "b"
-  - "abc" \< "abcd"
-  - "A" \< "a"
-
-Les chaînes de caractères à comparer sont représentées par des octets contigus en mémoire (chaque octet est un
-caractère ASCII) suivi du caractère NUL (0x00).
-
-Dans le fichier `StrCmp.s`, écrivez le corps de la fonction `StrCmp` en Assembleur MIPS.
-
-Cette fonction doit retourner dans le registre `$v0` le résultat de la comparaison de deux chaînes de caractères. Si la première chaîne de caractères est inférieure à la second, alors `$v0` sera négatif. Si les deux chaînes de caractères sont semblables alors `$v0` sera nul. Enfin, si la première chaîne de caractères est supérieure à la seconde alors `$v0` sera positif.
-
-L'adresse de la première (resp. deuxième) chaîne de caractères est donnée dans le registre `$a0` (resp. `$a1`).  
-
-**INDICATION** : Faites l'exercice n°2 du "[TP Programmation << non structurée >>]({{site.baseurl}}/static_files/labs/03_lab.html)", puis convertissez votre code C en assembleur MIPS à l'aide de la [fiche]({{site.baseurl}}/static_files/docs/fiche_mips.pdf) de référence MIPS et du document [contrôle de flux d'exécution dans MIPS]({{site.baseurl}}/static_files/docs/flow_control.pdf).
-
-
-## Exercice 7
-
-Dans le fichier `InRange.s`, écrivez en assembleur MIPS le corp de la fonction `in_range(min, max, value)` qui retourne 1 dans `$v0` si `min <= value <= max` et 0 sinon. Vous pouvez supposer que :
-
-  - `min` est donnée dans le registre `$a0`
-  - `max` est donnée dans le registre `$a1`
-  - `value` est donnée dans le registre `$a2`
--->
+6. A l’aide de la MMIO (E/S mappée en mémoire) et le polling, écrire une fonction `read_string` qui lit une chaîne de caractères directement à partir du clavier. La fonction récupère les caractères du clavier et les stocke dans un tableau pointé par le registre `$a0`. La fonction doit continuer jusqu'à ce que n-1 caractères soient lus ou que le caractère de nouvelle ligne soit enfoncé (touche return). Le paramètre n doit être passé dans le registre `$a1`. La fonction doit insérer un octet NUL à la fin de la chaîne et devrait renvoyer le nombre réel de caractères lus dans le registre `$v0`. Assurez-vous d'activer le Simulateur de clavier et d'affichage MMIO (Keyboard and Display MMIO Simulator). Ecrivez une fonction principale pour tester plusieurs fois `read_string` et pour afficher la chaîne de caractère après chaque appel.

@@ -3,12 +3,10 @@ title: Projet - Processeur MIPS
 permalink: /project/
 layout: project
 date: 2019-09-19T4:00:00+4:30
-#pdf: /static_files/assignments/devoir1.pdf
-#attachment: /static_files/assignments/asg.zip
-#solutions: /static_files/assignments/asg_solutions.pdf
+attachment: /static_files/projects/mipscpu.zip
 due_event:
     type: due
-    date: 2019-09-26T23:59:00+3:30
+    date: 2021-03-20T23:59:59+1:00
     description: 'Projet à remettre'    
 ---
 
@@ -32,15 +30,18 @@ proj_starter
   │   ├── alu.circ
   │   ├── branch_comp.circ
   │   ├── control_logic.circ
-  │   ├── cpu.circ
+  │   ├── cpu_pipelined.circ
+  │   ├── cpu_single.circ
   │   ├── imm_gen.circ
   │   ├── mem.circ
   │   └── regfile.circ
   ├── harnesses
   │   ├── alu_harness.circ
   │   ├── regfile_harness.circ
-  │   ├── run.circ
-  │   └── test_harness.circ
+  │   ├── run_pipelined.circ
+  │   ├── run_single.circ
+  │   ├── test_pipelined_harness.circ
+  │   └── test_single_harness.circ
   ├── logisim-evolution.jar
   ├── tests
   │   ├── part_a
@@ -55,14 +56,14 @@ proj_starter
  ```
 
 <div class="bs-callout bs-callout-danger">
- <b>REMARQUE</b> : Seul les fichiers : <b>alu.circ</b>,  <b>branch_comp.circ</b>, <b>control_logic.circ</b>,  <b>cpu.circ</b>, <b>imm_gen.circ</b> et <b>regfile.circ</b> doivent être modifiés et soumis pour évaluation. Le circuit <b>mem.circ</b> est déjà implémenté pour vous.
+ <b>REMARQUE</b> : Seul les fichiers : <b>alu.circ</b>,  <b>branch_comp.circ</b>, <b>control_logic.circ</b>, <b>cpu_single.circ</b>, <b>cpu_pipelined.circ</b>, <b>imm_gen.circ</b> et <b>regfile.circ</b> doivent être modifiés et soumis pour évaluation. Le circuit <b>mem.circ</b> est déjà implémenté pour vous.
 </div>
 
 # Partie A : Version basique
 
 ## Tâche 1 : Unité Arithmétique et logique (UAL)
 
-Votre première tâche est de créer une UAL qui prend en charge toutes les opérations requises par les instructions de notre ISA (décrite plus en détail dans la section suivante).
+Votre première tâche est de créer une UAL qui prend en charge toutes les opérations requises par les instructions de notre ISA (décrite plus en détails plus dans la section suivante).
 
 le fichier squelette fourni `alu.circ` montre que votre UAL doit avoir trois entrées :
 
@@ -126,11 +127,11 @@ le fichier squelette fourni `alu.circ` montre que votre UAL doit avoir trois ent
 </tbody>
 </table>
 
-**REMARQUES** : Dans les slides du cours &laquo; [Architecture de Von Neumann](https://1drv.ms/p/s!Agf0g-qZKM8_yAyyv1se7-WxjsN2?e=GO7udR) &raquo;, et afin de construire une UAL de plusieurs bits (8 bits est donné comme exemple), il est indiqué de dupliquer votre circuit de 1 bit et faire les adaptations nécessaires pour obtenir une UAL de plusieurs bits. Bonne nouvelle ! vous n'avez pas à le faire dans ce projet, Logisim fait déjà cela pour vous ! Il suffit simplement de choisir la bonne largeur de bits pour les entrées / sorties de vos composants et c'est tout (voir la figure ci-dessous) !
+**REMARQUES** : Dans les slides du cours &laquo; [Architecture de Von Neumann](https://1drv.ms/p/s!Agf0g-qZKM8_yAyyv1se7-WxjsN2?e=GO7udR) &raquo;, et afin de construire une UAL de plusieurs bits (8 bits est donné comme exemple), il est indiqué de dupliquer votre circuit de 1 bit et faire les adaptations nécessaires pour obtenir une UAL de plusieurs bits. Bonne nouvelle ! vous n'avez pas à le faire dans ce mini-projet, Logisim fait déjà cela pour vous ! Il suffit simplement de choisir la bonne largeur de bits pour les entrées / sorties de vos composants et c'est tout (voir la figure ci-dessous) !
 
  ![Largeur de bits]({{site.baseurl}}/static_files/images/data_width.png){: height="55%" width="55%" .wp-caption .aligncenter}
 
-Enfin, voici ci-dessous la liste des opérations (et les valeurs **ALUSel** associées) que votre UAL doit pouvoir effectuer. Vous pouvez utiliser tout bloc ou fonction intégrée de Logisim pour implémenter votre circuit. **Il n'est pas nécessaire de réimplémenter le circuit additionneur, de décalage ou le circuit multiplicateur à partir de zéro ! Utilisez les blocs de circuit fournis par Logisim à cet effet**.
+Enfin, voici ci-dessous la liste des opérations (et les valeurs **ALUSel** associées) que votre UAL doit pouvoir effectuer. Vous pouvez utiliser tout bloc ou fonction intégrée de Logisim pour implémenter votre circuit. **Il n'est pas nécessaire de réimplémenter le circuit additionneur, de décalage ou le circuit multiplicateur ! Utilisez les blocs de circuit fournis par Logisim à cet effet**.
 
 <table class="styled-table">
 <colgroup>
@@ -199,23 +200,23 @@ Enfin, voici ci-dessous la liste des opérations (et les valeurs **ALUSel** asso
 
 <tr>
 <td style="text-align:center" markdown="span">7</td>
+<td style="text-align:left" markdown="span">&emsp;&emsp;&mdash;</td>
+<td markdown="span">&emsp;&emsp;&emsp;&emsp;&mdash;</td>
+<td markdown="span">Non utilisé</td>
+</tr>
+
+<tr>
+<td style="text-align:center" markdown="span">8</td>
 <td style="text-align:left" markdown="span">&emsp;&emsp;slt</td>
 <td markdown="span">&emsp;`Result = A < B ? 1 : 0`</td>
 <td markdown="span">Comparaison signée</td>
 </tr>
 
 <tr>
-<td style="text-align:center" markdown="span">8</td>
-<td style="text-align:left" markdown="span">&emsp;&emsp;&mdash;</td>
-<td markdown="span">&emsp;&emsp;&emsp;&emsp;&mdash;</td>
-<td markdown="span">Non utilisé</td>
-</tr>
-
-<tr>
 <td style="text-align:center" markdown="span">9</td>
-<td style="text-align:left" markdown="span">&emsp;&emsp;&mdash;</td>
-<td markdown="span">&emsp;&emsp;&emsp;&emsp;&mdash;</td>
-<td markdown="span">Non utilisé</td>
+<td style="text-align:left" markdown="span">&emsp;&emsp;sltu</td>
+<td markdown="span">&emsp;`Result = A < B ? 1 : 0`</td>
+<td markdown="span">Comparaison non signée</td>
 </tr>
 
 <tr>
@@ -229,7 +230,7 @@ Enfin, voici ci-dessous la liste des opérations (et les valeurs **ALUSel** asso
 <td style="text-align:center" markdown="span">11</td>
 <td style="text-align:left" markdown="span">&emsp;&emsp;mulhu</td>
 <td markdown="span">&emsp;`Result = (A * B)[63:32]`</td>
-<td markdown="span"></td>
+<td markdown="span">Opération non signée</td>
 </tr>
 
 <tr>
@@ -262,7 +263,7 @@ Enfin, voici ci-dessous la liste des opérations (et les valeurs **ALUSel** asso
 
   * Lors de l'implémentation de `mul` et `mulh`, veuillez noter que le bloc Logisim de multiplication possède une sortie « Carry Out » qui pourrait vous être utile (le bloc additionneur possède également cette sortie, mais vous n'en aurez pas besoin pour ce composant).
 
-  * Les séparateurs et les extenseurs de bits vous seront très utiles lors de l'implémentation des opérations `sra` et `srl`.
+  * Les séparateurs et les extenseurs de bits vous seront très utiles lors de l'implémentation des opérations de décalages.
 
   * Utilisez les tunnels ! Cela vous évitera de croiser des fils involontairement ce qui causera des erreurs inattendues.
 
@@ -287,14 +288,14 @@ Un groupe de tests de cohérence UAL est fourni dans le répertoire `tests/part_
 $ python3 test_runner.py part_a alu
 ```
 
-Également fourni est le fichier `binary_to_hex_alu.py` qui permet d'interpréter cette sortie dans un format lisible pour vous. Pour l'utiliser, procédez comme suit :
+Également fourni un fichier `binary_to_hex_alu.py` qui permet d'interpréter la sortie de l'UAL dans un format lisible. Pour l'utiliser, procédez comme suit :
 
 ```bash
 $ cd tests/part_a/alu
 $ python3 binary_to_hex_alu.py PATH_TO_OUTPUT_FILE
 ```
 
-Par exemple, pour visualiser le fichier `reference_output/alu-add-ref.out` dans un format lisible, procédez comme suit :
+Par exemple, pour visualiser le fichier `reference_output/alu-add-ref.out`, procédez comme suit :
 
 ```bash
 $ cd tests/part_a/alu
@@ -312,9 +313,9 @@ $ diff reference.out student.out
 
 ## Tâche 2 : Banc de Registres
 
-Dans cette tâche, vous implémenterez les 32 registres spécifiés dans l'architecture MIPS. Pour faciliter l'implémentation, neuf registres seront exposés à des fins de test et de débogage (voir la liste ci-dessous). Veuillez vous assurer que les valeurs de ces registres sont attachées aux sorties appropriées dans le fichier `RegFile.circ`.
+Dans cette tâche, vous implémenterez **les 32 registres $0 &ndash; $31** spécifiés dans l'architecture MIPS. Pour faciliter l'implémentation, neuf registres seront exposés à des fins de test et de débogage (voir la liste ci-dessous). Veuillez vous assurer que les valeurs de ces registres sont attachées aux sorties appropriées dans le fichier `regfile.circ`.
 
-Votre « Banc de Registres » devrait pouvoir lire ou écrire depuis/dans les registres spécifiés dans une instruction MIPS et cela sans affecter les autres registres. Il y a une exception notable : votre « Banc de Registres » ne doit **PAS** écrire dans le registre `$0` même si une instruction tente de le faire. Pour rappel, le registre zéro doit **TOUJOURS** avoir la valeur `0x0`.
+Votre « Banc de Registres » devrait pouvoir lire ou écrire depuis/dans les registres spécifiés dans une instruction MIPS et cela sans affecter les autres registres. Il y a une exception notable : votre « Banc de Registres » ne doit **PAS** écrire dans le registre `$0` même si une instruction tente de le faire. Pour rappel, le registre zéro doit **TOUJOURS** avoir la valeur `0`.
 
 Les registres exposés et leurs numéros correspondants sont indiqués ci-dessous.
 
@@ -330,46 +331,41 @@ Les registres exposés et leurs numéros correspondants sont indiqués ci-dessou
 </tr>
 </thead>
 <tbody>
-
 <tr>
 <td style="text-align:center" markdown="span">0</td>
 <td style="text-align:center" markdown="span">$0</td>
 </tr>
 <tr>
-<td style="text-align:center" markdown="span">1</td>
-<td style="text-align:center" markdown="span">$ra</td>
+<td style="text-align:center" markdown="span">4</td>
+<td style="text-align:center" markdown="span">$a0</td>
 </tr>
 <tr>
-<td style="text-align:center" markdown="span">2</td>
-<td style="text-align:center" markdown="span">$sp</td>
-</tr>
-<tr>
-<td style="text-align:center" markdown="span">5</td>
+<td style="text-align:center" markdown="span">8</td>
 <td style="text-align:center" markdown="span">$t0</td>
 </tr>
 <tr>
-<td style="text-align:center" markdown="span">6</td>
+<td style="text-align:center" markdown="span">9</td>
 <td style="text-align:center" markdown="span">$t1</td>
 </tr>
-
-<tr>
-<td style="text-align:center" markdown="span">7</td>
-<td style="text-align:center" markdown="span">$t2</td>
-</tr>
-
-<tr>
-<td style="text-align:center" markdown="span">8</td>
-<td style="text-align:center" markdown="span">$s0</td>
-</tr>
-
-<tr>
-<td style="text-align:center" markdown="span">9</td>
-<td style="text-align:center" markdown="span">$s1</td>
-</tr>
-
 <tr>
 <td style="text-align:center" markdown="span">10</td>
-<td style="text-align:center" markdown="span">$a0</td>
+<td style="text-align:center" markdown="span">$t2</td>
+</tr>
+<tr>
+<td style="text-align:center" markdown="span">16</td>
+<td style="text-align:center" markdown="span">$s0</td>
+</tr>
+<tr>
+<td style="text-align:center" markdown="span">17</td>
+<td style="text-align:center" markdown="span">$s1</td>
+</tr>
+<tr>
+<td style="text-align:center" markdown="span">29</td>
+<td style="text-align:center" markdown="span">$sp</td>
+</tr>
+<tr>
+<td style="text-align:center" markdown="span">31</td>
+<td style="text-align:center" markdown="span">$ra</td>
 </tr>
 </tbody>
 </table>
@@ -406,27 +402,27 @@ Un squelette du « Banc de Registres » à implémenter est fourni dans le fichi
 </tr>
 
 <tr>
-<td style="text-align:left" markdown="span">&emsp;**Read Register 1** (rs1)</td>
+<td style="text-align:left" markdown="span">&emsp;**rs**</td>
 <td style="text-align:center" markdown="span">5</td>
-<td markdown="span">Détermine quelle valeur de registre est envoyée à la sortie **Read Data 1**, voir ci-dessous</td>
+<td markdown="span">Détermine quelle valeur de registre est envoyée à la sortie **Read_Data_1** (voir ci-dessous)</td>
 </tr>
 
 <tr>
-<td style="text-align:left" markdown="span">&emsp;**Read Register 2** (rs2)</td>
+<td style="text-align:left" markdown="span">&emsp;**rt**</td>
 <td style="text-align:center" markdown="span">5</td>
-<td markdown="span">Détermine quelle valeur de registre est envoyée à la sortie **Read Data 2**, voir ci-dessous</td>
+<td markdown="span">Détermine quelle valeur de registre est envoyée à la sortie **Read_Data_2** (voir ci-dessous)</td>
 </tr>
 
 <tr>
-<td style="text-align:left" markdown="span">&emsp;**Write Register** (rd)</td>
+<td style="text-align:left" markdown="span">&emsp;**rd**</td>
 <td style="text-align:center" markdown="span">5</td>
-<td markdown="span">Sélectionne le registre qui recevra le contenu de **Write Data** au prochain front montant de l'horloge, en supposant que **RegWEn** est à 1</td>
+<td markdown="span">Sélectionne le registre qui recevra le contenu de **Write_Data** au prochain front montant de l'horloge, en supposant que **RegWEn** est à **1**</td>
 </tr>
 
 <tr>
-<td style="text-align:left" markdown="span">&emsp;**Write Data**</td>
+<td style="text-align:left" markdown="span">&emsp;**Write_Data**</td>
 <td style="text-align:center" markdown="span">32</td>
-<td markdown="span">Contient les données à écrire dans le registre identifié par l'entrée **Write Register** au prochain front montant de l'horloge, en supposant que **RegWEn** est à 1</td>
+<td markdown="span">Contient les données à écrire dans le registre identifié par l'entrée **rd** au prochain front montant de l'horloge, en supposant que **RegWEn** est à **1**</td>
 </tr>
 </tbody>
 </table>
@@ -451,15 +447,15 @@ Le « Banc de Registres » dans `regfile.circ` possède également les sorties s
 <tbody>
 
 <tr>
-<td style="text-align:left" markdown="span">&emsp;**rs1**</td>
+<td style="text-align:left" markdown="span">&emsp;**Read_Data_1**</td>
 <td style="text-align:center" markdown="span">32</td>
-<td markdown="span">Renvoie la valeur contenue dans le registre identifié par l'entrée **Read Register 1**</td>
+<td markdown="span">Renvoie la valeur contenue dans le registre identifié par l'entrée **rs**</td>
 </tr>
 
 <tr>
-<td style="text-align:left" markdown="span">&emsp;**rs2**</td>
+<td style="text-align:left" markdown="span">&emsp;**Read_Data_2**</td>
 <td style="text-align:center" markdown="span">32</td>
-<td markdown="span">Renvoie la valeur contenue dans le registre identifié par l'entrée **Read Register 2**</td>
+<td markdown="span">Renvoie la valeur contenue dans le registre identifié par l'entrée **rt**</td>
 </tr>
 
 <tr>
@@ -520,7 +516,7 @@ Les sorties de test en haut du fichier `regfile.circ` sont présentes à des fin
 
   * Il est recommandé de ne pas utiliser l'entrée « `enable` » sur vos MUX. En fait, vous pouvez même désactiver cette fonctionnalité depuis le panel Logisim. Il est également conseillé de mettre sur « `off` » la propriété "three-state?".
 
-  * Consultez l'étape 2 du TP [Travaux Pratiques #7 - Introduction à Logisim]({{site.baseurl}}/labs/07_lab.html) pour voir à quoi correspond chaque entrée/sortie d'un registre Logisim.
+  * Consultez l'étape 2 du TP [Travaux Pratiques #6 - Introduction à Logisim]({{site.baseurl}}/labs/06_lab.html) pour voir à quoi correspond chaque entrée/sortie d'un registre Logisim.
 
   * Comme pour la tâche de l'UAL, les multiplexeurs vous seront très utiles (les démultiplexeurs, également).
 
@@ -549,11 +545,11 @@ Un groupe de tests de cohérence du « Banc de Registres » est fourni dans le r
 $ python3 test_runner.py part_a regfile
 ```
 
-Également fourni est le fichier `binary_to_hex_regfile.py` qui fonctionne d'une manière similaire au fichier `binary_to_hex_alu.py` de la tâche n°1.
+Également fourni un fichier `binary_to_hex_regfile.py` qui fonctionne d'une manière similaire au fichier `binary_to_hex_alu.py` de la tâche n°1.
 
 ## Tâche 3 : L'instruction `addi`
 
-Dans cette troisième et dernière tâche pour la partie A, vous allez implémenter un processeur capable d’exécuter une instruction : `addi` ! Vous pouvez choisir d'implémenter d'autres instructions supplémentaires, mais vous ne serez noté que si l'instruction `addi` s'exécute correctement pour la partie A. Vous obtiendrez des instructions plus détaillées sur la manière de mettre en oeuvre les autres instructions lorsque la partie B du projet sera publiée.
+Dans cette troisième et dernière tâche pour la partie A, vous allez implémenter un processeur capable d’exécuter une instruction : `addi` ! Vous pouvez choisir d'implémenter d'autres instructions supplémentaires, mais vous ne serez noté que si l'instruction `addi` s'exécute correctement pour la partie A.
 
 ### Info : Mémoire (circuit `mem.circ`)
 
@@ -598,7 +594,7 @@ Voici un résumé des entrées et sorties de l'unité :
 <tr>
 <td style="text-align:center" markdown="span">ImmSel</td>
 <td style="text-align:center" markdown="span">Input</td>
-<td style="text-align:center" markdown="span">3</td>
+<td style="text-align:center" markdown="span">2</td>
 <td markdown="span">Valeur déterminant comment reconstruire l'immédiat</td>
 </tr>
 <tr>
@@ -610,22 +606,22 @@ Voici un résumé des entrées et sorties de l'unité :
 </tbody>
 </table>
 
-### Info: Processeur (circuit `cpu.circ`)
+### Info: Processeur (circuits `cpu*.circ`)
 
-Le kit de démarrage fournit également un squelette pour votre processeur dans `cpu.circ`. Vous utiliserez vos propres implémentations de l'UAL et du « Banc de Registres » lorsque vous construirez votre chemin de données. Pour la partie A, votre processeur doit pouvoir exécuter l'instruction `addi` en utilisant un « pipeline » à deux étages, avec IF dans la première étape et ID, EX, MEM et WB dans la deuxième étape. Pour commencer, cependant, il est recommandé de construire un processeur sans « pipeline ». Une fois c'est fait, vous pouvez modifier votre processeur afin qu'il dispose d'un « pipeline » en deux étapes.
+Le kit de démarrage fournit également des squelettes pour votre processeur dans `cpu*.circ`. Vous utiliserez vos propres implémentations de l'UAL et du « Banc de Registres » lorsque vous construirez votre chemin de données. Pour la partie A, votre processeur doit pouvoir exécuter l'instruction `addi` en utilisant un « pipeline » à deux étages, avec IF dans la première étape et ID, EX, MEM et WB dans la deuxième étape. Pour commencer, cependant, il est recommandé de construire un processeur sans « pipeline » (utilisez le fichier squelette `cpu_single.circ` pour ce mode de fonctionnement). Une fois votre processeur à cycle unique fonctionne correctement, vous pouvez copier puis modifier votre processeur dans `cpu_pipelined.circ` pour produire une version << pipeline >> à deux étages.
 
-Votre processeur est inséré dans le socle `test_harness.circ` qui contient l'unité de mémoire. Ce socle de processeur est inséré à son tour dans le socle de test `run.circ` qui fournit les instructions au processeur.
+Votre processeur est inséré dans le socle `test_single_harness.circ` (ou `test_pipelined_harness.circ`, selon le cas) qui contient l'unité de mémoire. Ce socle de processeur est inséré à son tour dans le socle de test `run_single.circ` (resp. `run_pipelined.circ`) qui fournit les instructions au processeur.
 
-En sortie, votre processeur émettra l'adresse d'une instruction à récupérer depuis la mémoire. L'instruction sollicitée est transmise ensuite au processeur dans l'entrée appropriée.
+En sortie, votre processeur émettra l'adresse d'une instruction à récupérer depuis la mémoire d'instructions (IMEM). L'instruction sollicitée est transmise ensuite au processeur dans l'entrée appropriée.
 
-En sortie également, le processeur émettra l'adresse d'une donnée en mémoire et éventuellement un signal d'activation de l'écriture de données en mémoire. Pour la lecture, les données récupérées depuis l'adresse transmise seront communiquées au processeur dans l'entrée appropriée.
+En sortie également, le processeur émettra l'adresse d'une donnée en mémoire (DMEM) et éventuellement un signal d'activation de l'écriture de données en mémoire (WRITE_ENABLE). Pour la lecture, les données récupérées depuis l'adresse transmise seront communiquées au processeur dans l'entrée appropriée (READ_DATA).
 
-Essentiellement, les socles `test_harness.circ` et `run.circ` simulent respectivement vos mémoires de données et d'instructions. Prenez le temps de vous familiariser avec leur fonctionnement pour vous faire une idée globale sur le simulateur.
+Essentiellement, les socles `test_*_harness.circ` et `run_*.circ` simulent respectivement vos mémoires de données (DMEM) et d'instructions (IMEM). Prenez le temps de vous familiariser avec leur fonctionnement pour vous faire une idée globale sur le simulateur.
 
 <div class="bs-callout bs-callout-danger">
   <h4>ATTENTION</h4>
 
-<p>le socle <b>test_harness.circ</b> sera utilisé dans les tests de cohérence qui vous sont fournis, assurez-vous donc que votre processeur <b>cpu.circ</b> s'insère correctement dans ce socle avant de tester votre implémentation et particulièrement lorsque vous soumettez votre travail pour évaluation</p>
+<p>les socles <b>test_*_harness.circ</b> seront utilisés dans les tests de cohérence qui vous sont fournis, assurez-vous donc que votre processeur <b>cpu_*.circ</b> s'insère correctement dans le socle associé avant de tester votre implémentation, et particulièrement lorsque vous soumettez votre travail pour évaluation</p>
 
 <p>Tout comme avec l'UAL et le « Banc de Registres », veillez à <b>NE PAS</b> déplacer les ports d'entrée ou de sortie !</p>
 </div>
@@ -649,12 +645,12 @@ Le processeur dispose de trois entrées qui proviennent du socle :
 <tr>
 <td style="text-align:center" markdown="span">READ_DATA</td>
 <td style="text-align:center" markdown="span">32</td>
-<td markdown="span">Données récupérées depuis la mémoire de données à l'adresse indiquée dans WRITE_ADDRESS (voir ci-dessous).</td>
+<td markdown="span">Données récupérées depuis la mémoire de données à l'adresse indiquée dans DMEM_ADDRESS (voir ci-dessous).</td>
 </tr>
 <tr>
 <td style="text-align:center" markdown="span">INSTRUCTION</td>
 <td style="text-align:center" markdown="span">32</td>
-<td markdown="span">L'instruction récupérée depuis la mémoire d'instructions à l'adresse indiquée par FETCH_ADDRESS (voir ci-dessous).</td>
+<td markdown="span">L'instruction récupérée depuis la mémoire d'instructions à l'adresse indiquée par IMEM_ADDRESS (voir ci-dessous).</td>
 </tr>
 <tr>
 <td style="text-align:center" markdown="span">CLOCK</td>
@@ -731,7 +727,7 @@ Le processeur dispose de trois entrées qui proviennent du socle :
 </tr>
 
 <tr>
-<td style="text-align:center" markdown="span">WRITE_ADDRESS</td>
+<td style="text-align:center" markdown="span">DMEM_ADDRESS</td>
 <td style="text-align:center" markdown="span">32</td>      
 <td markdown="span">L'adresse à partir de laquelle une lecture/écriture depuis/dans la mémoire de données est requise</td>      
 </tr>
@@ -749,9 +745,9 @@ Le processeur dispose de trois entrées qui proviennent du socle :
 </tr>
 
 <tr>
-<td style="text-align:center" markdown="span">FETCH_ADDRESS</td>
+<td style="text-align:center" markdown="span">IMEM_ADDRESS</td>
 <td style="text-align:center" markdown="span">32</td>      
-<td markdown="span">Cette sortie est utilisée pour sélectionner depuis la mémoire ROM dans <b>run_harness.circ</b> l'instruction à présenter à l'entrée INSTRUCTION (voir ci-dessus) du processeur</td>      
+<td markdown="span">Cette sortie est utilisée pour sélectionner depuis la mémoire ROM dans <b>run_*_harness.circ</b> l'instruction à présenter à l'entrée INSTRUCTION (voir ci-dessus) du processeur</td>      
 </tr>  
 </tbody>
 </table>
@@ -771,9 +767,7 @@ Pour éditer l'unité de contrôle, modifiez le fichier `control_logic.circ` et 
 
 ### Guide : Processeur à cycle unique
 
-Il peut être intimidant de commencer à partir d'une ardoise vierge quand on veut construire un processeur !
-
-Rappelons les cinq étapes d'exécution dans un processeur MIPS :
+Ce guide vous aidera à implémenter chacune de ces étapes pour l'instruction `addi`. Chaque section ci-dessous contient des questions auxquelles vous devez réfléchir et des indications importantes. Il est nécessaire de lire et comprendre chaque question avant de passer à la suivante ! Vous pouvez même consulter les réponses en cliquant sur  &#9656; si vous n'êtes pas capables de trouver les réponses vous-mêmes :(. Rappelons les cinq étapes d'exécution dans un processeur MIPS :
 
   1. Récupération d'instruction (IF)
   2. Décodage d'instruction (ID)
@@ -781,52 +775,49 @@ Rappelons les cinq étapes d'exécution dans un processeur MIPS :
   4. Lecture/écriture depuis/vers la mémoire de données (MEM)
   5. Écriture *éventuelle* dans le « Banc de Registres » (WB)
 
-
-Ce guide vous aidera à implémenter chacune de ces étapes pour l'instruction `addi`. Chaque section ci-dessous contient des questions auxquelles vous devez réfléchir et des indications importantes. Il est nécessaire de lire et comprendre chaque question avant de passer à la suivante ! Vous pouvez même consulter les réponses en cliquant sur  &#9656; si vous n'êtes pas capables de trouver les réponses vous-mêmes :(.
-
 #### **Étape 1 : Récupération d'instruction (IF)**
 
 A ce stade de l'exécution, la question principale qui se pose est : Comment obtenir l'instruction actuelle ? Nous avons vu dans le cours que les instructions sont stockées dans la mémoire d'instructions, et chacune de ces instructions est accessible via une adresse.
 
 <details close="">
 <summary markdown="span">
-1. Quel fichier du projet contient votre mémoire d'instructions ? Comment est-elle connectée à votre processeur ?
+1. Quel fichier du projet implémente la mémoire d'instructions ? Comment est-elle connectée au processeur ?
 </summary>
 <p style="color: firebrick" markdown="span">
-La mémoire d'instructions est le module ROM dans le fichier `run.circ`. Ce fichier fournit une entrée pour votre CPU nommée `INSTRUCTION` et prend une sortie de votre CPU. Cette sortie est appelée` PROGRAM_COUNTER` dans votre fichier `cpu.circ` et elle s'appelle `FETCH_ADDR` dans `run.circ`.
+La mémoire d'instructions est le module ROM dans le fichier `run_*.circ`. Ce fichier fournit une entrée pour votre CPU nommée `INSTRUCTION` et prend une sortie de votre CPU. Cette sortie est appelée `IMEM_ADDRESS` dans votre fichier `cpu_*.circ` et elle s'appelle `FETCH_ADDR` dans `run_*.circ`.
 </p>
 </details>
 
 <details close="">
 <summary markdown="span">
-2. Dans votre circuit `cpu.circ`, comment le changement de l'adresse transmise à travers `PROGRAM_COUNTER` affecterait-il l'entrée `INSTRUCTION` ?
+2. Dans vos circuits `cpu*.circ`, comment le changement de l'adresse transmise à travers `IMEM_ADDRESS` affecterait-il l'entrée `INSTRUCTION` ?
 </summary>
 <p style="color: firebrick" markdown="span">
-L'instruction que `run.circ` transmet à votre processeur doit être l'instruction récupérée depuis l'adresse `PROGRAM_COUNTER` (ou `FETCH_ADDR`) dans la mémoire d'instructions.
+L'instruction que `run_*.circ` transmet à votre processeur doit être l'instruction récupérée depuis l'adresse `IMEM_ADDRESS` (ou `FETCH_ADDR`) dans la mémoire d'instructions.
 </p>
 </details>
 
 <details close="">
 <summary markdown="span">
-3. Comment vérifier si `PROGRAM_COUNTER` est correct ?
+3. Comment vérifier si `IMEM_ADDRESS` est correct ?
 </summary>
 <p style="color: firebrick" markdown="span">
-`PROGRAM_COUNTER` est l'adresse de l'instruction en cours d'exécution. Cette adresse est donc sauvegardée dans le registre `PC`. Pour ce projet, votre registre `PC` démarrera à la valeur `0` car c'est la valeur par défaut dans un registre Logisim.
+`IMEM_ADDRESS` est l'adresse de l'instruction en cours d'exécution. Cette adresse est donc sauvegardée dans le registre `PC`. Pour ce mini-projet, votre registre `PC` démarrera à la valeur `0` car c'est la valeur par défaut dans un registre Logisim.
 </p>
 </details>
 
 <details close="">
 <summary markdown="span">
-4. Comment le registre `PC` change-t-il pour les programmes simples qui ne possèdent pas d'instructions de sauts ou de branchement ?
+4. Comment le registre `PC` change-t-il pour les programmes qui ne possèdent pas d'instructions de sauts ou de branchement ?
 </summary>
 <p style="color: firebrick" markdown="span">
 Comme le registre `PC` contient l'adresse de l'instruction en cours d'exécution, il faut incrémenter ce registre de la taille d'une instruction pour passer à l'instruction suivante. Cela signifie que votre `PC` augmentera généralement de 4 (en supposant que l'instruction en cours n'est pas un saut ou un branchement).
 </p>
 </details>
 <br>
-Une implémentation simple du registre `PC` est fournie dans `cpu.circ`. Cette implémentation ne prend pas en compte les instructions de saut et de branchement que vous implémenterez dans la partie B du projet. Mais pour l'instant, seulement des instructions `addi` seront exécutées dans notre processeur.
+Une implémentation simple du registre `PC` est fournie dans `cpu_*.circ`. Cette implémentation ne prend pas en compte les instructions de saut et de branchement que vous implémenterez dans la partie B du projet. Mais pour l'instant, seulement des instructions `addi` seront exécutées dans notre processeur.
 
-Rappelons que nous allons éventuellement implémenter un processeur en pipeline à 2 étages, de sorte que l'étape IF est séparée des étapes restantes. Quel circuit sépare les différentes étapes d'un pipeline ? Plus précisément, quel circuit sépare IF de l'étage suivant ? Auriez-vous besoin d'ajouter quelque chose ici ?
+Rappelons que nous allons éventuellement implémenter un processeur en pipeline à 2 étages, de sorte que l'étape IF est séparée des étapes restantes. Quel circuit sépare les différentes étapes dans un pipeline ? Plus précisément, quel circuit sépare IF de l'étage suivant ? Auriez-vous besoin d'ajouter quelque chose ici ?
 <br>
 
 #### **Étape 2 : Décodeur d'instruction (ID)**
@@ -835,7 +826,7 @@ Une fois l'étape « IF » implémentée, l'instruction à traiter proviendra à
 
 <details close="">
 <summary markdown="span">
-1. Quel type d'instruction est `addi` ? Quels sont les différents champs de bits associés à ce type d'instruction et de quels bits de l'instruction chaque champ est constitué ?
+1. Quel type d'instruction est `addi` ? Quels sont les différents champs de bits associés à ce type d'instruction ? Quelles sont leurs plages de bits ?
 </summary>
 <p style="color: firebrick" markdown="span">
 `addi` est une instruction de « **type I** ». Les champs de bits sont : - `opcode [31-26]` - `rs [25-21]` - `rt [20-16]` - `imm [15-0]`.</p>
@@ -1067,8 +1058,8 @@ Votre implémentation du CPU sera évaluée uniquement sur les instructions énu
 <colgroup>
 <col width="15%" />
 <col width="30%" />
-<col width="30%" />
-<col width="10%" />
+<col width="32%" />
+<col width="8%" />
 <col width="15%" />
 </colgroup>
 <thead>
@@ -1101,7 +1092,7 @@ Votre implémentation du CPU sera évaluée uniquement sur les instructions énu
 
 <tr>
 <td style="text-align:left" markdown="span">**addi** rt, rs, imm</td>
-<td style="text-align:left" markdown="span">Addition<br>(2<sup>ème</sup> opérande : immédiat)</td>
+<td style="text-align:left" markdown="span">Addition<br>(2<sup>ème</sup> param. : immédiat)</td>
 <td style="text-align:left" markdown="span">R[rt] ← R[rs] + imm<sub>±</sub></td>
 <td style="text-align:center" markdown="span">I</td>
 <td style="text-align:left" markdown="span">&emsp;0x8</td>
@@ -1125,7 +1116,7 @@ Votre implémentation du CPU sera évaluée uniquement sur les instructions énu
 
 <tr>
 <td style="text-align:left" markdown="span">**mulhu** rs, rt</td>
-<td style="text-align:left" markdown="span">Multiplication;<br>(opérandes non signés)</td>
+<td style="text-align:left" markdown="span">Multiplication;<br>(params non signés)</td>
 <td style="text-align:left" markdown="span">R[rd] ← (R[rs] x R[rt])[63:32]</td>
 <td style="text-align:center" markdown="span">R</td>
 <td style="text-align:left" markdown="span">&emsp;0x0 / 0x19</td>
@@ -1158,7 +1149,7 @@ Votre implémentation du CPU sera évaluée uniquement sur les instructions énu
 
 <tr>
 <td style="text-align:left" markdown="span">**andi** rt, rs, imm</td>
-<td style="text-align:left" markdown="span">ET logique<br>(2<sup>ème</sup> opérande : immédiat)</td>
+<td style="text-align:left" markdown="span">ET logique<br>(2<sup>ème</sup> param. : immédiat)</td>
 <td style="text-align:left" markdown="span">R[rd] ← R[rs] & imm<sub>0</sub></td>
 <td style="text-align:center" markdown="span">I</td>
 <td style="text-align:left" markdown="span">&emsp;0xC</td>
@@ -1166,7 +1157,7 @@ Votre implémentation du CPU sera évaluée uniquement sur les instructions énu
 
 <tr>
 <td style="text-align:left" markdown="span">**ori** rt, rs, imm</td>
-<td style="text-align:left" markdown="span">OU logique<br>(2<sup>ème</sup> opérande : immédiat)</td>
+<td style="text-align:left" markdown="span">OU logique<br>(2<sup>ème</sup> param. : immédiat)</td>
 <td style="text-align:left" markdown="span">R[rd] ← R[rs] | imm<sub>0</sub></td>
 <td style="text-align:center" markdown="span">I</td>
 <td style="text-align:left" markdown="span">&emsp;0xD</td>
@@ -1174,7 +1165,7 @@ Votre implémentation du CPU sera évaluée uniquement sur les instructions énu
 
 <tr>
 <td style="text-align:left" markdown="span">**xori** rt, rs, imm</td>
-<td style="text-align:left" markdown="span">OU exclusif<br>(2<sup>ème</sup> opérande : immédiat)</td>
+<td style="text-align:left" markdown="span">OU exclusif<br>(2<sup>ème</sup> param. : immédiat)</td>
 <td style="text-align:left" markdown="span">R[rd] ← R[rs] ^ imm<sub>0</sub></td>
 <td style="text-align:center" markdown="span">I</td>
 <td style="text-align:left" markdown="span">&emsp;0xE</td>
@@ -1230,24 +1221,40 @@ Votre implémentation du CPU sera évaluée uniquement sur les instructions énu
 
 <tr>
 <td style="text-align:left" markdown="span">**slt** rd, rs, rt</td>
-<td style="text-align:left" markdown="span">Positionné si inférieur à</td>
+<td style="text-align:left" markdown="span">Positionné si inférieur</td>
 <td style="text-align:left" markdown="span">R[rd] ← R[rs] < R[rt] ? 1 : 0</td>
 <td style="text-align:center" markdown="span">R</td>
 <td style="text-align:left" markdown="span">&emsp;0x0 / 0x2A</td>
 </tr>
 
 <tr>
+<td style="text-align:left" markdown="span">**sltu** rd, rs, rt</td>
+<td style="text-align:left" markdown="span">Positionné si inférieur (non signés)</td>
+<td style="text-align:left" markdown="span">R[rd] ← R[rs] < R[rt] ? 1 : 0</td>
+<td style="text-align:center" markdown="span">R</td>
+<td style="text-align:left" markdown="span">&emsp;0x0 / 0x2B</td>
+</tr>
+
+<tr>
 <td style="text-align:left" markdown="span">**slti** rt, rs, imm</td>
-<td style="text-align:left" markdown="span">Positionné si inférieur à<br>(2<sup>ème</sup> opérande : immédiat)</td>
+<td style="text-align:left" markdown="span">Positionné si inférieur<br>(2<sup>ème</sup> param. : immédiat)</td>
 <td style="text-align:left" markdown="span">R[rt] ← R[rs] < imm<sub>±</sub> ? 1 : 0</td>
 <td style="text-align:center" markdown="span">I</td>
 <td style="text-align:left" markdown="span">&emsp;0xA</td>
 </tr>
 
 <tr>
+<td style="text-align:left" markdown="span">**sltiu** rt, rs, imm</td>
+<td style="text-align:left" markdown="span">Positionné si inférieur (non signée)<br>(2<sup>ème</sup> param. : immédiat)</td>
+<td style="text-align:left" markdown="span">R[rt] ← R[rs] < imm<sub>±</sub> ? 1 : 0</td>
+<td style="text-align:center" markdown="span">I</td>
+<td style="text-align:left" markdown="span">&emsp;0xB</td>
+</tr>
+
+<tr>
 <td style="text-align:left" markdown="span">**j** imm</td>
 <td style="text-align:left" markdown="span">Saut étiquette</td>
-<td style="text-align:left" markdown="span">PC ← PC & 0xF0000000 | (imm<sub>0</sub> \<\< 2)</td>
+<td style="text-align:left" markdown="span">PC ← PC & 0xF0000000 | (imm \<\< 2)</td>
 <td style="text-align:center" markdown="span">J</td>
 <td style="text-align:left" markdown="span">&emsp;0x2</td>
 </tr>
@@ -1255,13 +1262,13 @@ Votre implémentation du CPU sera évaluée uniquement sur les instructions énu
 <tr>
 <td style="text-align:left" markdown="span">**jal** imm</td>
 <td style="text-align:left" markdown="span">Saut et liaison</td>
-<td style="text-align:left" markdown="span">$ra ← PC + 4;<br>PC ← PC & 0xF0000000 | (imm<sub>0</sub> \<\< 2)</td>
+<td style="text-align:left" markdown="span">$ra ← PC + 4;<br>PC ← PC & 0xF0000000 | (imm \<\< 2)</td>
 <td style="text-align:center" markdown="span">J</td>
 <td style="text-align:left" markdown="span">&emsp;0x3</td>
 </tr>
 
 <tr>
-<td style="text-align:left" markdown="span">**jalr** rs, rd</td>
+<td style="text-align:left" markdown="span">**jalr** rd, rs</td>
 <td style="text-align:left" markdown="span">Saut et lien sur registre</td>
 <td style="text-align:left" markdown="span">R[rd] ← PC + 4;<br>PC ← R[rs]</td>
 <td style="text-align:center" markdown="span">R</td>
@@ -1282,22 +1289,6 @@ Votre implémentation du CPU sera évaluée uniquement sur les instructions énu
 <td style="text-align:left" markdown="span">if (R[rs] != R[rt])<br>&emsp;PC ← PC + 4 + (imm<sub>±</sub>\<\< 2)</td>
 <td style="text-align:center" markdown="span">I</td>
 <td style="text-align:left" markdown="span">&emsp;0x5</td>
-</tr>
-
-<tr>
-<td style="text-align:left" markdown="span">**blez** rs, imm</td>
-<td style="text-align:left" markdown="span">Branchement si inférieur ou égale à 0</td>
-<td style="text-align:left" markdown="span">if (R[rs] ≤ 0)<br>&emsp;PC ← PC + 4 + (imm<sub>±</sub>\<\< 2)</td>
-<td style="text-align:center" markdown="span">I</td>
-<td style="text-align:left" markdown="span">&emsp;0x6</td>
-</tr>
-
-<tr>
-<td style="text-align:left" markdown="span">**bgtz** rs, imm</td>
-<td style="text-align:left" markdown="span">Branchement si supérieur à 0</td>
-<td style="text-align:left" markdown="span">if (R[rs] > 0)<br>&emsp;PC ← PC + 4 + (imm<sub>±</sub>\<\< 2)</td>
-<td style="text-align:center" markdown="span">I</td>
-<td style="text-align:left" markdown="span">&emsp;0x7</td>
 </tr>
 
 <tr>

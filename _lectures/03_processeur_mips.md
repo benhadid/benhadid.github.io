@@ -1,6 +1,6 @@
 ---
 type: lecture
-date: 2019-10-01T8:00:00+4:30
+date: 2021-01-28T11:30:00+1:00
 title: Architecture du Processeur MIPS
 tldr: "Jeu d'Instructions et Architecture (ISA) du MIPS"
 thumbnail: /static_files/presentations/lec_03.jpg
@@ -13,7 +13,7 @@ links:
 **Lectures suggérées :**   
 - Programmation [structurée et non structurée]({{ site.baseurl }}/static_files/presentations/non_structured_programming.html)
 - [Contrôle de flux]({{ site.baseurl }}/static_files/docs/flow_control.pdf) dans MIPS
-- [Introduction]({{ site.baseurl }}/static_files/docs/Introduction_Assembleur_MIPS.pdf) à l'assembleur MIPS 
+- [Introduction]({{ site.baseurl }}/static_files/docs/Introduction_Assembleur_MIPS.pdf) à l'assembleur MIPS
 - [Fiche]({{ site.baseurl }}/static_files/docs/fiche_mips.pdf) de référence MIPS
 
 **Références :**

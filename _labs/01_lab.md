@@ -1,10 +1,10 @@
 ---
 type: lab
-date: 2019-09-19T4:00:00+4:30
+date: 2021-01-16T10:00:00+1:00
 title: 'Travaux Pratiques #1 - Ligne de commande et débogage de programmes'
 attachment: /static_files/labs/lab_01.zip
 #solutions: /static_files/labs/lab_solutions.pdf
-due_event: 
+due_event:
     type: due
     date: 2019-09-26T23:59:00+3:30
     description: 'Travaux Pratiques #1 - à remettre'
@@ -15,7 +15,7 @@ due_event:
   - L'étudiant sera initié aux commandes de base du shell UN\*X.
 
   - L'étudiant sera initié à l'outil GDB pour acquérir une expérience pratique dans le débogage de programmes C.
- 
+
   - L'étudiant sera capable de compiler et d'exécuter un programme C sur les ordinateurs des laboratoires MI.
 
 
@@ -33,7 +33,7 @@ Pour ce devoir et les devoirs futurs de ce cours, il est suggéré d'effectuer l
 
   5. Si votre ordinateur possède 4 Go ou plus de de Mémoire RAM, il est préférable dans ce cas de reconfigurer la VM pour lui attribuer [plus de mémoire](https://docs.bitnami.com/virtual-machine/faq/administration/increase-memory/).
 
-  6. Une fois la VM lancée, le système est configuré pour utiliser par défaut un clavier américain (comme dans les salles machines). Vous pouvez permuter vers un clavier français en cliquant avec la souris sur le drapeau américain en haut à droite de l'écran. 
+  6. Une fois la VM lancée, le système est configuré pour utiliser par défaut un clavier américain (comme dans les salles machines). Vous pouvez permuter vers un clavier français en cliquant avec la souris sur le drapeau américain en haut à droite de l'écran.
 
 **Remarque** : Vous êtes libres d'installer / configurer vos propres PCs de la manière qui vous convient. Cependant, pour réaliser les devoirs de ce cours sans trop de difficultés et afin d'éviter les problèmes / excuses / frustrations du genre « pourquoi ça fonctionne sur mon PC mais pas sur le PC du labo ? », vous êtes vivement encouragés à installer la VM fournie en suivant les instructions données ci-dessus. Cela devrait rendre votre vie beaucoup plus facile.
 
@@ -69,8 +69,8 @@ Lors de la saisie de commandes ou de chemins de fichiers :
  - La combinaison `<ctrl> + e` déplacera le curseur à la fin de la ligne courante (également utile pour corriger les erreurs)
 
  - La combinaison `<ctrl> + r` vous permettra d'effectuer une recherche dans la commande récemment utilisée.
- 
-## Manipulation de fichiers 
+
+## Manipulation de fichiers
 
 La commande `touch` permet de créer un fichier vide avec le nom de fichier fourni en argument.
 
@@ -105,7 +105,7 @@ La commande `cat` affiche le contenu de `example.txt` sur votre terminal. `less`
 
 ## `man` - Pages de manuel
 
-Les pages de manuel (*anglais* : « man pages ») sont d'excellentes ressources UN\*X qui sont souvent sous-utilisées; bien qu'elles ne soient pas aussi polyvalentes que Google, elles contiennent de la documentation sur les composants UN\*X comme les manuels d'utilisation des programmes, des normes et conventions linguistiques, etc. Elles fonctionnent également hors ligne et peuvent donc être utiles si vous êtes coincé sans internet parce que le cable sous-marin a été rupturé une n-ième fois (ou pendant la période du bac !). 
+Les pages de manuel (*anglais* : « man pages ») sont d'excellentes ressources UN\*X qui sont souvent sous-utilisées; bien qu'elles ne soient pas aussi polyvalentes que Google, elles contiennent de la documentation sur les composants UN\*X comme les manuels d'utilisation des programmes, des normes et conventions linguistiques, etc. Elles fonctionnent également hors ligne et peuvent donc être utiles si vous êtes coincé sans internet parce que le cable sous-marin a été rupturé une n-ième fois (ou pendant la période du bac !).
 
 Bien que votre moteur de recherche préféré ait probablement les réponses que vous recherchez, nous aimerions dans ce cours que vous vous familiarisiez avec l'utilisation de la commande « `man` », en particulier pour les questions relatives au langage C et au systèmes d'exploitation UN\*X.
 
@@ -115,7 +115,7 @@ Pour afficher la page de manuel pour une commande spécifique (ici la commande `
 $ man echo | less
 ```
 
-La page de manuel d'une commande contient généralement des informations sur celle-ci, la signification et l'effet de certains paramètres additionnels quand vous invoquez la commande avec eux, et où aller pour avoir plus d'informations. 
+La page de manuel d'une commande contient généralement des informations sur celle-ci, la signification et l'effet de certains paramètres additionnels quand vous invoquez la commande avec eux, et où aller pour avoir plus d'informations.
 
 Dans l'exemple ci-dessus, nous avons redirigé, grâce au symbole « `|` », le contenu du manuel d'utilisation de la commande `echo` vers le programme `less`. Cela nous permet de dérouler la page de manuel avec les touches fléchées ou la barre d'espace. Appuyez sur la touche `q` pour quitter la page de manuel et revenir à l'invite de votre terminal.
 
@@ -159,7 +159,7 @@ $ vim ../other_folder/filename
 
 <br>
 
-**Remarque** : Ces commandes sont précédées de `<esc>` pour indiquer que vous devez appuyer sur la touche d'échappement de votre clavier pour quitter le mode actuel. Par exemple, si vous voulez enregistrer votre fichier après modification, vous devez appuyer sur la touche d'échappement pour sortir du mode « insertion », puis taper « `:w` » pour sauvegarder le fichier. 
+**Remarque** : Ces commandes sont précédées de `<esc>` pour indiquer que vous devez appuyer sur la touche d'échappement de votre clavier pour quitter le mode actuel. Par exemple, si vous voulez enregistrer votre fichier après modification, vous devez appuyer sur la touche d'échappement pour sortir du mode « insertion », puis taper « `:w` » pour sauvegarder le fichier.
 
 # Exercise 2 : (gdb)
 
@@ -192,7 +192,7 @@ Parcourez le programme `hello` en procédant comme suit :
   1. définissez un point d'arrêt sur la fonction `main`
 
   2. utilisez la commande `run` de `gdb`
- 
+
   3. utilisez la commande exécution pas-à-pas de `gdb`
 
 Tapez help depuis `gdb` pour connaître les commandes permettant d'effectuer ces opérations ou utilisez le [document de référence GDB]({{site.baseurl}}/static_files/docs/gdb5-refcard.pdf).
@@ -231,21 +231,21 @@ Connaître les réponses aux questions ci-dessous vous sera très utile pour le 
 
 Même avec un débogueur, nous ne pourrons peut-être pas détecter tous les bogues. Certains bogues sont ce que nous appelons des « bohrbugs », ce qui signifie qu'ils se manifestent de manière fiable dans un ensemble de conditions bien définies, mais peut-être inconnues. D'autres bogues sont ce que nous appelons des « heisenbugs », et au lieu d'être déterminants, ils sont connus pour disparaître ou modifier leur comportement lorsque l'on tente de les étudier. Nous pouvons détecter le premier type avec des débogueurs, mais le second type peut passer sous notre radar car ils sont souvent dus (au moins dans le langage C) à une mémoire mal gérée.
 
-Rappelons que, contrairement à d'autres langages de programmation, le C s'attend à ce que vous (le programmeur) gériez correctement la mémoire. Pour détecter et attraper ces « heisenbugs », nous utiliserons un outil appelé **Valgrind**. Cet outil est un programme qui émule votre processeur et répertorie tous vos accès mémoire. Cela ralentit considérablement le processus que vous exécutez (c'est pourquoi, par exemple, nous n'exécutons pas toujours tous les exécutables à l'intérieur de Valgrind), mais permet d'exposer des bogues qui peuvent autrement passer inaperçus. 
+Rappelons que, contrairement à d'autres langages de programmation, le C s'attend à ce que vous (le programmeur) gériez correctement la mémoire. Pour détecter et attraper ces « heisenbugs », nous utiliserons un outil appelé **Valgrind**. Cet outil est un programme qui émule votre processeur et répertorie tous vos accès mémoire. Cela ralentit considérablement le processus que vous exécutez (c'est pourquoi, par exemple, nous n'exécutons pas toujours tous les exécutables à l'intérieur de Valgrind), mais permet d'exposer des bogues qui peuvent autrement passer inaperçus.
 
 **Remarque** : Valgrind est déjà installé sur les machines du laboratoire et la VM. Cet outil est également disponible sur la plupart des distributions UN\*X ainsi que sur macOS. Nous vous recommandons, toutefois, d'utiliser les machines du laboratoire ou la VM fournie pour ce cours pour éviter d'éventuelles problèmes de compatibilité. Les outils GDB et Valgrind deviendront incroyablement utiles pour vous au fur et à mesure que vous avancerez dans votre carrière d'informaticien.
 
 Dans cet exercice, nous allons démontrer deux exemples d'utilisation de Valgrind et expliquer comment ils peuvent être utile.
 
-À l'aide du compilateur `gcc`, construisez deux exécutables : 
+À l'aide du compilateur `gcc`, construisez deux exécutables :
 
- - `segfault_ex` à partir de `segfault_ex.c`, et 
+ - `segfault_ex` à partir de `segfault_ex.c`, et
 
- - `no_segfault_ex` à partir de `no_segfault_ex.c`. 
+ - `no_segfault_ex` à partir de `no_segfault_ex.c`.
 
 Utilisez le drapeau `-o` pour les noms d'exécutable ! Ensuite, essayez d'exécuter les programmes compilés... qu'observez-vous ?
 
-Commençons par `segfault_ex`. Vous devriez avoir observé une erreur de segmentation (*anglais*: segmentation fault), qui se produit lorsque un programme se bloque après avoir tenté d'accéder à de la mémoire qui ne lui est pas disponible (nous en parlerons plus tard dans le cours). Le code source `segfault_ex.c` est assez simple, vous devriez pouvoir << comprendre >> facilement ce qui cause l'erreur de segmentation. Ne modifiez pas le fichier, il n'est pas nécessaire de corriger l'erreur ici. 
+Commençons par `segfault_ex`. Vous devriez avoir observé une erreur de segmentation (*anglais*: segmentation fault), qui se produit lorsque un programme se bloque après avoir tenté d'accéder à de la mémoire qui ne lui est pas disponible (nous en parlerons plus tard dans le cours). Le code source `segfault_ex.c` est assez simple, vous devriez pouvoir << comprendre >> facilement ce qui cause l'erreur de segmentation. Ne modifiez pas le fichier, il n'est pas nécessaire de corriger l'erreur ici.
 
 Trouver une erreur de segmentation dans un fichier très large ne sera pas une tâche facile, et c'est là où Valgrind peut intervenir. Pour exécuter le programme `segfault_ex` dans Valgrind, utilisez la commande :
 
@@ -253,7 +253,7 @@ Trouver une erreur de segmentation dans un fichier très large ne sera pas une t
 $ valgrind ./segfault_ex
 ```
 
-Cela devrait amener Valgrind à afficher l'endroit où l'accès illégal s'est produit. Comparez ces résultats à ce que vous avez déterminé en examinons manuellement le fichier `segfault_ex.c`. Comment Valgrind pourrait-il vous aider à identifier un segfault dans l'avenir ? 
+Cela devrait amener Valgrind à afficher l'endroit où l'accès illégal s'est produit. Comparez ces résultats à ce que vous avez déterminé en examinons manuellement le fichier `segfault_ex.c`. Comment Valgrind pourrait-il vous aider à identifier un segfault dans l'avenir ?
 
 Maintenant, essayez d'exécuter Valgrind sur `no_segfault_ex`. Le programme ne devrait pas planter mais il y a toujours un problème avec le fichier. Valgrind peut nous aider à trouver le problème (apparemment invisible).
 
@@ -264,11 +264,11 @@ Malheureusement, vous verrez ici que Valgrind semble ne pas être en mesure de v
 ## Tâches à réaliser :
 
 Après avoir parcouru cet exercice, vous devriez être en mesure de comprendre et de répondre à ce qui suit :
- 
+
   - Pourquoi Valgrind est un outil important et très utile ?
 
   - Comment exécuter un programme dans Valgrind ?
 
-  - Comment interpréter les messages d'erreur ? 
+  - Comment interpréter les messages d'erreur ?
 
   - Pourquoi des variables non initialisées pourraient causer des « heisenbugs » ?

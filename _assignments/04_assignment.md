@@ -1,6 +1,6 @@
 ---
 type: assignment
-date: 2019-09-19T4:00:00+4:30
+date: 2021-02-06T09:00:00+1:00
 title: 'Travaux Dirigés #4 - Assembleur et adressage mémoire dans MIPS'
 pdf: /static_files/assignments/td_4.pdf
 #attachment: /static_files/assignments/asg.zip
