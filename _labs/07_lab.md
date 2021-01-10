@@ -65,7 +65,7 @@ Voici quelques questions auxquelles vous devriez pouvoir répondre et qui vous a
 
 ### Scénario 1
 
-**Paramètres du cache :** (à définir dans la fenêtre << **Data Cache Simulator >>)
+**Paramètres du cache :** (à définir dans la fenêtre << **Data Cache Simulator** >>)
 
  - **Placement Policy (type du cache):** Direct Mapping  (cache direct).
  - **Block Replacement Policy (politique de remplacement de bloc):** LRU.

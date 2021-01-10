@@ -872,7 +872,7 @@ L'étape d'exécution est l'endroit où le calcul de la plupart des instructions
 1. Pour l'instruction `addi`, que serait les données en entrée de votre UAL ?
 </summary>
 <p style="color: firebrick" markdown="span">
-Read Data 1 (rs1) du « Banc de Registres » et la constante produite par le « Générateur d'Immédiat ».
+Read Data 1 (rs) du « Banc de Registres » et la constante produite par le « Générateur d'Immédiat ».
 </p>
 </details>
 
@@ -934,10 +934,9 @@ La sortie du MUX véhicule les données que vous souhaitez écrire dans le « Ba
 </p>
 </details>
 
-&emsp;&nbsp;5\. Il y a deux autres entrées sur le « Banc de Registres » qui sont importantes pour l'écriture des données : `RegWEn` et `rd`. L'une d'entre elles devra être récupérée de l'étape de décodage d'instructions (ID) et l'autre correspond à un nouveau signal de commande que vous devez concevoir dans la partie B du projet. Veuillez finaliser l'étape de l'écriture en implémentant correctement ces entrées pour l'instruction `addi`.
+&emsp;&nbsp;5\. Il y a deux autres entrées sur le « Banc de Registres » qui sont importantes pour l'écriture des données : `RegWEn` et `Write_Data`. L'une d'entre elles devra être récupérée de l'étape de décodage d'instructions (ID) et l'autre correspond à un nouveau signal de commande que vous devez concevoir dans la partie B du projet. Veuillez finaliser l'étape de l'écriture en implémentant correctement ces entrées pour l'instruction `addi`.
 
-Si vous avez effectué toutes les étapes correctement, vous devriez avoir un processeur à cycle unique qui fonctionne pour les instructions `addi`. Exécutez `python3 test_runner.py part_a addi_single` depuis le terminal et voyez si votre implémentation fonctionne correctement !
-
+Si vous avez effectué toutes les étapes correctement, vous devriez avoir un processeur à cycle unique qui fonctionne pour les instructions `addi`. Exécutez `python3 test_runner.py part_a addi_single` depuis le terminal et vérifiez si votre implémentation fonctionne correctement !
 
 ### Guide : Parallélisation (pipelining) de votre processeur
 
@@ -955,7 +954,7 @@ Quelques points à considérer pour une conception du pipeline en deux étages :
 
 D'autre part, on remarquera un problème d'amorçage ici : pendant le premier cycle d'exécution, les registres introduits entre les différentes étapes du pipeline sont initialement (vides), mais le vide n'existe pas en hardware. Comment allons-nous gérer cette première instruction fictive ? A quoi correspondrait le vide dans notre processeur ? C-à-d. à quelles valeurs devons-nous initialer les registres nouvellement introduits pour ne « **rien faire** » pendant le premier cycle d'exécution ?
 
-Il arrive que Logisim remet automatiquement les registres à zéro lors de la réinitialisation; ce qui, pour notre problème de cpu en pipeline, simulera une instruction `nop` au démarrage ! Merci Logisim ! N'oubliez pas d'aller dans **| Simulate -> Reset Simulation|** pour réinitialiser votre processeur.
+Il arrive que Logisim remet automatiquement les registres à zéro lors de la réinitialisation; ce qui, pour notre problème de cpu en pipeline, simulera une instruction `nop` au démarrage ! Merci Logisim ! N'oubliez pas d'aller dans << **Simulate \| Reset Simulation** >> pour réinitialiser votre processeur.
 
 Après avoir << pipeliné >> votre processeur, vous devriez être en mesure de réussir le test `python3 test_runner.py part_a addi_pipelined`. Notez que le précédent test `python3 test_runner.py part_a addi_single` devrait échouer maintenant ( pourquoi ? Consultez les sorties de référence pour chaque test et réfléchissez aux effets du pipeline sur les différentes étapes ).
 
@@ -965,9 +964,9 @@ Après avoir << pipeliné >> votre processeur, vous devriez être en mesure de r
 
 ## Comprendre les tests effectués
 
-Chaque test des tests cpu inclus dans le code de démarrage est une copie du fichier `run.circ` et contient des instructions préalablement chargées dans sa mémoire d'instructions (`Instruction Memory`). Lorsque vous lancez logisim-evolution à partir de la ligne de commande, votre circuit est automatiquement mis en marche. L’exécution est cadencée par l'horloge, le `PC` de votre processeur est mis à jour, l'instruction récupérée est traitée, et les valeurs de chacune des sorties du circuit de test sont imprimées sur le terminal.
+Les tests cpu inclus dans le code de démarrage sont des copies des fichiers `run_*.circ` et contiennent des instructions préalablement chargées dans la mémoire d'instructions (`Instruction Memory`). Lorsque vous lancez **logisim-evolution** à partir de la ligne de commande, votre circuit est automatiquement mis en marche. L’exécution est cadencée par l'horloge, le `PC` de votre processeur est mis à jour, l'instruction récupérée est traitée, et les valeurs de chacune des sorties du circuit de test sont imprimées sur le terminal.
 
-Prenons l'exemple du test `cpu-addi-pipelined.circ` fourni pour le processeur en pipeline. le circuit contient trois instructions `addi` (`addi $t0, $0, 5`, `addi $t1, $t0, 7` et `addi $s0, $t0, 9`). Ouvrez `tests/part_a/addi_pipelined/ cpu-addi-pipelined.circ` dans Logisim Evolution et examinez de plus près les différentes parties du circuit de test. En haut, vous verrez l’endroit où le socle testeur `test_harness` est connecté aux sorties de débogage. Initialement, ces sorties sont toutes des UUUUU, mais cela ne devrait pas être le cas une fois votre circuit `cpu.circ` est implémenté.
+Prenons l'exemple du test `addi-pipelined`. Le circuit `cpu-addi.circ` contient trois instructions `addi` (`addi $t0, $0, 5`, `addi $t1, $t0, 7` et `addi $s0, $t0, 9`). Ouvrez `tests/part_a/addi_pipelined/cpu-addi.circ` dans Logisim Evolution et examinez de plus près les différentes parties du circuit de test. En haut, vous verrez l’endroit où le socle testeur `test_harness` est connecté aux sorties de débogage. Initialement, ces sorties sont toutes des `UUUUU`, mais cela ne devrait pas être le cas une fois votre circuit `cpu_pipelined.circ` est implémenté.
 
 Le socle `test_harness` prend en entrée le signal d'horloge (`clk`) et l'(`Instruction`) fournie par le module de mémoire d'(`Instruction Memory`). En sortie, le socle transmet pour affichage les valeurs des registres de débogage provenant de votre circuit de processeur `cpu.circ`. La sortie additionnelle `fetch_addr` transmet l'adresse de la prochaine instruction à lire à la mémoire d'instructions (`Instruction Memory`).
 
@@ -975,7 +974,7 @@ Le socle `test_harness` prend en entrée le signal d'horloge (`clk`) et l'(`Inst
   <p>Veillez à ne déplacer aucune des entrées/sorties de votre processeur, ni à ajouter des entrées/sorties supplémentaires. Cela modifiera la forme du sous-circuit du processeur et, par conséquent, les connexions dans les fichiers de test risquent de ne plus fonctionner correctement.</p>
 </div>
 
-Sous le socle test_harness, vous verrez la mémoire d'instructions contenant le code machine en hexadécimal des trois instructions `addi` testés (0x00500293, 0x00728313, 0x00928413). La mémoire d'instructions prend une entrée (appelée `fetch_addr`) et délivre l'instruction stockée à cette adresse. Dans MIPS, `fetch_addr` est une valeur de 32 bits, mais comme Logisim Evolution limite la taille des unités ROM à $$2^{16}$$, nous devons utiliser un séparateur pour récupérer seulement 14 bits de `fetch_addr` (en ignorant les deux bits les plus bas).
+Sous le socle `test_harness`, vous verrez la mémoire d'instructions contenant le code machine en hexadécimal des trois instructions `addi` testés (0x20080005, 0x21090007, 0x21100009). La mémoire d'instructions prend une entrée (appelée `fetch_addr`) et délivre l'instruction stockée à cette adresse. Dans MIPS, `fetch_addr` est une valeur de 32 bits, mais comme Logisim Evolution limite la taille des unités ROM à $$2^{16}$$, nous devons utiliser un séparateur pour récupérer seulement 14 bits de `fetch_addr` (en ignorant les deux bits les plus bas).
 
 <details close="">
 <summary markdown="span">
@@ -989,7 +988,7 @@ Dans MIPS, les instructions sont récupérées mot-par-mot depuis la mémoire d'
 <br>
 Ainsi, quand le circuit de test est mis en marche, chaque tick de l'horloge pilote l'exécution du socle `test_harness` et  incrémente le compteur appelé `Time_Step` (ce compteur se trouve à droite de la mémoire d'instructions, faites un zoom-out dans Logisim s'il n'est pas visible sur votre écran).
 
-A chaque tick de l'horloge, la ligne de commande Logisim Evolution imprimera les valeurs de chacune de vos sorties de débogage vers le terminal. L'horloge continuera à tourner jusqu'à ce que `Time_Step` soit égal à la constante d'arrêt pour ce circuit de test (pour ce fichier de test en particulier, la constante d'arrêt est 5).
+A chaque tick de l'horloge, l'exécution en [ligne de commande](http://www.cburch.com/logisim/docs/2.6.0/en/guide/verify/index.html) de logisim-evolution imprimera les valeurs de chacune de vos sorties de débogage vers le terminal. L'horloge continuera à tourner jusqu'à ce que `Time_Step` soit égal à la constante d'arrêt pour ce circuit de test (pour ce fichier de test en particulier, la constante d'arrêt est 5).
 
 Enfin, nous comparons la sortie de votre circuit au résultat attendu; si la sortie de votre circuit est différente, vous échouerez au test.
 
@@ -1003,7 +1002,7 @@ $ python3 test_runner.py part_a addi_pipelined # For a pipelined CPU
 
 Vous pouvez consulter les fichiers `.s` (MIPS) et `.hex` (code machine) utilisés pour le test dans `tests/part_a/addi_pipelined/inputs`.
 
-Pour faciliter l'interprétation de votre sortie, un script Python (`binary_to_hex_cpu.py`) est également inclus. Ce script fonctionne comme les scripts `binary_to_hex_alu.py` et `binary_to_hex_regfile.py` utilisés dans les tâches de conception de l'UAL et du « Banc de Registres » (Tâches n°1 et n°2). Pour utiliser le script, exécutez:
+Pour faciliter l'interprétation de votre sortie, un script Python (`binary_to_hex_cpu.py`) est également inclus. Ce script fonctionne comme les scripts `binary_to_hex_alu.py` et `binary_to_hex_regfile.py` utilisés dans les tâches de conception de l'UAL et du « Banc de Registres » (Tâches n°1 et n°2). Pour utiliser le script, exécutez :
 
 ```bash
 $ cd tests/part_a/addi_pipelined
@@ -1021,7 +1020,7 @@ $ python3 binary_to_hex_cpu.py reference_output/CPU-addi-pipelined-ref.out
 
 Assurez-vous à nouveau que vous n'avez pas déplacé/modifié vos ports d'entrée/sortie et que vos circuits s'insèrent sans problème dans les socles de test fournis.
 
-Pour l'évaluation de cette partie du projet, vous devez soumettre un fichier **zippé** contenant tous les circuits que vous devez implémenter. C.-à-d. les circuits **alu.circ**, **regfile.circ**, **imm_gen.circ**, **control_logic.circ** et **cpu.circ**.
+Pour l'évaluation de cette partie du projet, vous devez soumettre un fichier **zippé** contenant tous les circuits que vous devez implémenter. C.-à-d. les circuits **alu.circ**, **regfile.circ**, **imm_gen.circ**, **control_logic.circ** et **cpu_\*.circ**.
 
 ```bash
 votre_fichier.zip
@@ -1029,7 +1028,8 @@ votre_fichier.zip
  ├── regfile.circ
  ├── imm_gen.circ
  ├── control_logic.circ
- └── cpu.circ
+ ├── cpu_single.circ
+ └── cpu_pipelined.circ
  ```
 
 Par exemple, pour mettre les fichiers **file1.circ** et **file2.circ** dans un fichier zip nommé  **votre_fichier.zip** :
