@@ -1,14 +1,15 @@
 ---
 type: lecture
-date: 2021-01-21T11:30:00+1:00
+date: 2021-01-21T08:00:00+1:00
 title: Architecture de Von Neumann
 tldr: "Le modèle de base de l'ordinateur proposé par John von Neumann"
 thumbnail: /static_files/presentations/lec_02.jpg
+hide_from_announcements: True
 links:
     - url: /static_files/presentations/02-VonNeumann.pptx
       name: slides
     - url: https://1drv.ms/p/s!Agf0g-qZKM8_yAyyv1se7-WxjsN2?e=GO7udR
-      name: pptx
+      name: visualiser
 ---
 **Lectures suggérées :**
 - [Représentation](/static_files/docs/representation.pdf) des données en mémoire

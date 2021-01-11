@@ -1,12 +1,13 @@
 ---
 type: lab
-date: 2021-03-13T10:00:00+1:00
+date: 2021-03-11T10:00:00+1:00
 title: 'Travaux Pratiques #7 - Mémoire Cache'
 attachment: /static_files/labs/lab_07.zip
 #solutions: /static_files/labs/lab_solutions.pdf
+hide_from_announcements: True
 due_event:
     type: due
-    date: 2021-03-13T10:00:00+1:00
+    date: 2021-03-17T10:00:00+1:00
     description: 'Travaux Pratiques #8 - à remettre'
 ---
 

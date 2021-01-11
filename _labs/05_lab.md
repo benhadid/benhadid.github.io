@@ -1,12 +1,13 @@
 ---
 type: lab
-date: 2021-02-13T10:00:00+1:00
+date: 2021-02-11T10:00:00+1:00
 title: 'Travaux Pratiques #5 - Exceptions et Interruptions dans MIPS'
 attachment: /static_files/labs/exceptions_handler.s
 #solutions: /static_files/labs/lab_solutions.pdf
+hide_from_announcements: True
 due_event:
     type: due
-    date: 2021-02-13T10:00:00+1:00
+    date: 2021-02-17T10:00:00+1:00
     description: 'Travaux Pratiques #6 - à remettre'
 ---
 

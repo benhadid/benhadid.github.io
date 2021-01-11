@@ -1,14 +1,15 @@
 ---
 type: lecture
-date: 2021-01-14T11:30:00+1:00
+date: 2021-01-14T08:00:00+1:00
 title: Historique et Evolution
 tldr: "Histoire des ordinateurs et représentation de l’information"
 thumbnail: /static_files/presentations/lec_01.jpg
+hide_from_announcements: True
 links:
     - url: /static_files/presentations/01-Introduction.pptx
       name: slides
     - url: https://1drv.ms/p/s!Agf0g-qZKM8_yAoy7PxF3CLty2I5?e=HzmG1C
-      name: pptx
+      name: visualiser
 ---
 **Lectures suggérées :**
 - [Opérations binaires]({{ site.baseurl }}/static_files/docs/bitwise_operations_in_c.html) en C
