@@ -23,9 +23,13 @@ items:
   name: Projet
   icon_class: fas fa-user-graduate
 
-- url: https://piazza.com/univ-alger.dz/winter2021/l2ado/home # https://piazza.com/class/kizstkcn3ve5zo?cid=3#
-  name: Piazza
-  icon_class: fas fa-external-link-alt
+#- url: https://piazza.com/univ-alger.dz/winter2021/l2ado/home # https://piazza.com/class/kizstkcn3ve5zo?cid=3#
+#  name: Piazza
+#  icon_class: fas fa-external-link-alt
+
+#- url: https://teams.microsoft.com/l/team/19%3af14bd27e0d214193892daa19c9dbf9c9%40thread.tacv2/conversations?groupId=707e4b6d-fab0-43db-b43f-41ef2558486d&tenantId=8b2b997e-5006-4d79-8773-e9d2f9b74857
+#  name: teams
+#  icon_class: fas fa-external-link-alt
 
 - url: /materials/
   name: Ressources

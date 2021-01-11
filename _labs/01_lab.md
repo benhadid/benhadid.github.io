@@ -161,13 +161,13 @@ $ vim ../other_folder/filename
 
 **Remarque** : Ces commandes sont précédées de `<esc>` pour indiquer que vous devez appuyer sur la touche d'échappement de votre clavier pour quitter le mode actuel. Par exemple, si vous voulez enregistrer votre fichier après modification, vous devez appuyer sur la touche d'échappement pour sortir du mode « insertion », puis taper « `:w` » pour sauvegarder le fichier.
 
-# Exercise 2 : (gdb)
+# Exercice 2 : (gdb)
 
 Un **débogueur**, comme son nom l'indique, est un programme spécialement conçu pour vous aider à trouver des bogues, ou des erreurs logiques et des fautes dans votre code (remarque : si vous voulez savoir pourquoi les erreurs sont appelées << bogues >>,  consultez cette [réponse](https://www.quora.com/Why-are-errors-in-software-codes-called-bugs). Différents débogueurs possèdent des fonctionnalités différentes, mais ils permettent tous d'effectuer les opérations suivantes :
 
   1. Définir un << point d'arrêt >> (*anglais*: breakpoint) dans le programme. Un << point d'arrêt >> est une ligne spécifique dans votre code où vous souhaitez arrêter l'exécution du programme afin que vous puissiez examiner ce qui se passe dans cette région du code.
 
-  2. Executer le programme ligne par ligne. Un code s'exécute toujours ligne par ligne, mais cela arrive trop rapidement pour que nous puissions déterminer quelles lignes ou parties du code causent des problèmes. Être capable d'examiner l'execution de votre code ligne par ligne vous permet de déterminer exactement ce qui cause un bogue dans votre programme.
+  2. Exécuter le programme ligne par ligne. Un code s'exécute toujours ligne par ligne, mais cela arrive trop rapidement pour que nous puissions déterminer quelles lignes ou parties du code causent des problèmes. Être capable d'examiner l'execution de votre code ligne par ligne vous permet de déterminer exactement ce qui cause un bogue dans votre programme.
 
 Pour cet exercice, le [document de référence GDB]({{site.baseurl}}/static_files/docs/gdb5-refcard.pdf) vous sera très utile. GDB signifie « **G**NU **D**e-**B**ugger ». D'abord, téléchargez le fichier de démarrage (voir plus haut dans ce document) et décompressez son contenu (avec la commande `unzip`) dans le répertoire de votre choix. Compilez ensuite le fichier `hello.c` avec le drapeau `-g` (indiquez le chemin complet du fichier `hello.c` si différent du répertoire actuel ) :
 
@@ -227,7 +227,7 @@ Connaître les réponses aux questions ci-dessous vous sera très utile pour le 
 
   9. Comment **quitter** gdb ?
 
-# Exercise 3 : (Valgrind)
+# Exercice 3 : (Valgrind)
 
 Même avec un débogueur, nous ne pourrons peut-être pas détecter tous les bogues. Certains bogues sont ce que nous appelons des « bohrbugs », ce qui signifie qu'ils se manifestent de manière fiable dans un ensemble de conditions bien définies, mais peut-être inconnues. D'autres bogues sont ce que nous appelons des « heisenbugs », et au lieu d'être déterminants, ils sont connus pour disparaître ou modifier leur comportement lorsque l'on tente de les étudier. Nous pouvons détecter le premier type avec des débogueurs, mais le second type peut passer sous notre radar car ils sont souvent dus (au moins dans le langage C) à une mémoire mal gérée.
 
