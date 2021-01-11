@@ -6,7 +6,7 @@ attachment: /static_files/labs/lab_07.zip
 #solutions: /static_files/labs/lab_solutions.pdf
 due_event:
     type: due
-    date: 2019-09-26T23:59:00+3:30
+    date: 2021-03-13T10:00:00+1:00
     description: 'Travaux Pratiques #8 - à remettre'
 ---
 

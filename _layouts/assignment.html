@@ -24,21 +24,16 @@ title: page.title
   <div>
     {% if page.due_event %}
     <span style="font-weight: bold">Date prévue :
-      <!--
-      {{ page.due_event.date | date: site.dateformat }}
-      {{ page.due_event.date | date: "%H:%M" }}
-      -->
+      <!-- {{ page.due_event.date | date: site.dateformat }} -->
+
       {% assign d = page.due_event.date | date : "%w" | minus: 0 %}
       {{ site.data.fr.days[d] }}
       {{ page.due_event.date | date: "%-d" }}
       {% assign m = page.due_event.date | date: "%-m" | minus: 1 %}
       {{ site.data.fr.months[m] }}
       {{ page.due_event.date | date: "%Y" }}
-      à
-      {{ page.due_event.date | date: "%H:%M" }}
-
-
     </span>
+
     {% endif %}
     <p style="font-weight: bold">Télécharger
       {% if page.pdf %}
