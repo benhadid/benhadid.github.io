@@ -1,9 +1,10 @@
 ---
+#layout: project
+type: project
+date: 2021-02-25T12:00:00+1:00
 title: Projet - Processeur MIPS
-permalink: /project/
-layout: project
-date: 2019-09-19T4:00:00+4:30
 attachment: /static_files/projects/mipscpu.zip
+hide_from_announcements: True
 due_event:
     type: due
     date: 2021-03-20T23:59:59+1:00

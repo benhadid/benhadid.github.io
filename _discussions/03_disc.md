@@ -1,9 +1,8 @@
 ---
-type: assignment
+type: discussion
 date: 2021-01-28T09:00:00+1:00
 title: 'Travaux Dirigés #3 - Introduction à MIPS'
 pdf: /static_files/assignments/td_3.pdf
-#attachment: /static_files/assignments/asg.zip
 #solutions: /static_files/assignments/td_3-sol.pdf
 hide_from_announcements: True
 due_event:

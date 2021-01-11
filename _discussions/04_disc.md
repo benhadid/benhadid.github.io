@@ -1,9 +1,8 @@
 ---
-type: assignment
+type: discussion
 date: 2021-02-04T09:00:00+1:00
 title: 'Travaux Dirigés #4 - Assembleur et adressage mémoire dans MIPS'
 pdf: /static_files/assignments/td_4.pdf
-#attachment: /static_files/assignments/asg.zip
 #solutions: /static_files/assignments/td_4-sol.pdf
 hide_from_announcements: True
 due_event:

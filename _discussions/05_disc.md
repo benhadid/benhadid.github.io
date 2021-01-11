@@ -1,9 +1,8 @@
 ---
-type: assignment
+type: discussion
 date: 2021-02-11T09:00:00+1:00
 title: 'Travaux Dirigés #5 - Chemin de données du MIPS (cycle unique)'
 pdf: /static_files/assignments/td_5.pdf
-#attachment: /static_files/assignments/asg.zip
 #solutions: /static_files/assignments/td_5-sol.pdf
 hide_from_announcements: True
 due_event:

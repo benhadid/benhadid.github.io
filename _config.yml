@@ -68,6 +68,10 @@ collections:
         output: true
     assignments:
         output: true
+    discussions:
+        output: true
+    projects:
+        output: true
     announcements:
         output: false
 
@@ -79,6 +83,16 @@ defaults:
       layout: "assignment"
   - scope:
       path: ""
+      type: "discussions"
+    values:
+      layout: "discussion"
+  - scope:
+      path: ""
       type: "labs"
     values:
       layout: "lab"
+  - scope:
+      path: ""
+      type: "projects"
+    values:
+      layout: "project"

@@ -1,4 +1,7 @@
-<div class="col col-1" style="color: #2d7a2d ;font-weight: bold;" data-label="Event">Travaux Pratiques</div>
+<!-- <div class="col col-1" style="color: #2d7a2d ;font-weight: bold;" data-label="Event">Travaux Pratiques</div> -->
+
+<div class="col col-1" style="color: #000000 ;font-weight: bold;" data-label="Event">Travaux Pratiques</div>
+
 <div class="col col-1-2" data-label="Date">
     <!--
     {{ include.event.date | date: site.dateformat }}
@@ -16,8 +19,8 @@
     {{ include.event.title }}
 </div>
 <div class="col col-4" data-label="Course Material">
-    [<a href="{{ include.event.url | prepend: site.baseurl}}">{{ include.event.title }}</a>]
+    [<a href="{{ include.event.url | prepend: site.baseurl}}">Énoncé</a>]
     {% if include.event.solutions %}
-    [<a href="{{ include.event.solutions | prepend: site.baseurl}}">Solutions</a>]
+    [<a href="{{ include.event.solutions | prepend: site.baseurl}}">Solution</a>]
     {% endif %}
 </div>

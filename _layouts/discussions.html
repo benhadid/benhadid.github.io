@@ -1,0 +1,27 @@
+---
+layout: page
+---
+
+{{ content }}
+<ul id="archive">
+      {% for disc in site.discussions %}
+      <li class="archiveposturl" style="background: transparent">
+            <span><a href="{{ disc.url | prepend: site.baseurl}}">{{ disc.title }}</a></span>
+            <strong style="font-size:100%; font-family: 'Titillium Web', sans-serif; float:right">
+
+                  {% if disc.pdf %}
+                  <a title="Télécharger l'énoncé (pdf)" href="{{ disc.pdf | prepend: site.baseurl }}"><i
+                              class="fas fa-file-pdf"></i></a>
+                  {% endif %}                              
+
+                  <!--
+                  {% if disc.attachment %}
+                  &nbsp; <a title="Télécharger le code de démarrage (zip)"
+                        href="{{ disc.attachment | prepend: site.baseurl }}"><i class="fas fa-file-archive"></i></a>
+                  {% endif %}
+                  -->
+
+            </strong>
+      </li>
+      {% endfor %}
+</ul>

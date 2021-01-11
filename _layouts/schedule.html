@@ -20,6 +20,8 @@ layout: default
         {% assign all_events = site.events | concat: site.lectures %}
         {% assign all_events =  all_events | concat: site.labs %}
         {% assign all_events =  all_events | concat: site.assignments %}
+        {% assign all_events =  all_events | concat: site.discussions %}
+        {% assign all_events =  all_events | concat: site.projects %}
         {% assign all_events_sorted = all_events | sort: 'date' %}
 
         {% for event in all_events_sorted %}

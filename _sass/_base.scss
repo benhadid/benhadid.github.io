@@ -309,20 +309,37 @@ a.tosu {
         border-bottom: none;
     }
 
-//    .table-row-lecture {
-//      background-color: #ffffff;
-//    }
+    .table-row-lecture {
+      background-color: #ffffff;
+    }
 
     .table-row-assignment {
-        background-color: #d9edf7;
+        background-color: #fff4bd;
     }
 
     .table-row-lab {
-        background-color: #d9f7de;
+        background-color: #EAE2EE; //#FFD0BB;//#d9edf7;
+    }
+
+    // .table-row-lab {
+    //     background-color: #d9f7de;
+    // }
+
+    // .table-row-discussion {
+    //      background-color: #d9edf7;
+    // }
+
+    .table-row-discussion {
+        background-color: #f3f3f3;
+   }
+
+
+    .table-row-project {
+        background-color: #fff4bd;
     }
 
     .table-row-due {
-        background-color: #FCF8E5;
+        background-color: #f2dede;
     }
 
     .table-row-exam {

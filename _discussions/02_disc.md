@@ -1,9 +1,8 @@
 ---
-type: assignment
+type: discussion
 date: 2021-01-21T09:00:00+1:00
 title: 'Travaux Dirigés #2 - Des bases en C'
 pdf: /static_files/assignments/td_2.pdf
-#attachment: /static_files/assignments/asg.zip
 #solutions: /static_files/assignments/td_2-sol.pdf
 hide_from_announcements: True
 due_event:

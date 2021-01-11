@@ -11,7 +11,7 @@ items:
   name: Cours
   icon_class: fas fa-book-reader
 
-- url: /assignments/
+- url: /discussions/
   name: T. Dirigés
   icon_class: fas fa-user-graduate
 
@@ -19,8 +19,8 @@ items:
   name: T. Pratiques
   icon_class: fas fa-laptop-code
 
-- url: /project/
-  name: Projet
+- url: /projects/
+  name: Projets
   icon_class: fas fa-user-graduate
 
 #- url: https://piazza.com/univ-alger.dz/winter2021/l2ado/home # https://piazza.com/class/kizstkcn3ve5zo?cid=3#

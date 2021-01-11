@@ -1,9 +1,8 @@
 ---
-type: assignment
+type: discussion
 date: 2021-03-11T09:00:00+1:00
 title: "Travaux Dirigés #7 - Mémoire Cache"
 pdf: /static_files/assignments/td_7.pdf
-#attachment: /static_files/assignments/asg.zip
 #solutions: /static_files/assignments/td_7-sol.pdf
 hide_from_announcements: True
 due_event:

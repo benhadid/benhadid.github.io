@@ -18,15 +18,4 @@
     {{ include.event.description }}
 </div>
 <div class="col col-4 markdown-content" style="font-weight: bold" data-label="Course Material">
-
-    {% if include.event.due %}
-     Echéance : 
-     {% assign d = include.event.date | date : "%w" | minus: 0 %}
-     {{ site.data.fr.days[d] }}
-     {{ include.event.due | date: "%-d" }}
-     {% assign m = include.event.due | date: "%-m" | minus: 1 %}
-     {{ site.data.fr.months[m] }}
-     {{ include.event.due | date: "%Y" }}
-    {% endif %}
-
 </div>
