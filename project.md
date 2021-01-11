@@ -767,7 +767,7 @@ Pour éditer l'unité de contrôle, modifiez le fichier `control_logic.circ` et 
 
 ### Guide : Processeur à cycle unique
 
-Ce guide vous aidera à implémenter chacune de ces étapes pour l'instruction `addi`. Chaque section ci-dessous contient des questions auxquelles vous devez réfléchir et des indications importantes. Il est nécessaire de lire et comprendre chaque question avant de passer à la suivante ! Vous pouvez même consulter les réponses en cliquant sur  &#9656; si vous n'êtes pas capables de trouver les réponses vous-mêmes :(. Rappelons les cinq étapes d'exécution dans un processeur MIPS :
+Ce guide vous aidera à implémenter l'instruction `addi` de votre processeur. Chaque section ci-dessous contient des questions auxquelles vous devez réfléchir et des indications importantes. Il est nécessaire de lire et comprendre chaque question avant de passer à la suivante ! Vous pouvez même consulter les réponses en cliquant sur  &#9656; si vous n'êtes pas capables de trouver les réponses vous-mêmes :(. Rappelons les cinq étapes d'exécution d'une instruction dans un processeur MIPS :
 
   1. Récupération d'instruction (IF)
   2. Décodage d'instruction (ID)
@@ -940,21 +940,21 @@ Si vous avez effectué toutes les étapes correctement, vous devriez avoir un pr
 
 ### Guide : Parallélisation (pipelining) de votre processeur
 
-Il est maintenant temps de transformer votre processeur à cycle unique en une version « pipeline » ! Pour ce projet, vous allez implémenter un pipeline en 2 étages, qui est encore conceptuellement similaire au pipeline en 5 étages couvert en classe. Les deux étages que vous mettrez en oeuvre sont les suivantes :
+Il est maintenant temps de transformer votre processeur à cycle unique en une version « pipeline » ! Pour ce projet, vous allez implémenter un pipeline à deux étages, qui est encore conceptuellement similaire au pipeline à cinq étages introduit dans le cours. Les deux étages que vous mettrez en oeuvre sont les suivantes :
 
   1. Récupération d'instruction (PIF) : Une instruction est récupérée depuis la mémoire d'instructions.
-  2. Exécution de l'instruction (PEX) : L'instruction est décodée, exécutée et validée (résultat sauvegardé). Il s'agit d'une combinaison des quatre étapes restantes d'un pipeline MIPS normal à cinq étages (ID, EX, MEM et WB).
+  2. Exécution de l'instruction (PEX) : L'instruction est décodée, exécutée et validée (résultat sauvegardé). Il s'agit d'une combinaison des quatre dernières étapes (ID, EX, MEM et WB) dans un processeur à cycle unique.
 
-Comme tout le contrôle et l'exécution de l'instruction sont gérés dans l'étape d'exécution, **votre processeur `addi` en pipeline sera plus ou moins indiscernable de la version à cycle unique, à l'exception de la latence de démarrage d'un cycle d'horloge**. Nous allons, cependant, appliquer les concepts de conception du pipeline vus en cours afin de préparer notre processeur pour la partie B de ce projet.
+Comme le décodage et l'exécution de l'instruction sont gérés dans l'étape d'exécution, **votre processeur `addi` en pipeline sera plus ou moins identique à sa version en << cycle unique >>, à l'exception de la latence de démarrage d'un cycle d'horloge**. Nous allons, cependant, appliquer les règles de conception de pipeline vues en cours afin de préparer notre processeur pour la partie B de ce projet.
 
 Quelques points à considérer pour une conception du pipeline en deux étages :
 
   - Les étages PIF et PEX auront-ils des valeurs `PC` identiques ou différentes ?
   - Avez-vous besoin de stocker le `PC` entre les étages de pipeline ?
 
-D'autre part, on remarquera un problème d'amorçage ici : pendant le premier cycle d'exécution, les registres introduits entre les différentes étapes du pipeline sont initialement (vides), mais le vide n'existe pas en hardware. Comment allons-nous gérer cette première instruction fictive ? A quoi correspondrait le vide dans notre processeur ? C-à-d. à quelles valeurs devons-nous initialer les registres nouvellement introduits pour ne « **rien faire** » pendant le premier cycle d'exécution ?
+D'autre part, on remarquera un problème d'amorçage ici : pendant le premier cycle d'exécution, les registres introduits entre les différentes étapes du pipeline sont initialement (vides), mais le vide n'existe pas en hardware. Comment allons-nous gérer cette première instruction fictive ? A quoi correspondrait le vide dans notre processeur ? C-à-d. à quelle valeur devons-nous initialer les registres nouvellement introduits pour ne « **rien faire** » pendant le premier cycle d'exécution ?
 
-Il arrive que Logisim remet automatiquement les registres à zéro lors de la réinitialisation; ce qui, pour notre problème de cpu en pipeline, simulera une instruction `nop` au démarrage ! Merci Logisim ! N'oubliez pas d'aller dans << **Simulate \| Reset Simulation** >> pour réinitialiser votre processeur.
+Il arrive que Logisim remet automatiquement les registres à zéro au démarrage (ou lors de la réinitialisation); ce qui, pour notre problème de cpu en pipeline, simulera une instruction `nop` ! Merci Logisim ! N'oubliez pas d'aller dans << **Simulate \| Reset Simulation** >> pour réinitialiser votre processeur.
 
 Après avoir << pipeliné >> votre processeur, vous devriez être en mesure de réussir le test `python3 test_runner.py part_a addi_pipelined`. Notez que le précédent test `python3 test_runner.py part_a addi_single` devrait échouer maintenant ( pourquoi ? Consultez les sorties de référence pour chaque test et réfléchissez aux effets du pipeline sur les différentes étapes ).
 
@@ -964,17 +964,17 @@ Après avoir << pipeliné >> votre processeur, vous devriez être en mesure de r
 
 ## Comprendre les tests effectués
 
-Les tests cpu inclus dans le code de démarrage sont des copies des fichiers `run_*.circ` et contiennent des instructions préalablement chargées dans la mémoire d'instructions (`Instruction Memory`). Lorsque vous lancez **logisim-evolution** à partir de la ligne de commande, votre circuit est automatiquement mis en marche. L’exécution est cadencée par l'horloge, le `PC` de votre processeur est mis à jour, l'instruction récupérée est traitée, et les valeurs de chacune des sorties du circuit de test sont imprimées sur le terminal.
+Les tests cpu inclus dans le code de démarrage sont des copies des fichiers `run_*.circ` et contiennent des instructions préalablement chargées dans la mémoire d'instructions (`Instruction Memory`). Lorsque **logisim-evolution** est lancé à partir de la [ligne de commande](http://www.cburch.com/logisim/docs/2.6.0/en/guide/verify/index.html), votre circuit est automatiquement mis en marche. L’exécution est cadencée par l'horloge, le `PC` de votre processeur est mis à jour, l'instruction récupérée est traitée, et les valeurs de chacune des sorties du circuit de test sont imprimées sur le terminal.
 
-Prenons l'exemple du test `addi-pipelined`. Le circuit `cpu-addi.circ` contient trois instructions `addi` (`addi $t0, $0, 5`, `addi $t1, $t0, 7` et `addi $s0, $t0, 9`). Ouvrez `tests/part_a/addi_pipelined/cpu-addi.circ` dans Logisim Evolution et examinez de plus près les différentes parties du circuit de test. En haut, vous verrez l’endroit où le socle testeur `test_harness` est connecté aux sorties de débogage. Initialement, ces sorties sont toutes des `UUUUU`, mais cela ne devrait pas être le cas une fois votre circuit `cpu_pipelined.circ` est implémenté.
+Prenons l'exemple du test `addi-pipelined`. Le circuit `cpu-addi.circ` contient trois instructions `addi` (`addi $t0, $0, 5`, `addi $t1, $t0, 7` et `addi $s0, $t0, 9`). Ouvrez le fichier `tests/part_a/addi_pipelined/cpu-addi.circ` dans Logisim et examinez de plus près les différentes parties du circuit de test. En haut, vous verrez l’endroit où le socle testeur `test_harness` est connecté aux sorties de débogage. Initialement, ces sorties sont toutes des `UUUUU`, mais cela ne devrait pas être le cas une fois votre circuit `cpu_pipelined.circ` est implémenté.
 
-Le socle `test_harness` prend en entrée le signal d'horloge (`clk`) et l'(`Instruction`) fournie par le module de mémoire d'(`Instruction Memory`). En sortie, le socle transmet pour affichage les valeurs des registres de débogage provenant de votre circuit de processeur `cpu.circ`. La sortie additionnelle `fetch_addr` transmet l'adresse de la prochaine instruction à lire à la mémoire d'instructions (`Instruction Memory`).
+Le socle `test_harness` prend en entrée le signal d'horloge `clk` et l'`Instruction` fournie par le module de mémoire `Instruction Memory`. En sortie, le socle transmet pour affichage les valeurs des registres de débogage provenant de votre circuit de processeur `cpu_pipelined.circ`. La sortie additionnelle `fetch_addr` transmet l'adresse de la prochaine instruction à lire à la mémoire d'instructions `Instruction Memory`.
 
 <div class="bs-callout bs-callout-danger">
   <p>Veillez à ne déplacer aucune des entrées/sorties de votre processeur, ni à ajouter des entrées/sorties supplémentaires. Cela modifiera la forme du sous-circuit du processeur et, par conséquent, les connexions dans les fichiers de test risquent de ne plus fonctionner correctement.</p>
 </div>
 
-Sous le socle `test_harness`, vous verrez la mémoire d'instructions contenant le code machine en hexadécimal des trois instructions `addi` testés (0x20080005, 0x21090007, 0x21100009). La mémoire d'instructions prend une entrée (appelée `fetch_addr`) et délivre l'instruction stockée à cette adresse. Dans MIPS, `fetch_addr` est une valeur de 32 bits, mais comme Logisim Evolution limite la taille des unités ROM à $$2^{16}$$, nous devons utiliser un séparateur pour récupérer seulement 14 bits de `fetch_addr` (en ignorant les deux bits les plus bas).
+Sous le socle `test_harness`, vous verrez la mémoire d'instructions contenant le code machine en hexadécimal des trois instructions `addi` testés (0x20080005, 0x21090007, 0x21100009). La mémoire d'instructions prend une entrée (appelée `fetch_addr`) et délivre l'instruction stockée à cette adresse. Dans MIPS, `fetch_addr` est une valeur de 32 bits, mais comme Logisim limite la taille des unités ROM à $$2^{16}$$, nous devons utiliser un séparateur pour récupérer seulement 14 bits de `fetch_addr` (en ignorant les deux bits les plus bas).
 
 <details close="">
 <summary markdown="span">
@@ -1002,7 +1002,7 @@ $ python3 test_runner.py part_a addi_pipelined # For a pipelined CPU
 
 Vous pouvez consulter les fichiers `.s` (MIPS) et `.hex` (code machine) utilisés pour le test dans `tests/part_a/addi_pipelined/inputs`.
 
-Pour faciliter l'interprétation de votre sortie, un script Python (`binary_to_hex_cpu.py`) est également inclus. Ce script fonctionne comme les scripts `binary_to_hex_alu.py` et `binary_to_hex_regfile.py` utilisés dans les tâches de conception de l'UAL et du « Banc de Registres » (Tâches n°1 et n°2). Pour utiliser le script, exécutez :
+Pour faciliter l'interprétation de votre sortie, un script Python (`binary_to_hex_cpu.py`) est également inclus. Ce script fonctionne comme les scripts `binary_to_hex_alu.py` et `binary_to_hex_regfile.py` utilisés dans les tâches de conception de l'UAL et du « Banc de Registres » (Tâches n° 1 et 2). Pour utiliser le script, exécutez :
 
 ```bash
 $ cd tests/part_a/addi_pipelined
@@ -1353,18 +1353,18 @@ Votre implémentation du CPU sera évaluée uniquement sur les instructions énu
 
 **Remarques** :
 
- 1. La notation imm<sub>±</sub> dans le tableau ci-dessus signifie << Application d'une extension de signe à l'immédiat imm >>. La même remarque s'applique à Mem(...)<sub>±</sub>. Dans ce cas l'extension de signe est appliquée à l'octet/demi-mot récupéré depuis la mémoire.
+ 1. La notation imm<sub>±</sub> dans le tableau ci-dessus signifie << Application d'une extension de signe à l'immédiat imm >>. La même remarque s'applique à Mem(...)<sub>±</sub>. Dans ce cas l'extension de signe est appliquée à l'octet ou le demi-mot récupéré depuis la mémoire.
  2. La notation imm<sub>0</sub> signifie << Application d'une extension par des zéros à l'immédiat imm >>.
 
 ### Info : Mémoire RAM (circuit `mem.circ`)
 
-L'unité de mémoire (fournie dans `mem.circ`) est déjà entièrement implémentée pour vous et raccordée aux sorties de votre processeur dans `test_harness.circ` ! C.-à-d. Il n'est pas nécessaire d'ajouter l'unité mémoire (`mem.circ`) à nouveau à votre implémentation. Au fait, cela entraînera un échec des scripts d'auto évaluation ce qui ne sera pas bon pour votre score :(.
+L'unité de mémoire DMEM (fournie dans `mem.circ`) est déjà entièrement implémentée pour vous et raccordée aux sorties de votre processeur dans `test_harness.circ` ! C.-à-d. Il n'est pas nécessaire d'ajouter l'unité mémoire (`mem.circ`) à nouveau à votre implémentation. Au fait, cela entraînera un échec des scripts d'auto évaluation ce qui ne sera pas bon pour votre score :(.
 
-Notez que l'adresse que vous transmettez à l'unité de mémoire est une adresse d'octet, mais le module renvoie un mot entier (4 octets) de mémoire. L'unité de mémoire ignore les deux bits de poids faible dans l'adresse que vous lui fournissez et traite son entrée comme une adresse de mot plutôt qu'une adresse d'octet. Par exemple, si vous entrez l'adresse 32 bits `0x00001007`, elle sera traitée comme l'adresse de mot `0x00001004`, et vous obtiendrez en sortie les 4 octets aux adresses `0x00001004`, `0x00001005`, `0x00001006` et `0x00001007`.
+Notez que l'implémentation fournie de l'unité DMEM permet les inscriptions au niveau **octet**. Cela signifie que le signal `Write_En` a une largeur de 4 bits et agit comme un masque d'écriture pour les données en entrée. Par exemple, si `Write_En` vaut `0b1000`, alors seul l'octet le plus significatif du mot adressé en mémoire sera écrasé (ex: `sb $a0, 3($s0)`). 
 
-Notez également que l'implémentation fournie de l'unité mémoire permet les inscriptions au niveau **octet**. Cela signifie que le signal `Write_En` a une largeur de 4 bits et agit comme un masque d'écriture pour les données en entrée. Par exemple, si `Write_En` vaut `0b1000`, alors seul l'octet le plus significatif du mot adressé en mémoire sera écrasé. D'autre part, le port `ReadData` renverra toujours la valeur en mémoire à l'adresse fournie, indépendamment de `Write_En`.
+D'autre part, le port `ReadData` renverra toujours, indépendamment de `Write_En`, la valeur en mémoire (un mot entier) à l'adresse fournie. L'unité de mémoire ignore les deux bits de poids faible dans l'adresse que vous lui fournissez et traite son entrée comme une adresse de mot plutôt qu'une adresse d'octet. Par exemple, si vous entrez l'adresse 32 bits `0x00001007` (ex: `lb $a0, 7($s0)`, avec `$s0=0x0001000`), elle sera traitée comme l'adresse de mot `0x00001004`, et vous obtiendrez en sortie les 4 octets aux adresses `0x00001004`, `0x00001005`, `0x00001006` et `0x00001007`. Vous devez donc implémenter la logique de masque nécessaire pour inscrire que les octets requis (octet n° 3 pour l'exemple `lb $a0, 7($s0)`) dans le << banc de registres >>.
 
-Finalement, rappelez-vous que les accès non alignés à la RAM entraîneront des exceptions dans MIPS. Et comme nous n'implémentons aucune gestion des exceptions dans ce projet, vous devez supposer que seuls les accès sur des adresses alignées sont utilisés pour les instructions `lw`, `lh`, `sh` et `sw`. Cela signifie que les adresses utilisées avec les instructions `lw` et `sw` (resp. `lh` et `sh`) doivent être des multiples de 4 (resp. multiples de 2). La valeur 4 (resp. 2) correspond à la taille en octets d'un mot (resp. demi-mot) en mémoire.
+Finalement, rappelez-vous que les accès non alignés à la RAM entraîneront des exceptions dans MIPS. Et comme nous n'implémentons aucune gestion des exceptions dans ce projet, vous pouvez supposer que seuls les accès sur des adresses alignées sont utilisés pour les instructions `lw`, `lh`, `sh` et `sw`. Cela signifie que les adresses utilisées avec les instructions `lw` et `sw` (resp. `lh` et `sh`) sont des multiples de 4 (resp. multiples de 2). La valeur 4 (resp. 2) correspond à la taille en octets d'un mot (resp. demi-mot) en mémoire.
 
 Voici un résumé des entrées et sorties de la mémoire :
 
@@ -1417,9 +1417,9 @@ Voici un résumé des entrées et sorties de la mémoire :
 </tbody>
 </table>
 
-### Info : Comparateur de Branchement (circuit `branch_comp.circ`)
+### Info : Unité de Branchement (circuit `branch_comp.circ`)
 
-L'unité « Comparateur de Branchement » fournie dans le fichier `branch_comp.circ` compare deux valeurs et émet des signaux de contrôle qui seront utilisés pour prendre des décisions de branchement. Vous devrez implémenter un circuit logique pour cette unité.
+L' << unité de Branchement >> fournie dans le fichier `branch_comp.circ` compare deux valeurs et émet des signaux de contrôle qui seront utilisés pour prendre des décisions de branchement. Vous devrez implémenter un circuit logique pour cette unité.
 
 Pour éditer ce circuit, modifiez le fichier `branch_comp.circ` et non le circuit virtuel `branch_comp` inclus dans `cpu.circ`. Notez qu'à chaque modification du circuit `branch_comp.circ`, vous devrez fermer et ouvrir `cpu.circ` pour appliquer les modifications dans votre CPU.
 
