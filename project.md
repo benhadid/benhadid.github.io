@@ -565,7 +565,7 @@ l'unité « Générateur d'Immédiat » fournie dans le fichier `imm_gen.circ` n
 
 ![addi format]({{site.baseurl}}/static_files/images/immediat_addi.png){: height="75%" width="75%" .aligncenter}
 
-Pour éditer le « Générateur d'Immédiat », modifiez le fichier `imm_gen.circ` et non le circuit virtuel `imm_gen` inclus dans `cpu.circ`. Notez qu'à chaque modification du circuit `imm_gen.circ`, vous devez fermer et ouvrir le fichier `cpu.circ` pour appliquer les modifications dans votre CPU.
+Pour éditer le « Générateur d'Immédiat », modifiez le fichier `imm_gen.circ` et non le circuit virtuel `imm_gen` inclus dans `cpu_*.circ`. Notez qu'à chaque modification du circuit `imm_gen.circ`, vous devez fermer et ouvrir le fichier `cpu_*.circ` pour appliquer les modifications dans votre CPU.
 
 Voici un résumé des entrées et sorties de l'unité :
 
@@ -587,13 +587,13 @@ Voici un résumé des entrées et sorties de l'unité :
 <tbody>
 <tr>
 <td style="text-align:center" markdown="span">inst</td>
-<td style="text-align:center" markdown="span">Input</td>
+<td style="text-align:center" markdown="span">Entrée</td>
 <td style="text-align:center" markdown="span">32</td>
 <td markdown="span">L'instruction en cours d'exécution</td>
 </tr>
 <tr>
 <td style="text-align:center" markdown="span">ImmSel</td>
-<td style="text-align:center" markdown="span">Input</td>
+<td style="text-align:center" markdown="span">Entrée</td>
 <td style="text-align:center" markdown="span">2</td>
 <td markdown="span">Valeur déterminant comment reconstruire l'immédiat</td>
 </tr>
@@ -756,7 +756,7 @@ Le processeur dispose de trois entrées qui proviennent du socle :
 
 L'unité de contrôle fournie dans le fichier `control_logic.circ` n'est pas implémentée. La conception de votre unité de contrôle sera probablement votre plus grand défi dans la partie B de ce devoir. Pour la partie A, comme `addi` est la seule instruction que vous implémenterez, vous pouvez mettre une constante pour chaque signal de contrôle. Toutefois, au fur et à mesure que vous avancez dans votre implémentation de `addi`, réfléchissez aux endroits où vous devrez effectuer des modifications/additions afin de prendre en charge d'autres instructions dans le futur.
 
-Pour éditer l'unité de contrôle, modifiez le fichier `control_logic.circ` et non le circuit virtuel `control_logic` inclus dans `cpu.circ`. Notez qu'à chaque modification du circuit `control_logic.circ`, vous devrez fermer et ouvrir `cpu.circ` pour appliquer les modifications dans votre CPU.
+Pour éditer l'unité de contrôle, modifiez le fichier `control_logic.circ` et non le circuit virtuel `control_logic` inclus dans `cpu_*.circ`. Notez qu'à chaque modification du circuit `control_logic.circ`, vous devrez fermer et ouvrir `cpu_*.circ` pour appliquer les modifications dans votre CPU.
 
 <div class="bs-callout bs-callout-danger">
   <h4>ATTENTION</h4>
@@ -1360,7 +1360,7 @@ Votre implémentation du CPU sera évaluée uniquement sur les instructions énu
 
 L'unité de mémoire DMEM (fournie dans `mem.circ`) est déjà entièrement implémentée pour vous et raccordée aux sorties de votre processeur dans `test_harness.circ` ! C.-à-d. Il n'est pas nécessaire d'ajouter l'unité mémoire (`mem.circ`) à nouveau à votre implémentation. Au fait, cela entraînera un échec des scripts d'auto évaluation ce qui ne sera pas bon pour votre score :(.
 
-Notez que l'implémentation fournie de l'unité DMEM permet les inscriptions au niveau **octet**. Cela signifie que le signal `Write_En` a une largeur de 4 bits et agit comme un masque d'écriture pour les données en entrée. Par exemple, si `Write_En` vaut `0b1000`, alors seul l'octet le plus significatif du mot adressé en mémoire sera écrasé (ex: `sb $a0, 3($s0)`). 
+Notez que l'implémentation fournie de l'unité DMEM permet les inscriptions au niveau **octet**. Cela signifie que le signal `Write_En` a une largeur de 4 bits et agit comme un masque d'écriture pour les données en entrée. Par exemple, si `Write_En` vaut `0b1000`, alors seul l'octet le plus significatif du mot adressé en mémoire sera écrasé (ex: `sb $a0, 3($s0)`).
 
 D'autre part, le port `ReadData` renverra toujours, indépendamment de `Write_En`, la valeur en mémoire (un mot entier) à l'adresse fournie. L'unité de mémoire ignore les deux bits de poids faible dans l'adresse que vous lui fournissez et traite son entrée comme une adresse de mot plutôt qu'une adresse d'octet. Par exemple, si vous entrez l'adresse 32 bits `0x00001007` (ex: `lb $a0, 7($s0)`, avec `$s0=0x0001000`), elle sera traitée comme l'adresse de mot `0x00001004`, et vous obtiendrez en sortie les 4 octets aux adresses `0x00001004`, `0x00001005`, `0x00001006` et `0x00001007`. Vous devez donc implémenter la logique de masque nécessaire pour inscrire que les octets requis (octet n° 3 pour l'exemple `lb $a0, 7($s0)`) dans le << banc de registres >>.
 
@@ -1386,31 +1386,31 @@ Voici un résumé des entrées et sorties de la mémoire :
 <tbody>
 <tr>
 <td style="text-align:center" markdown="span">WriteAddr</td>
-<td style="text-align:center" markdown="span">Input</td>
+<td style="text-align:center" markdown="span">Entrée</td>
 <td style="text-align:center" markdown="span">32</td>
 <td markdown="span">Adresse à lire / écrire en mémoire</td>
 </tr>
 <tr>
 <td style="text-align:center" markdown="span">WriteData</td>
-<td style="text-align:center" markdown="span">Input</td>
+<td style="text-align:center" markdown="span">Entrée</td>
 <td style="text-align:center" markdown="span">32</td>
 <td markdown="span">Valeur à écrire dans la mémoire</td>
 </tr>
 <tr>
 <td style="text-align:center" markdown="span">Write_En</td>
-<td style="text-align:center" markdown="span">Input</td>
+<td style="text-align:center" markdown="span">Entrée</td>
 <td style="text-align:center" markdown="span">4</td>
 <td markdown="span">Le masque d'écriture pour les instructions qui écrivent dans la mémoire et zéro sinon</td>
 </tr>
 <tr>
 <td style="text-align:center" markdown="span">CLK</td>
-<td style="text-align:center" markdown="span">Input</td>
+<td style="text-align:center" markdown="span">Entrée</td>
 <td style="text-align:center" markdown="span">1</td>
 <td markdown="span">Entrée fournissant l'horloge du CPU</td>
 </tr>
 <tr>
 <td style="text-align:center" markdown="span">ReadData</td>
-<td style="text-align:center" markdown="span">Output</td>
+<td style="text-align:center" markdown="span">Sortie</td>
 <td style="text-align:center" markdown="span">32</td>
 <td markdown="span">Valeur des données stockées à l'adresse indiquée</td>
 </tr>
@@ -1419,9 +1419,9 @@ Voici un résumé des entrées et sorties de la mémoire :
 
 ### Info : Unité de Branchement (circuit `branch_comp.circ`)
 
-L' << unité de Branchement >> fournie dans le fichier `branch_comp.circ` compare deux valeurs et émet des signaux de contrôle qui seront utilisés pour prendre des décisions de branchement. Vous devrez implémenter un circuit logique pour cette unité.
+L'<< Unité de Branchement >> (squelette fourni dans le fichier `branch_comp.circ`) devrait calculer la nouvelle valeur du compteur ordinal (i.e. newPC) quand l'instruction en cours d'exécution est un branchement ou un saut par << immediat >> dans le code.
 
-Pour éditer ce circuit, modifiez le fichier `branch_comp.circ` et non le circuit virtuel `branch_comp` inclus dans `cpu.circ`. Notez qu'à chaque modification du circuit `branch_comp.circ`, vous devrez fermer et ouvrir `cpu.circ` pour appliquer les modifications dans votre CPU.
+Pour éditer ce circuit, modifiez le fichier `branch_comp.circ` et non le circuit virtuel `branch_comp` inclus dans `cpu_*.circ`. Notez qu'à chaque modification du circuit `branch_comp.circ`, vous devrez fermer et ouvrir `cpu_*.circ` pour appliquer les modifications dans votre CPU.
 
 Voici un résumé des entrées et sorties de cette unité :
 
@@ -1443,49 +1443,63 @@ Voici un résumé des entrées et sorties de cette unité :
 <tbody>
 
 <tr>
-<td style="text-align:center" markdown="span">rs1</td>
-<td style="text-align:center" markdown="span">Input</td>
+<td style="text-align:center" markdown="span">inst</td>
+<td style="text-align:center" markdown="span">Entrée</td>
 <td style="text-align:center" markdown="span">32</td>
-<td markdown="span">Valeur dans le premier registre</td>
+<td markdown="span">L'instruction en cours d'exécution</td>
 </tr>
 
 <tr>
-<td style="text-align:center" markdown="span">rs2</td>
-<td style="text-align:center" markdown="span">Input</td>
+<td style="text-align:center" markdown="span">ximm</td>
+<td style="text-align:center" markdown="span">Entrée</td>
 <td style="text-align:center" markdown="span">32</td>
-<td markdown="span">Valeur dans le second registre</td>
+<td markdown="span">L'immédiat renvoyé par la sortie **Imm** du << Générateur d'Immédiat >> </td>
+</tr>
+
+<tr>
+<td style="text-align:center" markdown="span">PC4</td>
+<td style="text-align:center" markdown="span">Entrée</td>
+<td style="text-align:center" markdown="span">32</td>
+<td markdown="span">La valeur PC + 4</td>
+</tr>
+
+<tr>
+<td style="text-align:center" markdown="span">zero</td>
+<td style="text-align:center" markdown="span">Entrée</td>
+<td style="text-align:center" markdown="span">1</td>
+<td markdown="span">La valeur renvoyé par la sortie **zero** de l'UAL</td>
 </tr>
 
 <tr>
 <td style="text-align:center" markdown="span">BrUn</td>
-<td style="text-align:center" markdown="span">Input</td>
-<td style="text-align:center" markdown="span">1</td>
-<td markdown="span">Égal à un lorsqu'une comparaison non signée est souhaitée, ou à zéro lorsqu'une comparaison signée est souhaitée</td>
+<td style="text-align:center" markdown="span">Entrée</td>
+<td style="text-align:center" markdown="span">2</td>
+<td markdown="span">Valeur permettant d'identifier l'instruction de branchement/saut à traiter</td>
 </tr>
 
 <tr>
-<td style="text-align:center" markdown="span">BrEq</td>
-<td style="text-align:center" markdown="span">Output</td>
-<td style="text-align:center" markdown="span">1</td>
-<td markdown="span">Égal à un si les deux valeurs comparées sont identiques</td>
+<td style="text-align:center" markdown="span">newPC</td>
+<td style="text-align:center" markdown="span">Sortie</td>
+<td style="text-align:center" markdown="span">32</td>
+<td markdown="span">Nouvelle valeur à transmettre au PC</td>
 </tr>
 
 <tr>
-<td style="text-align:center" markdown="span">BrLt</td>
-<td style="text-align:center" markdown="span">Output</td>
+<td style="text-align:center" markdown="span">BrJmp</td>
+<td style="text-align:center" markdown="span">Sortie</td>
 <td style="text-align:center" markdown="span">1</td>
-<td markdown="span">Égal à un si la valeur dans rs1 est inférieur à la valeur dans rs2</td>
+<td markdown="span">Indique si l'instruction traitée est un branchement/saut dans le code</td>
 </tr>
 </tbody>
 </table>
 
 ### Info : Générateur d'Immédiat (circuit `imm_gen.circ`)
 
-l'unité « Générateur d'Immédiat » fournie dans le fichier `imm_gen.circ` extrait les constantes << Imm >> des instructions de type I et J. Consultez la figure ci-dessous pour savoir comment chaque immédiat doit être formaté dans votre processeur :
+l'unité << Générateur d'Immédiat >> (squelette fourni dans le fichier `imm_gen.circ`) devrait calculer les constantes << Imm >> des instructions de type I et la valeur du champ << shmt >> dans les instructions de décalage. Consultez la figure ci-dessous pour savoir comment chaque immédiat doit être formaté dans votre processeur :
 
 ![addi format]({{site.baseurl}}/static_files/images/immediat_extensions.png){: height="75%" width="75%" .aligncenter}
 
-Pour éditer le « Générateur d'Immédiat », modifiez le fichier `imm_gen.circ` et non le circuit virtuel `imm_gen` inclus dans `cpu.circ`. Notez qu'à chaque modification du circuit `imm_gen.circ`, vous devez fermer et ouvrir le fichier `cpu.circ` pour appliquer les modifications dans votre CPU.
+Pour éditer le « Générateur d'Immédiat », modifiez le fichier `imm_gen.circ` et non le circuit virtuel `imm_gen` inclus dans `cpu_*.circ`. Notez qu'à chaque modification du circuit `imm_gen.circ`, vous devez fermer et ouvrir le fichier `cpu_*.circ` pour appliquer les modifications dans votre CPU.
 
 Encore une fois, voici un résumé des entrées et sorties de l'unité :
 
@@ -1507,19 +1521,19 @@ Encore une fois, voici un résumé des entrées et sorties de l'unité :
 <tbody>
 <tr>
 <td style="text-align:center" markdown="span">inst</td>
-<td style="text-align:center" markdown="span">Input</td>
+<td style="text-align:center" markdown="span">Entrée</td>
 <td style="text-align:center" markdown="span">32</td>
 <td markdown="span">L'instruction en cours d'exécution</td>
 </tr>
 <tr>
 <td style="text-align:center" markdown="span">ImmSel</td>
-<td style="text-align:center" markdown="span">Input</td>
-<td style="text-align:center" markdown="span">3</td>
+<td style="text-align:center" markdown="span">Entrée</td>
+<td style="text-align:center" markdown="span">2</td>
 <td markdown="span">Valeur déterminant comment reconstruire l'immédiat</td>
 </tr>
 <tr>
 <td style="text-align:center" markdown="span">Imm</td>
-<td style="text-align:center" markdown="span">Output</td>
+<td style="text-align:center" markdown="span">Sortie</td>
 <td style="text-align:center" markdown="span">32</td>
 <td markdown="span">Valeur de l'immédiat associé à l'instruction</td>
 </tr>
@@ -1529,36 +1543,36 @@ Encore une fois, voici un résumé des entrées et sorties de l'unité :
 
 ### Info : Unité de contrôle (circuit `control_logic.circ`)
 
-Afin d'exécuter correctement chaque instruction MIPS, les signaux de contrôle jouent un rôle très important dans un processeur (et ce projet!). Le squelette fourni dans le fichier `control_logic.circ` est basé sur l'unité de contrôle vue en cour pour un processeur MIPS.
+Afin d'exécuter correctement chaque instruction MIPS, les signaux de contrôle jouent un rôle très important dans un processeur (et ce projet !). Le squelette fourni dans le fichier `control_logic.circ` est basé sur l'unité de contrôle vue en cour pour un processeur MIPS.
 
 Veuillez jetez un œil sur les présentations Powerpoint du cours pour commencer. Essayez de parcourir le chemin de données avec différents types d'instructions; lorsque vous rencontrez un MUX ou un autre composant, déterminez la valeur du sélecteur ou d'activation dont vous aurez besoin pour cette instruction.
 
 Vous pouvez, si vous le désirez, ajouter plus d'entrées ou de sorties au circuit de démarrage existant en fonction de votre implémentation du circuit de contrôle. Vous pouvez également choisir de n'utiliser qu'un sous ensemble des ports fournis. Cela dit, veuillez ne modifier ni supprimer aucun des ports existants au cours de ce processus.
 
-Il existe deux approches principales pour implémenter le circuit logique de commande afin qu'il puisse extraire l'<< opcode / func >> d'une instruction et définir les signaux de commande de manière appropriée. La première méthode est le contrôle par circuit câblé. C’est généralement l’approche préférée pour les architectures RISC telles que MIPS et RISC-V. Ici, on utilisera les portes logiques « ET », « OU » et « NON » avec les divers composants qui peuvent être construits à partir de ces portes (comme les MUX et les DEMUX) pour implémenter des tables de vérité correspondant aux fonctions identifiées.
+Il existe deux approches principales pour implémenter le circuit logique de commande afin qu'il puisse extraire l'<< opcode / func >> d'une instruction et définir les signaux de commande de manière appropriée. La première méthode est le contrôle par circuit câblé. C’est généralement l’approche préférée pour les architectures RISC telles que MIPS et RISC-V. Ici, on utilisera les portes logiques « ET », « OU » et « NON » avec les divers composants qui peuvent être construits à partir de ces portes (comme les MUX et les DEMUX) pour implémenter des tables de vérité et de [Karnaugh](https://fr.wikipedia.org/wiki/Table_de_Karnaugh) correspondant aux fonctions identifiées.
 
-L’autre façon de faire est d’utiliser une mémoire ROM (mémoire en lecture seule). Chaque instruction implémentée par un processeur est mappée à une adresse dans cette mémoire où se trouve le mot de commande et de contrôle pour cette instruction. Un décodeur d’adresse prend donc une instruction en entrée (c.-à-d. le << opcode / func >>) et génère l’adresse du mot contenant les signaux de contrôle pour cette instruction. Cette approche est courante dans les architectures CISC telles que les processeurs Intel x86-64 et offre une certaine flexibilité, car elle peut être reprogrammée en modifiant le contenu de la mémoire ROM.
+L’autre façon de faire est d’utiliser une mémoire ROM (mémoire en lecture seule). Chaque instruction implémentée par un processeur est mappée à une adresse dans cette mémoire où on y stocke le mot de commande et de contrôle pour cette instruction. Un décodeur d’adresse prend donc une instruction en entrée (c.-à-d. le << opcode / func >>) et identifie l’adresse du mot contenant les signaux de contrôle pour cette instruction. Cette approche est courante dans les architectures CISC telles que les processeurs Intel x86-64 et offre une certaine flexibilité, car elle peut être reprogrammée en modifiant le contenu de la mémoire ROM.
 
-Pour éditer l'unité de contrôle, modifiez le fichier `control_logic.circ` et non le circuit virtuel `control_logic` inclus dans `cpu.circ`. Notez qu'à chaque modification du circuit `control_logic.circ`, vous devrez fermer et ouvrir `cpu.circ` pour appliquer les modifications dans votre CPU.
+Pour éditer l'unité de contrôle, modifiez le fichier `control_logic.circ` et non le circuit virtuel `control_logic` inclus dans `cpu_*.circ`. Notez qu'à chaque modification du circuit `control_logic.circ`, vous devrez fermer et ouvrir `cpu_*.circ` pour appliquer les modifications dans votre CPU.
 
-### Info: Processeur (circuit `cpu.circ`)
+### Info: Processeur (circuit `cpu_*.circ`)
 
-Le circuit dans `cpu.circ` implémente le chemin de données principal et connecte tous les sous-circuits ensemble (UAL, Comparateur de Branchement, unité de contrôle, Générateur d'Immédiat, mémoire RAM et Banc de Registres).
+Le circuit dans `cpu_*.circ` doit implémenter le chemin de données principal et connecter tous les sous-circuits ensemble (UAL, Unité de Branchement, unité de contrôle, Générateur d'Immédiat, mémoire RAM et Banc de Registres).
 
-Dans la partie A, vous avez implémenté un simple pipeline en deux étages dans votre CPU. Vous devez réaliser que les << aléas de données >> ne posent PAS de problème pour cette conception, car tous les accès à toutes les sources de données se produisent dans une seule étape du pipeline (le deuxième étage).
+Dans la partie A, vous avez implémenté un simple pipeline en deux étages dans votre processeur. Vous devez réaliser que les << aléas de données >> ne posent PAS de problème ici car tous les accès à toutes les sources de données se produisent dans une seule étape du pipeline (le deuxième étage).
 
 Cependant, comme la partie B de ce projet nécessite la prise en charge des instructions de branchement et de saut, il y a bien des << aléas de contrôle >> à gérer. En particulier, l’instruction immédiatement après un branchement ou un saut n’est pas nécessairement exécutée si la branche est prise. Cela rend votre tâche un peu plus complexe car au moment où vous réalisez qu’une branche ou un saut est en phase d’exécution, vous avez déjà accédé à la mémoire d’instructions et récupéré (éventuellement) la mauvaise prochaine instruction. Vous devez donc « annuler » l’instruction récupérée si l’instruction en cours d’exécution est un saut ou un branchement **validé**. Vous ne devez annuler l’instruction récupérée que si une branche est prise (n’annuler pas autrement). L’annulation d’instructions DOIT être accomplie en insérant un `nop` dans l’étape d’exécution du pipeline au lieu de l’instruction récupérée. Notez que l'instruction `sll $0, $0, 0` ou le code machine associé `0x00000000` est une instruction `nop` pour notre processeur.
 
 Quelques points à considérer pour votre implémentation :
-  -  Les étapes IF et EX auront-elles des valeurs PC identiques ou différentes ?
+  -  Les étapes PIF et PEX auront-elles des valeurs PC identiques ou différentes ?
   -  Avez-vous besoin de stocker le PC entre les différentes étapes du pipeline ?
   -  Où insérer un `nop` éventuel dans le flux d'instructions ?
-  -  Quelle adresse doit être demandée ensuite pendant que l'étape EX exécute un `nop` ? Est-ce différent de la normale ?
+  -  Quelle adresse doit être demandée ensuite pendant que l'étape PEX exécute un `nop` ? Est-ce différent de la normale ?
 
 
 ### **Tester votre Processeur**
 
-Un groupe de tests de cohérence est fourni pour votre processeur dans `tests/part_b/pipelined`.
+Des tests de cohérence sont fournis pour votre processeur dans `tests/part_b/pipelined`.
 
 ```bash
 $ python3 test_runner.py part_b pipelined
@@ -1566,16 +1580,16 @@ $ python3 test_runner.py part_b pipelined
 
 Vous pouvez consulter les fichiers `.s` (MIPS) et `.hex` (code machine) utilisés pour les tests dans `tests/part_b/pipelined/inputs`.
 
-Vous pouvez également utiliser le script Python `binary_to_hex_cpu.py`, comme dans la tache n°3 ce projet, afin visualiser et mieux interpréter vos résultats.
+Vous pouvez également utiliser le script Python `binary_to_hex_cpu.py`, comme dans la tache n° 3 ce projet, afin visualiser et mieux interpréter vos résultats.
 
 
 ## Soumettre la partie B du devoir
 
-Si vous avez terminé la tâche 4, vous avez terminé la partie B du projet. Félicitations pour votre nouveau processeur !
+Si vous avez terminé la tâche n° 4, vous avez terminé la partie B du projet. Félicitations pour votre nouveau processeur !
 
 Assurez-vous à nouveau que vous n'avez pas déplacé/modifié vos ports d'entrée/sortie et que vos circuits s'insèrent sans problème dans les socles de test fournis.
 
-Pour soumettre votre travail, créez un fichier **zippé** contenant tous les circuits que vous deviez implémenter dans les deux parties de ce projets. C.-à-d. les circuits **alu.circ**, **regfile.circ**, **branch_comp.circ**, **imm_gen.circ**, **control_logic.circ** et **cpu.circ**.
+Pour soumettre votre travail, créez un fichier **zippé** contenant tous les circuits que vous deviez implémenter dans les deux parties de ce projets. C.-à-d. les circuits **alu.circ**, **regfile.circ**, **branch_comp.circ**, **imm_gen.circ**, **control_logic.circ**, **cpu_single.circ** et **cpu_pipelined.circ**.
 
 ```bash
 votre_fichier.zip
@@ -1584,7 +1598,8 @@ votre_fichier.zip
  ├── imm_gen.circ
  ├── branch_comp.circ
  ├── control_logic.circ
- └── cpu.circ
+ ├── cpu_single.circ
+ └── cpu_pipelined.circ
  ```
 
 Par exemple, pour mettre les fichiers **file1.circ** et **file2.circ** dans un fichier zip nommé  **votre_fichier.zip** :
