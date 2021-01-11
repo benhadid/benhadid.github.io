@@ -165,7 +165,7 @@ Consultez le << Makefile >> inclus dans ce TP et essayez de répondre aux questi
   Quel système d'exploitation le terme « Darwin » représente-t-il ?
   </summary>
   <p style="color: firebrick" markdown="span">
-  Le terme << Darwin >> retourné par la commande de shell `uname -s` indique que le système est un MacOSX.
+  Le terme << Darwin >> retourné par la commande de shell `uname -s` indique que le système est un macOS.
   </p>
   </details>
   <p></p>

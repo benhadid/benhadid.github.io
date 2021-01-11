@@ -3,7 +3,7 @@ type: lecture
 date: 2021-03-11T08:00:00+1:00
 title: Mémoire Cache - suite
 tldr: "Hiérarchie de mémoire et mémoire cache"
-thumbnail: /static_files/presentations/lec_09.jpg
+thumbnail: /static_files/presentations/lec_08.png
 hide_from_announcements: True
 links:
     - url: /static_files/presentations/08-Cache.pptx
