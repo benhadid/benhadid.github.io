@@ -70,6 +70,8 @@ collections:
         output: true
     discussions:
         output: true
+    quizzes:
+        output: true
     projects:
         output: true
     announcements:

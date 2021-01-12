@@ -1,0 +1,21 @@
+---
+layout: page
+---
+
+{{ content }}
+<ul id="archive">
+      {% for quiz in site.quizzes %}
+      <li class="archiveposturl" style="background: transparent">
+            <span><a href="{{ quiz.link }}">{{ quiz.title }}</a></span>
+
+
+            <strong style="font-size:100%; font-family: 'Titillium Web', sans-serif; float:right">
+                  &nbsp; <a title="Lien vers le Quiz"
+                        href="{{ quiz.link }}"><i class="fas fa-external-link-alt"></i></a>
+                  
+            </strong>
+      </li>
+      {% endfor %}
+</ul>
+
+

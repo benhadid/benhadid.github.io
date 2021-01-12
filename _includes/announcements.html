@@ -2,6 +2,7 @@
 {% assign all_events = all_events | concat: site.labs %}
 {% assign all_events = all_events | concat: site.discussions %}
 {% assign all_events = all_events | concat: site.assignments %}
+{% assign all_events = all_events | concat: site.quizzes %}
 {% assign all_events = all_events | concat: site.projects %}
 
 {% assign events_to_show = "" | split: "" %}
@@ -30,6 +31,8 @@
                 TP récemment publié : [<a href="{{ n.url | prepend: site.baseurl }}">{{ n.title }}</a>]
             {% elsif n.type == 'assignment' %}
                 Devoir récemment publié : [<a href="{{ n.url | prepend: site.baseurl }}">{{ n.title }}</a>]
+            {% elsif n.type == 'quiz' %}
+                Quiz récemment publié : [<a href="{{ n.url | prepend: site.baseurl }}">{{ n.title }}</a>]
             {% elsif n.type == 'project' %}
                 Projet récemment publié : [<a href="{{ n.url | prepend: site.baseurl }}">{{ n.title }}</a>]
             {% else%}

@@ -1,0 +1,32 @@
+<div class="col col-1" style="color: #a94442 ;font-weight: bold;" data-label="Event">Quiz</div>
+<div class="col col-1-2" data-label="Date">
+    <!-- 
+    {{ include.event.date | date: site.dateformat }}
+    <br class="date-spliter" />{{ include.event.date | date: "%A" }}
+    -->
+
+    {{ include.event.date | date: "%-d" }}
+    {% assign m = include.event.date | date: "%-m" | minus: 1 %}
+    {{ site.data.fr.months[m] }}
+    {{ include.event.date | date: "%Y" }}
+    <br class="date-spliter"/>
+    {% assign d = include.event.date | date : "%w" | minus: 0 %}
+    {{ site.data.fr.days[d] }}
+
+</div>
+<div class="col col-2" style="font-weight: bold" data-label="Description">
+    {{ include.event.title }}
+</div>
+<div class="col col-4" style="font-weight: bold" data-label="Course Material">
+
+    Échéance : 
+
+    {% assign d = include.event.due_event.date | date : "%w" | minus: 0 %}
+    {{ site.data.fr.days[d] }}
+    {{ include.event.due_event.date | date: "%-d" }}
+    {% assign m = include.event.due_event.date | date: "%-m" | minus: 1 %}
+    {{ site.data.fr.months[m] }}
+    {{ include.event.due_event.date | date: "%Y" }}
+    <br class="date-spliter"/>
+    [<a href="{{ include.event.link }}">Lien</a>]
+</div>
