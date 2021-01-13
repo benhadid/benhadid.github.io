@@ -32,7 +32,7 @@ Pour ce devoir et les devoirs futurs de ce cours, il est suggéré d'effectuer l
 
   4. C'est fini ! Vous disposez maintenant d'une machine virtuelle avec une configuration semblable aux machines MI (Labo 4).
 
-  5. Si votre ordinateur possède 4 Go ou plus de de Mémoire RAM, il est préférable dans ce cas de reconfigurer la VM pour lui attribuer [plus de mémoire](https://docs.bitnami.com/virtual-machine/faq/administration/increase-memory/).
+  5. Si votre ordinateur possède 4 Go ou plus de Mémoire RAM, il est préférable dans ce cas de reconfigurer la VM pour lui attribuer [plus de mémoire](https://docs.bitnami.com/virtual-machine/faq/administration/increase-memory/).
 
   6. Une fois la VM lancée, le système est configuré pour utiliser par défaut un clavier américain (comme dans les salles machines). Vous pouvez permuter vers un clavier français en cliquant avec la souris sur le drapeau américain en haut à droite de l'écran.
 
@@ -164,7 +164,7 @@ $ vim ../other_folder/filename
 
 # Exercice 2 : (gdb)
 
-Un **débogueur**, comme son nom l'indique, est un programme spécialement conçu pour vous aider à trouver des bogues, ou des erreurs logiques et des fautes dans votre code (remarque : si vous voulez savoir pourquoi les erreurs sont appelées << bogues >>,  consultez cette [réponse](https://www.quora.com/Why-are-errors-in-software-codes-called-bugs). Différents débogueurs possèdent des fonctionnalités différentes, mais ils permettent tous d'effectuer les opérations suivantes :
+Un **débogueur**, comme son nom l'indique, est un programme spécialement conçu pour vous aider à trouver des bogues, ou des erreurs logiques et des fautes dans votre code (remarque : si vous voulez savoir pourquoi les erreurs sont appelées << bogues >>,  consultez cette [réponse](https://www.quora.com/Why-are-errors-in-software-codes-called-bugs)). Différents débogueurs possèdent des fonctionnalités différentes, mais ils permettent tous d'effectuer les opérations suivantes :
 
   1. Définir un << point d'arrêt >> (*anglais*: breakpoint) dans le programme. Un << point d'arrêt >> est une ligne spécifique dans votre code où vous souhaitez arrêter l'exécution du programme afin que vous puissiez examiner ce qui se passe dans cette région du code.
 
