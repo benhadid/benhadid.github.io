@@ -6,8 +6,8 @@ tldr:  Aléas d'exécutions dus au « Pipelining »
 thumbnail: /static_files/presentations/lec_07.jpg
 hide_from_announcements: True
 links:
-    - url: /static_files/presentations/07-Pipelining-Aleas.pptx
-      name: slides
+#    - url: /static_files/presentations/07-Pipelining-Aleas.pptx
+#      name: slides
     - url: https://1drv.ms/p/s!Agf0g-qZKM8_zAh1uPbTmIwvZ-gJ?e=AfZgOw
       name: visualiser
 ---

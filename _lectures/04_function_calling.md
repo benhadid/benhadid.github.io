@@ -6,8 +6,8 @@ tldr: "Appel de fonctions et gestion des exceptions/interruptions dans MIPS"
 thumbnail: /static_files/presentations/lec_04.jpg
 hide_from_announcements: True
 links:
-    - url: /static_files/presentations/04-Appels_de_fonctions_et_exceptions.pptx
-      name: slides
+#    - url: /static_files/presentations/04-Appels_de_fonctions_et_exceptions.pptx
+#      name: slides
     - url: https://1drv.ms/p/s!Agf0g-qZKM8_y3FUF2JoNKhvF5dz?e=GeSO2y
       name: visualiser
 ---

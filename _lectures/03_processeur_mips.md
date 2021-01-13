@@ -6,8 +6,8 @@ tldr: "Jeu d'Instructions et Architecture (ISA) du MIPS"
 thumbnail: /static_files/presentations/lec_03.jpg
 hide_from_announcements: True
 links:
-    - url: /static_files/presentations/03-ISA\ et\ MIPS.pptx
-      name: slides
+#    - url: /static_files/presentations/03-ISA\ et\ MIPS.pptx
+#      name: slides
     - url: https://1drv.ms/p/s!Agf0g-qZKM8_y16LHL3VyOgLYdQW?e=IQYWO5
       name: visualiser
 ---
