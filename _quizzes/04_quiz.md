@@ -1,12 +1,12 @@
 ---
 type: quiz
-date: 2021-02-18T00:00:00+1:00
+date: 2021-02-25T00:00:00+1:00
 title: 'Quiz #4 - Chemin de données en pipeline'
 link: https://canvas.instructure.com/courses/2450996/quizzes/6855816
 hide_from_announcements: True
 due_event:
     type: due
-    date: 2021-02-24T23:59:59+1:00
+    date: 2021-02-03T23:59:59+1:00
     description: 'Quiz #4 à remettre'
 ---
 

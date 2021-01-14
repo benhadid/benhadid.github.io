@@ -1,6 +1,6 @@
 ---
 type: lecture
-date: 2021-02-18T08:00:00+1:00
+date: 2021-02-25T08:00:00+1:00
 title: Pipelining
 tldr: "Implémentation d'un processeur MIPS parallèle"
 thumbnail: /static_files/presentations/lec_06.jpg

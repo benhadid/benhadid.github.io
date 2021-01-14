@@ -1,13 +1,13 @@
 ---
 type: lab
-date: 2021-01-21T10:00:00+1:00
+date: 2021-01-28T10:00:00+1:00
 title: 'Travaux Pratiques #2 - Manipulations des données'
 attachment: /static_files/labs/lab_02.zip
 #solutions: /static_files/labs/lab_solutions.pdf
 hide_from_announcements: True
 due_event:
     type: due
-    date: 2021-01-27T10:00:00+1:00
+    date: 2021-02-03T10:00:00+1:00
     description: 'Travaux Pratiques #2 - à remettre'
 ---
 

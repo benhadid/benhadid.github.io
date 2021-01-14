@@ -1,6 +1,6 @@
 ---
 type: lecture
-date: 2021-03-04T08:00:00+1:00
+date: 2021-03-11T08:00:00+1:00
 title: Mémoire Cache
 tldr: "Hiérarchie de mémoire et mémoire cache"
 thumbnail: /static_files/presentations/lec_08.png

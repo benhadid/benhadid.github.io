@@ -1,13 +1,13 @@
 ---
 type: lab
-date: 2021-01-14T10:00:00+1:00
+date: 2021-01-21T10:00:00+1:00
 title: 'Travaux Pratiques #1 - Ligne de commande et débogage de programmes'
 attachment: /static_files/labs/lab_01.zip
 #solutions: /static_files/labs/lab_solutions.pdf
 hide_from_announcements: True
 due_event:
     type: due
-    date: 2021-01-20T10:00:00+1:00
+    date: 2021-01-27T10:00:00+1:00
     description: 'Travaux Pratiques #1 - à remettre'
 ---
 
