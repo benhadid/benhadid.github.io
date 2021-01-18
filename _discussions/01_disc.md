@@ -2,8 +2,8 @@
 type: discussion
 date: 2021-01-21T09:00:00+1:00
 title: 'Travaux Dirigés #1 - Représentation des Données'
-pdf: /static_files/assignments/td_1.pdf
-#solutions: /static_files/assignments/td_1-sol.pdf
+pdf: /static_files/discussions/td_1.pdf
+#solutions: /static_files/discussions/td_1-sol.pdf
 hide_from_announcements: True
 due_event:
     type: due

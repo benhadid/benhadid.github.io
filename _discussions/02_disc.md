@@ -2,8 +2,8 @@
 type: discussion
 date: 2021-01-28T09:00:00+1:00
 title: 'Travaux Dirigés #2 - Des bases en C'
-pdf: /static_files/assignments/td_2.pdf
-#solutions: /static_files/assignments/td_2-sol.pdf
+pdf: /static_files/discussions/td_2.pdf
+#solutions: /static_files/discussions/td_2-sol.pdf
 hide_from_announcements: True
 due_event:
     type: due

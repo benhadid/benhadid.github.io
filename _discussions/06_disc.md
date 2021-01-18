@@ -2,8 +2,8 @@
 type: discussion
 date: 2021-02-25T09:00:00+1:00
 title: "Travaux Dirigés #6 - Processeur MIPS en Pipeline et Aléas d'Exécution"
-pdf: /static_files/assignments/td_6.pdf
-#solutions: /static_files/assignments/td_6-sol.pdf
+pdf: /static_files/discussions/td_6.pdf
+#solutions: /static_files/discussions/td_6-sol.pdf
 hide_from_announcements: True
 due_event:
     type: due
