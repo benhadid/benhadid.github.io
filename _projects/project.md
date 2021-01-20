@@ -19,7 +19,7 @@ due_event:
 
 # Énoncé
 
-Pour ce mini-projet, vous utiliserez [Logisim](https://fr.wikipedia.org/wiki/Logisim) afin d'implémenter un version basique d'un processeur MIPS. Ce devoir est organisé en deux parties : A et B.
+Pour ce mini-projet, vous utiliserez [Logisim](https://fr.wikipedia.org/wiki/Logisim) afin d'implémenter une version basique d'un processeur MIPS. Ce devoir est organisé en deux parties : A et B.
 
 Dans la partie A (tâches 1 à 3), vous allez construire une « Unité Arithmétique et Logique (UAL) » et un « Banc de Registres » pour un processeur MIPS basique, ainsi qu'une implémentation du chemin de données nécessaire à l’exécution des instructions `addi`. Dans la partie B (tâches 4), vous ajouterez d’autres composants à votre processeur basique pour produire une version avancée qui exécutera des instructions MIPS réelles !
 
@@ -64,9 +64,9 @@ proj_starter
 
 ## Tâche 1 : Unité Arithmétique et logique (UAL)
 
-Votre première tâche est de créer une UAL qui prend en charge toutes les opérations requises par les instructions de notre ISA (décrite plus en détails plus dans la section suivante).
+Votre première tâche est de créer une UAL qui prend en charge toutes les opérations requises par les instructions de notre ISA (décrites plus en détail dans la section suivante).
 
-le fichier squelette fourni `alu.circ` montre que votre UAL doit avoir trois entrées :
+le fichier squelette fourni `alu.circ` indique que votre UAL doit avoir trois entrées :
 
 <table class="styled-table">
 <colgroup>
@@ -103,7 +103,7 @@ le fichier squelette fourni `alu.circ` montre que votre UAL doit avoir trois ent
 </tbody>
 </table>
 
-... et une sortie
+... et deux sorties
 
 <table class="styled-table">
 <colgroup>
@@ -119,6 +119,12 @@ le fichier squelette fourni `alu.circ` montre que votre UAL doit avoir trois ent
 </tr>
 </thead>
 <tbody>
+
+<tr>
+<td style="text-align:center" markdown="span">**Zero**</td>
+<td style="text-align:center" markdown="span">1</td>
+<td markdown="span">Indique si la différence entre les entrées **A** et **B** est nulle</td>
+</tr>
 
 <tr>
 <td style="text-align:center" markdown="span">**Result**</td>
@@ -260,9 +266,9 @@ Enfin, voici ci-dessous la liste des opérations (et les valeurs **ALUSel** asso
 
 **Indications** :
 
-  * L'opération `add` est déjà implémentée pour vous; n'hésitez pas à utiliser une structure similaire pour réaliser les autres composants.    
+  * L'opération `add` est déjà implémentée pour vous; n'hésitez pas à utiliser une structure similaire pour réaliser les autres fonctions.    
 
-  * Lors de l'implémentation de `mul` et `mulh`, veuillez noter que le bloc Logisim de multiplication possède une sortie « Carry Out » qui pourrait vous être utile (le bloc additionneur possède également cette sortie, mais vous n'en aurez pas besoin pour ce composant).
+  * Lors de l'implémentation de `mul` et `mulh`, veuillez noter que le bloc Logisim de multiplication possède une sortie « Carry Out » qui pourrait vous être utile (le bloc additionneur possède également cette sortie, mais vous n'en aurez pas besoin pour ce projet).
 
   * Les séparateurs et les extenseurs de bits vous seront très utiles lors de l'implémentation des opérations de décalages.
 
@@ -274,11 +280,11 @@ Enfin, voici ci-dessous la liste des opérations (et les valeurs **ALUSel** asso
 <div class="bs-callout bs-callout-danger">
   <h4>ATTENTION</h4>
 
-  <p>Vous pouvez apporter toutes les modifications souhaitées à <b>alu.circ</b>, mais les entrées et la sortie doivent obéir au comportement spécifié ci-dessus. De plus, votre fichier <b>alu.circ</b> doit correspondre au socle <b>alu_harness.circ</b> fourni. Cela signifie que vous devez veiller à <b>NE PAS</b> réorganiser les entrées ou la sortie du circuit. Si vous avez besoin de plus d'espace, utilisez des tunnels !</p>
+  <p>Vous pouvez apporter toutes les modifications souhaitées à <b>alu.circ</b>, mais les entrées et sorties du circuit doivent obéir au comportement spécifié ci-dessus. De plus, votre fichier <b>alu.circ</b> doit correspondre au socle <b>alu_harness.circ</b> fourni. Cela signifie que vous devez veiller à <b>NE PAS</b> réorganiser les entrées ou les sorties du circuit. Si vous avez besoin de plus d'espace, utilisez des tunnels !</p>
 
   <p>Si vous créez des sous-circuits supplémentaires, ils doivent également être dans <b>alu.circ</b> (c.-à-d. vous ne devez pas créer de nouveaux fichiers .circ).</p>
 
-  <p>Pour vérifier que vos modifications n’ont pas rompu les correspondances entrés / sorties entre les deux circuits, ouvrez le fichier <b>alu_harness.circ</b> et assurez-vous qu’il n’y a pas d’erreurs de branchement.</p>
+  <p>Pour vérifier que vos modifications n’ont pas rompu les correspondances entrés / sorties entre les deux circuits, ouvrez le fichier <b>alu_harness.circ</b> dans Logisim et assurez-vous qu’il n’y a pas d’erreurs de branchement.</p>
 </div>
 
 ### **Tester votre UAL**
