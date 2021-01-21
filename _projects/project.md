@@ -11,12 +11,6 @@ due_event:
     description: 'Projet à remettre'    
 ---
 
-# Objectifs
-
-- Apprendre le fonctionnement de l'unité arithmétique et logique dans un processeur
-
-- Apprendre à modéliser des circuits logiques avancés avec Logisim
-
 # Énoncé
 
 Pour ce mini-projet, vous utiliserez [Logisim](https://fr.wikipedia.org/wiki/Logisim) afin d'implémenter une version basique d'un processeur MIPS. Ce devoir est organisé en deux parties : A et B.
