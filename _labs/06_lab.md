@@ -52,7 +52,7 @@ Tout comme les programmes écris dans un langage évolué peuvent contenir des f
 
 **REMARQUE IMPORTANTE :** La documentation de Logisim stipule que vous ne pouvez pas nommer un sous-circuit après un mot-clé (par exemple, "NAND"). Les noms de circuits doivent également commencer par "A-Za-z".
 
-  1. Ouvrez le schéma de l'exercice 1 (**File | Open -> ex1.circ**). La fenêtre du sous-circuit NAND1 est automatiquement sélectionnée pour vous par Logisim.
+  1. Ouvrez le schéma de l'exercice 1 (**File \| Open 🡒 ex1.circ**). La fenêtre du sous-circuit NAND1 est automatiquement sélectionnée pour vous par Logisim.
 
   2. Dans cette fenêtre, créez un circuit NAND simple avec deux broches d'entrée sur le côté gauche et une broche de sortie sur le côté droit. Faites-le sans utiliser la porte NAND qui se trouve dans le dossier Gates (c.-à-d. utilisez uniquement les portes AND, OR et NOT). Vous pouvez modifier les étiquettes des entrées et des sorties en sélectionnant l'entrée / la sortie à l'aide de l'outil de sélection (**Select tool**) et en modifiant la propriété "Label" dans le panneau inférieur gauche de la fenêtre.
 
