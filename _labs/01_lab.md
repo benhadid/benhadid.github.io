@@ -170,7 +170,7 @@ Un **débogueur**, comme son nom l'indique, est un programme spécialement conç
 
   2. Exécuter le programme pas à pas (anglais : step by step). Un code s'exécute toujours instruction par instruction, mais cela arrive trop rapidement pour que nous puissions déterminer quelles instructions ou parties du code causent des problèmes. Être capable d'examiner l'exécution de votre code pas à pas vous permet de déterminer exactement ce qui cause un bogue dans votre programme.
 
-Pour cet exercice, le [document de référence GDB]({{site.baseurl}}/static_files/docs/gdb5-refcard.pdf) vous sera très utile. GDB signifie « **G**NU **D**e-**B**ugger ». D'abord, téléchargez le fichier de démarrage (voir plus haut dans ce document) et [décompressez](https://itsfoss.com/unzip-linux/) son contenu (la commande `unzip` est déjà installée pour vous) dans le répertoire de votre choix. Compilez ensuite le fichier `hello.c` avec le drapeau `-g` (indiquez le chemin complet du fichier `hello.c` si différent du répertoire actuel ) :
+Pour cet exercice, le [document de référence GDB]({{site.baseurl}}/static_files/docs/gdb5-refcard.pdf) vous sera très utile. GDB signifie « **G**NU **D**e-**B**ugger ». D'abord, téléchargez le fichier de démarrage (voir plus haut dans ce document) et [décompressez](https://itsfoss.com/unzip-linux/) son contenu avec la commande `unzip` (cette commande est déjà installée sur la machine) dans le répertoire de votre choix. Compilez ensuite le fichier `hello.c` avec le drapeau `-g` (indiquez le chemin complet du fichier `hello.c` si différent du répertoire actuel ) :
 
 ```bash
 $ gcc -g -o hello hello.c
