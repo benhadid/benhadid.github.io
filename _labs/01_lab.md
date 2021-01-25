@@ -168,9 +168,9 @@ Un **débogueur**, comme son nom l'indique, est un programme spécialement conç
 
   1. Définir un << point d'arrêt >> (*anglais*: breakpoint) dans le programme. Un << point d'arrêt >> est une ligne spécifique dans votre code où vous souhaitez arrêter l'exécution du programme afin que vous puissiez examiner ce qui se passe dans cette région du code.
 
-  2. Exécuter le programme ligne par ligne. Un code s'exécute toujours ligne par ligne, mais cela arrive trop rapidement pour que nous puissions déterminer quelles lignes ou parties du code causent des problèmes. Être capable d'examiner l'execution de votre code ligne par ligne vous permet de déterminer exactement ce qui cause un bogue dans votre programme.
+  2. Exécuter le programme pas à pas (anglais : step by step). Un code s'exécute toujours instruction par instruction, mais cela arrive trop rapidement pour que nous puissions déterminer quelles instructions ou parties du code causent des problèmes. Être capable d'examiner l'exécution de votre code pas à pas vous permet de déterminer exactement ce qui cause un bogue dans votre programme.
 
-Pour cet exercice, le [document de référence GDB]({{site.baseurl}}/static_files/docs/gdb5-refcard.pdf) vous sera très utile. GDB signifie « **G**NU **D**e-**B**ugger ». D'abord, téléchargez le fichier de démarrage (voir plus haut dans ce document) et décompressez son contenu (avec la commande `unzip`) dans le répertoire de votre choix. Compilez ensuite le fichier `hello.c` avec le drapeau `-g` (indiquez le chemin complet du fichier `hello.c` si différent du répertoire actuel ) :
+Pour cet exercice, le [document de référence GDB]({{site.baseurl}}/static_files/docs/gdb5-refcard.pdf) vous sera très utile. GDB signifie « **G**NU **D**e-**B**ugger ». D'abord, téléchargez le fichier de démarrage (voir plus haut dans ce document) et [décompressez](https://itsfoss.com/unzip-linux/) son contenu (la commande `unzip` est déjà installée pour vous) dans le répertoire de votre choix. Compilez ensuite le fichier `hello.c` avec le drapeau `-g` (indiquez le chemin complet du fichier `hello.c` si différent du répertoire actuel ) :
 
 ```bash
 $ gcc -g -o hello hello.c
