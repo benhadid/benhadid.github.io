@@ -108,7 +108,7 @@ La compilation manuelle de programmes C dans le terminal (voir les exemples du T
 
 Ainsi, la plupart des programmeurs C écrivent ce que l’on appelle un << Makefile >> pour faciliter la compilation. Un << Makefile >> est un fichier texte (littéralement appelé << Makefile >>) qui se trouve dans le répertoire de code source et qui contient un ensemble de règles. Chacune de ces règles spécifie des commandes à exécuter pour manipuler un programme (ex : compiler un fichier source, effacer l'exécutable, etc). Une fois le fichier Makefile préparé, le programmeur a juste besoin de taper "make" dans son terminal de commande pour effectuer les tâches indiquées dans le makefile.
 
-Consultez le << Makefile >> inclus dans ce TP et essayez de répondre aux questions suivantes (Les réponses sont disponibles en cliquant sur &nbsp; &#9656; &nbsp; pour chaque question. Pour apprendre davantage sur les Makefiles Google est votre ami :smile: ).
+Consultez le << Makefile >> inclus dans ce TP et essayez de répondre aux questions suivantes (Les réponses sont disponibles en cliquant sur &nbsp; &#9656; &nbsp; pour chaque question. Pour apprendre davantage sur les Makefiles, Google est votre ami :smile: ).
 
   <details close="">
   <summary>  
