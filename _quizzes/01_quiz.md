@@ -1,7 +1,7 @@
 ---
 type: quiz
 date: 2021-01-28T00:00:00+1:00
-title: 'Quiz #1 - Représentation des Données'
+title: 'Représentation des Données'
 link: https://canvas.instructure.com/courses/2450996/quizzes/6502287
 hide_from_announcements: True
 due_event:
