@@ -1,7 +1,7 @@
 ---
 type: lab
 date: 2021-02-18T10:00:00+1:00
-title: 'Travaux Pratiques #5 - Exceptions et Interruptions dans MIPS'
+title: 'Exceptions et Interruptions dans MIPS'
 attachment: /static_files/labs/exceptions_handler.s
 #solutions: /static_files/labs/lab_solutions.pdf
 hide_from_announcements: True

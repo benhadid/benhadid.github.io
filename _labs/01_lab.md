@@ -1,7 +1,7 @@
 ---
 type: lab
 date: 2021-01-21T10:00:00+1:00
-title: 'Travaux Pratiques #1 - Ligne de commande et débogage de programmes'
+title: 'Ligne de commande et débogage de programmes'
 attachment: /static_files/labs/lab_01.zip
 #solutions: /static_files/labs/lab_solutions.pdf
 hide_from_announcements: True

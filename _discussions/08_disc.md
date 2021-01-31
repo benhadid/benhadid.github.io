@@ -1,7 +1,7 @@
 ---
 type: discussion
 date: 2021-03-18T09:00:00+1:00
-title: "Travaux Dirigés #8 - Mémoire Cache"
+title: "Mémoire Cache"
 pdf: /static_files/discussions/td_7.pdf
 #solutions: /static_files/discussions/td_7-sol.pdf
 hide_from_announcements: True

@@ -1,7 +1,7 @@
 ---
 type: lab
 date: 2021-03-18T10:00:00+1:00
-title: 'Travaux Pratiques #7 - Mémoire Cache'
+title: 'Mémoire Cache'
 attachment: /static_files/labs/lab_07.zip
 #solutions: /static_files/labs/lab_solutions.pdf
 hide_from_announcements: True

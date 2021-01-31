@@ -1,7 +1,7 @@
 ---
 type: lab
 date: 2021-01-28T10:00:00+1:00
-title: 'Travaux Pratiques #2 - Manipulations des données'
+title: 'Manipulations des données'
 attachment: /static_files/labs/lab_02.zip
 #solutions: /static_files/labs/lab_solutions.pdf
 hide_from_announcements: True

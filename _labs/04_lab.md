@@ -1,7 +1,7 @@
 ---
 type: lab
 date: 2021-02-11T10:00:00+1:00
-title: 'Travaux Pratiques #4 - Assembleur MIPS'
+title: 'Assembleur MIPS'
 attachment: /static_files/labs/lab_04.zip
 #solutions: /static_files/labs/lab_solutions.pdf
 hide_from_announcements: True

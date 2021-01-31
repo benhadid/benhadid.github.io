@@ -1,7 +1,7 @@
 ---
 type: discussion
 date: 2021-03-04T09:00:00+1:00
-title: "Travaux Dirigés #7 - Processeur MIPS en Pipeline et Aléas d'Exécution - suite"
+title: "Processeur MIPS en Pipeline et Aléas d'Exécution - suite"
 pdf: /static_files/discussions/td_6.pdf
 #solutions: /static_files/discussions/td_6-sol.pdf
 hide_from_announcements: True
