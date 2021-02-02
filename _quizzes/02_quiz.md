@@ -1,6 +1,6 @@
 ---
 type: quiz
-date: 2021-02-04T00:00:00+1:00
+date: 2021-02-04T00:00:00+01:00
 title: 'ISA du MIPS'
 link: https://canvas.instructure.com/courses/2450996/quizzes/6502285
 hide_from_announcements: True

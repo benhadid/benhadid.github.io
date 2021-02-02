@@ -60,6 +60,7 @@ include: ['_images', '_css']
 exclude: ['develop']
 
 dateformat: "%d/%m/%Y"
+timezone: Africa/Algiers
 
 future: true
 collections:

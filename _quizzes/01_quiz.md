@@ -1,6 +1,6 @@
 ---
 type: quiz
-date: 2021-01-28T00:00:00+1:00
+date: 2021-01-28T00:00:00+01:00
 title: 'Représentation des Données'
 link: https://canvas.instructure.com/courses/2450996/quizzes/6502287
 hide_from_announcements: True
