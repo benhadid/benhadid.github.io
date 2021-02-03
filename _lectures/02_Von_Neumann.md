@@ -12,7 +12,7 @@ links:
       name: visualiser
 ---
 **Lectures suggérées :**
-- [Représentation](/static_files/docs/representation.pdf) des données en mémoire
+- [Représentation]({{ site.baseurl }}/static_files/docs/representation.pdf) des données en mémoire
 
 **Documentaires :**
 - [Documentaire](https://www.bbc.com/reel/video/p07p7xc1/how-the-chip-changed-everything?ocid=ww.social.link.email) : How the chip changed everything
