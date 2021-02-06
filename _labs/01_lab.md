@@ -40,7 +40,7 @@ Pour ce devoir et les devoirs futurs de ce cours, il est suggéré d'effectuer l
 
 # Exercice 1 : (Shell UN\*X)
 
-Afin d'acquérir un minimum d'expérience avec la ligne de commande (*anglais* : Command Line Interface - CLI) sous UN\*X, nous introduisons ici quelques commandes courantes qui peuvent vous être utiles pendant ce cours. Pour une introduction aux commandes UN\*X de base, consultez ce [didacticiel](https://tutorials.ubuntu.com/tutorial/command-line-for-beginners).
+Afin d'acquérir un minimum d'expérience avec la ligne de commande (*anglais* : Command Line Interface - CLI) sous UN\*X, nous introduisons ici quelques commandes courantes qui peuvent vous être utiles pendant ce cours. Pour une introduction aux commandes UN\*X de base, consultez ce [didacticiel](http://doc.ubuntu-fr.org/tutoriel/console_ligne_de_commande) et/ou ce [didacticiel](https://tutorials.ubuntu.com/tutorial/command-line-for-beginners) (en anglais).
 
 Les exemples de commandes seront affichés comme suit :
 
