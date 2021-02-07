@@ -13,8 +13,8 @@ links:
 ---
 **Lectures suggérées :**   
 - Programmation [structurée et non structurée]({{ site.baseurl }}/static_files/docs/non_structured_programming.html)
-- [Contrôle de flux]({{ site.baseurl }}/static_files/docs/flow_control.pdf) dans MIPS
-- [Introduction]({{ site.baseurl }}/static_files/docs/Introduction_Assembleur_MIPS.pdf) à l'assembleur MIPS
+- [Introduction]({{ site.baseurl }}/static_files/docs/Introduction_Assembleur_MIPS.pdf) au langage Assembleur MIPS
+- [Contrôle du flux]({{ site.baseurl }}/static_files/docs/flow_control.pdf) d'exécution dans MIPS
 - [Fiche]({{ site.baseurl }}/static_files/docs/fiche_mips.pdf) de référence MIPS
 
 **Références :**
