@@ -15,7 +15,7 @@ links:
 - [Représentation]({{ site.baseurl }}/static_files/docs/representation.pdf) des données en mémoire
 
 **Documentaires :**
-- [Documentaire](https://www.bbc.com/reel/video/p07p7xc1/how-the-chip-changed-everything?ocid=ww.social.link.email) : How the chip changed everything
+- [Made on Earth](https://www.bbc.com/reel/video/p07p7xc1/how-the-chip-changed-everything?ocid=ww.social.link.email) : How the chip changed everything
 - [TedEd](https://ed.ted.com/lessons/how-computer-memory-works-kanawat-senanan) : How Computer memory works
 
 
