@@ -28,7 +28,7 @@ Pour ce devoir et les devoirs futurs de ce cours, il est suggéré d'effectuer l
 
   2. Toujours depuis la même page de VirtualBox, téléchargez et installez le pack d'extension (Extension Pack) correspondant à la version de VirtualBox que vous venez d'installer sur votre machine.
 
-  3. Maintenant, téléchargez et installez la machine virtuelle (VM) "cvlab.ova" (1.7 Go) à partir de ce [lien](https://1drv.ms/u/s!Agf0g-qZKM8_2nVUvgzxWj7vtC-n?e=KuEYoL). Pour ajouter la VM à VirtualBox, suivez les instructions données [ici](https://docs.oracle.com/cd/E26217_01/E26796/html/qs-import-vm.html).
+  3. Maintenant, téléchargez et installez la machine virtuelle (VM) "cvlab.ova" (1.7 Go) à partir de ce [lien](https://1drv.ms/u/s!Agf0g-qZKM8_20z_TTFd51ShKNRI?e=htQwBv). Pour ajouter la VM à VirtualBox, suivez les instructions données [ici](https://docs.oracle.com/cd/E26217_01/E26796/html/qs-import-vm.html).
 
   4. C'est fini ! Vous disposez maintenant d'une machine virtuelle avec une configuration semblable aux machines MI (Labo 4).
 
