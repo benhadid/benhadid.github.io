@@ -3,7 +3,7 @@ type: discussion
 date: 2021-02-04T09:00:00+1:00
 title: 'Introduction à MIPS'
 pdf: /static_files/discussions/td_3.pdf
-#solutions: /static_files/discussions/td_3-sol.pdf
+solutions: /static_files/discussions/td_3-sol.pdf
 hide_from_announcements: True
 due_event:
     type: due
