@@ -100,3 +100,6 @@ defaults:
       type: "projects"
     values:
       layout: "project"
+
+offline:
+  strategy: network-first-cache-fallback
