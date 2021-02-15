@@ -9,20 +9,18 @@ course_description: > # this means to ignore newlines until "course_semester:"
   que « plus de transistors est égale à des processeurs plus rapides » a pris fin. Cette impasse a
   induit une refonte des stratégies de conception des ordinateurs, du matériel aux applications.
   <br><br>
-  Ce cours porte sur le fonctionnement des ordinateurs et sur la manière dont la
-  conception du logiciel et du matériel affecte les performances. À l'issue de ce cours,
-  vous saurez expliquer comment fonctionne un ordinateur de bas en haut : du transistor
-  au portes logiques au Langage Assembleur (MIPS, x86, etc) au Langages évolués de
-  programmation (C/C++, Java, Python, etc).
+  Ce cours porte sur le fonctionnement des ordinateurs et sur la manière dont la conception du logiciel 
+  et du matériel affecte les performances. À l'issue de ce cours, vous saurez expliquer comment fonctionne 
+  un ordinateur de bas en haut : du transistor au portes logiques au Langage Assembleur (MIPS, x86, etc) 
+  au Langages évolués de programmation (C/C++, Java, Python, etc).
   <br><br>
-  Dans ce cours, vous découvrirez comment les données sont représentées, traitées, et
-  stockées dans un ordinateur. Vous apprendrez à écrire des programmes dans un
-  Langage Assembleur (par exemple, multiplier deux nombres, inscrire un nombre en mémoire, etc).
-  Vous apprendrez à construire et à utiliser les blocs de base dans un processeur (unité arithmétique,
-  banc de registres, unité de contrôle, etc). Vous utiliserez des outils de conception pour créer
-  un processeur exécutant des programmes écrits en Assembleur. Enfin, vous analyserez les performances
-  des systèmes informatiques et examinerez les facteurs, tels que la localisation des données et
-  le parallélisme, qui affectent ces mesures.
+  Dans ce cours, vous découvrirez comment les données sont représentées, traitées, et stockées dans un 
+  ordinateur. Vous apprendrez à écrire des programmes dans un Langage Assembleur (par exemple, multiplier 
+  deux nombres, inscrire un nombre en mémoire, etc). Vous apprendrez à construire et à utiliser les blocs 
+  de base dans un processeur (unité arithmétique, banc de registres, unité de contrôle, etc). Vous utiliserez 
+  des outils de conception pour créer un processeur exécutant des programmes écrits en Assembleur. Enfin, 
+  vous analyserez les performances des systèmes informatiques et examinerez les facteurs, tels que la 
+  localisation des données et le parallélisme, qui affectent ces mesures.
 
 course_semester: "Automne 2020"
 
