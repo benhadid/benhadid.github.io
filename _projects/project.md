@@ -768,7 +768,7 @@ Pour éditer l'unité de contrôle, modifiez le fichier `control_logic.circ` et 
 
 ### Guide : Processeur à cycle unique
 
-Ce guide vous aidera à implémenter l'instruction `addi` de votre processeur. Chaque section ci-dessous contient des questions auxquelles vous devez réfléchir et des indications importantes. Il est nécessaire de lire et comprendre chaque question avant de passer à la suivante ! Vous pouvez même consulter les réponses en cliquant sur  &#9654; si vous n'êtes pas capables de trouver les réponses vous-mêmes :(. Rappelons les cinq étapes d'exécution d'une instruction dans un processeur MIPS :
+Ce guide vous aidera à implémenter l'instruction `addi` de votre processeur. Chaque section ci-dessous contient des questions auxquelles vous devez réfléchir et des indications importantes. Il est nécessaire de lire et comprendre chaque question avant de passer à la suivante ! Vous pouvez même consulter les réponses en cliquant sur  &#9654; si vous n'êtes pas capables de trouver les réponses vous-mêmes. Rappelons les cinq étapes d'exécution d'une instruction dans un processeur MIPS :
 
   1. Récupération d'instruction (IF)
   2. Décodage d'instruction (ID)
