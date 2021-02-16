@@ -19,7 +19,7 @@ due_event:
 
 # Initiation à Logisim
 
-Dans ce TP, vous allez être introduit au logiciel [Logisim](https://fr.wikipedia.org/wiki/Logisim) pour implémenter des circuits logiques simples. Veuillez consulter le [tutoriel]({{site.baseurl}}/static_files/docs/Logisim_tutoriel.html) pour une introduction rapide.
+Dans ce TP, vous allez être introduit au logiciel [Logisim](https://fr.wikipedia.org/wiki/Logisim) pour implémenter des circuits logiques simples. Veuillez consulter le [tutoriel](http://www.cburch.com/logisim/docs/2.7/en/html/guide/tutorial/index.html) pour une introduction rapide.
 
 Pour lancer le logiciel sur une machine de laboratoire (ou la VM), exécutez la commande suivante depuis un terminal :
 
