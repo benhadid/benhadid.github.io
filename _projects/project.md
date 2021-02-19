@@ -19,7 +19,7 @@ Dans la partie A (tâches 1 à 3), vous allez construire une « Unité Arithmét
 
 Commencez par télécharger le fichier de démarrage et décompressez son contenu dans le répertoire de votre choix. Voici la liste des fichiers que vous devez avoir :
 
-```shell
+```bash
 proj_starter
   ├── cpu
   │   ├── alu.circ
@@ -915,7 +915,7 @@ OUI ! l'instruction `addi` prend la sortie d'un calcul d'addition dans l'UAL et 
 </p>
 </details>
 
-&emsp;&nbsp;2\. Nous avons vu dans le cours que l'étape WB permet d'écrire dans le « Banc de Registres » la sortie de l'UAL ou de la mémoire de données (MEM). Créons donc la phase d'écriture dans cette perspective même si nous nous intéressons seulement à l'instruction `addi` pour l'instant. Comme seule une donnée à la fois peut être écrite dans le « Banc de Registres » dans l'architecture MIPS, nous devons utiliser un MUX pour choisir laquelle des sorties de l'UAL ou de MEM (`READ_DATA`) à transmettre. Plus tard, lorsque vous implémenterez d'autres instructions dans la partie B du projet, vous devrez revoir l'implémentation de ce multiplexeur pour gérer plus de cas.
+&emsp;&nbsp;2\. Nous avons vu dans le cours que l'étape **WB** permet d'écrire dans le « Banc de Registres » la sortie de l'**UAL** ou de la mémoire de données **DMEM**. Créons donc la phase d'écriture dans cette perspective même si nous nous intéressons seulement à l'instruction `addi` pour l'instant. Comme seule une donnée à la fois peut être écrite dans le « Banc de Registres » dans l'architecture MIPS, nous devons utiliser un MUX pour choisir laquelle des sorties de l'UAL ou de **DMEM** (`READ_DATA`) à transmettre. Plus tard, lorsque vous implémenterez d'autres instructions dans la partie B du projet, vous devriez revoir l'implémentation de ce multiplexeur pour gérer plus de cas.
 
 <details close="">
 <summary markdown="span">

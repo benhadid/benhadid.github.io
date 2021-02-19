@@ -1,6 +1,6 @@
 ---
 type: quiz
-date: 2021-03-11T00:00:00+01:00
+date: 2021-03-18T00:00:00+01:00
 title: 'Mémoire Cache'
 link: https://canvas.instructure.com/courses/2450996/quizzes/6502286
 hide_from_announcements: True
