@@ -755,9 +755,9 @@ Le processeur dispose de trois entrées qui proviennent du socle :
 
 ### Info : Unité de Contrôle
 
-L'unité de contrôle fournie dans le fichier `control_logic.circ` n'est pas implémentée. La conception de votre unité de contrôle sera probablement votre plus grand défi dans la partie B de ce devoir. Pour la partie A, comme `addi` est la seule instruction que vous implémenterez, vous pouvez mettre une constante pour chaque signal de contrôle. Toutefois, au fur et à mesure que vous avancez dans votre implémentation de `addi`, réfléchissez aux endroits où vous devrez effectuer des modifications/additions afin de prendre en charge d'autres instructions dans le futur.
+L'unité de contrôle fournie dans le fichier `control_logic.circ` n'est pas implémentée. La conception de votre unité de contrôle sera probablement votre plus grand défi dans la partie B de ce devoir. Pour la partie A, comme `addi` est la seule instruction que vous implémenterez, vous pouvez mettre une constante pour chaque signal de contrôle. Toutefois, au fur et à mesure que vous avancez dans votre implémentation de `addi`, réfléchissez aux endroits où vous devriez effectuer des modifications/additions futures afin de prendre en charge d'autres instructions en plus de `addi`.
 
-Pour éditer l'unité de contrôle, modifiez le fichier `control_logic.circ` et non le circuit virtuel `control_logic` inclus dans `cpu_*.circ`. Notez qu'à chaque modification du circuit `control_logic.circ`, vous devrez fermer et ouvrir `cpu_*.circ` pour appliquer les modifications dans votre CPU.
+Pour éditer l'unité de contrôle, modifiez le fichier `control_logic.circ` et non le circuit virtuel `control_logic` inclus dans `cpu_*.circ`. Notez qu'à chaque modification du circuit `control_logic.circ`, vous devez fermer et ouvrir `cpu_*.circ` pour appliquer les modifications dans votre CPU.
 
 <div class="bs-callout bs-callout-danger">
   <h4>ATTENTION</h4>
