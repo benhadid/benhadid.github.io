@@ -1,6 +1,6 @@
 ---
 layout: default
-title: page.title
+title: Opérations bit-à-bit en langage C
 ---
 
 # Opérations bit-à-bit en langage C

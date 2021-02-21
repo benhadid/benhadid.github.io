@@ -1,6 +1,6 @@
 ---
 layout: default
-title: page.title
+title: Astuces d'utilisation dans Logisim
 ---
 
 # Astuces d'utilisation dans Logisim

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: page.title
+title: Programmation structurée et non structurée
 ---
 
 # Programmation structurée et non structurée
