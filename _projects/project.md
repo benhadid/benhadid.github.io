@@ -1458,10 +1458,10 @@ Voici un résumé des entrées et sorties de cette unité :
 </tr>
 
 <tr>
-<td style="text-align:center" markdown="span">PC4</td>
+<td style="text-align:center" markdown="span">PC</td>
 <td style="text-align:center" markdown="span">Entrée</td>
 <td style="text-align:center" markdown="span">32</td>
-<td markdown="span">La valeur PC + 4</td>
+<td markdown="span">La valeur du registre PC</td>
 </tr>
 
 <tr>
