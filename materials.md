@@ -26,3 +26,4 @@ permalink: /materials/
 - Logiciel [Java](https://www.java.com/fr/download/) - requis par Logisim et MARS.
 - [Documentation](https://www.java.com/fr/download/help/download_options.xml) pour installer "Java" sous Windows; macOS et Linux.
 - [fiche]({{site.baseurl}}/static_files/docs/fiche_mips.pdf) de référence MIPS.
+- [Autres](https://www.mips.com/products/architectures/) ressources sur le MIPS.
