@@ -19,7 +19,7 @@ due_event:
 
 # Exercice 1
 
-Télécharger le fichier de démarrage et décompressez son contenu dans le répertoire de votre choix. Dans cet exercice, vous allez compléter l'implémentation de la fonction `map()` dans `mips.s`. Cette fonction modifie les élément de la liste chaînée communiquée en paramètre. Les modifications se font sur place au lieu de créer et renvoyer une nouvelle liste avec les valeurs modifiées. Une implémentation de la liste en langage C serait comme suit :
+Télécharger le fichier de démarrage et décompressez son contenu dans le répertoire de votre choix. Dans cet exercice, vous allez compléter l'implémentation de la fonction `map()` dans `maps.s`. Cette fonction modifie les élément de la liste chaînée communiquée en paramètre. Les modifications se font sur place au lieu de créer et renvoyer une nouvelle liste avec les valeurs modifiées. Une implémentation de la liste en langage C serait comme suit :
 
 ```c
 struct node {
