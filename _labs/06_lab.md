@@ -106,7 +106,7 @@ Les parties suivantes vous présenteront des techniques / concepts plus avancés
 
 ### **Les tunnels**
 
-Un [tunnel](http://www.cburch.com/logisim/docs/2.6.0/en/libs/base/tunnel.html) vous permet de dessiner un "fil invisible" pour lier deux points ensemble. Les tunnels sont regroupés par des étiquettes sensibles à la casse. Ils sont utilisés pour connecter des fils comme suit:
+Un [tunnel](http://www.cburch.com/logisim/docs/2.6.0/en/libs/base/tunnel.html) vous permet de dessiner un "fil invisible" pour lier deux points ensemble. Les tunnels sont regroupés par des étiquettes sensibles aux majuscules et minuscules. Ils sont utilisés pour connecter des fils comme suit:
 
 ![Logisim Tunnel]({{site.baseurl}}/static_files/images/tunnels1.png){: .wp-caption }
 
