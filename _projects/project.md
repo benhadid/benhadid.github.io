@@ -1116,7 +1116,7 @@ Votre implémentation du CPU sera évaluée uniquement sur les instructions énu
 </tr>
 
 <tr>
-<td style="text-align:left" markdown="span">**mulhu** rs, rt</td>
+<td style="text-align:left" markdown="span">**mulhu** rd, rs, rt</td>
 <td style="text-align:left" markdown="span">Multiplication;<br>(params non signés)</td>
 <td style="text-align:left" markdown="span">R[rd] ← (R[rs] x R[rt])[63:32]</td>
 <td style="text-align:center" markdown="span">R</td>
