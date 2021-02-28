@@ -294,7 +294,7 @@ La table de vérité ci-dessus peut également être exprimée en utilisant l'al
    S =  A ⊕ B ⊕ Cin  
 Cout = (A ∧ B) ∨ (Cin ∧ (A ⊕ B) )
 ```
-Une technique appelée table de Karnaugh, du nom de Maurice Karnaugh, ingénieur en télécommunications aux laboratoires Bell en 1953, rendra très simple la conversion de la table de vérité en algèbre booléenne. Vous pouvez consulter cette [article](https://fr.wikipedia.org/wiki/Table_de_Karnaugh) sur les tables de Karnaugh pour rafraîchir votre mémoire. Ainsi, le circuit suivant est une représentation schématique de notre additionneur 1-bit.
+Une technique appelée table de Karnaugh, du nom de Maurice Karnaugh, ingénieur en télécommunications aux laboratoires Bell en 1953, rend très simple la conversion de la table de vérité à une représentation utilisant l'algèbre booléenne. Vous pouvez consulter cette [article](https://fr.wikipedia.org/wiki/Table_de_Karnaugh) sur les tables de Karnaugh pour rafraîchir votre mémoire. Ainsi, le circuit suivant est une représentation schématique de notre additionneur 1-bit.
 
 ![Full Adder]({{site.baseurl}}/static_files/images/Full_Adder.png){: .wp-caption img .aligncenter }
 
