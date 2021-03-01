@@ -15,5 +15,14 @@ links:
 - [Opérations binaires]({{ site.baseurl }}/static_files/docs/bitwise_operations_in_c.html) en C
 - Timeline of [Computer History](https://www.computerhistory.org/timeline/computers/)
 
+<!-- 
+**Vidéos suggérées :**
+- [Crash Course](https://www.youtube.com/watch?v=tpIctyqH29Q&list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo) in Computer Science.
+  - sous titrage disponible dans plusieurs langues (dépend de l'épisode).
+  - sous titrage auto-généré possible (plusieurs langues possibles).
+- How a [CPU Works](https://youtu.be/cNN_tTXABUA)
+- How Apple Just [Changed the Entire Industry](https://youtu.be/OuF9weSkS68)
+-->
+
 **Références :**
 - [P&H]({{ site.baseurl }}/static_files/images/P&H.jpg) : 2.4, 3.2, B.2, B.5-B.6
