@@ -11,5 +11,11 @@ links:
     - url: https://1drv.ms/p/s!Agf0g-qZKM8_y3s-AxrIbmng0Mcm?e=ztkMyP
       name: visualiser
 ---
+**Lectures suggérées :**   
+- [Contraintes de temps]({{ site.baseurl }}/static_files/docs/Contraintes_de_temps.pdf) sur les circuits 
+
 **Références :**
 - [P&H]({{ site.baseurl }}/static_files/docs/P&H.jpg) : 1.6
+
+
+
