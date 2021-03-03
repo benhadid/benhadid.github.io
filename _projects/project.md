@@ -314,7 +314,7 @@ $ diff reference.out student.out
 
 ## Tâche 2 : Banc de Registres
 
-Dans cette tâche, vous implémenterez **les 32 registres $0 &ndash; $31** spécifiés dans l'architecture MIPS. Pour faciliter l'implémentation, neuf registres seront exposés à des fins de test et de débogage (voir la liste ci-dessous). Veuillez vous assurer que les valeurs de ces registres sont attachées aux sorties appropriées dans le fichier `regfile.circ`.
+Dans cette tâche, vous implémenterez **les 32 registres $0 &ndash; $31** spécifiés dans l'architecture MIPS. Pour faciliter l'implémentation, huit registres seront exposés à des fins de test et de débogage (voir la liste ci-dessous). Veuillez vous assurer que les valeurs de ces registres sont attachées aux sorties appropriées dans le fichier `regfile.circ`.
 
 Votre « Banc de Registres » devrait pouvoir lire ou écrire depuis/dans les registres spécifiés dans une instruction MIPS et cela sans affecter les autres registres. Il y a une exception notable : votre « Banc de Registres » ne doit **PAS** écrire dans le registre `$0` même si une instruction tente de le faire. Pour rappel, le registre zéro doit **TOUJOURS** avoir la valeur `0`.
 
@@ -332,10 +332,6 @@ Les registres exposés et leurs numéros correspondants sont indiqués ci-dessou
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:center" markdown="span">0</td>
-<td style="text-align:center" markdown="span">$0</td>
-</tr>
 <tr>
 <td style="text-align:center" markdown="span">4</td>
 <td style="text-align:center" markdown="span">$a0</td>
@@ -502,9 +498,9 @@ Le « Banc de Registres » dans `regfile.circ` possède également les sorties s
 </tr>
 
 <tr>
-<td style="text-align:left" markdown="span">&emsp;Valeur **s2**</td>
+<td style="text-align:left" markdown="span">&emsp;Valeur **a0**</td>
 <td style="text-align:center" markdown="span">32</td>
-<td markdown="span">Renvoie la valeur contenue dans le registre **$s2** (sortie utilisée pour le débogage et les tests)</td>
+<td markdown="span">Renvoie la valeur contenue dans le registre **$a0** (sortie utilisée pour le débogage et les tests)</td>
 </tr>
 </tbody>
 </table>
