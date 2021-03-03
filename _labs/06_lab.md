@@ -89,7 +89,7 @@ Implémentons à présent un circuit qui incrémente une valeur en continu. La d
      ![Add Machine]({{site.baseurl}}/static_files/images/AddMachine.png){: .wp-caption .aligncenter }
 
   9. Lancez maintenant l'exécution de votre circuit depuis le menu **Simulate \| Ticks Enabled** (ou la combinaison clavier **Control + K**). Votre circuit devrait maintenant afficher un compteur en binaire.
-  
+
   10. Si vous souhaitez exécuter votre circuit plus rapidement, vous pouvez modifier la fréquence des ticks dans **Simulate \ Tick Frequency**.
 
 <div class="bs-callout bs-callout-danger">
@@ -164,7 +164,7 @@ Maintenant que vous avez acquis un peu d'expérience avec Logisim, nous allons c
 
 Un additionneur est un [circuit logique](https://fr.wikipedia.org/wiki/Circuit_logique) permettant de réaliser une addition. Ce circuit est très présent dans les ordinateurs pour le calcul arithmétique mais également pour le calcul d'adresses ou d'indice de tableau dans le processeur.
 
-Un additionneur [complet](https://fr.wikipedia.org/wiki/Additionneur) additionne trois nombres, souvent écrits sous les noms `A`, `B` et `Cin`; `A` et `B` sont les opérandes, et `Cin` est un la retenue (résultat éventuel d'une addition antérieure). L'additionneur complet est généralement composé d'une cascade d'additionneurs simples de 8 bits, 16 bits, 32 bits, etc.
+Un additionneur [complet](https://fr.wikipedia.org/wiki/Additionneur) additionne trois nombres, souvent écrits sous les noms `A`, `B` et `Cin`; `A` et `B` sont les opérandes, et `Cin` est la retenue (résultat éventuel d'une addition antérieure). L'additionneur complet est généralement composé d'une cascade d'additionneurs simples de 8 bits, 16 bits, 32 bits, etc.
 
 Dans la notation ci-dessous, A[4] indique que l'entrée est nommée " **A** " et possède 4 bits de large. L'entrée ne doit pas être nommée " **A[4]** " dans Logisim !
 
