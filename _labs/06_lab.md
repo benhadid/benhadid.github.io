@@ -54,9 +54,9 @@ Tout comme les programmes écris dans un langage évolué peuvent contenir des f
 
   1. Ouvrez le schéma de l'exercice 1 (**File \| Open 🡒 ex1.circ**). La fenêtre du sous-circuit NAND1 est automatiquement sélectionnée pour vous par Logisim.
 
-  2. Dans cette fenêtre, créez un circuit NAND simple avec deux broches d'entrée sur le côté gauche et une broche de sortie sur le côté droit. Faites-le sans utiliser la porte NAND qui se trouve dans le dossier Gates (c.-à-d. utilisez uniquement les portes AND, OR et NOT). Vous pouvez modifier les étiquettes des entrées et des sorties en sélectionnant l'entrée / la sortie à l'aide de l'outil de sélection (**Select tool**) et en modifiant la propriété "Label" dans le panneau inférieur gauche de la fenêtre.
+  2. Dans cette fenêtre, créez un circuit `NAND` simple avec deux broches d'entrée sur le côté gauche et une broche de sortie sur le côté droit. Faites-le sans utiliser la porte **NAND** qui se trouve dans le dossier Gates (c.-à-d. utilisez uniquement les portes **AND**, **OR** et **NOT**). Vous pouvez modifier les étiquettes des entrées et des sorties en sélectionnant l'entrée / la sortie à l'aide de l'outil de sélection (**Select tool**) et en modifiant la propriété "Label" dans le panneau inférieur gauche de la fenêtre.
 
-  3. Pour créer d'autres sous-circuits supplémentaires : NOR, XOR, MUX 2-to-1 et MUX 4-to-1 ; double-cliquez sur le nom du circuit dans le volet "Design" à gauche et répétez les instructions données dans l'étape 2 pour chaque sous-circuit. N'utilisez pas de portes intégrées autres que AND, OR et NOT. Cependant, une fois que vous avez construit un sous-circuit, vous pouvez l'utiliser pour en créer d'autres (cliquez sur le sous-circuit créé dans le volet des composants puis cliquez à nouveau sur la fenêtre de conception de circuit pour l'insérer comme composant).
+  3. Pour créer d'autres sous-circuits supplémentaires : `NOR`, `XOR`, `MUX 2-to-1` et `MUX 4-to-1`; double-cliquez sur le nom du circuit dans le volet "Design" à gauche et répétez les instructions données dans l'étape 2 pour chaque sous-circuit. N'utilisez pas de portes intégrées autres que **AND**, **OR** et **NOT**. Cependant, une fois que vous avez construit un sous-circuit, vous pouvez l'utiliser pour en créer d'autres (cliquez sur le sous-circuit créé dans le volet des composants puis cliquez à nouveau sur la fenêtre de conception de circuit pour l'insérer comme composant).
 
 **Remarques** :
   - Veuillez ne pas changer les noms des sous-circuits ou en créer de nouveaux; insérez vos solutions dans les circuits respectivement nommé ou bien l'auto-évaluateur ne fonctionnera pas correctement ( ça ne sera pas bon pour votre score :( ) !
@@ -69,28 +69,28 @@ Tout comme les programmes écris dans un langage évolué peuvent contenir des f
 
 Implémentons à présent un circuit qui incrémente une valeur en continu. La différence entre ce circuit et les circuits que vous avez construits jusqu'à présent est l'**écriture** de cette valeur dans l'**état** d'un **registre**. Ce qui suit va vous montrer comment ajouter des registres à votre circuit.
 
-  1. Ouvrez le schéma de l'exercice 2 (Fichier-> Ouvrir-> ex2.circ) et accédez au sous-circuit AddMachine (vide).
+  1. Ouvrez le schéma de l'exercice 2 (**File \| Open 🡒 ex2.circ**) et accédez au sous-circuit `AddMachine` (initialement vide).
 
-  2. La bibliothèque "Arithmetic" contient des éléments qui effectueront des opérations mathématiques de base :
+  2. La bibliothèque "**Arithmetic**" contient des éléments qui effectuent des opérations mathématiques de base :
     ![Logisim Arithmetic]({{site.baseurl}}/static_files/images/logisim_arithmetic.gif){: .aligncenter  }
 
-  3. Sélectionnez le sous-circuit "Adder" (additionneur) dans la bibliothèque "Arithmétique" et placez le dans votre sous-circuit AddMachine.
+  3. Sélectionnez le sous-circuit `Adder` (additionneur) dans la bibliothèque "**Arithmetic**" et placez le dans votre sous-circuit `AddMachine`.
 
-  4. Sélectionnez "Register" dans la bibliothèque "Memory" et placez un registre dans votre sous-circuit. Vous trouverez ci-dessous une image représentant les parties d’un registre.
+  4. Sélectionnez `Register` dans la bibliothèque `Memory` et placez un registre dans votre sous-circuit. Vous trouverez ci-dessous une image représentant les composants d’un registre.
     ![Logisim Register]({{site.baseurl}}/static_files/images/register.png){: .wp-caption .aligncenter }
 
-  5. Connectez une horloge à votre registre. Vous pouvez trouver l'élément du circuit d'horloge dans le dossier "Wiring" du navigateur de circuits.
+  5. Connectez une horloge à votre registre. Vous pouvez trouver l'élément du circuit de l'horloge dans le dossier `Wiring` du navigateur de circuits.
 
-  6. Connectez la sortie de l'additionneur à l'entrée du registre et la sortie du registre à l'entrée de l'additionneur. Il est possible que vous obtenez l'erreur "Largeurs incompatibles" lorsque vous connectez les composants. Cela signifie que le câble que vous tracez essaie de connecter deux broches avec des largeurs de bit différentes. Si vous cliquez sur l'additionneur avec l'outil "Sélection", vous remarquerez qu'il existe une propriété "Data Bits" dans le champ inférieur gauche de la fenêtre. Cette valeur détermine le nombre de bits de chaque entrée et sortie de l'additionneur. Modifiez ce champ si nécessaire pour faire disparaître  l'erreur.
+  6. Connectez la sortie de l'additionneur à l'entrée du registre et la sortie du registre à l'entrée de l'additionneur. Il est possible que vous obtenez l'erreur "*Largeurs incompatibles*" lorsque vous connectez les composants. Cela signifie que le câble que vous tracez essaie de connecter deux broches avec des largeurs de bit différentes. Dans le mode "Sélection" (bouton "flèche" actionné en dessous du menu), si vous cliquez sur l'additionneur vous remarquerez qu'il existe une propriété "Data Bits" dans le champ inférieur gauche de la fenêtre. Cette valeur détermine le nombre de bits de chaque entrée et sortie de l'additionneur. Modifiez ce champ si nécessaire pour faire disparaître  l'erreur.
 
-  7. Branchez une constante "1" définit sur 8 bits à la seconde entrée de l'additionneur. Vous pouvez trouver l'élément de circuit "Constant" dans la bibliothèque "Wiring".
+  7. Branchez une constante `1` définit sur 8 bits à la seconde entrée de l'additionneur. Vous pouvez trouver l'élément de circuit `Constant` dans la bibliothèque `Wiring`.
 
-  8. Ajoutez deux broches de sortie à votre circuit afin de pouvoir surveiller ce qui sort de l'additionneur et du registre. La sortie de l'additionneur doit être connectée à ADD_OUT et la sortie du registre à REG_OUT. Au final, votre circuit devrait ressembler à ceci :
+  8. Ajoutez deux broches de sortie à votre circuit afin de pouvoir surveiller ce qui sort de l'additionneur et du registre. La sortie de l'additionneur doit être connectée à `ADD_OUT` et la sortie du registre à `REG_OUT`. Au final, votre circuit devrait ressembler à ceci :
      ![Add Machine]({{site.baseurl}}/static_files/images/AddMachine.png){: .wp-caption .aligncenter }
 
-  9. Lancez maintenant l'exécution de votre circuit depuis le menu **Simulate->Ticks Enabled** (ou la combinaison clavier **Control + K**). Votre circuit devrait maintenant afficher un compteur en binaire.
-
-  10. Si vous souhaitez exécuter votre circuit plus rapidement, vous pouvez modifier la fréquence des ticks dans **Simulate->Tick Frequency**.
+  9. Lancez maintenant l'exécution de votre circuit depuis le menu **Simulate \| Ticks Enabled** (ou la combinaison clavier **Control + K**). Votre circuit devrait maintenant afficher un compteur en binaire.
+  
+  10. Si vous souhaitez exécuter votre circuit plus rapidement, vous pouvez modifier la fréquence des ticks dans **Simulate \ Tick Frequency**.
 
 <div class="bs-callout bs-callout-danger">
 <h4>ATTENTION</h4>
@@ -102,7 +102,7 @@ Ne déplacez / modifiez <b>PAS</b> les broches d'entrée et de sortie dans le fi
 
 ## Étape 3 : Fonctionnalités avancées
 
-Les parties suivantes vous présenteront des techniques / concepts plus avancés dans Logisim. Voici deux fonctionnalités de logisim que vous trouverez utiles.
+Les parties suivantes vous présenteront des techniques / concepts plus avancés dans Logisim. Voici deux fonctionnalités de Logisim que vous trouverez utiles.
 
 ### **Les tunnels**
 
@@ -116,7 +116,7 @@ Ce qui a un effet tel que :
 
 Nous vous recommandons fortement d'utiliser des tunnels avec Logisim, car ils rendent vos circuits beaucoup plus propres et donc plus faciles à déboguer.
 
-### **Extenseur de bit (Extender)**
+### **Extenseur de bit (bit Extender)**
 
 Lorsque vous modifiez la largeur d'un fil, vous devez utiliser un [extenseur de bit](http://www.cburch.com/logisim/docs/2.6.0/en/libs/base/extender.html) pour plus de clarté. Par exemple, considérez l'implémentation suivante de l'extension d'un fil de 8 bits en un fil de 16 bits:
 
@@ -152,11 +152,11 @@ C'est le dernier outil essentiel dont vous aurez besoin dans cette classe. Pour 
 
 7. Une fois que vous avez configuré votre séparateur, vous pouvez le placer dans votre circuit.
 
-8. Acheminez "In" vers le séparateur. Attachez une porte ET à 2 entrées aux bras du ventilateur 0 et 2 et acheminez la sortie de la porte ET à la sortie Out1.
+8. Acheminez `In` vers le séparateur. Attachez une porte **AND** à 2 entrées aux bras du ventilateur 0 et 2 et acheminez la sortie de cette porte à la broche de sortie `Out1`.
 
-9. Maintenant, supposez que l'entrée est un nombre "de signe et de magnitude". Ajoutez les portes logiques et autres circuits necessaires pour que Out2 soit la valeur négative de l’entrée. [Signe et magnitude](https://en.wikipedia.org/wiki/Signed_number_representations#Signed_magnitude_representation) est une autre façon de représenter les valeurs signées - comme le complément à 2.
+9. Maintenant, supposez que l'entrée est un nombre représenté par "un bit de signe et une magnitude". Ajoutez les portes logiques et autres circuits nécessaires pour que `Out2` soit la valeur négative de l’entrée. [Signe et magnitude](https://en.wikipedia.org/wiki/Signed_number_representations#Signed_magnitude_representation) est une autre façon de représenter les valeurs signées - comme le complément à 2.
 
-10. Nous aurons besoin d'un autre séparateur pour recombiner les ventilateurs en un seul bus 8 bits. Placez un autre séparateur avec les propriétés appropriées (Bit Width In: 8, Fan Out: 3, corrigez les largeurs de ventilateur). Jouez avec les propriétés Facing et Appearance pour rendre votre circuit final aussi propre que possible.
+10. Nous aurons besoin d'un autre séparateur pour recombiner les ventilateurs en un seul bus 8 bits. Placez un autre séparateur avec les propriétés appropriées (**Bit Width In**: 8, **Fan Out**: 3, corrigez les largeurs de ventilateur). Manipulez les propriétés **Facing** et **Appearance** pour rendre votre circuit final aussi propre que possible.
 
 ## Étape 4 : Additionneur 4 bits
 
@@ -164,9 +164,9 @@ Maintenant que vous avez acquis un peu d'expérience avec Logisim, nous allons c
 
 Un additionneur est un [circuit logique](https://fr.wikipedia.org/wiki/Circuit_logique) permettant de réaliser une addition. Ce circuit est très présent dans les ordinateurs pour le calcul arithmétique mais également pour le calcul d'adresses ou d'indice de tableau dans le processeur.
 
-Un additionneur [complet](https://fr.wikipedia.org/wiki/Additionneur) à un bit ajoute trois nombres à un bit, souvent écrits sous les noms `A`, `B` et `Cin`; `A` et `B` sont les opérandes, et `Cin` est un la retenue (résultat éventuel d'un ajout antérieur). L'additionneur complet est généralement composé d'une cascade d'additionneurs, qui ajoutent des nombres binaires de 8, 16, 32, etc.
+Un additionneur [complet](https://fr.wikipedia.org/wiki/Additionneur) additionne trois nombres, souvent écrits sous les noms `A`, `B` et `Cin`; `A` et `B` sont les opérandes, et `Cin` est un la retenue (résultat éventuel d'une addition antérieure). L'additionneur complet est généralement composé d'une cascade d'additionneurs simples de 8 bits, 16 bits, 32 bits, etc.
 
-Dans la notation ci-dessous, A[4] indique que l'entrée est nommée " **A** " et possède 4 bits de large. L'entrée ne doit pas être nommée " **A[4]** " dans Logisim.
+Dans la notation ci-dessous, A[4] indique que l'entrée est nommée " **A** " et possède 4 bits de large. L'entrée ne doit pas être nommée " **A[4]** " dans Logisim !
 
 <table class="styled-table">
 <colgroup>
@@ -191,14 +191,14 @@ Dans la notation ci-dessous, A[4] indique que l'entrée est nommée " **A** " et
 </tbody>
 </table>
 
-La sortie `S` est calculée en ajoutant `A` , `B` et `Cin`. `A` , `B` et `S` sont des nombres complément à deux. Si un débordement se produit, la sortie `Cout` doit être activée. Dans ce cas, la sortie `S` correspond à la valeur calculée quand toutes les erreurs de débordement sont ignorées.
+La sortie `S` est calculée en ajoutant `A` , `B` et `Cin`. `A` , `B` et `S` sont des nombres en complément à deux. Si un débordement se produit, la sortie `Cout` doit être activée. Dans ce cas, la sortie `S` correspond à la valeur calculée quand toutes les erreurs de débordement sont ignorées.
 
 
 **INDICATION** : Utilisez des sous-circuits pour faciliter le câblage en créant un additionneur à 1 bit, puis un additionneur à 4 bits, puis éventuellement un additionneur à 32 bits.
 
 ### **Table de vérité d'un additionneur 1-bit**
 
-Une table de vérité montre comment la sortie d'un circuit logique répond à diverses combinaisons d'entrées. Par exemple, si toutes les entrées d'un additionneur complet sont des «0», les sorties seront également «0». Remplissez la table de vérité ci-dessous.
+Une table de vérité montre comment la sortie d'un circuit logique répond à diverses combinaisons d'entrées. Par exemple, si toutes les entrées d'un additionneur complet sont des « `0` », les sorties seront également « `0` ». Remplissez la table de vérité ci-dessous.
 
 <table class="styled-table">
 <colgroup>
@@ -294,7 +294,7 @@ La table de vérité ci-dessus peut également être exprimée en utilisant l'al
    S =  A ⊕ B ⊕ Cin  
 Cout = (A ∧ B) ∨ (Cin ∧ (A ⊕ B) )
 ```
-Une technique appelée table de Karnaugh, du nom de Maurice Karnaugh, ingénieur en télécommunications aux laboratoires Bell en 1953, rend très simple la conversion de la table de vérité à une représentation utilisant l'algèbre booléenne. Vous pouvez consulter cette [article](https://fr.wikipedia.org/wiki/Table_de_Karnaugh) sur les tables de Karnaugh pour rafraîchir votre mémoire. Ainsi, le circuit suivant est une représentation schématique de notre additionneur 1-bit.
+Une technique appelée table de Karnaugh, du nom de Maurice Karnaugh, ingénieur en télécommunications aux laboratoires Bell en 1953, rend très simple la conversion de la table de vérité en une représentation par l'algèbre booléenne. Vous pouvez consulter cette [article](https://fr.wikipedia.org/wiki/Table_de_Karnaugh) sur les tables de Karnaugh pour rafraîchir votre mémoire. Ainsi, le circuit suivant est une représentation schématique de notre additionneur 1-bit.
 
 ![Full Adder]({{site.baseurl}}/static_files/images/Full_Adder.png){: .wp-caption img .aligncenter }
 
@@ -318,10 +318,10 @@ Construire l'additionneur 4-bits dans Logisim en réutilisant l'additionneur 1-b
 Avec des séparateurs et des multiplexeurs, vous allez implémenter un bloc logique combinatoire non trivial : `rotr`, qui signifie << Rotate Right >>. L'idée est que `rotr A, B` << fera pivoter >> les bits de l'entrée `A` vers la droite `B` bits fois. Ainsi, si `A` est `0b1011010101110011` et `B` est `0b0101` (5 en décimal), la sortie du bloc `rotr` sera `0b1001110110101011`. Notez que les 5 bits les plus à droite ont été extraits de l'extrémité droite de la valeur de `A` et injectés de nouveau à son extrémité gauche. En langage [RTL](https://fr.wikipedia.org/wiki/Register_Transfer_Language), l'opération ressemble à ceci `R = A >> B | A << (16 - B)`.
 
 À l'aide de Logisim, implémentez dans `ex3.circ` le sous circuit nommé `rotr` ayant les entrées suivantes :
-  - `A` (16-bit), la donnée sur 16 bits à faire pivoter
-  - `B` (4-bit), la quantité de rotation (pourquoi 4 bits ?)
+  - `A` (16-bits), la donnée sur 16 bits à faire pivoter
+  - `B` (4-bits), la quantité de rotation (pourquoi 4 bits ?)
 
-La sortie du circuit doit être la valeur de l'entrée `A` pivotée à droite de `B` positions. Vous n'êtes **PAS** autorisé à utiliser les composants de décalages Logisim dans votre solution. Toutefois, tout autre composant combinatoire (MUX, constantes, portes logiques, additionneurs, etc.) est autorisé. Votre solution ne doit **PAS** également utiliser d’horloge ou des éléments cadencés, comme les registres.
+La sortie du circuit doit être la valeur de l'entrée `A` pivotée à droite de `B` positions. Vous n'êtes **PAS** autorisé à utiliser les composants de décalages Logisim dans votre solution. Toutefois, tout autre composant combinatoire (MUX, constantes, portes logiques, additionneurs, etc.) est autorisé. Votre solution ne doit **PAS** également utiliser une horloge ou des éléments cadencés, comme les registres.
 
 **Indication 1** : Avant de commencer, vous devez réfléchir très attentivement à la façon dont vous pourriez décomposer ce problème. Pensez à utiliser des sous-circuits (squelettes déjà fournis) ! Si vous ne le faites pas, attendez-vous à le regretter.
 
@@ -338,7 +338,7 @@ La sortie du circuit doit être la valeur de l'entrée `A` pivotée à droite de
 
 ## Tester vos circuits
 
-Pour tester vos implémentations des circuits de ce TP, lancez le script suivant (depuis le répertoire contenant les fichiers  de démarrage) :
+Pour tester vos implémentations des circuits de ce TP, lancez le script suivant dans un terminal (depuis le répertoire contenant les fichiers  de démarrage) :
 
 ```bash
 ./test.sh
