@@ -12,4 +12,4 @@ links:
       name: visualiser
 ---
 **Références :**
-- [P&H]({{ site.baseurl }}/static_files/docs/P&H.jpg) : 4.5-4.8
+- [P&H]({{ site.baseurl }}/static_files/images/P&H.jpg) : 4.5-4.8
